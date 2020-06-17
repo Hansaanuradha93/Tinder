@@ -7,25 +7,21 @@ class ViewController: UIViewController {
         
         let redView = UIView()
         redView.backgroundColor = .red
+        redView.heightAnchor.constraint(equalToConstant: 100).isActive = true
         
         let blueView = UIView()
         blueView.backgroundColor = .blue
         
-        let stackView = UIStackView(arrangedSubviews: [redView, blueView])
-        stackView.distribution = .fillEqually
+        let yellowView = UIView()
+        yellowView.backgroundColor = .yellow
+        yellowView.heightAnchor.constraint(equalToConstant: 120).isActive = true
+        
+        let stackView = UIStackView(arrangedSubviews: [redView, blueView, yellowView])
         stackView.axis = .vertical
         
         view.addSubview(stackView)
         
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: view.topAnchor),
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-
-        ])
+        stackView.fillSuperview()
     }
 }
 
