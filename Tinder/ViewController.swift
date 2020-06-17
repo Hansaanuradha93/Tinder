@@ -11,10 +11,9 @@ class ViewController: UIViewController {
             return view
         }
         
-        let redStackView = UIStackView(arrangedSubviews: subViews)
-        redStackView.distribution = .fillEqually
-        redStackView.axis = .horizontal
-        redStackView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        let topStackView = UIStackView(arrangedSubviews: subViews)
+        topStackView.distribution = .fillEqually
+        topStackView.heightAnchor.constraint(equalToConstant: 100).isActive = true
         
         let blueView = UIView()
         blueView.backgroundColor = .blue
@@ -23,7 +22,7 @@ class ViewController: UIViewController {
         yellowView.backgroundColor = .yellow
         yellowView.heightAnchor.constraint(equalToConstant: 120).isActive = true
         
-        let stackView = UIStackView(arrangedSubviews: [redStackView, blueView, yellowView])
+        let stackView = UIStackView(arrangedSubviews: [topStackView, blueView, yellowView])
         stackView.axis = .vertical
         
         view.addSubview(stackView)
