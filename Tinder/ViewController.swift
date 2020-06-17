@@ -1,20 +1,31 @@
-//
-//  ViewController.swift
-//  Tinder
-//
-//  Created by Hansa Anuradha on 6/17/20.
-//  Copyright © 2020 Hansa Anuradha. All rights reserved.
-//
-
 import UIKit
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        let redView = UIView()
+        redView.backgroundColor = .red
+        
+        let blueView = UIView()
+        blueView.backgroundColor = .blue
+        
+        let stackView = UIStackView(arrangedSubviews: [redView, blueView])
+        stackView.distribution = .fillEqually
+        stackView.axis = .vertical
+        
+        view.addSubview(stackView)
+        
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: view.topAnchor),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+
+        ])
     }
-
-
 }
 
