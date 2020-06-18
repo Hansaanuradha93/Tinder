@@ -86,8 +86,8 @@
 		479F609B249B07C900BD0774 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				479F609C249B080100BD0774 /* HomeBottomButtonControlsStackView.swift */,
 				479F609E249B0ED100BD0774 /* HomeTopButtonControlsStackView.swift */,
+				479F609C249B080100BD0774 /* HomeBottomButtonControlsStackView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
