@@ -2,15 +2,22 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    let topStackView = HomeTopButtonControlsStackView()
+    let blueView = UIView()
+    let bottomStackView = HomeBottomButtonControlsStackView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupLayout()
+    }
+}
+
+// MARK: - Methods
+extension ViewController {
+    
+    fileprivate func setupLayout() {
         
-        let topStackView = HomeTopButtonControlsStackView()
-        
-        let blueView = UIView()
         blueView.backgroundColor = .blue
-        
-        let bottomStackView = HomeBottomButtonControlsStackView()
         
         let overrallStackView = UIStackView(arrangedSubviews: [topStackView, blueView, bottomStackView])
         overrallStackView.axis = .vertical
