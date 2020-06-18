@@ -30,14 +30,21 @@ extension CardView {
         
         switch gesture.state {
         case .changed:
-            let translation = gesture.translation(in: nil)
-            self.transform = CGAffineTransform(translationX: translation.x, y: translation.y)
-        
+            handleChanged(gesture)
         case .ended:
-            UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-                self.transform = .identity
-            }, completion: nil)
+            handleEnded()
         default: ()
         }
+    }
+    
+    fileprivate func handleEnded() {
+        UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.transform = .identity
+        }, completion: nil)
+    }
+    
+    fileprivate func handleChanged(_ gesture: UIPanGestureRecognizer) {
+        let translation = gesture.translation(in: nil)
+        self.transform = CGAffineTransform(translationX: translation.x, y: translation.y)
     }
 }
