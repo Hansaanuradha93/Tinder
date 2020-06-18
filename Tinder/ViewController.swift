@@ -18,16 +18,20 @@ class ViewController: UIViewController {
         let blueView = UIView()
         blueView.backgroundColor = .blue
         
-        let yellowView = UIView()
-        yellowView.backgroundColor = .yellow
-        yellowView.heightAnchor.constraint(equalToConstant: 120).isActive = true
+        let bottomSubViews = [UIColor.purple, .cyan, .gray, .magenta].map { color -> UIView in
+            let view = UIView()
+            view.backgroundColor = color
+            return view
+        }
         
-        let stackView = UIStackView(arrangedSubviews: [topStackView, blueView, yellowView])
-        stackView.axis = .vertical
-        
-        view.addSubview(stackView)
-        
-        stackView.fillSuperview()
+        let bottomStackView = UIStackView(arrangedSubviews: bottomSubViews)
+        bottomStackView.distribution = .fillEqually
+        bottomStackView.heightAnchor.constraint(equalToConstant: 120).isActive = true
+    
+        let overrallStackView = UIStackView(arrangedSubviews: [topStackView, blueView, bottomStackView])
+        overrallStackView.axis = .vertical
+        view.addSubview(overrallStackView)
+        overrallStackView.fillSuperview()
     }
 }
 
