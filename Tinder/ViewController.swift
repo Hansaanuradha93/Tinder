@@ -23,7 +23,7 @@ class ViewController: UIViewController {
         let overrallStackView = UIStackView(arrangedSubviews: [topStackView, blueView, buttonsStackView])
         overrallStackView.axis = .vertical
         view.addSubview(overrallStackView)
-        overrallStackView.fillSuperview()
+        overrallStackView.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor)
     }
 }
 
