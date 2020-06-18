@@ -6,15 +6,7 @@ class CardView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        layer.cornerRadius = 10
-        clipsToBounds = true
-        
-        addSubview(imageView)
-        imageView.fillSuperview()
-        
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
-        addGestureRecognizer(panGesture)
+        setupViews()
     }
     
     required init(coder: NSCoder) {
@@ -46,5 +38,16 @@ extension CardView {
     fileprivate func handleChanged(_ gesture: UIPanGestureRecognizer) {
         let translation = gesture.translation(in: nil)
         self.transform = CGAffineTransform(translationX: translation.x, y: translation.y)
+    }
+    
+    fileprivate func setupViews() {
+        layer.cornerRadius = 10
+        clipsToBounds = true
+        
+        addSubview(imageView)
+        imageView.fillSuperview()
+        
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
+        addGestureRecognizer(panGesture)
     }
 }
