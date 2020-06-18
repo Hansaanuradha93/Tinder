@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4738A6CD249BD0B400C55385 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4738A6CC249BD0B400C55385 /* CardView.swift */; };
 		4798806F249A7B3E00829930 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4798806E249A7B3E00829930 /* AppDelegate.swift */; };
 		47988071249A7B3E00829930 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47988070249A7B3E00829930 /* SceneDelegate.swift */; };
 		47988073249A7B3E00829930 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47988072249A7B3E00829930 /* ViewController.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4738A6CC249BD0B400C55385 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		4798806B249A7B3E00829930 /* Tinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4798806E249A7B3E00829930 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47988070249A7B3E00829930 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 			children = (
 				479F609E249B0ED100BD0774 /* HomeTopButtonControlsStackView.swift */,
 				479F609C249B080100BD0774 /* HomeBottomButtonControlsStackView.swift */,
+				4738A6CC249BD0B400C55385 /* CardView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -171,6 +174,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4738A6CD249BD0B400C55385 /* CardView.swift in Sources */,
 				47A80191249A814300768831 /* UIView+Ext.swift in Sources */,
 				47988073249A7B3E00829930 /* ViewController.swift in Sources */,
 				4798806F249A7B3E00829930 /* AppDelegate.swift in Sources */,
