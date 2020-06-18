@@ -13,6 +13,7 @@
 		47988076249A7B3E00829930 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47988074249A7B3E00829930 /* Main.storyboard */; };
 		47988078249A7B4000829930 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47988077249A7B4000829930 /* Assets.xcassets */; };
 		4798807B249A7B4000829930 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47988079249A7B4000829930 /* LaunchScreen.storyboard */; };
+		479F609D249B080100BD0774 /* HomeButtonControllsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479F609C249B080100BD0774 /* HomeButtonControllsStackView.swift */; };
 		47A80191249A814300768831 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A80190249A814300768831 /* UIView+Ext.swift */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +26,7 @@
 		47988077249A7B4000829930 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4798807A249A7B4000829930 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4798807C249A7B4000829930 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		479F609C249B080100BD0774 /* HomeButtonControllsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeButtonControllsStackView.swift; sourceTree = "<group>"; };
 		47A80190249A814300768831 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -58,6 +60,7 @@
 		4798806D249A7B3E00829930 /* Tinder */ = {
 			isa = PBXGroup;
 			children = (
+				479F609A249B07BF00BD0774 /* Custom Views */,
 				47A8018F249A811400768831 /* Extensions */,
 				4798806E249A7B3E00829930 /* AppDelegate.swift */,
 				47988070249A7B3E00829930 /* SceneDelegate.swift */,
@@ -68,6 +71,22 @@
 				4798807C249A7B4000829930 /* Info.plist */,
 			);
 			path = Tinder;
+			sourceTree = "<group>";
+		};
+		479F609A249B07BF00BD0774 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				479F609B249B07C900BD0774 /* Views */,
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		479F609B249B07C900BD0774 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				479F609C249B080100BD0774 /* HomeButtonControllsStackView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		47A8018F249A811400768831 /* Extensions */ = {
@@ -152,6 +171,7 @@
 				47A80191249A814300768831 /* UIView+Ext.swift in Sources */,
 				47988073249A7B3E00829930 /* ViewController.swift in Sources */,
 				4798806F249A7B3E00829930 /* AppDelegate.swift in Sources */,
+				479F609D249B080100BD0774 /* HomeButtonControllsStackView.swift in Sources */,
 				47988071249A7B3E00829930 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
