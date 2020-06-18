@@ -1,6 +1,6 @@
 import UIKit
 
-class HomeButtonControllsStackView: UIStackView {
+class HomeBottomButtonControlsStackView: UIStackView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
