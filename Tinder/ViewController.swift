@@ -18,17 +18,9 @@ class ViewController: UIViewController {
         let blueView = UIView()
         blueView.backgroundColor = .blue
         
-        let bottomSubViews = [UIColor.purple, .cyan, .gray, .magenta].map { color -> UIView in
-            let view = UIView()
-            view.backgroundColor = color
-            return view
-        }
+        let buttonsStackView = HomeButtonControllsStackView()
         
-        let bottomStackView = UIStackView(arrangedSubviews: bottomSubViews)
-        bottomStackView.distribution = .fillEqually
-        bottomStackView.heightAnchor.constraint(equalToConstant: 120).isActive = true
-    
-        let overrallStackView = UIStackView(arrangedSubviews: [topStackView, blueView, bottomStackView])
+        let overrallStackView = UIStackView(arrangedSubviews: [topStackView, blueView, buttonsStackView])
         overrallStackView.axis = .vertical
         view.addSubview(overrallStackView)
         overrallStackView.fillSuperview()
