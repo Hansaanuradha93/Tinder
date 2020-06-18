@@ -30,7 +30,7 @@ extension CardView {
     }
     
     fileprivate func handleEnded() {
-        UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.3, options: .curveEaseOut, animations: {
             self.transform = .identity
         }, completion: nil)
     }
