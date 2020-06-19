@@ -2,6 +2,6 @@ import UIKit
 
 struct CardViewModel {
     let imageUrl: String
-    let attributedText: String
+    let attributedText: NSAttributedString
     let textAlignment: NSTextAlignment
 }
