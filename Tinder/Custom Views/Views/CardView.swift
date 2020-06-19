@@ -13,11 +13,16 @@ class CardView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupViews()
+        layoutUI()
     }
     
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    convenience init(cardViewModel: CardViewModel) {
+        self.init()
+        setupViews(cardViewModel)
     }
 }
 
@@ -66,7 +71,13 @@ extension CardView {
         self.transform = rotationalTransformation.translatedBy(x: translation.x, y: translation.y)
     }
     
-    fileprivate func setupViews() {
+    fileprivate func setupViews(_ cardViewModel: CardViewModel) {
+        imageView.image = UIImage(named: cardViewModel.imageUrl)
+        informationLabel.attributedText = cardViewModel.attributedText
+        informationLabel.textAlignment = cardViewModel.textAlignment
+    }
+    
+    fileprivate func layoutUI() {
         layer.cornerRadius = 10
         clipsToBounds = true
         

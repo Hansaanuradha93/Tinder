@@ -28,12 +28,8 @@ class HomeViewController: UIViewController {
 extension HomeViewController {
     
     fileprivate func setupDummyCards() {
-        
         cardViewModels.forEach { (cardViewModel) in
-            let cardView = CardView()
-            cardView.imageView.image = UIImage(named: cardViewModel.imageUrl)
-            cardView.informationLabel.attributedText = cardViewModel.attributedText
-            cardView.informationLabel.textAlignment = cardViewModel.textAlignment
+            let cardView = CardView(cardViewModel: cardViewModel)
             cardsDeckView.addSubview(cardView)
             cardView.fillSuperview()
         }
