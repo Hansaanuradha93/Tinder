@@ -89,9 +89,9 @@
 		479F609B249B07C900BD0774 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				4738A6CC249BD0B400C55385 /* CardView.swift */,
 				479F609E249B0ED100BD0774 /* HomeTopButtonControlsStackView.swift */,
 				479F609C249B080100BD0774 /* HomeBottomButtonControlsStackView.swift */,
-				4738A6CC249BD0B400C55385 /* CardView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

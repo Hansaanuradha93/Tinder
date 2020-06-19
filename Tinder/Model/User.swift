@@ -7,6 +7,7 @@ struct User {
     let imageUrl: String
 }
 
+
 // MARK: - ProducesCardViewModel
 extension User: ProducesCardViewModel {
     
