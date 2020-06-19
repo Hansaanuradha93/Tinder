@@ -64,15 +64,11 @@
 		4798806D249A7B3E00829930 /* Tinder */ = {
 			isa = PBXGroup;
 			children = (
+				47CE81FE249CB96500B9696E /* Scenes */,
 				479F609A249B07BF00BD0774 /* Custom Views */,
+				47CE8200249CB9A100B9696E /* Support Files */,
 				47A8018F249A811400768831 /* Extensions */,
-				4798806E249A7B3E00829930 /* AppDelegate.swift */,
-				47988070249A7B3E00829930 /* SceneDelegate.swift */,
-				47988072249A7B3E00829930 /* ViewController.swift */,
 				47988074249A7B3E00829930 /* Main.storyboard */,
-				47988077249A7B4000829930 /* Assets.xcassets */,
-				47988079249A7B4000829930 /* LaunchScreen.storyboard */,
-				4798807C249A7B4000829930 /* Info.plist */,
 			);
 			path = Tinder;
 			sourceTree = "<group>";
@@ -101,6 +97,34 @@
 				47A80190249A814300768831 /* UIView+Ext.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		47CE81FE249CB96500B9696E /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				47CE81FF249CB97600B9696E /* Home */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		47CE81FF249CB97600B9696E /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				47988072249A7B3E00829930 /* ViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		47CE8200249CB9A100B9696E /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				4798806E249A7B3E00829930 /* AppDelegate.swift */,
+				47988070249A7B3E00829930 /* SceneDelegate.swift */,
+				47988077249A7B4000829930 /* Assets.xcassets */,
+				47988079249A7B4000829930 /* LaunchScreen.storyboard */,
+				4798807C249A7B4000829930 /* Info.plist */,
+			);
+			name = "Support Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
