@@ -1,6 +1,6 @@
 import UIKit
 
-class ViewController: UIViewController {
+class HomeViewController: UIViewController {
 
     let topStackView = HomeTopButtonControlsStackView()
     let cardsDeckView = UIView()
@@ -14,7 +14,7 @@ class ViewController: UIViewController {
 }
 
 // MARK: - Methods
-extension ViewController {
+extension HomeViewController {
     
     fileprivate func setupDummyCards() {
         

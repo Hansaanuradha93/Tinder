@@ -5,7 +5,6 @@ class HomeTopButtonControlsStackView: UIStackView {
     let settingButton = UIButton(type: .system)
     let fireButton = UIButton(type: .system)
     let messagesButton = UIButton(type: .system)
-
     
     override init(frame: CGRect) {
         super.init(frame: frame)
