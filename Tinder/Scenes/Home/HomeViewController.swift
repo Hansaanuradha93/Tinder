@@ -17,9 +17,13 @@ class HomeViewController: UIViewController {
 extension HomeViewController {
     
     fileprivate func setupDummyCards() {
-        let cardView = CardView(frame: .zero)
-        cardsDeckView.addSubview(cardView)
-        cardView.fillSuperview()
+        
+        (0..<10).forEach { (_) in
+            let cardView = CardView(frame: .zero)
+            cardsDeckView.addSubview(cardView)
+            cardView.fillSuperview()
+        }
+        
     }
     
     fileprivate func setupLayout() {

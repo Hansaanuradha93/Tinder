@@ -48,6 +48,7 @@ extension CardView {
             }
         }) { (_) in
             self.transform = .identity
+            self.removeFromSuperview()
         }
     }
     
