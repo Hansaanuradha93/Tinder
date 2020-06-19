@@ -12,14 +12,10 @@ class CardView: UIView {
     var user: User!
 
     
+    // MARK: Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
         layoutUI()
-    }
-    
-    
-    required init(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     
@@ -27,6 +23,9 @@ class CardView: UIView {
         self.init()
         setupViews(cardViewModel)
     }
+    
+    
+    required init(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 }
 
 

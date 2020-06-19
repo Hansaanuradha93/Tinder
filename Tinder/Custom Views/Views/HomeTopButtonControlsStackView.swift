@@ -2,10 +2,13 @@ import UIKit
 
 class HomeTopButtonControlsStackView: UIStackView {
     
+    // MARK: Properties
     let settingButton = UIButton(type: .system)
     let fireButton = UIButton(type: .system)
     let messagesButton = UIButton(type: .system)
     
+    
+    // MARK: Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -23,7 +26,6 @@ class HomeTopButtonControlsStackView: UIStackView {
         }
     }
     
-    required init(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    
+    required init(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 }

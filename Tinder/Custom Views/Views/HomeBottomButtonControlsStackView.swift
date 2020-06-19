@@ -2,6 +2,7 @@ import UIKit
 
 class HomeBottomButtonControlsStackView: UIStackView {
 
+    // MARK: Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -16,7 +17,6 @@ class HomeBottomButtonControlsStackView: UIStackView {
         }
     }
     
-    required init(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    
+    required init(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 }
