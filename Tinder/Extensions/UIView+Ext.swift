@@ -4,6 +4,7 @@ struct AnchoredConstraints {
     var top, leading, bottom, trailing, width, height: NSLayoutConstraint?
 }
 
+
 // Reference Video: https://youtu.be/iqpAP7s3b-8
 extension UIView {
     
@@ -42,6 +43,7 @@ extension UIView {
         return anchoredConstraints
     }
     
+    
     func fillSuperview(padding: UIEdgeInsets = .zero) {
         translatesAutoresizingMaskIntoConstraints = false
         if let superviewTopAnchor = superview?.topAnchor {
@@ -61,6 +63,7 @@ extension UIView {
         }
     }
     
+    
     func centerInSuperview(size: CGSize = .zero) {
         translatesAutoresizingMaskIntoConstraints = false
         if let superviewCenterXAnchor = superview?.centerXAnchor {
@@ -79,6 +82,4 @@ extension UIView {
             heightAnchor.constraint(equalToConstant: size.height).isActive = true
         }
     }
-    
 }
-
