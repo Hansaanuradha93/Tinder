@@ -2,6 +2,7 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
+    // MARK: Properties
     let topStackView = HomeTopButtonControlsStackView()
     let cardsDeckView = UIView()
     let bottomStackView = HomeBottomButtonControlsStackView()
@@ -17,6 +18,8 @@ class HomeViewController: UIViewController {
         return viewModels
     }()
     
+    
+    // MARK: ViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
@@ -34,6 +37,7 @@ extension HomeViewController {
             cardView.fillSuperview()
         }
     }
+    
     
     fileprivate func setupLayout() {
         view.backgroundColor = .white
