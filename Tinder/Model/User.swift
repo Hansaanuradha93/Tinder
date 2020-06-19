@@ -7,8 +7,8 @@ struct User {
     let imageUrl: String
 }
 
-// MARK: - Methods
-extension User {
+// MARK: - ProducesCardViewModel
+extension User: ProducesCardViewModel {
     
     func toCardViewModel() -> CardViewModel {
         let attributedText = NSMutableAttributedString(string: name, attributes: [.font: UIFont.systemFont(ofSize: 32, weight: .heavy)])
