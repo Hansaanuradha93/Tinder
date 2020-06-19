@@ -6,6 +6,7 @@ class CardView: UIView {
     let imageView = UIImageView(image: #imageLiteral(resourceName: "lady5c"))
     let informationLabel = UILabel()
     
+    
     // MARK: Configurations
     fileprivate let threshold: CGFloat = 100
     var user: User!
@@ -16,9 +17,11 @@ class CardView: UIView {
         layoutUI()
     }
     
+    
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     
     convenience init(cardViewModel: CardViewModel) {
         self.init()
@@ -31,7 +34,6 @@ class CardView: UIView {
 extension CardView {
     
     @objc fileprivate func handlePan(_ gesture: UIPanGestureRecognizer) {
-        
         switch gesture.state {
         case .changed:
             handleChanged(gesture)
@@ -40,6 +42,7 @@ extension CardView {
         default: ()
         }
     }
+    
     
     fileprivate func handleEnded(_ gesture: UIPanGestureRecognizer) {
         let translationX = gesture.translation(in: nil).x
@@ -61,8 +64,8 @@ extension CardView {
         }
     }
     
+    
     fileprivate func handleChanged(_ gesture: UIPanGestureRecognizer) {
-        
         let translation = gesture.translation(in: nil)
         let degrees: CGFloat = translation.x / 20
         let angle = degrees * .pi / 180
@@ -71,11 +74,13 @@ extension CardView {
         self.transform = rotationalTransformation.translatedBy(x: translation.x, y: translation.y)
     }
     
+    
     fileprivate func setupViews(_ cardViewModel: CardViewModel) {
         imageView.image = UIImage(named: cardViewModel.imageUrl)
         informationLabel.attributedText = cardViewModel.attributedText
         informationLabel.textAlignment = cardViewModel.textAlignment
     }
+    
     
     fileprivate func layoutUI() {
         layer.cornerRadius = 10
