@@ -17,6 +17,7 @@
 		479F609F249B0ED100BD0774 /* HomeTopButtonControlsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479F609E249B0ED100BD0774 /* HomeTopButtonControlsStackView.swift */; };
 		47A80191249A814300768831 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A80190249A814300768831 /* UIView+Ext.swift */; };
 		47CE8203249CBCDB00B9696E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CE8202249CBCDB00B9696E /* User.swift */; };
+		47CE8206249CEBFA00B9696E /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CE8205249CEBFA00B9696E /* CardViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		479F609E249B0ED100BD0774 /* HomeTopButtonControlsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTopButtonControlsStackView.swift; sourceTree = "<group>"; };
 		47A80190249A814300768831 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		47CE8202249CBCDB00B9696E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		47CE8205249CEBFA00B9696E /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 		4798806D249A7B3E00829930 /* Tinder */ = {
 			isa = PBXGroup;
 			children = (
+				47CE8204249CEBE900B9696E /* ViewModel */,
 				47CE8201249CBCCD00B9696E /* Model */,
 				47CE81FE249CB96500B9696E /* Scenes */,
 				479F609A249B07BF00BD0774 /* Custom Views */,
@@ -133,6 +136,14 @@
 				47CE8202249CBCDB00B9696E /* User.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		47CE8204249CEBE900B9696E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				47CE8205249CEBFA00B9696E /* CardViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,6 +224,7 @@
 				479F609D249B080100BD0774 /* HomeBottomButtonControlsStackView.swift in Sources */,
 				479F609F249B0ED100BD0774 /* HomeTopButtonControlsStackView.swift in Sources */,
 				47988071249A7B3E00829930 /* SceneDelegate.swift in Sources */,
+				47CE8206249CEBFA00B9696E /* CardViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
