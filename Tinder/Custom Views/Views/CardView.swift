@@ -2,7 +2,12 @@ import UIKit
 
 class CardView: UIView {
     
+    // MARK: Properties
     fileprivate let imageView = UIImageView(image: #imageLiteral(resourceName: "lady5c"))
+    
+    // MARK: Configurations
+    fileprivate let threshold: CGFloat = 100
+
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -18,21 +23,30 @@ class CardView: UIView {
 // MARK: - Methods
 extension CardView {
     
-    @objc fileprivate func handlePan(gesture: UIPanGestureRecognizer) {
+    @objc fileprivate func handlePan(_ gesture: UIPanGestureRecognizer) {
         
         switch gesture.state {
         case .changed:
             handleChanged(gesture)
         case .ended:
-            handleEnded()
+            handleEnded(gesture)
         default: ()
         }
     }
     
-    fileprivate func handleEnded() {
+    fileprivate func handleEnded(_ gesture: UIPanGestureRecognizer) {
+        let shoudDismissCard = gesture.translation(in: nil).x > threshold
+    
         UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.3, options: .curveEaseOut, animations: {
+            if shoudDismissCard {
+                let offScreenTransform = self.transform.translatedBy(x: 1000, y: 0)
+                self.transform = offScreenTransform
+            } else {
+                self.transform = .identity
+            }
+        }) { (_) in
             self.transform = .identity
-        }, completion: nil)
+        }
     }
     
     fileprivate func handleChanged(_ gesture: UIPanGestureRecognizer) {
