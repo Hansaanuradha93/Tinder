@@ -6,9 +6,9 @@ class HomeViewController: UIViewController {
     let cardsDeckView = UIView()
     let bottomStackView = HomeBottomButtonControlsStackView()
     
-    let users = [
-        User(name: "Kelly", age: 23, profession: "DJ Music", imageUrl: "lady4c"),
-        User(name: "Jane", age: 18, profession: "Teacher", imageUrl: "lady5c")
+    let cardViewModels = [
+        User(name: "Kelly", age: 23, profession: "DJ Music", imageUrl: "lady4c").toCardViewModel(),
+        User(name: "Jane", age: 18, profession: "Teacher", imageUrl: "lady5c").toCardViewModel()
     ]
     
     override func viewDidLoad() {
@@ -23,15 +23,10 @@ extension HomeViewController {
     
     fileprivate func setupDummyCards() {
         
-        users.forEach { (user) in
+        cardViewModels.forEach { (cardViewModel) in
             let cardView = CardView()
-            cardView.imageView.image = UIImage(named: user.imageUrl)
-            
-            let attributedText = NSMutableAttributedString(string: user.name, attributes: [.font: UIFont.systemFont(ofSize: 32, weight: .heavy)])
-            attributedText.append(NSMutableAttributedString(string: "  \(user.age)", attributes: [.font: UIFont.systemFont(ofSize: 24, weight: .regular)]))
-            attributedText.append(NSMutableAttributedString(string: "\n\(user.profession)", attributes: [.font: UIFont.systemFont(ofSize: 20, weight: .regular)]))
-            cardView.informationLabel.attributedText = attributedText
-            
+            cardView.imageView.image = UIImage(named: cardViewModel.imageUrl)
+            cardView.informationLabel.attributedText = cardViewModel.attributedText
             cardsDeckView.addSubview(cardView)
             cardView.fillSuperview()
         }
