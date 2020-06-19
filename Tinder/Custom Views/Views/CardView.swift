@@ -3,10 +3,11 @@ import UIKit
 class CardView: UIView {
     
     // MARK: Properties
-    fileprivate let imageView = UIImageView(image: #imageLiteral(resourceName: "lady5c"))
+    let imageView = UIImageView(image: #imageLiteral(resourceName: "lady5c"))
     
     // MARK: Configurations
     fileprivate let threshold: CGFloat = 100
+    var user: User!
 
     
     override init(frame: CGRect) {
@@ -48,7 +49,9 @@ extension CardView {
             }
         }) { (_) in
             self.transform = .identity
-            self.removeFromSuperview()
+            if shoudDismissCard {
+                self.removeFromSuperview()
+            }
         }
     }
     
@@ -66,6 +69,7 @@ extension CardView {
         layer.cornerRadius = 10
         clipsToBounds = true
         
+        imageView.contentMode = .scaleAspectFill
         addSubview(imageView)
         imageView.fillSuperview()
         
