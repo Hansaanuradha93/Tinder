@@ -8,7 +8,8 @@ class HomeViewController: UIViewController {
     
     let cardViewModels = [
         User(name: "Kelly", age: 23, profession: "DJ Music", imageUrl: "lady4c").toCardViewModel(),
-        User(name: "Jane", age: 18, profession: "Teacher", imageUrl: "lady5c").toCardViewModel()
+        User(name: "Jane", age: 18, profession: "Teacher", imageUrl: "lady5c").toCardViewModel(),
+        Advertiser(title: "Slide Out Menu", brandName: "Lets Build That App", posterImageUrl: "slide_out_menu_poster").toCardViewModel()
     ]
     
     override func viewDidLoad() {
@@ -27,10 +28,10 @@ extension HomeViewController {
             let cardView = CardView()
             cardView.imageView.image = UIImage(named: cardViewModel.imageUrl)
             cardView.informationLabel.attributedText = cardViewModel.attributedText
+            cardView.informationLabel.textAlignment = cardViewModel.textAlignment
             cardsDeckView.addSubview(cardView)
             cardView.fillSuperview()
         }
-        
     }
     
     fileprivate func setupLayout() {
