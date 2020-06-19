@@ -39,7 +39,7 @@ extension CardView {
         let translationDirection: CGFloat = translationX > 0 ? 1 : -1
         let shoudDismissCard = abs(translationX) > threshold
     
-        UIView.animate(withDuration: 0.75, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.1, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.1, options: .curveEaseOut, animations: {
             if shoudDismissCard {
                 let offScreenTransform = self.transform.translatedBy(x: 1000 * translationDirection, y: 0)
                 self.transform = offScreenTransform
