@@ -17,16 +17,17 @@ class HomeViewController: UIViewController {
 extension HomeViewController {
     
     fileprivate func setupDummyCards() {
-        
         let cardView = CardView(frame: .zero)
         cardsDeckView.addSubview(cardView)
         cardView.fillSuperview()
     }
     
     fileprivate func setupLayout() {
+        view.backgroundColor = .white
                 
         let overrallStackView = UIStackView(arrangedSubviews: [topStackView, cardsDeckView, bottomStackView])
         overrallStackView.axis = .vertical
+        
         view.addSubview(overrallStackView)
         overrallStackView.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor)
         overrallStackView.isLayoutMarginsRelativeArrangement = true
