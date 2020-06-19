@@ -26,7 +26,12 @@ extension HomeViewController {
         users.forEach { (user) in
             let cardView = CardView()
             cardView.imageView.image = UIImage(named: user.imageUrl)
-            cardView.informationLabel.text = "\(user.name) \(user.age)\n\(user.profession)"
+            
+            let attributedText = NSMutableAttributedString(string: user.name, attributes: [.font: UIFont.systemFont(ofSize: 32, weight: .heavy)])
+            attributedText.append(NSMutableAttributedString(string: "  \(user.age)", attributes: [.font: UIFont.systemFont(ofSize: 24, weight: .regular)]))
+            attributedText.append(NSMutableAttributedString(string: "\n\(user.profession)", attributes: [.font: UIFont.systemFont(ofSize: 20, weight: .regular)]))
+            cardView.informationLabel.attributedText = attributedText
+            
             cardsDeckView.addSubview(cardView)
             cardView.fillSuperview()
         }
