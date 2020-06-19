@@ -26,6 +26,7 @@ extension HomeViewController {
         users.forEach { (user) in
             let cardView = CardView()
             cardView.imageView.image = UIImage(named: user.imageUrl)
+            cardView.informationLabel.text = "\(user.name) \(user.age)\n\(user.profession)"
             cardsDeckView.addSubview(cardView)
             cardView.fillSuperview()
         }

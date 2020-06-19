@@ -4,6 +4,7 @@ class CardView: UIView {
     
     // MARK: Properties
     let imageView = UIImageView(image: #imageLiteral(resourceName: "lady5c"))
+    let informationLabel = UILabel()
     
     // MARK: Configurations
     fileprivate let threshold: CGFloat = 100
@@ -72,6 +73,12 @@ extension CardView {
         imageView.contentMode = .scaleAspectFill
         addSubview(imageView)
         imageView.fillSuperview()
+        
+        addSubview(informationLabel)
+        informationLabel.anchor(top: nil, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 16, bottom: 16, right: 16))
+        informationLabel.textColor = .white
+        informationLabel.font = UIFont.systemFont(ofSize: 30, weight: .heavy)
+        informationLabel.numberOfLines = 0
         
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
         addGestureRecognizer(panGesture)
