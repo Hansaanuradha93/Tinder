@@ -3,8 +3,8 @@ import UIKit
 class CardView: UIView {
     
     // MARK: Properties
-    let imageView = UIImageView(image: #imageLiteral(resourceName: "lady5c"))
-    let informationLabel = UILabel()
+    fileprivate let imageView = UIImageView(image: #imageLiteral(resourceName: "lady5c"))
+    fileprivate let informationLabel = UILabel()
     
     
     // MARK: Configurations

@@ -41,15 +41,15 @@ extension HomeViewController {
     
     fileprivate func setupLayout() {
         view.backgroundColor = .white
-                
+        
         let overrallStackView = UIStackView(arrangedSubviews: [topStackView, cardsDeckView, bottomStackView])
         overrallStackView.axis = .vertical
-        
-        view.addSubview(overrallStackView)
-        overrallStackView.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor)
         overrallStackView.isLayoutMarginsRelativeArrangement = true
         overrallStackView.layoutMargins = .init(top: 0, left: 8, bottom: 0, right: 8)
         overrallStackView.bringSubviewToFront(cardsDeckView)
+        
+        view.addSubview(overrallStackView)
+        overrallStackView.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor)
     }
 }
 
