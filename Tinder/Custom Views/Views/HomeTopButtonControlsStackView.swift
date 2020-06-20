@@ -3,7 +3,7 @@ import UIKit
 class HomeTopButtonControlsStackView: UIStackView {
     
     // MARK: Properties
-    let settingButton = UIButton(type: .system)
+    let settingsButton = UIButton(type: .system)
     let fireButton = UIButton(type: .system)
     let messagesButton = UIButton(type: .system)
     
@@ -17,11 +17,11 @@ class HomeTopButtonControlsStackView: UIStackView {
         isLayoutMarginsRelativeArrangement = true
         layoutMargins = .init(top: 0, left: 16, bottom: 0, right: 16)
         
-        settingButton.setImage(#imageLiteral(resourceName: "top_left_profile").withRenderingMode(.alwaysOriginal), for: .normal)
+        settingsButton.setImage(#imageLiteral(resourceName: "top_left_profile").withRenderingMode(.alwaysOriginal), for: .normal)
         fireButton.setImage(#imageLiteral(resourceName: "app_icon").withRenderingMode(.alwaysOriginal), for: .normal)
         messagesButton.setImage(#imageLiteral(resourceName: "top_right_messages").withRenderingMode(.alwaysOriginal), for: .normal)
         
-        [settingButton, fireButton, messagesButton].forEach { button in
+        [settingsButton, fireButton, messagesButton].forEach { button in
             addArrangedSubview(button)
         }
     }

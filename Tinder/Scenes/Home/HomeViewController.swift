@@ -24,11 +24,24 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         setupLayout()
         setupDummyCards()
+        setupButtonActions()
     }
 }
 
 // MARK: - Methods
 extension HomeViewController {
+    
+    @objc fileprivate func settingsButtonTapped() {
+        let controller = SignupViewController()
+        controller.modalPresentationStyle = .fullScreen
+        self.present(controller, animated: true)
+    }
+    
+    
+    fileprivate func setupButtonActions() {
+        topStackView.settingsButton.addTarget(self, action: #selector(settingsButtonTapped), for: .touchUpInside)
+    }
+    
     
     fileprivate func setupDummyCards() {
         cardViewModels.forEach { (cardViewModel) in
