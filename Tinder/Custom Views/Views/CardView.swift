@@ -9,7 +9,7 @@ class CardView: UIView {
 
     fileprivate var imageCurrentIndex: Int = 0
     fileprivate var cardViewModel: CardViewModel!
-    fileprivate let barSelectedColor = UIColor.appColor(color: .darkGray)
+    fileprivate let barDiselectedColor = UIColor.appColor(color: .darkGray)
     
     
     // MARK: Configurations
@@ -53,16 +53,14 @@ extension CardView {
         if shouldAdvanceNextPhoto {
             imageCurrentIndex = min(imageCurrentIndex + 1, cardViewModel.imageUrls.count - 1)
         } else {
-            if imageCurrentIndex > 0 {
-                imageCurrentIndex = max( 0, imageCurrentIndex - 1)
-            }
+            imageCurrentIndex = max( 0, imageCurrentIndex - 1)
         }
         
         let imageUrl = cardViewModel.imageUrls[imageCurrentIndex]
         imageView.image = UIImage(named: imageUrl)
         
         barStackView.arrangedSubviews.forEach { (view) in
-            view.backgroundColor = barSelectedColor
+            view.backgroundColor = barDiselectedColor
         }
         barStackView.arrangedSubviews[imageCurrentIndex].backgroundColor = .white
     }
@@ -126,7 +124,7 @@ extension CardView {
         informationLabel.textAlignment = cardViewModel.textAlignment
         cardViewModel.imageUrls.forEach { (_) in
             let barView = UIView()
-            barView.backgroundColor = barSelectedColor
+            barView.backgroundColor = barDiselectedColor
             barStackView.addArrangedSubview(barView)
         }
         barStackView.arrangedSubviews.first?.backgroundColor = .white
