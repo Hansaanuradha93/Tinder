@@ -6,6 +6,9 @@ class CardView: UIView {
     fileprivate let imageView = UIImageView(image: #imageLiteral(resourceName: "lady5c"))
     fileprivate let informationLabel = UILabel()
     fileprivate let barStackView = UIStackView()
+
+    fileprivate var imageCurrentIndex: Int = 0
+    fileprivate var cardViewModel: CardViewModel!
     
     
     // MARK: Configurations
@@ -22,6 +25,7 @@ class CardView: UIView {
     
     convenience init(cardViewModel: CardViewModel) {
         self.init()
+        self.cardViewModel = cardViewModel
         setupViews(cardViewModel)
     }
     
@@ -39,6 +43,21 @@ class CardView: UIView {
 
 // MARK: - Methods
 extension CardView {
+    
+    @objc fileprivate func handleTap(gesture: UITapGestureRecognizer) {
+        guard let cardViewModel = cardViewModel, !cardViewModel.imageUrls.isEmpty else { return }
+        let tapLocation = gesture.location(in: nil)
+        let shouldAdvanceNextPhoto = tapLocation.x > frame.width / 2 ? true : false
+        if shouldAdvanceNextPhoto {
+            imageCurrentIndex = min(imageCurrentIndex + 1, cardViewModel.imageUrls.count - 1)
+        } else {
+            if imageCurrentIndex > 0 {
+                imageCurrentIndex = max( 0, imageCurrentIndex - 1)
+            }
+        }
+        let imageUrl = cardViewModel.imageUrls[imageCurrentIndex]
+        imageView.image = UIImage(named: imageUrl)
+    }
     
     @objc fileprivate func handlePan(_ gesture: UIPanGestureRecognizer) {
         switch gesture.state {
@@ -138,6 +157,8 @@ extension CardView {
         clipsToBounds = true
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
         addGestureRecognizer(panGesture)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        addGestureRecognizer(tapGesture)
     }
     
     
