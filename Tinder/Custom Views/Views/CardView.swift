@@ -26,6 +26,13 @@ class CardView: UIView {
     
     
     required init(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
+    
+    
+    // MARK: Ovverride Methods
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        configureGradientView()
+    }
 }
 
 
@@ -82,20 +89,42 @@ extension CardView {
     
     
     fileprivate func layoutUI() {
+        configureCard()
+        configureImageView()
+        configureInformationLabel()
+    }
+    
+    
+    fileprivate func configureGradientView() {
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
+        gradientLayer.locations = [0.5, 1.1]
+        gradientLayer.frame = self.frame
+        layer.insertSublayer(gradientLayer, at: 1)
+    }
+    
+    
+    fileprivate func configureCard() {
         layer.cornerRadius = 10
         clipsToBounds = true
-        
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
+        addGestureRecognizer(panGesture)
+    }
+    
+    
+    fileprivate func configureImageView() {
         imageView.contentMode = .scaleAspectFill
         addSubview(imageView)
         imageView.fillSuperview()
-        
+    }
+    
+    
+    fileprivate func configureInformationLabel() {
         addSubview(informationLabel)
         informationLabel.anchor(top: nil, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 16, bottom: 16, right: 16))
         informationLabel.textColor = .white
         informationLabel.font = UIFont.systemFont(ofSize: 30, weight: .heavy)
         informationLabel.numberOfLines = 0
-        
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
-        addGestureRecognizer(panGesture)
     }
 }
