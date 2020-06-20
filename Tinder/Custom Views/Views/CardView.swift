@@ -46,6 +46,7 @@ extension CardView {
     
     @objc fileprivate func handleTap(gesture: UITapGestureRecognizer) {
         guard let cardViewModel = cardViewModel, !cardViewModel.imageUrls.isEmpty else { return }
+        
         let tapLocation = gesture.location(in: nil)
         let shouldAdvanceNextPhoto = tapLocation.x > frame.width / 2 ? true : false
         if shouldAdvanceNextPhoto {
@@ -55,8 +56,14 @@ extension CardView {
                 imageCurrentIndex = max( 0, imageCurrentIndex - 1)
             }
         }
+        
         let imageUrl = cardViewModel.imageUrls[imageCurrentIndex]
         imageView.image = UIImage(named: imageUrl)
+        
+        barStackView.arrangedSubviews.forEach { (view) in
+            view.backgroundColor = UIColor(white: 0, alpha: 0.1)
+        }
+        barStackView.arrangedSubviews[imageCurrentIndex].backgroundColor = .white
     }
     
     @objc fileprivate func handlePan(_ gesture: UIPanGestureRecognizer) {
