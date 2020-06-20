@@ -6,7 +6,7 @@ protocol ProducesCardViewModel {
 
 
 struct CardViewModel {
-    let imageUrl: String
+    let imageUrls: [String]
     let attributedText: NSAttributedString
     let textAlignment: NSTextAlignment
 }

@@ -68,8 +68,8 @@
 		4798806D249A7B3E00829930 /* Tinder */ = {
 			isa = PBXGroup;
 			children = (
-				47CE8204249CEBE900B9696E /* ViewModel */,
 				47CE8201249CBCCD00B9696E /* Model */,
+				47CE8204249CEBE900B9696E /* ViewModel */,
 				47CE81FE249CB96500B9696E /* Scenes */,
 				479F609A249B07BF00BD0774 /* Custom Views */,
 				47A8018F249A811400768831 /* Extensions */,

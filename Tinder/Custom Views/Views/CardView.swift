@@ -5,6 +5,7 @@ class CardView: UIView {
     // MARK: Properties
     fileprivate let imageView = UIImageView(image: #imageLiteral(resourceName: "lady5c"))
     fileprivate let informationLabel = UILabel()
+    fileprivate let barStackView = UIStackView()
     
     
     // MARK: Configurations
@@ -92,7 +93,8 @@ extension CardView {
     
     
     fileprivate func setupViews(_ cardViewModel: CardViewModel) {
-        imageView.image = UIImage(named: cardViewModel.imageUrl)
+        let imageUrl = cardViewModel.imageUrls.first ?? ""
+        imageView.image = UIImage(named: imageUrl)
         informationLabel.attributedText = cardViewModel.attributedText
         informationLabel.textAlignment = cardViewModel.textAlignment
     }
@@ -101,7 +103,22 @@ extension CardView {
     fileprivate func layoutUI() {
         configureCard()
         configureImageView()
+        configureBarViews()
         configureInformationLabel()
+    }
+    
+    
+    fileprivate func configureBarViews() {
+        
+        barStackView.distribution = .fillEqually
+        barStackView.spacing = 5
+        addSubview(barStackView)
+        barStackView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 8, left: 8, bottom: 0, right: 8), size: .init(width: 0, height: 4))
+        (0..<4).forEach { (_) in
+            let view = UIView()
+            view.backgroundColor = .white
+            barStackView.addArrangedSubview(view)
+        }
     }
     
     
