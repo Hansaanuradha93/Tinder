@@ -29,6 +29,7 @@ extension TDButton {
         self.titleLabel?.font = UIFont.systemFont(ofSize: 32, weight: .heavy)
     }
     
+    
     fileprivate func configure() {
         setTitleColor(.black, for: .normal)
     }

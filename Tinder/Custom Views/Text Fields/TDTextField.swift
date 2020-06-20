@@ -2,9 +2,11 @@ import UIKit
 
 class TDTextField: UITextField {
     
+    // MARK: Properties
     var padding: CGFloat = 0
     
     
+    // MARK: Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -19,25 +21,22 @@ class TDTextField: UITextField {
     }
     
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
     
-    override func editingRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.insetBy(dx: padding, dy: 0)
-    }
+    // MARK: Overridden Methods
+    override func editingRect(forBounds bounds: CGRect) -> CGRect { return bounds.insetBy(dx: padding, dy: 0) }
     
     
-    override func textRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.insetBy(dx: padding, dy: 0)
-    }
+    override func textRect(forBounds bounds: CGRect) -> CGRect { return bounds.insetBy(dx: padding, dy: 0) }
     
     
-    override var intrinsicContentSize: CGSize {
-        return .init(width: 0, height: 50)
-    }
-    
+    override var intrinsicContentSize: CGSize { return .init(width: 0, height: 50) }
+}
+
+
+// MARK: - Methods
+extension TDTextField {
     
     fileprivate func configure() {
         backgroundColor = .white
