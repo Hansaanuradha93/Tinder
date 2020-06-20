@@ -97,6 +97,12 @@ extension CardView {
         imageView.image = UIImage(named: imageUrl)
         informationLabel.attributedText = cardViewModel.attributedText
         informationLabel.textAlignment = cardViewModel.textAlignment
+        cardViewModel.imageUrls.forEach { (_) in
+            let barView = UIView()
+            barView.backgroundColor = UIColor(white: 0, alpha: 0.1)
+            barStackView.addArrangedSubview(barView)
+        }
+        barStackView.arrangedSubviews.first?.backgroundColor = .white
     }
     
     
@@ -114,11 +120,6 @@ extension CardView {
         barStackView.spacing = 5
         addSubview(barStackView)
         barStackView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 8, left: 8, bottom: 0, right: 8), size: .init(width: 0, height: 4))
-        (0..<4).forEach { (_) in
-            let view = UIView()
-            view.backgroundColor = .white
-            barStackView.addArrangedSubview(view)
-        }
     }
     
     
