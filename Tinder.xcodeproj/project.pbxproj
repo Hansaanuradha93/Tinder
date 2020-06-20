@@ -89,9 +89,9 @@
 		479F609A249B07BF00BD0774 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
-				47FC531E249E8B4F0053C4F7 /* Buttons */,
-				47FC531B249E881E0053C4F7 /* Text Fields */,
 				479F609B249B07C900BD0774 /* Views */,
+				47FC531B249E881E0053C4F7 /* Text Fields */,
+				47FC531E249E8B4F0053C4F7 /* Buttons */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";

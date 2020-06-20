@@ -2,6 +2,8 @@ import UIKit
 
 enum AssertColor: String {
     case darkGray = "Dark_Gray"
+    case Orange = "Orange"
+    case Pink = "Pink"
 }
 
 
