@@ -13,48 +13,23 @@ class SignupViewController: UIViewController {
         return button
     }()
     
-    var fullNameTextField: CustomTextField = {
-        let textField = CustomTextField()
-        textField.placeholder = "Enter full name"
-        textField.backgroundColor = .white
-        return textField
-    }()
-    
-    var emailTextField: CustomTextField = {
-        let textField = CustomTextField()
-        textField.placeholder = "Enter email"
-        textField.keyboardType = .emailAddress
-        textField.backgroundColor = .white
-        return textField
-    }()
-    
-    var passwordTextField: CustomTextField = {
-        let textField = CustomTextField()
-        textField.placeholder = "Enter password"
-        textField.isSecureTextEntry = true
-        textField.backgroundColor = .white
-        return textField
-    }()
-    
-    class CustomTextField: UITextField {
-        
-        override func editingRect(forBounds bounds: CGRect) -> CGRect {
-            return bounds.insetBy(dx: 16, dy: 0)
-        }
-        
-        override func textRect(forBounds bounds: CGRect) -> CGRect {
-            return bounds.insetBy(dx: 16, dy: 0)
-        }
-        
-        override var intrinsicContentSize: CGSize {
-            return .init(width: 0, height: 50)
-        }
-    }
+    let fullNameTextField = TDTextField(padding: 16, placeholderText: "Enter full name", radius: 16)
+    let emailTextField = TDTextField(padding: 16, placeholderText: "Enter email", radius: 16)
+    let passwordTextField = TDTextField(padding: 16, placeholderText: "Enter password", radius: 16)
+
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        layoutUI()
+    }
+    
+    
+    fileprivate func layoutUI() {
         view.backgroundColor = .red
+
+        emailTextField.keyboardType = .emailAddress
+        passwordTextField.isSecureTextEntry = true
         
         let stackView = UIStackView(arrangedSubviews: [profilePhotoButton, fullNameTextField, emailTextField, passwordTextField])
         stackView.axis = .vertical
@@ -63,5 +38,6 @@ class SignupViewController: UIViewController {
         
         stackView.centerInSuperview()
         stackView.anchor(top: nil, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 0, left: 50, bottom: 0, right: 50))
+
     }
 }
