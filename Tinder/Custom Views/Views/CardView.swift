@@ -121,10 +121,10 @@ extension CardView {
     
     
     fileprivate func configureInformationLabel() {
-        addSubview(informationLabel)
-        informationLabel.anchor(top: nil, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 16, bottom: 16, right: 16))
         informationLabel.textColor = .white
         informationLabel.font = UIFont.systemFont(ofSize: 30, weight: .heavy)
         informationLabel.numberOfLines = 0
+        addSubview(informationLabel)
+        informationLabel.anchor(top: nil, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 16, bottom: 16, right: 16))
     }
 }
