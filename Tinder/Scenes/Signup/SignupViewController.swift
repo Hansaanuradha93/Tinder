@@ -1,18 +1,8 @@
 import UIKit
 
 class SignupViewController: UIViewController {
-
-    var profilePhotoButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .white
-        button.setTitle("Select Photo", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 32, weight: .heavy)
-        button.heightAnchor.constraint(equalToConstant: 275).isActive = true
-        button.layer.cornerRadius = 16
-        return button
-    }()
     
+    let profilePhotoButton = TDButton(backgroundColor: .white, title: "Select Photo", radius: 16, fontSize: 32)
     let fullNameTextField = TDTextField(padding: 16, placeholderText: "Enter full name", radius: 16)
     let emailTextField = TDTextField(padding: 16, placeholderText: "Enter email", radius: 16)
     let passwordTextField = TDTextField(padding: 16, placeholderText: "Enter password", radius: 16)
@@ -30,6 +20,7 @@ class SignupViewController: UIViewController {
 
         emailTextField.keyboardType = .emailAddress
         passwordTextField.isSecureTextEntry = true
+        profilePhotoButton.heightAnchor.constraint(equalToConstant: 275).isActive = true
         
         let stackView = UIStackView(arrangedSubviews: [profilePhotoButton, fullNameTextField, emailTextField, passwordTextField])
         stackView.axis = .vertical
