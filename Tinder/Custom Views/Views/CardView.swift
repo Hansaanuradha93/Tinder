@@ -43,15 +43,20 @@ extension CardView {
         switch gesture.state {
             
         case .began:
-            superview?.subviews.forEach({ (subview) in
-                subview.layer.removeAllAnimations()
-            })
+            handleBegan()
         case .changed:
             handleChanged(gesture)
         case .ended:
             handleEnded(gesture)
         default: ()
         }
+    }
+    
+    
+    fileprivate func handleBegan() {
+        superview?.subviews.forEach({ (subview) in
+            subview.layer.removeAllAnimations()
+        })
     }
     
     
