@@ -9,6 +9,7 @@ class CardView: UIView {
 
     fileprivate var imageCurrentIndex: Int = 0
     fileprivate var cardViewModel: CardViewModel!
+    fileprivate let barSelectedColor = UIColor.appColor(color: .darkGray)
     
     
     // MARK: Configurations
@@ -61,7 +62,7 @@ extension CardView {
         imageView.image = UIImage(named: imageUrl)
         
         barStackView.arrangedSubviews.forEach { (view) in
-            view.backgroundColor = UIColor(white: 0, alpha: 0.1)
+            view.backgroundColor = barSelectedColor
         }
         barStackView.arrangedSubviews[imageCurrentIndex].backgroundColor = .white
     }
@@ -125,7 +126,7 @@ extension CardView {
         informationLabel.textAlignment = cardViewModel.textAlignment
         cardViewModel.imageUrls.forEach { (_) in
             let barView = UIView()
-            barView.backgroundColor = UIColor(white: 0, alpha: 0.1)
+            barView.backgroundColor = barSelectedColor
             barStackView.addArrangedSubview(barView)
         }
         barStackView.arrangedSubviews.first?.backgroundColor = .white

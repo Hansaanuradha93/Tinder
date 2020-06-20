@@ -1,9 +1,12 @@
-//
-//  UIColor+Ext.swift
-//  Tinder
-//
-//  Created by Hansa Anuradha on 6/20/20.
-//  Copyright © 2020 Hansa Anuradha. All rights reserved.
-//
+import UIKit
 
-import Foundation
+enum AssertColor: String {
+    case darkGray = "Dark_Gray"
+}
+
+
+extension UIColor {
+    static func appColor(color: AssertColor) -> UIColor {
+        return UIColor(named: color.rawValue)!
+    }
+}
