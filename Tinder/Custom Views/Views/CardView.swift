@@ -6,16 +6,13 @@ class CardView: UIView {
     fileprivate let imageView = UIImageView(image: #imageLiteral(resourceName: "lady5c"))
     fileprivate let informationLabel = UILabel()
     fileprivate let barStackView = UIStackView()
+    
 
-    fileprivate var imageCurrentIndex: Int = 0
+    // MARK: Configurations
+    fileprivate let threshold: CGFloat = 100
     fileprivate var cardViewModel: CardViewModel!
     fileprivate let barDiselectedColor = UIColor.appColor(color: .darkGray)
     
-    
-    // MARK: Configurations
-    fileprivate let threshold: CGFloat = 100
-    var user: User!
-
     
     // MARK: Initializers
     override init(frame: CGRect) {
@@ -28,6 +25,7 @@ class CardView: UIView {
         self.init()
         self.cardViewModel = cardViewModel
         setupViews(cardViewModel)
+        setupImage(cardViewModel)
     }
     
     
@@ -50,19 +48,12 @@ extension CardView {
         
         let tapLocation = gesture.location(in: nil)
         let shouldAdvanceNextPhoto = tapLocation.x > frame.width / 2 ? true : false
+        
         if shouldAdvanceNextPhoto {
-            imageCurrentIndex = min(imageCurrentIndex + 1, cardViewModel.imageUrls.count - 1)
+            cardViewModel.advanceToNextPhoto()
         } else {
-            imageCurrentIndex = max( 0, imageCurrentIndex - 1)
+            cardViewModel.goToPreviousPhoto()
         }
-        
-        let imageUrl = cardViewModel.imageUrls[imageCurrentIndex]
-        imageView.image = UIImage(named: imageUrl)
-        
-        barStackView.arrangedSubviews.forEach { (view) in
-            view.backgroundColor = barDiselectedColor
-        }
-        barStackView.arrangedSubviews[imageCurrentIndex].backgroundColor = .white
     }
     
     @objc fileprivate func handlePan(_ gesture: UIPanGestureRecognizer) {
@@ -75,6 +66,17 @@ extension CardView {
         case .ended:
             handleEnded(gesture)
         default: ()
+        }
+    }
+    
+    
+    fileprivate func setupImage(_ cardViewModel: CardViewModel) {
+        cardViewModel.imageIndexObserver = { index,image in
+            self.imageView.image = image
+            self.barStackView.arrangedSubviews.forEach { (view) in
+                view.backgroundColor = self.barDiselectedColor
+            }
+            self.barStackView.arrangedSubviews[index].backgroundColor = .white
         }
     }
     
@@ -115,7 +117,7 @@ extension CardView {
         let rotationalTransformation = CGAffineTransform(rotationAngle: angle)
         self.transform = rotationalTransformation.translatedBy(x: translation.x, y: translation.y)
     }
-    
+
     
     fileprivate func setupViews(_ cardViewModel: CardViewModel) {
         let imageUrl = cardViewModel.imageUrls.first ?? ""

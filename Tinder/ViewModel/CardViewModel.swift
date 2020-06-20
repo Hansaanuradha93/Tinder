@@ -11,12 +11,12 @@ class CardViewModel {
     let imageUrls: [String]
     let attributedText: NSAttributedString
     let textAlignment: NSTextAlignment
-    var imageIndexObserver: ((UIImage?) -> ())?
+    var imageIndexObserver: ((Int, UIImage?) -> ())?
     fileprivate var imageIndex = 0 {
         didSet {
             let imageUrl = imageUrls[imageIndex]
             let image = UIImage(named: imageUrl)
-            imageIndexObserver?(image)
+            imageIndexObserver?(imageIndex, image)
         }
     }
     
@@ -38,7 +38,7 @@ extension CardViewModel {
     }
     
     
-    func goToPreviousPhot() {
+    func goToPreviousPhoto() {
         imageIndex = max( 0, imageIndex - 1)
     }
 }
