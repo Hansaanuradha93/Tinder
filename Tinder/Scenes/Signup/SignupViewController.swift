@@ -59,7 +59,8 @@ class SignupViewController: UIViewController {
 extension SignupViewController {
     
     fileprivate func setupRegistrationViewModelObserver() {
-        registrationViewModel.isFormValidObserver = { isFormValid in
+        registrationViewModel.isFormValidObserver = { [weak self] isFormValid in
+            guard let self = self else { return }
             if isFormValid {
                 self.signupButton.backgroundColor = UIColor.appColor(color: .darkPink)
                 self.signupButton.setTitleColor(.white, for: .normal)
@@ -70,6 +71,14 @@ extension SignupViewController {
             self.signupButton.isEnabled = isFormValid
         }
     }
+    
+    
+    @objc fileprivate func handleTextChange(textField: UITextField) {
+        registrationViewModel.fullName = fullNameTextField.text
+        registrationViewModel.email = emailTextField.text
+        registrationViewModel.password = passwordTextField.text
+    }
+    
     
     fileprivate func handleLandscapeOrientation() {
         overrallStackView.axis = .horizontal
@@ -113,23 +122,6 @@ extension SignupViewController {
         let bottomSpace = view.frame.height - overrallStackView.frame.origin.y - overrallStackView.frame.height
         let difference = keyboardFrame.height - bottomSpace
         self.view.transform = CGAffineTransform(translationX: 0, y: -(difference + 10))
-    }
-    
-    
-    @objc fileprivate func handleTextChange(textField: UITextField) {
-        registrationViewModel.fullName = fullNameTextField.text
-        registrationViewModel.email = emailTextField.text
-        registrationViewModel.password = passwordTextField.text
-//        let isFormValid = fullNameTextField.text?.isEmpty == false && emailTextField.text?.isEmpty == false && passwordTextField.text?.isEmpty == false
-//
-//        if isFormValid {
-//            signupButton.backgroundColor = UIColor.appColor(color: .darkPink)
-//            signupButton.setTitleColor(.white, for: .normal)
-//        } else {
-//            signupButton.backgroundColor = .lightGray
-//            signupButton.setTitleColor(.gray, for: .disabled)
-//        }
-//        signupButton.isEnabled = isFormValid
     }
     
     

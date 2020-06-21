@@ -11,7 +11,6 @@ class CardViewModel {
     let imageUrls: [String]
     let attributedText: NSAttributedString
     let textAlignment: NSTextAlignment
-    var imageIndexObserver: ((Int, UIImage?) -> ())?
     fileprivate var imageIndex = 0 {
         didSet {
             let imageUrl = imageUrls[imageIndex]
@@ -19,6 +18,11 @@ class CardViewModel {
             imageIndexObserver?(imageIndex, image)
         }
     }
+    
+    
+    // MARK: Reactive Programming
+    var imageIndexObserver: ((Int, UIImage?) -> ())?
+
     
     
     // MARK: Initializers
