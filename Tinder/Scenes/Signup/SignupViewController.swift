@@ -7,6 +7,7 @@ class SignupViewController: UIViewController {
     let fullNameTextField = TDTextField(padding: 16, placeholderText: "Enter full name", radius: 25)
     let emailTextField = TDTextField(padding: 16, placeholderText: "Enter email", radius: 25)
     let passwordTextField = TDTextField(padding: 16, placeholderText: "Enter password", radius: 25)
+    let signupButton = TDButton(backgroundColor: UIColor.appColor(color: .darkPink), title: "Sign Up", titleColor: .white, radius: 25, fontSize: 24)
 
     
     // MARK: ViewController
@@ -27,11 +28,12 @@ class SignupViewController: UIViewController {
 extension SignupViewController {
     
     fileprivate func layoutUI() {
+        profilePhotoButton.heightAnchor.constraint(equalToConstant: 275).isActive = true
         emailTextField.keyboardType = .emailAddress
         passwordTextField.isSecureTextEntry = true
-        profilePhotoButton.heightAnchor.constraint(equalToConstant: 275).isActive = true
+        signupButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
-        let stackView = UIStackView(arrangedSubviews: [profilePhotoButton, fullNameTextField, emailTextField, passwordTextField])
+        let stackView = UIStackView(arrangedSubviews: [profilePhotoButton, fullNameTextField, emailTextField, passwordTextField, signupButton])
         stackView.axis = .vertical
         stackView.spacing = 16
         
@@ -43,7 +45,7 @@ extension SignupViewController {
     
     fileprivate func setupGradient() {
         let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [UIColor.appColor(color: .Orange).cgColor, UIColor.appColor(color: .Pink).cgColor]
+        gradientLayer.colors = [UIColor.appColor(color: .orange).cgColor, UIColor.appColor(color: .pink).cgColor]
         gradientLayer.locations = [0, 1]
         gradientLayer.frame = view.bounds
         view.layer.insertSublayer(gradientLayer, at: 0)

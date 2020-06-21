@@ -5,16 +5,15 @@ class TDButton: UIButton {
     // MARK: Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configure()
     }
     
     
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
     
-    convenience init(backgroundColor: UIColor, title: String, radius: CGFloat = 0, fontSize: CGFloat = 32) {
+    convenience init(backgroundColor: UIColor, title: String, titleColor: UIColor = .black, radius: CGFloat = 0, fontSize: CGFloat = 32) {
         self.init(frame: .zero)
-        self.setup(backgroundColor: backgroundColor, title: title, radius: radius, fontSize: fontSize)
+        self.setup(backgroundColor: backgroundColor, title: title, titleColor: titleColor, radius: radius, fontSize: fontSize)
     }
 }
 
@@ -22,15 +21,11 @@ class TDButton: UIButton {
 // MARK: - Methods
 extension TDButton {
     
-    func setup(backgroundColor: UIColor, title: String, radius: CGFloat = 0, fontSize: CGFloat = 32) {
+    func setup(backgroundColor: UIColor, title: String, titleColor: UIColor, radius: CGFloat = 0, fontSize: CGFloat = 32) {
         self.setTitle(title, for: .normal)
+        self.setTitleColor(titleColor, for: .normal)
         self.backgroundColor = backgroundColor
         self.layer.cornerRadius = radius
-        self.titleLabel?.font = UIFont.systemFont(ofSize: 32, weight: .heavy)
-    }
-    
-    
-    fileprivate func configure() {
-        setTitleColor(.black, for: .normal)
+        self.titleLabel?.font = UIFont.systemFont(ofSize: fontSize, weight: .heavy)
     }
 }
