@@ -16,6 +16,7 @@ class SignupViewController: UIViewController {
         super.viewDidLoad()
         layoutUI()
         setupNotifications()
+        handleTapGesture()
     }
     
     
@@ -28,6 +29,20 @@ class SignupViewController: UIViewController {
 
 // MARK: - Methods
 extension SignupViewController {
+    
+    fileprivate func handleTapGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    
+    @objc fileprivate func handleTap() {
+        view.endEditing(true)
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.view.transform = .identity
+        })
+    }
+    
     
     fileprivate func setupNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardShow), name: UIResponder.keyboardWillShowNotification, object: nil)
