@@ -61,7 +61,6 @@ extension SignupViewController {
     
     
     @objc fileprivate func handleKeyboardShow(notification: Notification) {
-        
         guard let value = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
         let keyboardFrame = value.cgRectValue
         let bottomSpace = view.frame.height - stackView.frame.origin.y - stackView.frame.height
