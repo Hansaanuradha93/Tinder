@@ -100,15 +100,36 @@ extension SignupViewController {
     }
     
     
+    @objc fileprivate func handleTextChange(textField: UITextField) {
+        let isFormValid = fullNameTextField.text?.isEmpty == false && emailTextField.text?.isEmpty == false && passwordTextField.text?.isEmpty == false
+        
+        if isFormValid {
+            signupButton.backgroundColor = UIColor.appColor(color: .darkPink)
+            signupButton.setTitleColor(.white, for: .normal)
+        } else {
+            signupButton.backgroundColor = .lightGray
+            signupButton.setTitleColor(.gray, for: .disabled)
+        }
+        signupButton.isEnabled = isFormValid
+    }
+    
+    
     fileprivate func layoutUI() {
         profilePhotoButton.heightAnchor.constraint(equalToConstant: 275).isActive = true
         emailTextField.keyboardType = .emailAddress
         passwordTextField.isSecureTextEntry = true
+        
+        fullNameTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
+        emailTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
+        
         signupButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        signupButton.backgroundColor = .lightGray
+        signupButton.setTitleColor(.gray, for: .disabled)
+        signupButton.isEnabled = false
         
         overrallStackView.axis = .vertical
         overrallStackView.spacing = 16
-                
         view.addSubview(overrallStackView)
         overrallStackView.centerInSuperview()
         overrallStackView.anchor(top: nil, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 0, left: 50, bottom: 0, right: 50))
