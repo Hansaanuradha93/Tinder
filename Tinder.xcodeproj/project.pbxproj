@@ -19,6 +19,7 @@
 		47CE8203249CBCDB00B9696E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CE8202249CBCDB00B9696E /* User.swift */; };
 		47CE8206249CEBFA00B9696E /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CE8205249CEBFA00B9696E /* CardViewModel.swift */; };
 		47CE8208249D009C00B9696E /* Advertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CE8207249D009C00B9696E /* Advertiser.swift */; };
+		47DC81FA249FBE7500B9B6FF /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DC81F9249FBE7500B9B6FF /* RegistrationViewModel.swift */; };
 		47FC5317249DF0210053C4F7 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FC5316249DF0210053C4F7 /* UIColor+Ext.swift */; };
 		47FC531A249E7C660053C4F7 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FC5319249E7C660053C4F7 /* SignupViewController.swift */; };
 		47FC531D249E884D0053C4F7 /* TDTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FC531C249E884D0053C4F7 /* TDTextField.swift */; };
@@ -40,6 +41,7 @@
 		47CE8202249CBCDB00B9696E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		47CE8205249CEBFA00B9696E /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		47CE8207249D009C00B9696E /* Advertiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertiser.swift; sourceTree = "<group>"; };
+		47DC81F9249FBE7500B9B6FF /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		47FC5316249DF0210053C4F7 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		47FC5319249E7C660053C4F7 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		47FC531C249E884D0053C4F7 /* TDTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDTextField.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				47CE8205249CEBFA00B9696E /* CardViewModel.swift */,
+				47DC81F9249FBE7500B9B6FF /* RegistrationViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 				47FC5320249E8B5E0053C4F7 /* TDButton.swift in Sources */,
 				47FC531A249E7C660053C4F7 /* SignupViewController.swift in Sources */,
 				47CE8203249CBCDB00B9696E /* User.swift in Sources */,
+				47DC81FA249FBE7500B9B6FF /* RegistrationViewModel.swift in Sources */,
 				479F609D249B080100BD0774 /* HomeBottomButtonControlsStackView.swift in Sources */,
 				479F609F249B0ED100BD0774 /* HomeTopButtonControlsStackView.swift in Sources */,
 				47988071249A7B3E00829930 /* SceneDelegate.swift in Sources */,
