@@ -1,4 +1,5 @@
 import UIKit
+import Firebase
 
 class SignupViewController: UIViewController {
     
@@ -93,12 +94,12 @@ extension SignupViewController {
     
     
     fileprivate func handleTapGesture() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapDismiss))
         view.addGestureRecognizer(tapGesture)
     }
     
     
-    @objc fileprivate func handleTap() {
+    @objc fileprivate func handleTapDismiss() {
         view.endEditing(true)
     }
     
@@ -133,6 +134,7 @@ extension SignupViewController {
         fullNameTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         emailTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
+        signupButton.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
         
         signupButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         signupButton.backgroundColor = .lightGray
@@ -144,6 +146,21 @@ extension SignupViewController {
         view.addSubview(overrallStackView)
         overrallStackView.centerInSuperview()
         overrallStackView.anchor(top: nil, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 0, left: 50, bottom: 0, right: 50))
+    }
+    
+    
+    @objc fileprivate func handleSignUp() {
+        handleTapDismiss()
+        guard let email = emailTextField.text, let password = passwordTextField.text else { return }
+        
+        Auth.auth().createUser(withEmail: email, password: password) { [weak self] authResult, error in
+            guard let self = self else { return }
+            if let error = error {
+                print("Authentication error, \(error.localizedDescription)")
+                return
+            }
+            print("Authentication successful, \(authResult?.user.uid)")
+        }
     }
     
     

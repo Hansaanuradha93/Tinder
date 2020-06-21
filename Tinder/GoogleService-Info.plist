@@ -3,23 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>889400413121-qgp3r2ed30an733hgpe6661qjhutf6g2.apps.googleusercontent.com</string>
+	<string>145979776598-9jj41a5bf3anveb06ckv782ojpvkdeoe.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.889400413121-qgp3r2ed30an733hgpe6661qjhutf6g2</string>
-	<key>ANDROID_CLIENT_ID</key>
-	<string>889400413121-5dku367rrc5ttvb9m9mkqsl1qu8o93r3.apps.googleusercontent.com</string>
+	<string>com.googleusercontent.apps.145979776598-9jj41a5bf3anveb06ckv782ojpvkdeoe</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCWjn6zlPhYLEsSqt78lEODnRC8s49n3OA</string>
+	<string>AIzaSyB98mkt_-B1LnEQ99WrVRO9Ek7zWt9kAx4</string>
 	<key>GCM_SENDER_ID</key>
-	<string>889400413121</string>
+	<string>145979776598</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.castleCode.Tinder</string>
 	<key>PROJECT_ID</key>
-	<string>firestore-a6b7c</string>
+	<string>tinder-94400</string>
 	<key>STORAGE_BUCKET</key>
-	<string>firestore-a6b7c.appspot.com</string>
+	<string>tinder-94400.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -31,8 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:889400413121:ios:f57d629ef5abfa70193d40</string>
+	<string>1:145979776598:ios:4e31d6b60bb5ae35cc25f7</string>
 	<key>DATABASE_URL</key>
-	<string>https://firestore-a6b7c.firebaseio.com</string>
+	<string>https://tinder-94400.firebaseio.com</string>
 </dict>
 </plist>

@@ -21,7 +21,7 @@
 		47CE8206249CEBFA00B9696E /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CE8205249CEBFA00B9696E /* CardViewModel.swift */; };
 		47CE8208249D009C00B9696E /* Advertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CE8207249D009C00B9696E /* Advertiser.swift */; };
 		47DC81FA249FBE7500B9B6FF /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DC81F9249FBE7500B9B6FF /* RegistrationViewModel.swift */; };
-		47DC81FC249FCCD000B9B6FF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 47DC81FB249FCCD000B9B6FF /* GoogleService-Info.plist */; };
+		47DC81FE249FD13200B9B6FF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 47DC81FD249FD13200B9B6FF /* GoogleService-Info.plist */; };
 		47FC5317249DF0210053C4F7 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FC5316249DF0210053C4F7 /* UIColor+Ext.swift */; };
 		47FC531A249E7C660053C4F7 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FC5319249E7C660053C4F7 /* SignupViewController.swift */; };
 		47FC531D249E884D0053C4F7 /* TDTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FC531C249E884D0053C4F7 /* TDTextField.swift */; };
@@ -44,7 +44,7 @@
 		47CE8205249CEBFA00B9696E /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		47CE8207249D009C00B9696E /* Advertiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertiser.swift; sourceTree = "<group>"; };
 		47DC81F9249FBE7500B9B6FF /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
-		47DC81FB249FCCD000B9B6FF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		47DC81FD249FD13200B9B6FF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		47FC5316249DF0210053C4F7 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		47FC5319249E7C660053C4F7 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		47FC531C249E884D0053C4F7 /* TDTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDTextField.swift; sourceTree = "<group>"; };
@@ -87,7 +87,6 @@
 		4798806D249A7B3E00829930 /* Tinder */ = {
 			isa = PBXGroup;
 			children = (
-				47DC81FB249FCCD000B9B6FF /* GoogleService-Info.plist */,
 				47CE8201249CBCCD00B9696E /* Model */,
 				47CE8204249CEBE900B9696E /* ViewModel */,
 				47CE81FE249CB96500B9696E /* Scenes */,
@@ -152,6 +151,7 @@
 				47988077249A7B4000829930 /* Assets.xcassets */,
 				47988079249A7B4000829930 /* LaunchScreen.storyboard */,
 				4798807C249A7B4000829930 /* Info.plist */,
+				47DC81FD249FD13200B9B6FF /* GoogleService-Info.plist */,
 			);
 			name = "Support Files";
 			sourceTree = "<group>";
@@ -277,7 +277,7 @@
 			files = (
 				4798807B249A7B4000829930 /* LaunchScreen.storyboard in Resources */,
 				47988078249A7B4000829930 /* Assets.xcassets in Resources */,
-				47DC81FC249FCCD000B9B6FF /* GoogleService-Info.plist in Resources */,
+				47DC81FE249FD13200B9B6FF /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
