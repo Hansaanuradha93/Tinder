@@ -18,6 +18,8 @@ class SignupViewController: UIViewController {
     }()
     
     lazy var overrallStackView = UIStackView(arrangedSubviews: [profilePhotoButton, verticalStackView])
+    
+    let registrationViewModel = RegistrationViewModel()
 
     
     // MARK: ViewController
@@ -26,6 +28,7 @@ class SignupViewController: UIViewController {
         layoutUI()
         setupNotifications()
         handleTapGesture()
+        setupRegistrationViewModelObserver()
     }
     
     
@@ -54,6 +57,19 @@ class SignupViewController: UIViewController {
 
 // MARK: - Methods
 extension SignupViewController {
+    
+    fileprivate func setupRegistrationViewModelObserver() {
+        registrationViewModel.isFormValidObserver = { isFormValid in
+            if isFormValid {
+                self.signupButton.backgroundColor = UIColor.appColor(color: .darkPink)
+                self.signupButton.setTitleColor(.white, for: .normal)
+            } else {
+                self.signupButton.backgroundColor = .lightGray
+                self.signupButton.setTitleColor(.gray, for: .disabled)
+            }
+            self.signupButton.isEnabled = isFormValid
+        }
+    }
     
     fileprivate func handleLandscapeOrientation() {
         overrallStackView.axis = .horizontal
@@ -101,16 +117,19 @@ extension SignupViewController {
     
     
     @objc fileprivate func handleTextChange(textField: UITextField) {
-        let isFormValid = fullNameTextField.text?.isEmpty == false && emailTextField.text?.isEmpty == false && passwordTextField.text?.isEmpty == false
-        
-        if isFormValid {
-            signupButton.backgroundColor = UIColor.appColor(color: .darkPink)
-            signupButton.setTitleColor(.white, for: .normal)
-        } else {
-            signupButton.backgroundColor = .lightGray
-            signupButton.setTitleColor(.gray, for: .disabled)
-        }
-        signupButton.isEnabled = isFormValid
+        registrationViewModel.fullName = fullNameTextField.text
+        registrationViewModel.email = emailTextField.text
+        registrationViewModel.password = passwordTextField.text
+//        let isFormValid = fullNameTextField.text?.isEmpty == false && emailTextField.text?.isEmpty == false && passwordTextField.text?.isEmpty == false
+//
+//        if isFormValid {
+//            signupButton.backgroundColor = UIColor.appColor(color: .darkPink)
+//            signupButton.setTitleColor(.white, for: .normal)
+//        } else {
+//            signupButton.backgroundColor = .lightGray
+//            signupButton.setTitleColor(.gray, for: .disabled)
+//        }
+//        signupButton.isEnabled = isFormValid
     }
     
     
