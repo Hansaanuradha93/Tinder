@@ -40,14 +40,13 @@ class SignupViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
+    
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         if self.traitCollection.verticalSizeClass == .compact {
-            overrallStackView.axis = .horizontal
-            profilePhotoButton.widthAnchor.constraint(equalToConstant: 275).isActive = true
+            handleLandscapeOrientation()
         } else {
-            overrallStackView.axis = .vertical
-            profilePhotoButton.heightAnchor.constraint(equalToConstant: 275).isActive = true
+            handlePortraitOrientation()
         }
     }
 }
@@ -55,6 +54,18 @@ class SignupViewController: UIViewController {
 
 // MARK: - Methods
 extension SignupViewController {
+    
+    fileprivate func handleLandscapeOrientation() {
+        overrallStackView.axis = .horizontal
+        profilePhotoButton.widthAnchor.constraint(equalToConstant: 275).isActive = true
+    }
+    
+    
+    fileprivate func handlePortraitOrientation() {
+        overrallStackView.axis = .vertical
+        profilePhotoButton.heightAnchor.constraint(equalToConstant: 275).isActive = true
+    }
+    
     
     fileprivate func handleTapGesture() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
