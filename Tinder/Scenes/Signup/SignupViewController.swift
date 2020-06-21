@@ -24,6 +24,12 @@ class SignupViewController: UIViewController {
         super.viewDidLayoutSubviews()
         setupGradient()
     }
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+    }
 }
 
 
