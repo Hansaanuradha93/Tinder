@@ -8,7 +8,16 @@ class SignupViewController: UIViewController {
     let emailTextField = TDTextField(padding: 16, placeholderText: "Enter email", radius: 25)
     let passwordTextField = TDTextField(padding: 16, placeholderText: "Enter password", radius: 25)
     let signupButton = TDButton(backgroundColor: UIColor.appColor(color: .darkPink), title: "Sign Up", titleColor: .white, radius: 25, fontSize: 24)
-    lazy var stackView = UIStackView(arrangedSubviews: [profilePhotoButton, fullNameTextField, emailTextField, passwordTextField, signupButton])
+    
+    lazy var verticalStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [fullNameTextField, emailTextField, passwordTextField, signupButton])
+        stackView.axis = .vertical
+        stackView.distribution = .fillEqually
+        stackView.spacing = 16
+        return stackView
+    }()
+    
+    lazy var overrallStackView = UIStackView(arrangedSubviews: [profilePhotoButton, verticalStackView])
 
     
     // MARK: ViewController
@@ -29,6 +38,17 @@ class SignupViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if self.traitCollection.verticalSizeClass == .compact {
+            overrallStackView.axis = .horizontal
+            profilePhotoButton.widthAnchor.constraint(equalToConstant: 275).isActive = true
+        } else {
+            overrallStackView.axis = .vertical
+            profilePhotoButton.heightAnchor.constraint(equalToConstant: 275).isActive = true
+        }
     }
 }
 
@@ -63,7 +83,7 @@ extension SignupViewController {
     @objc fileprivate func handleKeyboardShow(notification: Notification) {
         guard let value = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
         let keyboardFrame = value.cgRectValue
-        let bottomSpace = view.frame.height - stackView.frame.origin.y - stackView.frame.height
+        let bottomSpace = view.frame.height - overrallStackView.frame.origin.y - overrallStackView.frame.height
         let difference = keyboardFrame.height - bottomSpace
         self.view.transform = CGAffineTransform(translationX: 0, y: -(difference + 10))
     }
@@ -75,12 +95,12 @@ extension SignupViewController {
         passwordTextField.isSecureTextEntry = true
         signupButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
-        stackView.axis = .vertical
-        stackView.spacing = 16
-        
-        view.addSubview(stackView)
-        stackView.centerInSuperview()
-        stackView.anchor(top: nil, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 0, left: 50, bottom: 0, right: 50))
+        overrallStackView.axis = .vertical
+        overrallStackView.spacing = 16
+                
+        view.addSubview(overrallStackView)
+        overrallStackView.centerInSuperview()
+        overrallStackView.anchor(top: nil, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 0, left: 50, bottom: 0, right: 50))
     }
     
     
