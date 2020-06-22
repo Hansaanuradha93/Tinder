@@ -167,10 +167,11 @@ extension SignupViewController {
             guard let self = self else { return }
             self.view.hidePreloader()
             if let error = error {
-                print("Authentication error, \(error.localizedDescription)")
+                print("Authentication error, \(error)")
+                self.presentAlert(title: "Authentication failed", message: error.localizedDescription, buttonTitle: "Ok")
                 return
             }
-            print("Authentication successful, \(authResult?.user.uid ?? "")")
+            print("Authentication successfull, \(authResult?.user.uid ?? "")")
         }
     }
     
