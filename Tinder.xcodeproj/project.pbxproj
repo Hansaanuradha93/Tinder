@@ -14,13 +14,14 @@
 		47988073249A7B3E00829930 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47988072249A7B3E00829930 /* HomeViewController.swift */; };
 		47988078249A7B4000829930 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47988077249A7B4000829930 /* Assets.xcassets */; };
 		4798807B249A7B4000829930 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47988079249A7B4000829930 /* LaunchScreen.storyboard */; };
+		479EEFDD24A04E670091BEF7 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479EEFDC24A04E670091BEF7 /* Keys.swift */; };
 		479F609D249B080100BD0774 /* HomeBottomButtonControlsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479F609C249B080100BD0774 /* HomeBottomButtonControlsStackView.swift */; };
 		479F609F249B0ED100BD0774 /* HomeTopButtonControlsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479F609E249B0ED100BD0774 /* HomeTopButtonControlsStackView.swift */; };
 		47A80191249A814300768831 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A80190249A814300768831 /* UIView+Ext.swift */; };
 		47CE8203249CBCDB00B9696E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CE8202249CBCDB00B9696E /* User.swift */; };
 		47CE8206249CEBFA00B9696E /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CE8205249CEBFA00B9696E /* CardViewModel.swift */; };
 		47CE8208249D009C00B9696E /* Advertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CE8207249D009C00B9696E /* Advertiser.swift */; };
-		47DC81FA249FBE7500B9B6FF /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DC81F9249FBE7500B9B6FF /* RegistrationViewModel.swift */; };
+		47DC81FA249FBE7500B9B6FF /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DC81F9249FBE7500B9B6FF /* SignUpViewModel.swift */; };
 		47DC81FE249FD13200B9B6FF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 47DC81FD249FD13200B9B6FF /* GoogleService-Info.plist */; };
 		47FC5317249DF0210053C4F7 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FC5316249DF0210053C4F7 /* UIColor+Ext.swift */; };
 		47FC531A249E7C660053C4F7 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FC5319249E7C660053C4F7 /* SignupViewController.swift */; };
@@ -37,13 +38,14 @@
 		47988077249A7B4000829930 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4798807A249A7B4000829930 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4798807C249A7B4000829930 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		479EEFDC24A04E670091BEF7 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		479F609C249B080100BD0774 /* HomeBottomButtonControlsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBottomButtonControlsStackView.swift; sourceTree = "<group>"; };
 		479F609E249B0ED100BD0774 /* HomeTopButtonControlsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTopButtonControlsStackView.swift; sourceTree = "<group>"; };
 		47A80190249A814300768831 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		47CE8202249CBCDB00B9696E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		47CE8205249CEBFA00B9696E /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		47CE8207249D009C00B9696E /* Advertiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertiser.swift; sourceTree = "<group>"; };
-		47DC81F9249FBE7500B9B6FF /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
+		47DC81F9249FBE7500B9B6FF /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		47DC81FD249FD13200B9B6FF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		47FC5316249DF0210053C4F7 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		47FC5319249E7C660053C4F7 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
@@ -92,9 +94,18 @@
 				47CE81FE249CB96500B9696E /* Scenes */,
 				479F609A249B07BF00BD0774 /* Custom Views */,
 				47A8018F249A811400768831 /* Extensions */,
+				479EEFDB24A04E5A0091BEF7 /* Contants */,
 				47CE8200249CB9A100B9696E /* Support Files */,
 			);
 			path = Tinder;
+			sourceTree = "<group>";
+		};
+		479EEFDB24A04E5A0091BEF7 /* Contants */ = {
+			isa = PBXGroup;
+			children = (
+				479EEFDC24A04E670091BEF7 /* Keys.swift */,
+			);
+			path = Contants;
 			sourceTree = "<group>";
 		};
 		479F609A249B07BF00BD0774 /* Custom Views */ = {
@@ -169,7 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				47CE8205249CEBFA00B9696E /* CardViewModel.swift */,
-				47DC81F9249FBE7500B9B6FF /* RegistrationViewModel.swift */,
+				47DC81F9249FBE7500B9B6FF /* SignUpViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -331,6 +342,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				47FC531D249E884D0053C4F7 /* TDTextField.swift in Sources */,
+				479EEFDD24A04E670091BEF7 /* Keys.swift in Sources */,
 				47CE8208249D009C00B9696E /* Advertiser.swift in Sources */,
 				4738A6CD249BD0B400C55385 /* CardView.swift in Sources */,
 				47A80191249A814300768831 /* UIView+Ext.swift in Sources */,
@@ -340,7 +352,7 @@
 				47FC5320249E8B5E0053C4F7 /* TDButton.swift in Sources */,
 				47FC531A249E7C660053C4F7 /* SignupViewController.swift in Sources */,
 				47CE8203249CBCDB00B9696E /* User.swift in Sources */,
-				47DC81FA249FBE7500B9B6FF /* RegistrationViewModel.swift in Sources */,
+				47DC81FA249FBE7500B9B6FF /* SignUpViewModel.swift in Sources */,
 				479F609D249B080100BD0774 /* HomeBottomButtonControlsStackView.swift in Sources */,
 				479F609F249B0ED100BD0774 /* HomeTopButtonControlsStackView.swift in Sources */,
 				47988071249A7B3E00829930 /* SceneDelegate.swift in Sources */,

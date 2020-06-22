@@ -20,7 +20,7 @@ class SignupViewController: UIViewController {
     
     lazy var overrallStackView = UIStackView(arrangedSubviews: [profilePhotoButton, verticalStackView])
     
-    let registrationViewModel = RegistrationViewModel()
+    let registrationViewModel = SignUpViewModel()
 
     
     // MARK: ViewController
@@ -131,6 +131,7 @@ extension SignupViewController {
         emailTextField.keyboardType = .emailAddress
         passwordTextField.isSecureTextEntry = true
         
+        profilePhotoButton.addTarget(self, action: #selector(handlePhotoSelect), for: .touchUpInside)
         fullNameTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         emailTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
@@ -149,17 +150,25 @@ extension SignupViewController {
     }
     
     
+    @objc fileprivate func handlePhotoSelect() {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.allowsEditing = true
+        present(imagePickerController, animated: true)
+    }
+    
+    
     @objc fileprivate func handleSignUp() {
         handleTapDismiss()
         guard let email = emailTextField.text, let password = passwordTextField.text else { return }
         
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] authResult, error in
-            guard let self = self else { return }
+//            guard let self = self else { return }
             if let error = error {
                 print("Authentication error, \(error.localizedDescription)")
                 return
             }
-            print("Authentication successful, \(authResult?.user.uid)")
+//            print("Authentication successful, \(authResult?.user.uid)")
         }
     }
     
@@ -170,5 +179,20 @@ extension SignupViewController {
         gradientLayer.locations = [0, 1]
         gradientLayer.frame = view.bounds
         view.layer.insertSublayer(gradientLayer, at: 0)
+    }
+}
+
+
+// MARK: - UIImagePickerControllerDelegate & UINavigationControllerDelegate
+extension SignupViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        if let editedImage = info[UIImagePickerController.InfoKey(rawValue: ImagePicker.EditedImage.key)] as? UIImage {
+            profilePhotoButton.setImage(editedImage, for: .normal)
+        } else if let originalImage = info[UIImagePickerController.InfoKey(rawValue: ImagePicker.OriginalImage.key)] as? UIImage {
+            profilePhotoButton.setImage(originalImage, for: .normal)
+        }
+        dismiss(animated: true, completion: nil)
     }
 }

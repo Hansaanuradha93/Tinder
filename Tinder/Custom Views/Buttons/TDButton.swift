@@ -27,5 +27,7 @@ extension TDButton {
         self.backgroundColor = backgroundColor
         self.layer.cornerRadius = radius
         self.titleLabel?.font = UIFont.systemFont(ofSize: fontSize, weight: .heavy)
+        self.layer.masksToBounds = false
+        self.clipsToBounds = true
     }
 }
