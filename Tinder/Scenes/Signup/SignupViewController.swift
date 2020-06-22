@@ -19,7 +19,6 @@ class SignupViewController: UIViewController {
     }()
     
     lazy var overrallStackView = UIStackView(arrangedSubviews: [profilePhotoButton, verticalStackView])
-    
     let signupViewModel = SignUpViewModel()
 
     
@@ -61,51 +60,13 @@ extension SignupViewController {
     
     @objc fileprivate func handleSignUp() {
         handleTapDismiss()
-        guard let email = emailTextField.text, let password = passwordTextField.text else { return }
-        
-        signupViewModel.bindableIsRegistering.value = true
-        
-        Auth.auth().createUser(withEmail: email, password: password) { [weak self] authResult, error in
+        signupViewModel.performSignUp { [weak self] error in
             guard let self = self else { return }
             if let error = error {
-                print("Authentication error, \(error)")
-                self.signupViewModel.bindableIsRegistering.value = false
-                self.presentAlert(title: "Authentication failed", message: error.localizedDescription, buttonTitle: "Ok")
+                self.presentAlert(title: "Authentication Failed", message: error.localizedDescription, buttonTitle: "Ok")
                 return
             }
-            print("Authentication successfull, \(authResult?.user.uid ?? "")")
-            
-            guard let image = self.signupViewModel.bindableImage.value,
-                let uploadData = image.jpegData(compressionQuality: 0.75) else { return }
-            let metaData = StorageMetadata()
-            metaData.contentType = "image/jpg"
-            
-            let filename = UUID().uuidString
-            let storageRef = Storage.storage().reference().child("images/\(filename)")
-            
-            storageRef.putData(uploadData, metadata: metaData) { (_, error) in
-                
-                if let error = error {
-                    print("Profile image upload failed, \(error)")
-                    self.signupViewModel.bindableIsRegistering.value = false
-                    return
-                } else {
-                    storageRef.downloadURL { (url, error) in
-                        
-                        if let error = error {
-                            print("Profile image download url not recieved,\(error)")
-                            self.signupViewModel.bindableIsRegistering.value = false
-                            return
-                        } else {
-                            guard let downloadUrl = url?.absoluteString else { return }
-                            print("Profile image uploaded successfully, \(downloadUrl)")
-                            
-                            // Store the download url in Firestore
-                            self.signupViewModel.bindableIsRegistering.value = false
-                        }
-                    }
-                }
-            }
+            print("Authentication successfull")
         }
     }
     
