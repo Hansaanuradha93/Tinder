@@ -28,7 +28,6 @@ extension SignUpViewModel {
                 completion(error)
                 return
             }
-            
             self.saveImageToFirebase(completion: completion)
         }
     }
@@ -46,9 +45,8 @@ extension SignUpViewModel {
                 self.bindableIsRegistering.value = false
                 completion(error)
                 return
-            } else {
-                self.fetchImageDownloadUrl(reference: storageRef, completion: completion)
             }
+            self.fetchImageDownloadUrl(reference: storageRef, completion: completion)
         }
     }
     
@@ -59,12 +57,30 @@ extension SignUpViewModel {
                 self.bindableIsRegistering.value = false
                 completion(error)
                 return
-            } else {
-                //TODO: Store the download url in Firestore
-                guard let downloadUrl = url?.absoluteString else { return }
-                self.bindableIsRegistering.value = false
-                completion(nil)
             }
+            let downloadUrl = url?.absoluteString ?? ""
+            self.saveInfoToFirestore(imageUrl: downloadUrl, completion: completion)
+        }
+    }
+    
+    
+    fileprivate func saveInfoToFirestore(imageUrl: String, completion: @escaping (Error?) -> ()) {
+        let uid = Auth.auth().currentUser?.uid ?? ""
+        let userInfo = [
+            "uid": uid,
+            "fullName": fullName ?? "",
+            "email": email ?? "",
+            "imageUrl1": imageUrl
+        ]
+        Firestore.firestore().collection("users").document(uid).setData(userInfo) { [weak self] error in
+            guard let self = self else { return }
+            if let error = error {
+                self.bindableIsRegistering.value = false
+                completion(error)
+                return
+            }
+            completion(nil)
+            self.bindableIsRegistering.value = false
         }
     }
     
