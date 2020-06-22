@@ -9,6 +9,7 @@ class SignUpViewModel {
     // MARK: Bindlable
     var bindableImage = Bindalbe<UIImage>()
     var bindalbeIsFormValid = Bindalbe<Bool>()
+    var bindableIsRegistering = Bindalbe<Bool>()
     
 }
 

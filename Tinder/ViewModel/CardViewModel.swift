@@ -22,7 +22,6 @@ class CardViewModel {
     
     // MARK: Reactive Programming
     var imageIndexObserver: ((Int, UIImage?) -> ())?
-
     
     
     // MARK: Initializers
