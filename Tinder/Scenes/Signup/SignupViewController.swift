@@ -60,8 +60,9 @@ class SignupViewController: UIViewController {
 extension SignupViewController {
     
     fileprivate func setupRegistrationViewModelObserver() {
-        signupViewModel.isFormValidObserver = { [weak self] isFormValid in
-            guard let self = self else { return }
+        
+        signupViewModel.bindalbeIsFormValid.bind { [weak self] isFormValid in
+            guard let self = self, let isFormValid = isFormValid else { return }
             if isFormValid {
                 self.signupButton.backgroundColor = UIColor.appColor(color: .darkPink)
                 self.signupButton.setTitleColor(.white, for: .normal)
@@ -72,7 +73,7 @@ extension SignupViewController {
             self.signupButton.isEnabled = isFormValid
         }
         
-        signupViewModel.imageObserver = { [weak self] image in
+        signupViewModel.bindableImage.bind { [weak self] image in
             guard let self = self else { return }
             self.profilePhotoButton.setImage(image, for: .normal)
         }
@@ -197,9 +198,9 @@ extension SignupViewController: UIImagePickerControllerDelegate & UINavigationCo
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         if let editedImage = info[UIImagePickerController.InfoKey(rawValue: ImagePicker.EditedImage.key)] as? UIImage {
-            signupViewModel.image = editedImage
+            signupViewModel.bindableImage.value = editedImage
         } else if let originalImage = info[UIImagePickerController.InfoKey(rawValue: ImagePicker.OriginalImage.key)] as? UIImage {
-            signupViewModel.image = originalImage
+            signupViewModel.bindableImage.value = originalImage
         }
         dismiss(animated: true, completion: nil)
     }

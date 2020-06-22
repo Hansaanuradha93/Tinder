@@ -16,6 +16,7 @@
 		4798807B249A7B4000829930 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47988079249A7B4000829930 /* LaunchScreen.storyboard */; };
 		479EEFDD24A04E670091BEF7 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479EEFDC24A04E670091BEF7 /* Keys.swift */; };
 		479EEFDF24A053F30091BEF7 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479EEFDE24A053F30091BEF7 /* UIViewController+Ext.swift */; };
+		479EEFE324A067E90091BEF7 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479EEFE224A067E90091BEF7 /* Bindable.swift */; };
 		479F609D249B080100BD0774 /* HomeBottomButtonControlsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479F609C249B080100BD0774 /* HomeBottomButtonControlsStackView.swift */; };
 		479F609F249B0ED100BD0774 /* HomeTopButtonControlsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479F609E249B0ED100BD0774 /* HomeTopButtonControlsStackView.swift */; };
 		47A80191249A814300768831 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A80190249A814300768831 /* UIView+Ext.swift */; };
@@ -41,6 +42,7 @@
 		4798807C249A7B4000829930 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		479EEFDC24A04E670091BEF7 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		479EEFDE24A053F30091BEF7 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
+		479EEFE224A067E90091BEF7 /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		479F609C249B080100BD0774 /* HomeBottomButtonControlsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBottomButtonControlsStackView.swift; sourceTree = "<group>"; };
 		479F609E249B0ED100BD0774 /* HomeTopButtonControlsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTopButtonControlsStackView.swift; sourceTree = "<group>"; };
 		47A80190249A814300768831 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				47CE8204249CEBE900B9696E /* ViewModel */,
 				47CE81FE249CB96500B9696E /* Scenes */,
 				479F609A249B07BF00BD0774 /* Custom Views */,
+				479EEFE124A067D20091BEF7 /* Helper */,
 				47A8018F249A811400768831 /* Extensions */,
 				479EEFDB24A04E5A0091BEF7 /* Contants */,
 				47CE8200249CB9A100B9696E /* Support Files */,
@@ -108,6 +111,14 @@
 				479EEFDC24A04E670091BEF7 /* Keys.swift */,
 			);
 			path = Contants;
+			sourceTree = "<group>";
+		};
+		479EEFE124A067D20091BEF7 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				479EEFE224A067E90091BEF7 /* Bindable.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 		479F609A249B07BF00BD0774 /* Custom Views */ = {
@@ -352,6 +363,7 @@
 				47A80191249A814300768831 /* UIView+Ext.swift in Sources */,
 				47988073249A7B3E00829930 /* HomeViewController.swift in Sources */,
 				47FC5317249DF0210053C4F7 /* UIColor+Ext.swift in Sources */,
+				479EEFE324A067E90091BEF7 /* Bindable.swift in Sources */,
 				4798806F249A7B3E00829930 /* AppDelegate.swift in Sources */,
 				47FC5320249E8B5E0053C4F7 /* TDButton.swift in Sources */,
 				47FC531A249E7C660053C4F7 /* SignupViewController.swift in Sources */,
