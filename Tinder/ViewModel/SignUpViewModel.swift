@@ -47,18 +47,23 @@ extension SignUpViewModel {
                 completion(error)
                 return
             } else {
-                storageRef.downloadURL { (url, error) in
-                    if let error = error {
-                        self.bindableIsRegistering.value = false
-                        completion(error)
-                        return
-                    } else {
-                        //TODO: Store the download url in Firestore
-                        guard let downloadUrl = url?.absoluteString else { return }
-                        self.bindableIsRegistering.value = false
-                        completion(nil)
-                    }
-                }
+                self.fetchImageDownloadUrl(reference: storageRef, completion: completion)
+            }
+        }
+    }
+    
+    
+    fileprivate func fetchImageDownloadUrl(reference: StorageReference, completion: @escaping (Error?) -> ()) {
+        reference.downloadURL { (url, error) in
+            if let error = error {
+                self.bindableIsRegistering.value = false
+                completion(error)
+                return
+            } else {
+                //TODO: Store the download url in Firestore
+                guard let downloadUrl = url?.absoluteString else { return }
+                self.bindableIsRegistering.value = false
+                completion(nil)
             }
         }
     }
