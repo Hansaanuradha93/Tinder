@@ -29,38 +29,40 @@ extension SignUpViewModel {
                 return
             }
             
-            guard let image = self.bindableImage.value,
-                let uploadData = image.jpegData(compressionQuality: 0.75) else { return }
-            let metaData = StorageMetadata()
-            metaData.contentType = "image/jpg"
+            self.saveImageToFirebase(completion: completion)
+        }
+    }
+    
+    
+    fileprivate func saveImageToFirebase(completion: @escaping ((Error?) -> ())) {
+        guard let image = self.bindableImage.value,
+        let uploadData = image.jpegData(compressionQuality: 0.75) else { return }
+        let filename = UUID().uuidString
+        let storageRef = Storage.storage().reference().child("images/\(filename)")
+        
+        storageRef.putData(uploadData, metadata: nil) { (_, error) in
             
-            let filename = UUID().uuidString
-            let storageRef = Storage.storage().reference().child("images/\(filename)")
-            
-            storageRef.putData(uploadData, metadata: metaData) { (_, error) in
-                
-                if let error = error {
-                    self.bindableIsRegistering.value = false
-                    completion(error)
-                    return
-                } else {
-                    storageRef.downloadURL { (url, error) in
-                        
-                        if let error = error {
-                            self.bindableIsRegistering.value = false
-                            completion(error)
-                            return
-                        } else {
-                            guard let downloadUrl = url?.absoluteString else { return }
-                            //TODO: Store the download url in Firestore
-                            self.bindableIsRegistering.value = false
-                            completion(nil)
-                        }
+            if let error = error {
+                self.bindableIsRegistering.value = false
+                completion(error)
+                return
+            } else {
+                storageRef.downloadURL { (url, error) in
+                    if let error = error {
+                        self.bindableIsRegistering.value = false
+                        completion(error)
+                        return
+                    } else {
+                        //TODO: Store the download url in Firestore
+                        guard let downloadUrl = url?.absoluteString else { return }
+                        self.bindableIsRegistering.value = false
+                        completion(nil)
                     }
                 }
             }
         }
     }
+    
     
     fileprivate func checkFormValidity() {
         let isFormValid = fullName?.isEmpty == false && email?.isEmpty == false && password?.isEmpty == false
