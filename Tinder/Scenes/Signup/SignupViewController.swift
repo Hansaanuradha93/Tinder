@@ -20,7 +20,7 @@ class SignupViewController: UIViewController {
     
     lazy var overrallStackView = UIStackView(arrangedSubviews: [profilePhotoButton, verticalStackView])
     
-    let registrationViewModel = SignUpViewModel()
+    let signupViewModel = SignUpViewModel()
 
     
     // MARK: ViewController
@@ -60,7 +60,7 @@ class SignupViewController: UIViewController {
 extension SignupViewController {
     
     fileprivate func setupRegistrationViewModelObserver() {
-        registrationViewModel.isFormValidObserver = { [weak self] isFormValid in
+        signupViewModel.isFormValidObserver = { [weak self] isFormValid in
             guard let self = self else { return }
             if isFormValid {
                 self.signupButton.backgroundColor = UIColor.appColor(color: .darkPink)
@@ -71,13 +71,18 @@ extension SignupViewController {
             }
             self.signupButton.isEnabled = isFormValid
         }
+        
+        signupViewModel.imageObserver = { [weak self] image in
+            guard let self = self else { return }
+            self.profilePhotoButton.setImage(image, for: .normal)
+        }
     }
     
     
     @objc fileprivate func handleTextChange(textField: UITextField) {
-        registrationViewModel.fullName = fullNameTextField.text
-        registrationViewModel.email = emailTextField.text
-        registrationViewModel.password = passwordTextField.text
+        signupViewModel.fullName = fullNameTextField.text
+        signupViewModel.email = emailTextField.text
+        signupViewModel.password = passwordTextField.text
     }
     
     
@@ -131,7 +136,7 @@ extension SignupViewController {
         emailTextField.keyboardType = .emailAddress
         passwordTextField.isSecureTextEntry = true
         
-        profilePhotoButton.addTarget(self, action: #selector(handlePhotoSelect), for: .touchUpInside)
+        profilePhotoButton.addTarget(self, action: #selector(handleSelectPhoto), for: .touchUpInside)
         fullNameTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         emailTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
@@ -150,7 +155,7 @@ extension SignupViewController {
     }
     
     
-    @objc fileprivate func handlePhotoSelect() {
+    @objc fileprivate func handleSelectPhoto() {
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
         imagePickerController.allowsEditing = true
@@ -192,9 +197,9 @@ extension SignupViewController: UIImagePickerControllerDelegate & UINavigationCo
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         if let editedImage = info[UIImagePickerController.InfoKey(rawValue: ImagePicker.EditedImage.key)] as? UIImage {
-            profilePhotoButton.setImage(editedImage, for: .normal)
+            signupViewModel.image = editedImage
         } else if let originalImage = info[UIImagePickerController.InfoKey(rawValue: ImagePicker.OriginalImage.key)] as? UIImage {
-            profilePhotoButton.setImage(originalImage, for: .normal)
+            signupViewModel.image = originalImage
         }
         dismiss(animated: true, completion: nil)
     }
