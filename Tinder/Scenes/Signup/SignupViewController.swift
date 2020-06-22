@@ -160,12 +160,12 @@ extension SignupViewController {
     
     @objc fileprivate func handleSignUp() {
         handleTapDismiss()
-        view.showPreloader()
+        showPreloader()
         guard let email = emailTextField.text, let password = passwordTextField.text else { return }
         
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] authResult, error in
             guard let self = self else { return }
-            self.view.hidePreloader()
+            self.hidePreloader()
             if let error = error {
                 print("Authentication error, \(error)")
                 self.presentAlert(title: "Authentication failed", message: error.localizedDescription, buttonTitle: "Ok")
