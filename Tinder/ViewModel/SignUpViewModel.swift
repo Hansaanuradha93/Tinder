@@ -1,6 +1,6 @@
 import UIKit
 
-class RegistrationViewModel {
+class SignUpViewModel {
     
     var fullName: String? { didSet { checkFormValidity() } }
     var email: String? { didSet { checkFormValidity() } }
@@ -12,7 +12,7 @@ class RegistrationViewModel {
 
 
 // MARK: - Methods
-extension RegistrationViewModel {
+extension SignUpViewModel {
     
     fileprivate func checkFormValidity() {
         
