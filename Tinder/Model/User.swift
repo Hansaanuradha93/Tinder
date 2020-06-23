@@ -1,10 +1,29 @@
 import UIKit
 
 struct User {
+    
+    // MARK: Properties
     let name: String
     let age: Int
     let profession: String
     let imageUrls: [String]
+    
+    // MARK: Initializers
+    init(name: String, age: Int, profession: String, imageUrls: [String]) {
+        self.name = name
+        self.age = age
+        self.profession = profession
+        self.imageUrls = imageUrls
+    }
+    
+    
+    init(dictionary: [String : Any]) {
+        self.name = dictionary["fullName"] as? String ?? ""
+        self.age = dictionary["age"] as? Int ?? 0
+        self.profession = dictionary["profession"] as? String ?? ""
+        let imageUrl = dictionary["imageUrl1"] as? String ?? ""
+        self.imageUrls = [imageUrl]
+    }
 }
 
 

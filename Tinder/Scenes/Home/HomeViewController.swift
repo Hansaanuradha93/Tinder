@@ -1,4 +1,5 @@
 import UIKit
+import Firebase
 
 class HomeViewController: UIViewController {
 
@@ -25,11 +26,26 @@ class HomeViewController: UIViewController {
         setupLayout()
         setupDummyCards()
         setupButtonActions()
+        fetchUsersFromFirestore()
     }
 }
 
 // MARK: - Methods
 extension HomeViewController {
+    
+    fileprivate func fetchUsersFromFirestore() {
+        Firestore.firestore().collection("users").getDocuments { (snapshot, error) in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            
+            snapshot!.documents.forEach { (documentSnapshot) in
+                let user = User(dictionary: documentSnapshot.data())
+                print("\(user)")
+            }
+        }
+    }
     
     @objc fileprivate func settingsButtonTapped() {
         let controller = SignupViewController()
