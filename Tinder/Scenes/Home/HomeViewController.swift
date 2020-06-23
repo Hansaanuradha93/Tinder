@@ -15,7 +15,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
-        setupDummyCards()
+        setupFirestoreUserCards()
         setupButtonActions()
         fetchUsersFromFirestore()
     }
@@ -25,7 +25,8 @@ class HomeViewController: UIViewController {
 extension HomeViewController {
     
     fileprivate func fetchUsersFromFirestore() {
-        Firestore.firestore().collection("users").getDocuments { (snapshot, error) in
+        let query = Firestore.firestore().collection("users")
+        query.getDocuments { (snapshot, error) in
             if let error = error {
                 print(error.localizedDescription)
                 return
@@ -35,7 +36,7 @@ extension HomeViewController {
                 let user = User(dictionary: documentSnapshot.data())
                 self.cardViewModels.append(user.toCardViewModel())
             }
-            self.setupDummyCards()
+            self.setupFirestoreUserCards()
         }
     }
     
@@ -51,7 +52,7 @@ extension HomeViewController {
     }
     
     
-    fileprivate func setupDummyCards() {
+    fileprivate func setupFirestoreUserCards() {
         cardViewModels.forEach { (cardViewModel) in
             let cardView = CardView(cardViewModel: cardViewModel)
             cardsDeckView.addSubview(cardView)

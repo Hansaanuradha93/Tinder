@@ -14,14 +14,13 @@ class CardViewModel {
     fileprivate var imageIndex = 0 {
         didSet {
             let imageUrl = imageUrls[imageIndex]
-            let image = UIImage(named: imageUrl)
-            imageIndexObserver?(imageIndex, image)
+            imageIndexObserver?(imageIndex, imageUrl)
         }
     }
     
     
     // MARK: Reactive Programming
-    var imageIndexObserver: ((Int, UIImage?) -> ())?
+    var imageIndexObserver: ((Int, String?) -> ())?
     
     
     // MARK: Initializers

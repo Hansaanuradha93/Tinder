@@ -71,9 +71,9 @@ extension CardView {
     
     
     fileprivate func setupImage(_ cardViewModel: CardViewModel) {
-        cardViewModel.imageIndexObserver = { [weak self] index,image in
-            guard let self = self else { return }
-            self.imageView.image = image
+        cardViewModel.imageIndexObserver = { [weak self] index,imageUrl in
+            guard let self = self, let imageUrl = imageUrl else { return }
+            self.imageView.downloadImage(from: imageUrl)
             self.barStackView.arrangedSubviews.forEach { (view) in
                 view.backgroundColor = self.barDiselectedColor
             }
