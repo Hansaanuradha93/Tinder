@@ -3,7 +3,7 @@ import UIKit
 class CardView: UIView {
     
     // MARK: Properties
-    fileprivate let imageView = UIImageView(image: #imageLiteral(resourceName: "lady5c"))
+    fileprivate let imageView = UIImageView()
     fileprivate let informationLabel = UILabel()
     fileprivate let barStackView = UIStackView()
     
@@ -122,7 +122,7 @@ extension CardView {
     
     fileprivate func setupViews(_ cardViewModel: CardViewModel) {
         let imageUrl = cardViewModel.imageUrls.first ?? ""
-        imageView.image = UIImage(named: imageUrl)
+        imageView.downloadImage(from: imageUrl)        
         informationLabel.attributedText = cardViewModel.attributedText
         informationLabel.textAlignment = cardViewModel.textAlignment
         cardViewModel.imageUrls.forEach { (_) in
