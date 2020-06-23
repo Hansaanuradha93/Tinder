@@ -122,7 +122,10 @@ extension CardView {
     
     fileprivate func setupViews(_ cardViewModel: CardViewModel) {
         let imageUrl = cardViewModel.imageUrls.first ?? ""
-        imageView.image = UIImage(named: imageUrl)
+//        imageView.image = UIImage(named: imageUrl)
+        
+        // lets load the image using image url
+        
         informationLabel.attributedText = cardViewModel.attributedText
         informationLabel.textAlignment = cardViewModel.textAlignment
         cardViewModel.imageUrls.forEach { (_) in
