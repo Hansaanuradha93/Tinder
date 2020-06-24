@@ -68,9 +68,7 @@ class SettingsViewController: UITableViewController {
     
     
     fileprivate func createButton(selector: Selector) -> UIButton {
-        let button = UIButton(type: .system)
-        button.setTitle("Select Photo", for: .normal)
-        button.backgroundColor = .white
+        let button = TDButton(backgroundColor: .white, title: "Select Photo", radius: 16, fontSize: 20)
         button.addTarget(self, action: selector, for: .touchUpInside)
         button.imageView?.contentMode = .scaleAspectFill
         return button
