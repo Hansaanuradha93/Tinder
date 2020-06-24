@@ -39,11 +39,19 @@ class SettingsViewController: UITableViewController {
 extension SettingsViewController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 0 {
-            return header
-        }
         let headerName = HeaderLabel()
-        headerName.text = "Name"
+        switch section {
+        case 0:
+            return header
+        case 1:
+            headerName.text = "Name"
+        case 2:
+            headerName.text = "Profession"
+        case 3:
+            headerName.text = "Age"
+        default:
+            headerName.text = "Bio"
+        }
         return headerName
     }
 
@@ -70,7 +78,16 @@ extension SettingsViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SettingsCell.reuseIdentifier, for: indexPath) as! SettingsCell
-        cell.setup(placehoder: "Placeholder")
+        switch indexPath.section {
+        case 1:
+            cell.setup(placehoder: "Name")
+        case 2:
+            cell.setup(placehoder: "Proofession")
+        case 3:
+            cell.setup(placehoder: "Age")
+        default:
+            cell.setup(placehoder: "Bio")
+        }
         return cell
     }
 }
@@ -83,7 +100,14 @@ extension SettingsViewController {
         tableView.backgroundColor = UIColor(white: 0.95, alpha: 1)
         tableView.tableFooterView = UIView()
         tableView.keyboardDismissMode = .interactive
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        tableView.addGestureRecognizer(tapGesture)
         tableView.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.reuseIdentifier)
+    }
+    
+    
+    @objc fileprivate func handleTap() {
+        view.endEditing(true)
     }
     
     

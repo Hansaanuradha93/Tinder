@@ -23,7 +23,6 @@ class SettingsCell: UITableViewCell {
     // MARK: Properties
     fileprivate var textField: SettingsTextField = {
         let textField = SettingsTextField()
-        textField.placeholder = "Enter name"
         return textField
     }()
     
