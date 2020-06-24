@@ -19,6 +19,7 @@
 		479A073724A32B6E00AB21C8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479A073624A32B6E00AB21C8 /* SettingsViewController.swift */; };
 		479A073A24A3978E00AB21C8 /* TDImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479A073924A3978E00AB21C8 /* TDImagePickerController.swift */; };
 		479A073D24A3BAB700AB21C8 /* HeaderLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479A073C24A3BAB700AB21C8 /* HeaderLabel.swift */; };
+		479A074024A3BBFD00AB21C8 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479A073F24A3BBFD00AB21C8 /* SettingsCell.swift */; };
 		479EEFDD24A04E670091BEF7 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479EEFDC24A04E670091BEF7 /* Keys.swift */; };
 		479EEFDF24A053F30091BEF7 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479EEFDE24A053F30091BEF7 /* UIViewController+Ext.swift */; };
 		479EEFE324A067E90091BEF7 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479EEFE224A067E90091BEF7 /* Bindable.swift */; };
@@ -50,6 +51,7 @@
 		479A073624A32B6E00AB21C8 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		479A073924A3978E00AB21C8 /* TDImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDImagePickerController.swift; sourceTree = "<group>"; };
 		479A073C24A3BAB700AB21C8 /* HeaderLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderLabel.swift; sourceTree = "<group>"; };
+		479A073F24A3BBFD00AB21C8 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		479EEFDC24A04E670091BEF7 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		479EEFDE24A053F30091BEF7 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		479EEFE224A067E90091BEF7 /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
@@ -155,6 +157,14 @@
 			path = Labels;
 			sourceTree = "<group>";
 		};
+		479A073E24A3BB8900AB21C8 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				479A073F24A3BBFD00AB21C8 /* SettingsCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		479EEFDB24A04E5A0091BEF7 /* Contants */ = {
 			isa = PBXGroup;
 			children = (
@@ -175,6 +185,7 @@
 		479F609A249B07BF00BD0774 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				479A073E24A3BB8900AB21C8 /* Cells */,
 				479A073B24A3BA5400AB21C8 /* Labels */,
 				479A073824A3976B00AB21C8 /* Image Picker */,
 				479F609B249B07C900BD0774 /* Views */,
@@ -424,6 +435,7 @@
 				47FC5317249DF0210053C4F7 /* UIColor+Ext.swift in Sources */,
 				479EEFE324A067E90091BEF7 /* Bindable.swift in Sources */,
 				4798806F249A7B3E00829930 /* AppDelegate.swift in Sources */,
+				479A074024A3BBFD00AB21C8 /* SettingsCell.swift in Sources */,
 				47FC5320249E8B5E0053C4F7 /* TDButton.swift in Sources */,
 				47FC531A249E7C660053C4F7 /* SignupViewController.swift in Sources */,
 				47CE8203249CBCDB00B9696E /* User.swift in Sources */,
