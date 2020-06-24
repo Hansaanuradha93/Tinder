@@ -9,6 +9,7 @@ class HomeViewController: UIViewController {
     let bottomStackView = HomeBottomButtonControlsStackView()
     
     var cardViewModels = [CardViewModel]()
+    var lastFetchedUser: User?
     
     
     // MARK: ViewController
@@ -25,7 +26,7 @@ class HomeViewController: UIViewController {
 extension HomeViewController {
     
     fileprivate func fetchUsersFromFirestore() {
-        let query = Firestore.firestore().collection("users")
+        let query = Firestore.firestore().collection("users").order(by: "uid").start(after: [lastFetchedUser?.uid ?? ""]).limit(to: 2)
         query.getDocuments { (snapshot, error) in
             if let error = error {
                 print(error.localizedDescription)
@@ -35,6 +36,7 @@ extension HomeViewController {
             snapshot!.documents.forEach { (documentSnapshot) in
                 let user = User(dictionary: documentSnapshot.data())
                 self.cardViewModels.append(user.toCardViewModel())
+                self.lastFetchedUser = user
             }
             self.setupFirestoreUserCards()
         }
