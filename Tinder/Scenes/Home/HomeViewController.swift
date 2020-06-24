@@ -62,6 +62,7 @@ extension HomeViewController {
     fileprivate func setupCardFrom(user: User) {
         let cardView = CardView(cardViewModel: user.toCardViewModel())
         cardsDeckView.addSubview(cardView)
+        cardsDeckView.sendSubviewToBack(cardView)
         cardView.fillSuperview()
     }
     
