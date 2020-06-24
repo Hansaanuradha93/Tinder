@@ -9,7 +9,7 @@ class SettingsViewController: UITableViewController {
     
     lazy var header: UIView = {
        let view = UIView()
-        view.backgroundColor = .red
+        view.backgroundColor = .clear
         let paddding: CGFloat = 16
         
         let verticalStackView = UIStackView(arrangedSubviews: [image2Button, image3Button])
@@ -29,7 +29,6 @@ class SettingsViewController: UITableViewController {
     // MARK: View Controller
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupNavigationBar()
         setupTableView()
     }
@@ -40,12 +39,39 @@ class SettingsViewController: UITableViewController {
 extension SettingsViewController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return header
+        if section == 0 {
+            return header
+        }
+        let headerName = HeaderLabel()
+        headerName.text = "Name"
+        return headerName
     }
-    
+
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 300
+        if section == 0 {
+            return 300
+        }
+        return 40
+    }
+}
+
+
+// MARK: - Table View Data Source
+extension SettingsViewController {
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 5
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return section == 0 ? 0 : 1
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
+        cell.textLabel?.text = "test"
+        return cell
     }
 }
 
