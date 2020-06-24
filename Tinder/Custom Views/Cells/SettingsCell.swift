@@ -2,9 +2,27 @@ import UIKit
 
 class SettingsCell: UITableViewCell {
     
+    // MARK: Class
+    class SettingsTextField: UITextField {
+        
+        override func textRect(forBounds bounds: CGRect) -> CGRect {
+            return bounds.insetBy(dx: 24, dy: 0)
+        }
+        
+        
+        override func editingRect(forBounds bounds: CGRect) -> CGRect {
+            return bounds.insetBy(dx: 24, dy: 0)
+        }
+        
+        
+        override var intrinsicContentSize: CGSize {
+            return .init(width: 0, height: 44)
+        }
+    }
+    
     // MARK: Properties
-    fileprivate var textField: UITextField = {
-        let textField = UITextField()
+    fileprivate var textField: SettingsTextField = {
+        let textField = SettingsTextField()
         textField.placeholder = "Enter name"
         return textField
     }()

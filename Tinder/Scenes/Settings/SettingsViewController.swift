@@ -82,6 +82,7 @@ extension SettingsViewController {
     fileprivate func setupTableView() {
         tableView.backgroundColor = UIColor(white: 0.95, alpha: 1)
         tableView.tableFooterView = UIView()
+        tableView.keyboardDismissMode = .interactive
         tableView.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.reuseIdentifier)
     }
     
