@@ -1,9 +1,5 @@
 import UIKit
 
-class TDImagePickerController: UIImagePickerController {
-    var button: UIButton?
-}
-
 class SettingsViewController: UITableViewController {
     
     // MARK: Properties
@@ -11,18 +7,9 @@ class SettingsViewController: UITableViewController {
     lazy var image2Button = createButton(selector: #selector(handleSelectPhoto))
     lazy var image3Button = createButton(selector: #selector(handleSelectPhoto))
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setupNavigationBar()
-        tableView.backgroundColor = UIColor(white: 0.95, alpha: 1)
-        tableView.tableFooterView = UIView()
-    }
-    
-    
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = UIView()
-        header.backgroundColor = .red
+    lazy var header: UIView = {
+       let view = UIView()
+        view.backgroundColor = .red
         let paddding: CGFloat = 16
         
         let verticalStackView = UIStackView(arrangedSubviews: [image2Button, image3Button])
@@ -33,15 +20,42 @@ class SettingsViewController: UITableViewController {
         let overrallStackView = UIStackView(arrangedSubviews: [image1Button, verticalStackView])
         overrallStackView.distribution = .fillEqually
         overrallStackView.spacing = 16
-        header.addSubview(overrallStackView)
-        overrallStackView.anchor(top: header.topAnchor, leading: header.leadingAnchor, bottom: header.bottomAnchor, trailing: header.trailingAnchor, padding: .init(top: paddding, left: paddding, bottom: paddding, right: paddding))
+        view.addSubview(overrallStackView)
+        overrallStackView.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor, padding: .init(top: paddding, left: paddding, bottom: paddding, right: paddding))
+        return view
+    }()
+    
+    
+    // MARK: View Controller
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
+        setupNavigationBar()
+        setupTableView()
+    }
+}
+
+
+// MARK: - Table View Header
+extension SettingsViewController {
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return header
     }
     
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 300
+    }
+}
+
+
+// MARK: - Methods
+extension SettingsViewController {
+    
+    fileprivate func setupTableView() {
+        tableView.backgroundColor = UIColor(white: 0.95, alpha: 1)
+        tableView.tableFooterView = UIView()
     }
     
     
@@ -58,9 +72,11 @@ class SettingsViewController: UITableViewController {
         dismiss(animated: true)
     }
     
+    
     @objc fileprivate func handleSave() {
         print("Save")
     }
+    
     
     @objc fileprivate func handleLogout() {
         print("Logout")
@@ -73,6 +89,7 @@ class SettingsViewController: UITableViewController {
         button.imageView?.contentMode = .scaleAspectFill
         return button
     }
+    
     
     fileprivate func setupNavigationBar() {
         navigationItem.title = "Settings"

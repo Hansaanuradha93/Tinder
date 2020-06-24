@@ -17,6 +17,7 @@
 		47988078249A7B4000829930 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47988077249A7B4000829930 /* Assets.xcassets */; };
 		4798807B249A7B4000829930 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47988079249A7B4000829930 /* LaunchScreen.storyboard */; };
 		479A073724A32B6E00AB21C8 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479A073624A32B6E00AB21C8 /* SettingsViewController.swift */; };
+		479A073A24A3978E00AB21C8 /* TDImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479A073924A3978E00AB21C8 /* TDImagePickerController.swift */; };
 		479EEFDD24A04E670091BEF7 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479EEFDC24A04E670091BEF7 /* Keys.swift */; };
 		479EEFDF24A053F30091BEF7 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479EEFDE24A053F30091BEF7 /* UIViewController+Ext.swift */; };
 		479EEFE324A067E90091BEF7 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479EEFE224A067E90091BEF7 /* Bindable.swift */; };
@@ -46,6 +47,7 @@
 		4798807A249A7B4000829930 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4798807C249A7B4000829930 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		479A073624A32B6E00AB21C8 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		479A073924A3978E00AB21C8 /* TDImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDImagePickerController.swift; sourceTree = "<group>"; };
 		479EEFDC24A04E670091BEF7 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		479EEFDE24A053F30091BEF7 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		479EEFE224A067E90091BEF7 /* Bindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
@@ -135,6 +137,14 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		479A073824A3976B00AB21C8 /* Image Picker */ = {
+			isa = PBXGroup;
+			children = (
+				479A073924A3978E00AB21C8 /* TDImagePickerController.swift */,
+			);
+			path = "Image Picker";
+			sourceTree = "<group>";
+		};
 		479EEFDB24A04E5A0091BEF7 /* Contants */ = {
 			isa = PBXGroup;
 			children = (
@@ -155,6 +165,7 @@
 		479F609A249B07BF00BD0774 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				479A073824A3976B00AB21C8 /* Image Picker */,
 				479F609B249B07C900BD0774 /* Views */,
 				47FC531B249E881E0053C4F7 /* Text Fields */,
 				47FC531E249E8B4F0053C4F7 /* Buttons */,
@@ -393,6 +404,7 @@
 				479A073724A32B6E00AB21C8 /* SettingsViewController.swift in Sources */,
 				479EEFDD24A04E670091BEF7 /* Keys.swift in Sources */,
 				479EEFDF24A053F30091BEF7 /* UIViewController+Ext.swift in Sources */,
+				479A073A24A3978E00AB21C8 /* TDImagePickerController.swift in Sources */,
 				47CE8208249D009C00B9696E /* Advertiser.swift in Sources */,
 				4738A6CD249BD0B400C55385 /* CardView.swift in Sources */,
 				47A80191249A814300768831 /* UIView+Ext.swift in Sources */,
