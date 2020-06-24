@@ -4,9 +4,9 @@ import Firebase
 class HomeViewController: UIViewController {
 
     // MARK: Properties
-    let topStackView = HomeTopButtonControlsStackView()
+    let topControllsStackView = HomeTopButtonControlsStackView()
     let cardsDeckView = UIView()
-    let bottomStackView = HomeBottomButtonControlsStackView()
+    let bottomControllsStackView = HomeBottomButtonControlsStackView()
     
     var cardViewModels = [CardViewModel]()
     var lastFetchedUser: User?
@@ -16,7 +16,6 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
-        setupFirestoreUserCards()
         setupButtonActions()
         fetchUsersFromFirestore()
     }
@@ -35,12 +34,12 @@ extension HomeViewController {
             
             snapshot!.documents.forEach { (documentSnapshot) in
                 let user = User(dictionary: documentSnapshot.data())
-                self.cardViewModels.append(user.toCardViewModel())
                 self.lastFetchedUser = user
+                DispatchQueue.main.async { self.setupCardFrom(user: user) }
             }
-            self.setupFirestoreUserCards()
         }
     }
+    
     
     @objc fileprivate func settingsButtonTapped() {
         let controller = SignupViewController()
@@ -50,23 +49,27 @@ extension HomeViewController {
     
     
     fileprivate func setupButtonActions() {
-        topStackView.settingsButton.addTarget(self, action: #selector(settingsButtonTapped), for: .touchUpInside)
+        topControllsStackView.settingsButton.addTarget(self, action: #selector(settingsButtonTapped), for: .touchUpInside)
+        bottomControllsStackView.refreshButton.addTarget(self, action: #selector(handleRefresh), for: .touchUpInside)
     }
     
     
-    fileprivate func setupFirestoreUserCards() {
-        cardViewModels.forEach { (cardViewModel) in
-            let cardView = CardView(cardViewModel: cardViewModel)
-            cardsDeckView.addSubview(cardView)
-            cardView.fillSuperview()
-        }
+    @objc fileprivate func handleRefresh() {
+        fetchUsersFromFirestore()
+    }
+    
+    
+    fileprivate func setupCardFrom(user: User) {
+        let cardView = CardView(cardViewModel: user.toCardViewModel())
+        cardsDeckView.addSubview(cardView)
+        cardView.fillSuperview()
     }
     
     
     fileprivate func setupLayout() {
         view.backgroundColor = .white
         
-        let overrallStackView = UIStackView(arrangedSubviews: [topStackView, cardsDeckView, bottomStackView])
+        let overrallStackView = UIStackView(arrangedSubviews: [topControllsStackView, cardsDeckView, bottomControllsStackView])
         overrallStackView.axis = .vertical
         overrallStackView.isLayoutMarginsRelativeArrangement = true
         overrallStackView.layoutMargins = .init(top: 0, left: 8, bottom: 0, right: 8)
