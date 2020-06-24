@@ -1,11 +1,15 @@
 import UIKit
 
+class TDImagePickerController: UIImagePickerController {
+    var button: UIButton?
+}
+
 class SettingsViewController: UITableViewController {
     
     // MARK: Properties
-    lazy var image1Button = createButton()
-    lazy var image2Button = createButton()
-    lazy var image3Button = createButton()
+    lazy var image1Button = createButton(selector: #selector(handleSelectPhoto))
+    lazy var image2Button = createButton(selector: #selector(handleSelectPhoto))
+    lazy var image3Button = createButton(selector: #selector(handleSelectPhoto))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +45,15 @@ class SettingsViewController: UITableViewController {
     }
     
     
+    @objc fileprivate func handleSelectPhoto(button: UIButton) {
+       let imagePickerController = TDImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.allowsEditing = true
+        imagePickerController.button = button
+        present(imagePickerController, animated: true)
+    }
+    
+    
     @objc fileprivate func handleCancel() {
         dismiss(animated: true)
     }
@@ -54,10 +67,12 @@ class SettingsViewController: UITableViewController {
     }
     
     
-    fileprivate func createButton() -> UIButton {
+    fileprivate func createButton(selector: Selector) -> UIButton {
         let button = UIButton(type: .system)
         button.setTitle("Select Photo", for: .normal)
         button.backgroundColor = .white
+        button.addTarget(self, action: selector, for: .touchUpInside)
+        button.imageView?.contentMode = .scaleAspectFill
         return button
     }
     
@@ -69,5 +84,22 @@ class SettingsViewController: UITableViewController {
             UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(handleSave)),
             UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
         ]
+    }
+}
+
+
+// MARK: - UIImagePickerControllerDelegate & UINavigationControllerDelegate
+extension SettingsViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        let button = (picker as? TDImagePickerController)?.button
+        
+        if let editedImage = info[UIImagePickerController.InfoKey(rawValue: ImagePicker.EditedImage.key)] as? UIImage {
+            button?.setImage(editedImage.withRenderingMode(.alwaysOriginal), for: .normal)
+        } else if let originalImage = info[UIImagePickerController.InfoKey(rawValue: ImagePicker.OriginalImage.key)] as? UIImage {
+            button?.setImage(originalImage.withRenderingMode(.alwaysOriginal), for: .normal)
+        }
+        dismiss(animated: true, completion: nil)
     }
 }
