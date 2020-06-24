@@ -44,7 +44,7 @@ extension HomeViewController {
     
     
     @objc fileprivate func settingsButtonTapped() {
-        let controller = SignupViewController()
+        let controller = SettingsViewController()
         controller.modalPresentationStyle = .fullScreen
         self.present(controller, animated: true)
     }
