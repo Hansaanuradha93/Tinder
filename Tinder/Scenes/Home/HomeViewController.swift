@@ -44,9 +44,9 @@ extension HomeViewController {
     
     
     @objc fileprivate func settingsButtonTapped() {
-        let controller = SettingsViewController()
-        controller.modalPresentationStyle = .fullScreen
-        self.present(controller, animated: true)
+        let navigationController = UINavigationController(rootViewController: SettingsViewController())
+        navigationController.modalPresentationStyle = .fullScreen
+        self.present(navigationController, animated: true)
     }
     
     
