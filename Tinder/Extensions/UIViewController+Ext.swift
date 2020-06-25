@@ -11,13 +11,13 @@ extension UIViewController {
     
     
     func showPreloader() {
-        
         let backgroundView = UIView()
-        backgroundView.frame = CGRect.init(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height)
         backgroundView.backgroundColor = .black
         backgroundView.alpha = 0.6
         backgroundView.tag = 475647
+        backgroundView.layer.cornerRadius = 10
         view.addSubview(backgroundView)
+        backgroundView.centerInSuperview(size: CGSize(width: 120, height: 90))
         
         let activityIndicator = UIActivityIndicatorView(style: .large)
         activityIndicator.hidesWhenStopped = true
