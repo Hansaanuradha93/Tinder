@@ -26,6 +26,8 @@ class SettingsViewController: UITableViewController {
         return view
     }()
     
+    var user: User?
+    
     
     // MARK: View Controller
     override func viewDidLoad() {
@@ -82,13 +84,13 @@ extension SettingsViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: SettingsCell.reuseIdentifier, for: indexPath) as! SettingsCell
         switch indexPath.section {
         case 1:
-            cell.setup(placehoder: "Name")
+            cell.setup(placehoder: "Name", text: user?.name ?? "")
         case 2:
-            cell.setup(placehoder: "Proofession")
+            cell.setup(placehoder: "Proofession", text: user?.profession ?? "")
         case 3:
-            cell.setup(placehoder: "Age")
+            cell.setup(placehoder: "Age", text: "\(user?.age ?? 0)")
         default:
-            cell.setup(placehoder: "Bio")
+            cell.setup(placehoder: "Bio", text: "")
         }
         return cell
     }
@@ -108,9 +110,9 @@ extension SettingsViewController {
                 return
             }
             
-            guard let userInfoDictionary = document?.data() else { return }
-            let user = User(dictionary: userInfoDictionary)
-            print(user)
+            guard let dictionary = document?.data() else { return }
+            self.user = User(dictionary: dictionary)
+            DispatchQueue.main.async { self.tableView.reloadData() }
         }
     }
     

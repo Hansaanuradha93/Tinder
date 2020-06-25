@@ -45,8 +45,9 @@ class SettingsCell: UITableViewCell {
 // MARK: Methods
 extension SettingsCell {
     
-    func setup(placehoder: String) {
+    func setup(placehoder: String, text: String) {
         textField.placeholder = placehoder
+        textField.text = text
     }
     
     
