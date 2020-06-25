@@ -21,7 +21,7 @@ class SettingsCell: UITableViewCell {
     }
     
     // MARK: Properties
-    fileprivate var textField: SettingsTextField = {
+    var textField: SettingsTextField = {
         let textField = SettingsTextField()
         return textField
     }()

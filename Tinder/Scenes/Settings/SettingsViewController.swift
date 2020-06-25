@@ -85,12 +85,16 @@ extension SettingsViewController {
         switch indexPath.section {
         case 1:
             cell.setup(placehoder: "Name", text: user?.name ?? "")
+            cell.textField.addTarget(self, action: #selector(handleNameChange), for: .editingChanged)
         case 2:
             cell.setup(placehoder: "Proofession", text: user?.profession ?? "")
+            cell.textField.addTarget(self, action: #selector(handleProfessionChange), for: .editingChanged)
         case 3:
             cell.setup(placehoder: "Age", text: "\(user?.age ?? 0)")
+            cell.textField.addTarget(self, action: #selector(handleAgeChange), for: .editingChanged)
         default:
             cell.setup(placehoder: "Bio", text: "")
+            cell.textField.addTarget(self, action: #selector(handleBioChange), for: .editingChanged)
         }
         return cell
     }
@@ -99,6 +103,27 @@ extension SettingsViewController {
 
 // MARK: - Methods
 extension SettingsViewController {
+    
+    
+    @objc fileprivate func handleNameChange(textField: UITextField) {
+        user?.name = textField.text 
+    }
+    
+    
+    @objc fileprivate func handleProfessionChange(textField: UITextField) {
+        user?.profession = textField.text
+    }
+    
+    
+    @objc fileprivate func handleAgeChange(textField: UITextField) {
+        user?.age = Int(textField.text ?? "")
+    }
+    
+    
+    @objc fileprivate func handleBioChange(textField: UITextField) {
+        // TODO: capture the user's bio
+    }
+    
     
     fileprivate func fetchCurrentUser() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
@@ -161,22 +186,18 @@ extension SettingsViewController {
         let documentData: [String: Any] = [
             "uid": uid,
             "fullname": user?.name ?? "",
-            "age": 34,
-            "profession": "Bank Robber",
+            "age": user?.age ?? -1,
+            "profession": user?.profession ?? "",
             "imageUrl1": user?.imageUrls?.first ?? ""
         ]
-        
         
         Firestore.firestore().collection("users").document(uid).setData(documentData) { [weak self] error in
             if let error = error {
                 print(error.localizedDescription)
                 return
             }
-            
             print("user info updated successfully")
         }
-        
-        
     }
     
     
