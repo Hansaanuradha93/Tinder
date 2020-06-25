@@ -156,7 +156,27 @@ extension SettingsViewController {
     
     
     @objc fileprivate func handleSave() {
-        print("Save")
+        
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let documentData: [String: Any] = [
+            "uid": uid,
+            "fullname": user?.name ?? "",
+            "age": 34,
+            "profession": "Bank Robber",
+            "imageUrl1": user?.imageUrls?.first ?? ""
+        ]
+        
+        
+        Firestore.firestore().collection("users").document(uid).setData(documentData) { [weak self] error in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            
+            print("user info updated successfully")
+        }
+        
+        
     }
     
     
