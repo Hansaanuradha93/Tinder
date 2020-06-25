@@ -1,12 +1,14 @@
 import UIKit
 import Firebase
 
-class SettingsViewController: UITableViewController {
+class SettingsViewController: UIViewController {
     
     // MARK: Properties
     lazy var image1Button = createButton(selector: #selector(handleSelectPhoto))
     lazy var image2Button = createButton(selector: #selector(handleSelectPhoto))
     lazy var image3Button = createButton(selector: #selector(handleSelectPhoto))
+    
+    let tableView = UITableView()
     
     lazy var header: UIView = {
        let view = UIView()
@@ -40,9 +42,9 @@ class SettingsViewController: UITableViewController {
 
 
 // MARK: - Table View Header
-extension SettingsViewController {
+extension SettingsViewController: UITableViewDelegate {
     
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerName = HeaderLabel()
         switch section {
         case 0:
@@ -60,7 +62,7 @@ extension SettingsViewController {
     }
 
     
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
             return 300
         }
@@ -70,17 +72,17 @@ extension SettingsViewController {
 
 
 // MARK: - Table View Data Source
-extension SettingsViewController {
+extension SettingsViewController: UITableViewDataSource {
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 5
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return section == 0 ? 0 : 1
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SettingsCell.reuseIdentifier, for: indexPath) as! SettingsCell
         switch indexPath.section {
         case 1:
@@ -152,6 +154,10 @@ extension SettingsViewController {
     
     
     fileprivate func setupTableView() {
+        view.addSubview(tableView)
+        tableView.fillSuperview()
+        tableView.dataSource = self
+        tableView.delegate = self
         tableView.backgroundColor = UIColor(white: 0.95, alpha: 1)
         tableView.tableFooterView = UIView()
         tableView.keyboardDismissMode = .interactive
