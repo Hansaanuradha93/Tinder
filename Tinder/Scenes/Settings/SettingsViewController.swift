@@ -183,6 +183,8 @@ extension SettingsViewController {
     @objc fileprivate func handleSave() {
         
         guard let uid = Auth.auth().currentUser?.uid else { return }
+        self.showPreloader()
+    
         let documentData: [String: Any] = [
             "uid": uid,
             "fullname": user?.name ?? "",
@@ -192,6 +194,8 @@ extension SettingsViewController {
         ]
         
         Firestore.firestore().collection("users").document(uid).setData(documentData) { [weak self] error in
+            guard let self = self else { return }
+            self.hidePreloader()
             if let error = error {
                 print(error.localizedDescription)
                 return
