@@ -10,7 +10,7 @@ class SettingsViewController: UITableViewController {
     lazy var header: UIView = {
        let view = UIView()
         view.backgroundColor = .clear
-        let paddding: CGFloat = 16
+        let padding: CGFloat = 16
         
         let verticalStackView = UIStackView(arrangedSubviews: [image2Button, image3Button])
         verticalStackView.axis = .vertical
@@ -21,7 +21,7 @@ class SettingsViewController: UITableViewController {
         overrallStackView.distribution = .fillEqually
         overrallStackView.spacing = 16
         view.addSubview(overrallStackView)
-        overrallStackView.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor, padding: .init(top: paddding, left: paddding, bottom: paddding, right: paddding))
+        overrallStackView.fillSuperview(padding: .init(top: padding, left: padding, bottom: padding, right: padding))
         return view
     }()
     
