@@ -3,16 +3,16 @@ import UIKit
 struct User {
     
     // MARK: Properties
-    let uid: String?
-    let name: String?
-    let age: Int?
-    let profession: String?
-    let imageUrls: [String]?
+    var uid: String?
+    var name: String?
+    var age: Int?
+    var profession: String?
+    var imageUrls: [String]?
     
     // MARK: Initializers
     init(dictionary: [String : Any]) {
         self.uid = dictionary["uid"] as? String
-        self.name = dictionary["fullName"] as? String
+        self.name = dictionary["fullname"] as? String
         self.age = dictionary["age"] as? Int
         self.profession = dictionary["profession"] as? String
         let imageUrl = dictionary["imageUrl1"] as? String
