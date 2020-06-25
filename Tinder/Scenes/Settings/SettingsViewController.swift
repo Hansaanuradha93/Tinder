@@ -1,4 +1,5 @@
 import UIKit
+import Firebase
 
 class SettingsViewController: UITableViewController {
     
@@ -31,6 +32,7 @@ class SettingsViewController: UITableViewController {
         super.viewDidLoad()
         setupNavigationBar()
         setupTableView()
+        fetchCurrentUser()
     }
 }
 
@@ -95,6 +97,23 @@ extension SettingsViewController {
 
 // MARK: - Methods
 extension SettingsViewController {
+    
+    fileprivate func fetchCurrentUser() {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let reference = Firestore.firestore().collection("users").document(uid)
+        
+        reference.getDocument { (document, error) in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            
+            guard let userInfoDictionary = document?.data() else { return }
+            let user = User(dictionary: userInfoDictionary)
+            print(user)
+        }
+    }
+    
     
     fileprivate func setupTableView() {
         tableView.backgroundColor = UIColor(white: 0.95, alpha: 1)
