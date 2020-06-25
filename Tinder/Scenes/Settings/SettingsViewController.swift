@@ -102,9 +102,11 @@ extension SettingsViewController {
     
     fileprivate func fetchCurrentUser() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
+        self.showPreloader()
         let reference = Firestore.firestore().collection("users").document(uid)
         
         reference.getDocument { (document, error) in
+            self.hidePreloader()
             if let error = error {
                 print(error.localizedDescription)
                 return
@@ -112,8 +114,15 @@ extension SettingsViewController {
             
             guard let dictionary = document?.data() else { return }
             self.user = User(dictionary: dictionary)
-            DispatchQueue.main.async { self.tableView.reloadData() }
+            self.updateUI()
         }
+    }
+    
+    
+    fileprivate func updateUI() {
+        DispatchQueue.main.async { self.tableView.reloadData() }
+        guard let imageUrl = user?.imageUrls?.first else { return }
+        image1Button.downloadImage(from: imageUrl)
     }
     
     
