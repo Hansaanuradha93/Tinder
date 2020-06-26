@@ -249,5 +249,29 @@ extension SettingsViewController: UIImagePickerControllerDelegate & UINavigation
             button?.setImage(originalImage.withRenderingMode(.alwaysOriginal), for: .normal)
         }
         dismiss(animated: true, completion: nil)
+        
+        
+        guard let image = button?.image(for: .normal), let uploadData = image.jpegData(compressionQuality: 0.75) else { return }
+        let filename = UUID().uuidString
+        let reference = Storage.storage().reference().child("images/\(filename)")
+        
+        
+        
+        reference.putData(uploadData, metadata: nil) { (_, error) in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            
+            reference.downloadURL { (url, error) in
+                if let error = error {
+                    print(error.localizedDescription)
+                    return
+                }
+                
+                let downloadUrl = url?.absoluteString
+                print("Image uploaded successfully with: \(downloadUrl)")
+            }
+        }
     }
 }
