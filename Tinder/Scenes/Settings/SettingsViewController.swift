@@ -148,8 +148,15 @@ extension SettingsViewController {
     
     fileprivate func updateUI() {
         DispatchQueue.main.async { self.tableView.reloadData() }
-        guard let imageUrl = user?.imageUrl1 else { return }
-        image1Button.downloadImage(from: imageUrl)
+        if let imageUrl1 = user?.imageUrl1 {
+            image1Button.downloadImage(from: imageUrl1)
+        }
+        if let imageUrl2 = user?.imageUrl2 {
+            image2Button.downloadImage(from: imageUrl2)
+        }
+        if let imageUrl3 = user?.imageUrl3 {
+            image3Button.downloadImage(from: imageUrl3)
+        }
     }
     
     
@@ -280,6 +287,7 @@ extension SettingsViewController: UIImagePickerControllerDelegate & UINavigation
                 } else {
                     self.user?.imageUrl3 = downloadUrl
                 }
+                self.handleSave()
             }
         }
     }
