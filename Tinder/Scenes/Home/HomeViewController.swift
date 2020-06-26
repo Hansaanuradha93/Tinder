@@ -26,7 +26,7 @@ extension HomeViewController {
     
     fileprivate func fetchUsersFromFirestore() {
         self.showPreloader()
-        let query = Firestore.firestore().collection("users").order(by: "uid").start(after: [lastFetchedUser?.uid ?? ""]).limit(to: 2)
+        let query = Firestore.firestore().collection("users").order(by: "uid").start(after: [lastFetchedUser?.uid ?? ""]).limit(to: 3)
         query.getDocuments { (snapshot, error) in
             self.hidePreloader()
             if let error = error {
