@@ -148,7 +148,7 @@ extension SettingsViewController {
     
     fileprivate func updateUI() {
         DispatchQueue.main.async { self.tableView.reloadData() }
-        guard let imageUrl = user?.imageUrls?.first else { return }
+        guard let imageUrl = user?.imageUrl1 else { return }
         image1Button.downloadImage(from: imageUrl)
     }
     
@@ -196,7 +196,7 @@ extension SettingsViewController {
             "fullname": user?.name ?? "",
             "age": user?.age ?? -1,
             "profession": user?.profession ?? "",
-            "imageUrl1": user?.imageUrls?.first ?? ""
+            "imageUrl1": user?.imageUrl1 ?? ""
         ]
         
         Firestore.firestore().collection("users").document(uid).setData(documentData) { [weak self] error in
@@ -255,22 +255,30 @@ extension SettingsViewController: UIImagePickerControllerDelegate & UINavigation
         let filename = UUID().uuidString
         let reference = Storage.storage().reference().child("images/\(filename)")
         
-        
-        
+        self.showPreloader()
         reference.putData(uploadData, metadata: nil) { (_, error) in
             if let error = error {
                 print(error.localizedDescription)
+                self.hidePreloader()
                 return
             }
             
             reference.downloadURL { (url, error) in
                 if let error = error {
                     print(error.localizedDescription)
+                    self.hidePreloader()
                     return
                 }
                 
-                let downloadUrl = url?.absoluteString
-                print("Image uploaded successfully with: \(downloadUrl)")
+                guard let downloadUrl = url?.absoluteString else { return }
+                self.hidePreloader()
+                if button == self.image1Button {
+                    self.user?.imageUrl1 = downloadUrl
+                } else if button == self.image2Button {
+                    self.user?.imageUrl2 = downloadUrl
+                } else {
+                    self.user?.imageUrl3 = downloadUrl
+                }
             }
         }
     }
