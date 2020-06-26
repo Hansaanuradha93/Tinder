@@ -196,7 +196,9 @@ extension SettingsViewController {
             "fullname": user?.name ?? "",
             "age": user?.age ?? -1,
             "profession": user?.profession ?? "",
-            "imageUrl1": user?.imageUrl1 ?? ""
+            "imageUrl1": user?.imageUrl1 ?? "",
+            "imageUrl2": user?.imageUrl2 ?? "",
+            "imageUrl3": user?.imageUrl3 ?? ""
         ]
         
         Firestore.firestore().collection("users").document(uid).setData(documentData) { [weak self] error in
@@ -249,7 +251,6 @@ extension SettingsViewController: UIImagePickerControllerDelegate & UINavigation
             button?.setImage(originalImage.withRenderingMode(.alwaysOriginal), for: .normal)
         }
         dismiss(animated: true, completion: nil)
-        
         
         guard let image = button?.image(for: .normal), let uploadData = image.jpegData(compressionQuality: 0.75) else { return }
         let filename = UUID().uuidString
