@@ -7,7 +7,10 @@ struct User {
     var name: String?
     var age: Int?
     var profession: String?
-    var imageUrls: [String]?
+    var imageUrl1: String?
+    var imageUrl2: String?
+    var imageUrl3: String?
+
     
     // MARK: Initializers
     init(dictionary: [String : Any]) {
@@ -15,8 +18,9 @@ struct User {
         self.name = dictionary["fullname"] as? String
         self.age = dictionary["age"] as? Int
         self.profession = dictionary["profession"] as? String
-        let imageUrl = dictionary["imageUrl1"] as? String
-        self.imageUrls = [imageUrl ?? ""]
+        self.imageUrl1 = dictionary["imageUrl1"] as? String
+        self.imageUrl2 = dictionary["imageUrl2"] as? String
+        self.imageUrl3 = dictionary["imageUrl3"] as? String
     }
 }
 
@@ -31,6 +35,6 @@ extension User: ProducesCardViewModel {
         let attributedText = NSMutableAttributedString(string: nameString, attributes: [.font: UIFont.systemFont(ofSize: 32, weight: .heavy)])
         attributedText.append(NSAttributedString(string: "  \(ageString)", attributes: [.font: UIFont.systemFont(ofSize: 24, weight: .regular)]))
         attributedText.append(NSAttributedString(string: "\n\(professionString)", attributes: [.font: UIFont.systemFont(ofSize: 20, weight: .regular)]))
-        return CardViewModel(imageUrls: imageUrls ?? [String](), attributedText: attributedText, textAlignment: .left)
+        return CardViewModel(imageUrls: [imageUrl1 ?? ""], attributedText: attributedText, textAlignment: .left)
     }
 }
