@@ -8,7 +8,6 @@ class HomeViewController: UIViewController {
     let cardsDeckView = UIView()
     let bottomControllsStackView = HomeBottomButtonControlsStackView()
     
-    var cardViewModels = [CardViewModel]() // TODO: Remove this if not necessary
     let cardViewModel = CardViewModel(imageUrls: [""], attributedText: NSAttributedString(), textAlignment: .center)
     
     
@@ -38,11 +37,10 @@ extension HomeViewController {
     
     
     fileprivate func fetchUsers() {
-        cardViewModel.fetchUsersFromFirestore { (user) in
+        cardViewModel.fetchUsersFromFirestore { [weak self] user in
+            guard let self = self else { return }
             if let user = user {
-                DispatchQueue.main.async {
-                    self.setupCardFrom(user: user)
-                }
+                DispatchQueue.main.async { self.setupCardFrom(user: user) }
             }
         }
     }
