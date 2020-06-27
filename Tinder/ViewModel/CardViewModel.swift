@@ -52,9 +52,8 @@ extension CardViewModel {
     func fetchUsersFromFirestore(completion: @escaping (User?) -> ()) {
         self.bindableIsFetchingUsers.value = true
         let query = Firestore.firestore().collection("users").order(by: "uid").start(after: [lastFetchedUser?.uid ?? ""]).limit(to: 2)
-        query.getDocuments { (snapshot, error) in
-            
-            // TODO: remove memoy leak here
+        query.getDocuments { [weak self] snapshot, error in
+            guard let self = self else { return }
             self.bindableIsFetchingUsers.value = false
             if let _ = error {
                 completion(nil)
