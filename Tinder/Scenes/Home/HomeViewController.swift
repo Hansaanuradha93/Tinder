@@ -37,10 +37,8 @@ extension HomeViewController {
     
     fileprivate func fetchUsers() {
         cardViewModel.fetchUsersFromFirestore { [weak self] user in
-            guard let self = self else { return }
-            if let user = user {
-                DispatchQueue.main.async { self.setupCardFrom(user: user) }
-            }
+            guard let self = self, let user = user else { return }
+            DispatchQueue.main.async { self.setupCardFrom(user: user) }
         }
     }
     
