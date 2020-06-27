@@ -21,6 +21,7 @@ class CardViewModel {
     
     var bindableIsFetchingUsers = Bindalbe<Bool>()
     fileprivate var lastFetchedUser: User?
+    fileprivate let userPaginationLimit = 2
 
     
     // MARK: Reactive Programming
@@ -45,13 +46,13 @@ extension CardViewModel {
     
     
     func goToPreviousPhoto() {
-        imageIndex = max( 0, imageIndex - 1)
+        imageIndex = max(0, imageIndex - 1)
     }
     
     
     func fetchUsersFromFirestore(completion: @escaping (User?) -> ()) {
         self.bindableIsFetchingUsers.value = true
-        let query = Firestore.firestore().collection("users").order(by: "uid").start(after: [lastFetchedUser?.uid ?? ""]).limit(to: 2)
+        let query = Firestore.firestore().collection("users").order(by: "uid").start(after: [lastFetchedUser?.uid ?? ""]).limit(to: userPaginationLimit)
         query.getDocuments { [weak self] snapshot, error in
             guard let self = self else { return }
             self.bindableIsFetchingUsers.value = false
