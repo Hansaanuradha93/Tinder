@@ -10,7 +10,6 @@ class HomeViewController: UIViewController {
     
     var cardViewModels = [CardViewModel]() // TODO: Remove this if not necessary
     let cardViewModel = CardViewModel(imageUrls: [""], attributedText: NSAttributedString(), textAlignment: .center)
-//    var lastFetchedUser: User?
     
     
     // MARK: ViewController
@@ -19,7 +18,6 @@ class HomeViewController: UIViewController {
         setupLayout()
         setupButtonActions()
         setupCardViewModelObserver()
-//        fetchUsersFromFirestore()
         fetchUsers()
     }
 }
@@ -37,24 +35,6 @@ extension HomeViewController {
             }
         }
     }
-    
-//    fileprivate func fetchUsersFromFirestore() {
-//        self.showPreloader()
-//        let query = Firestore.firestore().collection("users").order(by: "uid").start(after: [lastFetchedUser?.uid ?? ""]).limit(to: 3)
-//        query.getDocuments { (snapshot, error) in
-//            self.hidePreloader()
-//            if let error = error {
-//                print(error.localizedDescription)
-//                return
-//            }
-//            
-//            snapshot!.documents.forEach { (documentSnapshot) in
-//                let user = User(dictionary: documentSnapshot.data())
-//                self.lastFetchedUser = user
-//                DispatchQueue.main.async { self.setupCardFrom(user: user) }
-//            }
-//        }
-//    }
     
     
     fileprivate func fetchUsers() {
@@ -82,7 +62,6 @@ extension HomeViewController {
     
     
     @objc fileprivate func handleRefresh() {
-//        fetchUsersFromFirestore()
         fetchUsers()
     }
     
