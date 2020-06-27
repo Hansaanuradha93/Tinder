@@ -7,8 +7,7 @@ class HomeViewController: UIViewController {
     let topControllsStackView = HomeTopButtonControlsStackView()
     let cardsDeckView = UIView()
     let bottomControllsStackView = HomeBottomButtonControlsStackView()
-    
-    let cardViewModel = CardViewModel(imageUrls: [""], attributedText: NSAttributedString(), textAlignment: .center)
+    let cardViewModel = CardViewModel()
     
     
     // MARK: ViewController
