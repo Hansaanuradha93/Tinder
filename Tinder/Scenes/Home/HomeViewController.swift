@@ -18,6 +18,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         setupLayout()
         setupButtonActions()
+        setupCardViewModelObserver()
 //        fetchUsersFromFirestore()
         fetchUsers()
     }
@@ -25,6 +26,17 @@ class HomeViewController: UIViewController {
 
 // MARK: - Methods
 extension HomeViewController {
+    
+    fileprivate func setupCardViewModelObserver() {
+        cardViewModel.bindableIsFetchingUsers.bind { [weak self] isFetchingUsers in
+            guard let self = self, let isFetchingUsers = isFetchingUsers else { return }
+            if isFetchingUsers {
+                self.showPreloader()
+            } else {
+                self.hidePreloader()
+            }
+        }
+    }
     
 //    fileprivate func fetchUsersFromFirestore() {
 //        self.showPreloader()
