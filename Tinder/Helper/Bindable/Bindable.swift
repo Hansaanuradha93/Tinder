@@ -6,7 +6,9 @@ class Bindalbe<T> {
         didSet { observer?(value) }
     }
     
+    
     fileprivate var observer: ((T?) -> ())?
+    
     
     func bind(observer: @escaping (T?) -> ()) {
         self.observer = observer
