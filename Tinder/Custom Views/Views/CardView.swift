@@ -32,7 +32,7 @@ class CardView: UIView {
     required init(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
     
-    // MARK: Overidden Methods
+    // MARK: Overridden Methods
     override func layoutSubviews() {
         super.layoutSubviews()
         configureGradientView()
