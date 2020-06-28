@@ -32,7 +32,7 @@ class CardView: UIView {
     required init(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
     
-    // MARK: Ovverride Methods
+    // MARK: Overidden Methods
     override func layoutSubviews() {
         super.layoutSubviews()
         configureGradientView()
@@ -55,6 +55,7 @@ extension CardView {
             cardViewModel.goToPreviousPhoto()
         }
     }
+    
     
     @objc fileprivate func handlePan(_ gesture: UIPanGestureRecognizer) {
         switch gesture.state {
@@ -143,7 +144,6 @@ extension CardView {
     
     
     fileprivate func configureBarViews() {
-        
         barStackView.distribution = .fillEqually
         barStackView.spacing = 5
         addSubview(barStackView)
@@ -152,7 +152,6 @@ extension CardView {
     
     
     fileprivate func configureGradientView() {
-        
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
         gradientLayer.locations = [0.5, 1.1]
