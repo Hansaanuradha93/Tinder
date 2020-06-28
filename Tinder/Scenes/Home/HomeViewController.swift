@@ -10,7 +10,7 @@ class HomeViewController: UIViewController {
     let cardViewModel = CardViewModel()
     
     
-    // MARK: ViewController
+    // MARK: View Controller
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
