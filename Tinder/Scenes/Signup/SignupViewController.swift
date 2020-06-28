@@ -22,7 +22,7 @@ class SignupViewController: UIViewController {
     let signupViewModel = SignUpViewModel()
 
     
-    // MARK: ViewController
+    // MARK: View Controller
     override func viewDidLoad() {
         super.viewDidLoad()
         layoutUI()
@@ -72,7 +72,6 @@ extension SignupViewController {
     
     
     fileprivate func setupRegistrationViewModelObserver() {
-        
         signupViewModel.bindalbeIsFormValid.bind { [weak self] isFormValid in
             guard let self = self, let isFormValid = isFormValid else { return }
             if isFormValid {
@@ -199,7 +198,6 @@ extension SignupViewController {
 extension SignupViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
         if let editedImage = info[UIImagePickerController.InfoKey(rawValue: ImagePicker.EditedImage.key)] as? UIImage {
             signupViewModel.bindableImage.value = editedImage
         } else if let originalImage = info[UIImagePickerController.InfoKey(rawValue: ImagePicker.OriginalImage.key)] as? UIImage {
