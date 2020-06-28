@@ -7,7 +7,6 @@ class SettingsViewController: UIViewController {
     lazy var image1Button = createButton(selector: #selector(handleSelectPhoto))
     lazy var image2Button = createButton(selector: #selector(handleSelectPhoto))
     lazy var image3Button = createButton(selector: #selector(handleSelectPhoto))
-    
     let tableView = UITableView()
     
     lazy var header: UIView = {
@@ -78,9 +77,11 @@ extension SettingsViewController: UITableViewDataSource {
         return 5
     }
     
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return section == 0 ? 0 : 1
     }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SettingsCell.reuseIdentifier, for: indexPath) as! SettingsCell
@@ -194,7 +195,6 @@ extension SettingsViewController {
     
     
     @objc fileprivate func handleSave() {
-        
         guard let uid = Auth.auth().currentUser?.uid else { return }
         self.showPreloader()
     
@@ -249,7 +249,6 @@ extension SettingsViewController {
 extension SettingsViewController: UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
         let button = (picker as? TDImagePickerController)?.button
         
         if let editedImage = info[UIImagePickerController.InfoKey(rawValue: ImagePicker.EditedImage.key)] as? UIImage {
