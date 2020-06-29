@@ -123,6 +123,7 @@ extension SettingsViewController {
         let ageCell = tableView.cellForRow(at: indexPath) as! AgeRangeCell
         let minValue = Int(slider.value)
         ageCell.minLabel.text = "Min \(minValue)"
+        self.user?.minSeekingAge = minValue
     }
     
     
@@ -131,6 +132,7 @@ extension SettingsViewController {
         let ageCell = tableView.cellForRow(at: indexPath) as! AgeRangeCell
         let maxValue = Int(slider.value)
         ageCell.maxLabel.text = "Max \(maxValue)"
+        self.user?.maxSeekingAge = maxValue
     }
     
     
@@ -232,7 +234,9 @@ extension SettingsViewController {
             "profession": user?.profession ?? "",
             "imageUrl1": user?.imageUrl1 ?? "",
             "imageUrl2": user?.imageUrl2 ?? "",
-            "imageUrl3": user?.imageUrl3 ?? ""
+            "imageUrl3": user?.imageUrl3 ?? "",
+            "minSeekingAge": user?.minSeekingAge ?? 20,
+            "maxSeekingAge": user?.maxSeekingAge ?? 80
         ]
         
         Firestore.firestore().collection("users").document(uid).setData(documentData) { [weak self] error in
