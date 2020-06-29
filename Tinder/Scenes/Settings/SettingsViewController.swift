@@ -86,31 +86,25 @@ extension SettingsViewController: UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let settingsCell = tableView.dequeueReusableCell(withIdentifier: SettingsCell.reuseIdentifier, for: indexPath) as! SettingsCell
         switch indexPath.section {
         case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: SettingsCell.reuseIdentifier, for: indexPath) as! SettingsCell
-            cell.setup(placehoder: "Name", text: user?.name ?? "")
-            cell.textField.addTarget(self, action: #selector(handleNameChange), for: .editingChanged)
-            return cell
+            settingsCell.setup(placehoder: "Name", text: user?.name ?? "")
+            settingsCell.textField.addTarget(self, action: #selector(handleNameChange), for: .editingChanged)
         case 2:
-            let cell = tableView.dequeueReusableCell(withIdentifier: SettingsCell.reuseIdentifier, for: indexPath) as! SettingsCell
-            cell.setup(placehoder: "Proofession", text: user?.profession ?? "")
-            cell.textField.addTarget(self, action: #selector(handleProfessionChange), for: .editingChanged)
-            return cell
+            settingsCell.setup(placehoder: "Proofession", text: user?.profession ?? "")
+            settingsCell.textField.addTarget(self, action: #selector(handleProfessionChange), for: .editingChanged)
         case 3:
-            let cell = tableView.dequeueReusableCell(withIdentifier: SettingsCell.reuseIdentifier, for: indexPath) as! SettingsCell
-            cell.setup(placehoder: "Age", text: "\(user?.age ?? 0)")
-            cell.textField.addTarget(self, action: #selector(handleAgeChange), for: .editingChanged)
-            return cell
+            settingsCell.setup(placehoder: "Age", text: "\(user?.age ?? 0)")
+            settingsCell.textField.addTarget(self, action: #selector(handleAgeChange), for: .editingChanged)
         case 4:
-            let cell = tableView.dequeueReusableCell(withIdentifier: SettingsCell.reuseIdentifier, for: indexPath) as! SettingsCell
-            cell.setup(placehoder: "Bio", text: "")
-            cell.textField.addTarget(self, action: #selector(handleBioChange), for: .editingChanged)
-            return cell
+            settingsCell.setup(placehoder: "Bio", text: "")
+            settingsCell.textField.addTarget(self, action: #selector(handleBioChange), for: .editingChanged)
         default:
-            let cell = tableView.dequeueReusableCell(withIdentifier: AgeRangeCell.reuseIdentifier, for: indexPath) as! AgeRangeCell
-            return cell
+            let ageRangeCell = tableView.dequeueReusableCell(withIdentifier: AgeRangeCell.reuseIdentifier, for: indexPath) as! AgeRangeCell
+            return ageRangeCell
         }
+        return settingsCell
     }
 }
 
