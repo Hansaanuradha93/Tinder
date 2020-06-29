@@ -82,6 +82,11 @@ extension HomeViewController {
         view.addSubview(overrallStackView)
         overrallStackView.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor)
     }
+    
+    
+    fileprivate func clearCardDeckView() {
+        cardsDeckView.subviews.forEach({ $0.removeFromSuperview() })
+    }
 }
 
 
@@ -89,6 +94,7 @@ extension HomeViewController {
 extension HomeViewController: SettingsViewControllerDelegete {
     
     func didSaveSettings() {
+        clearCardDeckView()
         fetchData()
     }
 }
