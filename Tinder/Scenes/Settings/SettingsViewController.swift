@@ -45,6 +45,7 @@ extension SettingsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerName = HeaderLabel()
+        headerName.font = UIFont.boldSystemFont(ofSize: 16)
         switch section {
         case 0:
             return header
@@ -57,17 +58,19 @@ extension SettingsViewController: UITableViewDelegate {
         case 4:
             headerName.text = "Bio"
         default:
-            headerName.text = "Age Range"
+            headerName.text = "Seeking Age Range"
         }
         return headerName
     }
 
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 {
+        switch section {
+        case 0:
             return 300
+        default:
+            return 40
         }
-        return 40
     }
 }
 
