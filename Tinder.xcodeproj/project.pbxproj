@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		17358587252E3CA982B52A5A /* Pods_Tinder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC5D9E6E2194471FD3AE46B8 /* Pods_Tinder.framework */; };
+		4702535824A99A9800F725A1 /* AgeRangeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4702535724A99A9800F725A1 /* AgeRangeCell.swift */; };
 		4738A6CD249BD0B400C55385 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4738A6CC249BD0B400C55385 /* CardView.swift */; };
 		4742E8BA24A1C110005EE6EB /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4742E8B924A1C110005EE6EB /* NetworkManager.swift */; };
 		4742E8BC24A1C184005EE6EB /* UIImageView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4742E8BB24A1C184005EE6EB /* UIImageView+Ext.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4702535724A99A9800F725A1 /* AgeRangeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeRangeCell.swift; sourceTree = "<group>"; };
 		4738A6CC249BD0B400C55385 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		4742E8B924A1C110005EE6EB /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		4742E8BB24A1C184005EE6EB /* UIImageView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Ext.swift"; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				479A073F24A3BBFD00AB21C8 /* SettingsCell.swift */,
+				4702535724A99A9800F725A1 /* AgeRangeCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -449,6 +452,7 @@
 				479F609F249B0ED100BD0774 /* HomeTopButtonControlsStackView.swift in Sources */,
 				47988071249A7B3E00829930 /* SceneDelegate.swift in Sources */,
 				47CE8206249CEBFA00B9696E /* CardViewModel.swift in Sources */,
+				4702535824A99A9800F725A1 /* AgeRangeCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
