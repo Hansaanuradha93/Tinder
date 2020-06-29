@@ -21,6 +21,7 @@ class CardViewModel {
     
     var bindableIsFetchingUsers = Bindalbe<Bool>()
     fileprivate var lastFetchedUser: User?
+    fileprivate var currentUser: User?
     fileprivate let userPaginationLimit = 2
 
     
@@ -50,9 +51,9 @@ extension CardViewModel {
     }
     
     
-    func fetchUsersFromFirestore(completion: @escaping (User?) -> ()) {
-        self.bindableIsFetchingUsers.value = true
-        let query = Firestore.firestore().collection("users").order(by: "uid").start(after: [lastFetchedUser?.uid ?? ""]).limit(to: userPaginationLimit)
+    fileprivate func fetchUsersFromFirestore(completion: @escaping (User?) -> ()) {
+        let query = Firestore.firestore().collection("users").whereField("age", isGreaterThan: 20).whereField("age", isLessThan: 50)
+//        let paginationRef = query.order(by: "uid").start(after: [lastFetchedUser?.uid ?? ""]).limit(to: userPaginationLimit)
         query.getDocuments { [weak self] snapshot, error in
             guard let self = self else { return }
             self.bindableIsFetchingUsers.value = false
@@ -66,6 +67,32 @@ extension CardViewModel {
                 self.lastFetchedUser = user
                 completion(user)
             }
+        }
+    }
+    
+    
+    func fetchCurrentUser(completion: @escaping (User?) -> ()) {
+        guard let uid = Auth.auth().currentUser?.uid else {
+            completion(nil)
+            return
+        }
+        self.bindableIsFetchingUsers.value = true
+        let reference = Firestore.firestore().collection("users").document(uid)
+        reference.getDocument { (document, error) in
+            if let error = error {
+                self.bindableIsFetchingUsers.value = false
+                print(error.localizedDescription)
+                completion(nil)
+                return
+            }
+            
+            guard let dictionary = document?.data() else {
+                self.bindableIsFetchingUsers.value = false
+                completion(nil)
+                return
+            }
+            self.currentUser = User(dictionary: dictionary)
+            self.fetchUsersFromFirestore(completion: completion)
         }
     }
 }
