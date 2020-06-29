@@ -46,6 +46,18 @@ class AgeRangeCell: UITableViewCell {
 // MARK: - Methods
 extension AgeRangeCell {
     
+    func setup(minValue: Int?, maxValue: Int?) {
+        if let minValue = minValue {
+            minLabel.text = "Min \(minValue)"
+            minSlider.value = Float(minValue)
+        }
+        if let maxValue = maxValue {
+            maxLabel.text = "Max \(maxValue)"
+            maxSlider.value = Float(maxValue)
+        }
+    }
+    
+    
     fileprivate func layoutUI() {
         let minStackView = UIStackView(arrangedSubviews: [minLabel, minSlider])
         minStackView.spacing = 8

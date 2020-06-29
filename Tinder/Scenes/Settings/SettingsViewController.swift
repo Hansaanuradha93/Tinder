@@ -107,11 +107,7 @@ extension SettingsViewController: UITableViewDataSource {
             let ageRangeCell = tableView.dequeueReusableCell(withIdentifier: AgeRangeCell.reuseIdentifier, for: indexPath) as! AgeRangeCell
             ageRangeCell.minSlider.addTarget(self, action: #selector(handleMinSlider), for: .valueChanged)
             ageRangeCell.maxSlider.addTarget(self, action: #selector(handleMaxSlider), for: .valueChanged)
-            ageRangeCell.minLabel.text = "Min \(self.user?.minSeekingAge ?? 20)"
-            ageRangeCell.maxLabel.text = "Max \(self.user?.maxSeekingAge ?? 80)"
-            ageRangeCell.minSlider.value = Float(self.user?.minSeekingAge ?? 20)
-            ageRangeCell.maxSlider.value = Float(self.user?.maxSeekingAge ?? 80)
-
+            ageRangeCell.setup(minValue: self.user?.minSeekingAge, maxValue: self.user?.maxSeekingAge)
             return ageRangeCell
         }
         return settingsCell
