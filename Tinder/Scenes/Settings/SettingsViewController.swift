@@ -1,6 +1,10 @@
 import UIKit
 import Firebase
 
+protocol SettingsViewControllerDelegete {
+    func didSaveSettings()
+}
+
 class SettingsViewController: UIViewController {
     
     // MARK: Properties
@@ -28,7 +32,7 @@ class SettingsViewController: UIViewController {
     }()
     
     var user: User?
-    
+    var delegate: SettingsViewControllerDelegete?
     
     // MARK: View Controller
     override func viewDidLoad() {
@@ -160,7 +164,6 @@ extension SettingsViewController {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         self.showPreloader()
         let reference = Firestore.firestore().collection("users").document(uid)
-        
         reference.getDocument { (document, error) in
             self.hidePreloader()
             if let error = error {
@@ -247,6 +250,7 @@ extension SettingsViewController {
                 return
             }
             print("user info updated successfully")
+            self.dismiss(animated: true) { self.delegate?.didSaveSettings() }
         }
     }
     

@@ -43,7 +43,9 @@ extension HomeViewController {
     
     
     @objc fileprivate func settingsButtonTapped() {
-        let navigationController = UINavigationController(rootViewController: SettingsViewController())
+        let controller = SettingsViewController()
+        controller.delegate = self
+        let navigationController = UINavigationController(rootViewController: controller)
         navigationController.modalPresentationStyle = .fullScreen
         self.present(navigationController, animated: true)
     }
@@ -79,6 +81,15 @@ extension HomeViewController {
         
         view.addSubview(overrallStackView)
         overrallStackView.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor)
+    }
+}
+
+
+// MARK: - SettingsViewControllerDelegate
+extension HomeViewController: SettingsViewControllerDelegete {
+    
+    func didSaveSettings() {
+        fetchData()
     }
 }
 
