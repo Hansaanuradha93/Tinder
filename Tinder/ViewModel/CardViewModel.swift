@@ -52,7 +52,10 @@ extension CardViewModel {
     
     
     fileprivate func fetchUsersFromFirestore(completion: @escaping (User?) -> ()) {
-        let query = Firestore.firestore().collection("users").whereField("age", isGreaterThan: 20).whereField("age", isLessThan: 50)
+        let minAge = currentUser?.minSeekingAge ?? 18
+        let maxAge = currentUser?.maxSeekingAge ?? 80
+        
+        let query = Firestore.firestore().collection("users").whereField("age", isGreaterThanOrEqualTo: minAge).whereField("age", isLessThanOrEqualTo: maxAge)
 //        let paginationRef = query.order(by: "uid").start(after: [lastFetchedUser?.uid ?? ""]).limit(to: userPaginationLimit)
         query.getDocuments { [weak self] snapshot, error in
             guard let self = self else { return }
