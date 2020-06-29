@@ -54,8 +54,10 @@ extension SettingsViewController: UITableViewDelegate {
             headerName.text = "Profession"
         case 3:
             headerName.text = "Age"
-        default:
+        case 4:
             headerName.text = "Bio"
+        default:
+            headerName.text = "Age Range"
         }
         return headerName
     }
@@ -74,7 +76,7 @@ extension SettingsViewController: UITableViewDelegate {
 extension SettingsViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 5
+        return 6
     }
     
     
@@ -84,22 +86,31 @@ extension SettingsViewController: UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SettingsCell.reuseIdentifier, for: indexPath) as! SettingsCell
         switch indexPath.section {
         case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: SettingsCell.reuseIdentifier, for: indexPath) as! SettingsCell
             cell.setup(placehoder: "Name", text: user?.name ?? "")
             cell.textField.addTarget(self, action: #selector(handleNameChange), for: .editingChanged)
+            return cell
         case 2:
+            let cell = tableView.dequeueReusableCell(withIdentifier: SettingsCell.reuseIdentifier, for: indexPath) as! SettingsCell
             cell.setup(placehoder: "Proofession", text: user?.profession ?? "")
             cell.textField.addTarget(self, action: #selector(handleProfessionChange), for: .editingChanged)
+            return cell
         case 3:
+            let cell = tableView.dequeueReusableCell(withIdentifier: SettingsCell.reuseIdentifier, for: indexPath) as! SettingsCell
             cell.setup(placehoder: "Age", text: "\(user?.age ?? 0)")
             cell.textField.addTarget(self, action: #selector(handleAgeChange), for: .editingChanged)
-        default:
+            return cell
+        case 4:
+            let cell = tableView.dequeueReusableCell(withIdentifier: SettingsCell.reuseIdentifier, for: indexPath) as! SettingsCell
             cell.setup(placehoder: "Bio", text: "")
             cell.textField.addTarget(self, action: #selector(handleBioChange), for: .editingChanged)
+            return cell
+        default:
+            let cell = tableView.dequeueReusableCell(withIdentifier: AgeRangeCell.reuseIdentifier, for: indexPath) as! AgeRangeCell
+            return cell
         }
-        return cell
     }
 }
 
@@ -172,6 +183,7 @@ extension SettingsViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         tableView.addGestureRecognizer(tapGesture)
         tableView.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.reuseIdentifier)
+        tableView.register(AgeRangeCell.self, forCellReuseIdentifier: AgeRangeCell.reuseIdentifier)
     }
     
     
@@ -221,7 +233,7 @@ extension SettingsViewController {
     
     
     @objc fileprivate func handleLogout() {
-        print("Logout")
+        // TODO: Logout
     }
     
     
