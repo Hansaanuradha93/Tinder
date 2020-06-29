@@ -19,13 +19,13 @@ class AgeRangeCell: UITableViewCell {
         return slider
     }()
     
-    var minLabel: UILabel = {
+    fileprivate var minLabel: UILabel = {
         let label = UILabel()
         label.text = "Min .."
         return label
     }()
     
-    var maxLabel: UILabel = {
+    fileprivate var maxLabel: UILabel = {
         let label = UILabel()
         label.text = "Max .."
         return label

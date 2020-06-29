@@ -122,7 +122,7 @@ extension SettingsViewController {
         let indexPath = IndexPath(row: 0, section: 5)
         let ageCell = tableView.cellForRow(at: indexPath) as! AgeRangeCell
         let minValue = Int(slider.value)
-        ageCell.minLabel.text = "Min \(minValue)"
+        ageCell.setup(minValue: minValue, maxValue: nil)
         self.user?.minSeekingAge = minValue
     }
     
@@ -131,7 +131,7 @@ extension SettingsViewController {
         let indexPath = IndexPath(row: 0, section: 5)
         let ageCell = tableView.cellForRow(at: indexPath) as! AgeRangeCell
         let maxValue = Int(slider.value)
-        ageCell.maxLabel.text = "Max \(maxValue)"
+        ageCell.setup(minValue: nil, maxValue: maxValue)
         self.user?.maxSeekingAge = maxValue
     }
     
