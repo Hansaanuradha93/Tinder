@@ -16,12 +16,19 @@ class HomeViewController: UIViewController {
         setupLayout()
         setupButtonActions()
         setupCardViewModelObserver()
-        fetchUsers()
+        fetchData()
     }
 }
 
 // MARK: - Methods
 extension HomeViewController {
+    
+    fileprivate func fetchData() {
+        cardViewModel.fetchCurrentUser { [weak self] user in
+            guard let self = self, let user = user else { return }
+            DispatchQueue.main.async { self.setupCardFrom(user: user) }
+        }
+    }
     
     fileprivate func setupCardViewModelObserver() {
         cardViewModel.bindableIsFetchingUsers.bind { [weak self] isFetchingUsers in
@@ -31,14 +38,6 @@ extension HomeViewController {
             } else {
                 self.hidePreloader()
             }
-        }
-    }
-    
-    
-    fileprivate func fetchUsers() {
-        cardViewModel.fetchUsersFromFirestore { [weak self] user in
-            guard let self = self, let user = user else { return }
-            DispatchQueue.main.async { self.setupCardFrom(user: user) }
         }
     }
     
@@ -57,7 +56,7 @@ extension HomeViewController {
     
     
     @objc fileprivate func handleRefresh() {
-        fetchUsers()
+        fetchData()
     }
     
     
