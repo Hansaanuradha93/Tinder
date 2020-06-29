@@ -105,6 +105,9 @@ extension SettingsViewController: UITableViewDataSource {
             settingsCell.textField.addTarget(self, action: #selector(handleBioChange), for: .editingChanged)
         default:
             let ageRangeCell = tableView.dequeueReusableCell(withIdentifier: AgeRangeCell.reuseIdentifier, for: indexPath) as! AgeRangeCell
+            ageRangeCell.minSlider.addTarget(self, action: #selector(handleMinSlider), for: .valueChanged)
+            ageRangeCell.maxSlider.addTarget(self, action: #selector(handleMaxSlider), for: .valueChanged)
+
             return ageRangeCell
         }
         return settingsCell
@@ -114,6 +117,21 @@ extension SettingsViewController: UITableViewDataSource {
 
 // MARK: - Methods
 extension SettingsViewController {
+    
+    @objc fileprivate func handleMinSlider(slider: UISlider) {
+        let indexPath = IndexPath(row: 0, section: 5)
+        let ageCell = tableView.cellForRow(at: indexPath) as! AgeRangeCell
+        let minValue = Int(slider.value)
+        ageCell.minLabel.text = "Min \(minValue)"
+    }
+    
+    
+    @objc fileprivate func handleMaxSlider(slider: UISlider) {
+        let indexPath = IndexPath(row: 0, section: 5)
+        let ageCell = tableView.cellForRow(at: indexPath) as! AgeRangeCell
+        let maxValue = Int(slider.value)
+        ageCell.maxLabel.text = "Max \(maxValue)"
+    }
     
     
     @objc fileprivate func handleNameChange(textField: UITextField) {
