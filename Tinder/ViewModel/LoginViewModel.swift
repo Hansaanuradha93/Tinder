@@ -3,16 +3,24 @@ import Firebase
 
 class LoginViewModel {
     
-    var isLoggingIn = Bindable<Bool>()
-    var isFormValid = Bindable<Bool>()
-    
+    // MARK: Properties
     var email: String? { didSet { checkFormValidity() } }
     var password: String? { didSet { checkFormValidity() } }
+    
+    // MARK: Bindable
+    var isLoggingIn = Bindable<Bool>()
+    var isFormValid = Bindable<Bool>()
+}
+
+
+// MARK: - Methods
+extension LoginViewModel {
     
     fileprivate func checkFormValidity() {
         let isValid = email?.isEmpty == false && password?.isEmpty == false
         isFormValid.value = isValid
     }
+    
     
     func performLogin(completion: @escaping (Error?) -> ()) {
         guard let email = email, let password = password else { return }

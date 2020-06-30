@@ -12,6 +12,11 @@ class CardViewModel {
     let imageUrls: [String]
     let attributedText: NSAttributedString
     let textAlignment: NSTextAlignment
+    
+    fileprivate var lastFetchedUser: User?
+    fileprivate var currentUser: User?
+    fileprivate let userPaginationLimit = 2
+    
     fileprivate var imageIndex = 0 {
         didSet {
             let imageUrl = imageUrls[imageIndex]
@@ -19,11 +24,8 @@ class CardViewModel {
         }
     }
     
+    // MARK: Bindable
     var bindableIsFetchingUsers = Bindable<Bool>()
-    fileprivate var lastFetchedUser: User?
-    fileprivate var currentUser: User?
-    fileprivate let userPaginationLimit = 2
-
     
     // MARK: Reactive Programming
     var imageIndexObserver: ((Int, String?) -> ())?

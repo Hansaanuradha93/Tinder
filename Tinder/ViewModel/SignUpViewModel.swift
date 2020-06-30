@@ -12,7 +12,6 @@ class SignUpViewModel {
     var bindableImage = Bindable<UIImage>()
     var bindalbeIsFormValid = Bindable<Bool>()
     var bindableIsRegistering = Bindable<Bool>()
-    
 }
 
 
