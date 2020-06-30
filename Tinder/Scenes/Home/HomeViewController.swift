@@ -18,10 +18,25 @@ class HomeViewController: UIViewController {
         setupCardViewModelObserver()
         fetchData()
     }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        pushToSignup()
+    }
 }
 
 // MARK: - Methods
 extension HomeViewController {
+    
+    fileprivate func pushToSignup() {
+        if Auth.auth().currentUser == nil {
+            let navigationController = UINavigationController(rootViewController: SignupViewController())
+            navigationController.modalPresentationStyle = .overFullScreen
+            present(navigationController, animated: true)
+        }
+    }
+    
     
     fileprivate func fetchData() {
         cardViewModel.fetchCurrentUser { [weak self] user in
