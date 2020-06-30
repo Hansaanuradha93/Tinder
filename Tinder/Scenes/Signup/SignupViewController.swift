@@ -4,12 +4,12 @@ import Firebase
 class SignupViewController: UIViewController {
     
     // MARK: Properties
-    let profilePhotoButton = TDButton(backgroundColor: .white, title: "Select Photo", radius: 16, fontSize: 32)
-    let fullNameTextField = TDTextField(padding: 16, placeholderText: "Enter full name", radius: 25)
-    let emailTextField = TDTextField(padding: 16, placeholderText: "Enter email", radius: 25)
-    let passwordTextField = TDTextField(padding: 16, placeholderText: "Enter password", radius: 25)
-    let signupButton = TDButton(backgroundColor: UIColor.appColor(color: .lightGray), title: "Sign Up", titleColor: .gray, radius: 25, fontSize: 24)
-    let goToLoginButton = TDButton(backgroundColor: .clear, title: "Go to login", titleColor: .white, radius: 0, fontSize: 18)
+    fileprivate let profilePhotoButton = TDButton(backgroundColor: .white, title: "Select Photo", radius: 16, fontSize: 32)
+    fileprivate let fullNameTextField = TDTextField(padding: 16, placeholderText: "Enter full name", radius: 25)
+    fileprivate let emailTextField = TDTextField(padding: 16, placeholderText: "Enter email", radius: 25)
+    fileprivate let passwordTextField = TDTextField(padding: 16, placeholderText: "Enter password", radius: 25)
+    fileprivate let signupButton = TDButton(backgroundColor: UIColor.appColor(color: .lightGray), title: "Sign Up", titleColor: .gray, radius: 25, fontSize: 24)
+    fileprivate let goToLoginButton = TDButton(backgroundColor: .clear, title: "Go to login", titleColor: .white, radius: 0, fontSize: 18)
     
     lazy var verticalStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [fullNameTextField, emailTextField, passwordTextField, signupButton])
@@ -20,7 +20,7 @@ class SignupViewController: UIViewController {
     }()
     
     lazy var overrallStackView = UIStackView(arrangedSubviews: [profilePhotoButton, verticalStackView])
-    let signupViewModel = SignUpViewModel()
+    fileprivate let signupViewModel = SignUpViewModel()
 
     
     // MARK: View Controller
