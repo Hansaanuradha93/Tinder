@@ -29,20 +29,6 @@ class LoginViewController: UIViewController {
         }
     }
     
-//    let loginButton: UIButton = {
-//        let button = UIButton(type: .system)
-//        button.setTitle("Login", for: .normal)
-//        button.setTitleColor(.white, for: .normal)
-//        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
-//        button.backgroundColor = .lightGray
-//        button.setTitleColor(.gray, for: .disabled)
-//        button.isEnabled = false
-//        button.heightAnchor.constraint(equalToConstant: 44).isActive = true
-//        button.layer.cornerRadius = 22
-//        button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
-//        return button
-//    }()
-    
     @objc fileprivate func handleLogin() {
         loginViewModel.performLogin { [weak self] error in
             guard let self = self else { return }
@@ -73,9 +59,14 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupGradientLayer()
         setupLayout()
         setupBindables()
+    }
+    
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        setupGradient()
     }
     
     fileprivate let loginViewModel = LoginViewModel()
@@ -109,13 +100,12 @@ class LoginViewController: UIViewController {
         gradientLayer.frame = view.bounds
     }
     
-    fileprivate func setupGradientLayer() {
-        let topColor = #colorLiteral(red: 0.9921568627, green: 0.3568627451, blue: 0.3725490196, alpha: 1)
-        let bottomColor = #colorLiteral(red: 0.8980392157, green: 0, blue: 0.4470588235, alpha: 1)
-        gradientLayer.colors = [topColor.cgColor, bottomColor.cgColor]
+    fileprivate func setupGradient() {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [UIColor.appColor(color: .orange).cgColor, UIColor.appColor(color: .pink).cgColor]
         gradientLayer.locations = [0, 1]
-        view.layer.addSublayer(gradientLayer)
         gradientLayer.frame = view.bounds
+        view.layer.insertSublayer(gradientLayer, at: 0)
     }
     
     fileprivate func setupLayout() {
