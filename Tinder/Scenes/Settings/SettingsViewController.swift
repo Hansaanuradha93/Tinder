@@ -242,7 +242,7 @@ extension SettingsViewController {
             "maxSeekingAge": user?.maxSeekingAge ?? 80
         ]
         
-        Firestore.firestore().collection("users").document(uid).setData(documentData) { [weak self] error in
+        Firestore.firestore().collection("users").document(uid).updateData(documentData) { [weak self] error in
             guard let self = self else { return }
             self.hidePreloader()
             if let error = error {
