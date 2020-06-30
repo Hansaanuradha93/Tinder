@@ -9,9 +9,9 @@ class SignUpViewModel {
     var password: String? { didSet { checkFormValidity() } }
     
     // MARK: Bindlable
-    var bindableImage = Bindalbe<UIImage>()
-    var bindalbeIsFormValid = Bindalbe<Bool>()
-    var bindableIsRegistering = Bindalbe<Bool>()
+    var bindableImage = Bindable<UIImage>()
+    var bindalbeIsFormValid = Bindable<Bool>()
+    var bindableIsRegistering = Bindable<Bool>()
     
 }
 

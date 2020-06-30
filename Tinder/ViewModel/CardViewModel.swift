@@ -19,7 +19,7 @@ class CardViewModel {
         }
     }
     
-    var bindableIsFetchingUsers = Bindalbe<Bool>()
+    var bindableIsFetchingUsers = Bindable<Bool>()
     fileprivate var lastFetchedUser: User?
     fileprivate var currentUser: User?
     fileprivate let userPaginationLimit = 2
