@@ -183,8 +183,7 @@ extension SignupViewController {
     
     
     @objc fileprivate func handleGoToLogin() {
-        let loginController = UIViewController()
-        loginController.view.backgroundColor = .red
+        let loginController = LoginViewController()
         navigationController?.pushViewController(loginController, animated: true)
     }
     

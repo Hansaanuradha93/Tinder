@@ -27,6 +27,7 @@
 		479F609D249B080100BD0774 /* HomeBottomButtonControlsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479F609C249B080100BD0774 /* HomeBottomButtonControlsStackView.swift */; };
 		479F609F249B0ED100BD0774 /* HomeTopButtonControlsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479F609E249B0ED100BD0774 /* HomeTopButtonControlsStackView.swift */; };
 		47A80191249A814300768831 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A80190249A814300768831 /* UIView+Ext.swift */; };
+		47C6358C24AB8D3B00B3C4C6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C6358B24AB8D3B00B3C4C6 /* LoginViewController.swift */; };
 		47CE8203249CBCDB00B9696E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CE8202249CBCDB00B9696E /* User.swift */; };
 		47CE8206249CEBFA00B9696E /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CE8205249CEBFA00B9696E /* CardViewModel.swift */; };
 		47CE8208249D009C00B9696E /* Advertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CE8207249D009C00B9696E /* Advertiser.swift */; };
@@ -61,6 +62,7 @@
 		479F609C249B080100BD0774 /* HomeBottomButtonControlsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBottomButtonControlsStackView.swift; sourceTree = "<group>"; };
 		479F609E249B0ED100BD0774 /* HomeTopButtonControlsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTopButtonControlsStackView.swift; sourceTree = "<group>"; };
 		47A80190249A814300768831 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
+		47C6358B24AB8D3B00B3C4C6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		47CE8202249CBCDB00B9696E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		47CE8205249CEBFA00B9696E /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		47CE8207249D009C00B9696E /* Advertiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertiser.swift; sourceTree = "<group>"; };
@@ -222,11 +224,20 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		47C6358A24AB8D2300B3C4C6 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				47C6358B24AB8D3B00B3C4C6 /* LoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		47CE81FE249CB96500B9696E /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				479A073524A32B4E00AB21C8 /* Settings */,
+				47C6358A24AB8D2300B3C4C6 /* Login */,
 				47FC5318249E7C400053C4F7 /* Signup */,
+				479A073524A32B4E00AB21C8 /* Settings */,
 				47CE81FF249CB97600B9696E /* Home */,
 			);
 			path = Scenes;
@@ -427,6 +438,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47C6358C24AB8D3B00B3C4C6 /* LoginViewController.swift in Sources */,
 				4742E8BA24A1C110005EE6EB /* NetworkManager.swift in Sources */,
 				47FC531D249E884D0053C4F7 /* TDTextField.swift in Sources */,
 				479A073724A32B6E00AB21C8 /* SettingsViewController.swift in Sources */,
