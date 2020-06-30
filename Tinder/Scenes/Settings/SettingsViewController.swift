@@ -11,7 +11,7 @@ class SettingsViewController: UIViewController {
     lazy var image1Button = createButton(selector: #selector(handleSelectPhoto))
     lazy var image2Button = createButton(selector: #selector(handleSelectPhoto))
     lazy var image3Button = createButton(selector: #selector(handleSelectPhoto))
-    let tableView = UITableView()
+    fileprivate let tableView = UITableView()
     
     lazy var header: UIView = {
        let view = UIView()
