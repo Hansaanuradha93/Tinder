@@ -153,6 +153,7 @@ extension SignupViewController {
     
     
     fileprivate func layoutUI() {
+        navigationController?.setNavigationBarHidden(true, animated: false)
         profilePhotoButton.heightAnchor.constraint(equalToConstant: 275).isActive = true
         emailTextField.keyboardType = .emailAddress
         passwordTextField.isSecureTextEntry = true
