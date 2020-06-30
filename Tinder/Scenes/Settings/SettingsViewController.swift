@@ -256,7 +256,8 @@ extension SettingsViewController {
     
     
     @objc fileprivate func handleLogout() {
-        // TODO: Logout
+        try? Auth.auth().signOut()
+        dismiss(animated: true)
     }
     
     
