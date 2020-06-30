@@ -9,6 +9,7 @@ class SignupViewController: UIViewController {
     let emailTextField = TDTextField(padding: 16, placeholderText: "Enter email", radius: 25)
     let passwordTextField = TDTextField(padding: 16, placeholderText: "Enter password", radius: 25)
     let signupButton = TDButton(backgroundColor: UIColor.appColor(color: .darkPink), title: "Sign Up", titleColor: .white, radius: 25, fontSize: 24)
+    let goToLoginButton = TDButton(backgroundColor: .clear, title: "Go to login", titleColor: .white, radius: 0, fontSize: 18)
     
     lazy var verticalStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [fullNameTextField, emailTextField, passwordTextField, signupButton])
@@ -168,6 +169,10 @@ extension SignupViewController {
         signupButton.backgroundColor = .lightGray
         signupButton.setTitleColor(.gray, for: .disabled)
         signupButton.isEnabled = false
+        
+        view.addSubview(goToLoginButton)
+        goToLoginButton.anchor(top: nil, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor)
+        
         
         overrallStackView.axis = .vertical
         overrallStackView.spacing = 16
