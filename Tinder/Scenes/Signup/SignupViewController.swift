@@ -64,7 +64,7 @@ extension SignupViewController {
         signupViewModel.performSignUp { [weak self] error in
             guard let self = self else { return }
             if let error = error {
-                self.presentAlert(title: "Authentication Failed", message: error.localizedDescription, buttonTitle: "Ok")
+                self.presentAlert(title: "Signup Failed", message: error.localizedDescription, buttonTitle: "Ok")
                 return
             }
             print("Authentication successfull")

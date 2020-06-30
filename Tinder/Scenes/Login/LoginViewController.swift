@@ -46,7 +46,7 @@ class LoginViewController: UIViewController {
         loginViewModel.performLogin { [weak self] error in
             guard let self = self else { return }
             if let error = error {
-                print("Failed to log in:", error)
+                self.presentAlert(title: "Login Failed", message: error.localizedDescription, buttonTitle: "Ok")
                 return
             }
             
