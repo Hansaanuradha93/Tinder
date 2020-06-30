@@ -4,13 +4,15 @@ protocol LoginControllerDelegate {
     func didFinishLoggingIn()
 }
 
+
 class LoginViewController: UIViewController {
     
-    let emailTextField = TDTextField(padding: 24, placeholderText: "Enter email", radius: 25)
-    let passwordTextField = TDTextField(padding: 24, placeholderText: "Enter password", radius: 25)
-    let loginButton = TDButton(backgroundColor: UIColor.appColor(color: .lightGray), title: "Login", titleColor: .gray, radius: 25, fontSize: 24)
-    
-    
+    // MARK: Properties
+    fileprivate let emailTextField = TDTextField(padding: 24, placeholderText: "Enter email", radius: 25)
+    fileprivate let passwordTextField = TDTextField(padding: 24, placeholderText: "Enter password", radius: 25)
+    fileprivate let loginButton = TDButton(backgroundColor: UIColor.appColor(color: .lightGray), title: "Login", titleColor: .gray, radius: 25, fontSize: 24)
+    fileprivate let backToRegisterButton = TDButton(backgroundColor: .clear, title: "Go back", titleColor: .white, radius: 0, fontSize: 18)
+
     lazy var verticalStackView: UIStackView = {
         let sv = UIStackView(arrangedSubviews: [emailTextField, passwordTextField, loginButton])
         sv.axis = .vertical
@@ -18,8 +20,27 @@ class LoginViewController: UIViewController {
         return sv
     }()
     
+    fileprivate let loginViewModel = LoginViewModel()
     var delegate: LoginControllerDelegate?
+    
+    
+    // MARK: View Controller
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupLayout()
+        setupBindables()
+    }
+    
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        setupGradient()
+    }
+}
 
+
+// MARK: - Methods
+extension LoginViewController {
     
     @objc fileprivate func handleTextChange(textField: UITextField) {
         if textField == emailTextField {
@@ -28,6 +49,7 @@ class LoginViewController: UIViewController {
             loginViewModel.password = textField.text
         }
     }
+    
     
     @objc fileprivate func handleLogin() {
         loginViewModel.performLogin { [weak self] error in
@@ -44,32 +66,11 @@ class LoginViewController: UIViewController {
         }
     }
     
-    fileprivate let backToRegisterButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Go back", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        button.addTarget(self, action: #selector(handleBack), for: .touchUpInside)
-        return button
-    }()
     
     @objc fileprivate func handleBack() {
         navigationController?.popViewController(animated: true)
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupLayout()
-        setupBindables()
-    }
-    
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        setupGradient()
-    }
-    
-    fileprivate let loginViewModel = LoginViewModel()
     
     fileprivate func setupBindables() {
         loginViewModel.isFormValid.bind { [weak self] (isFormValid) in
@@ -93,12 +94,6 @@ class LoginViewController: UIViewController {
         }
     }
     
-    let gradientLayer = CAGradientLayer()
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        gradientLayer.frame = view.bounds
-    }
     
     fileprivate func setupGradient() {
         let gradientLayer = CAGradientLayer()
@@ -107,6 +102,7 @@ class LoginViewController: UIViewController {
         gradientLayer.frame = view.bounds
         view.layer.insertSublayer(gradientLayer, at: 0)
     }
+    
     
     fileprivate func setupLayout() {
         navigationController?.isNavigationBarHidden = true
@@ -121,6 +117,7 @@ class LoginViewController: UIViewController {
         emailTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         loginButton.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
+        backToRegisterButton.addTarget(self, action: #selector(handleBack), for: .touchUpInside)
         
         view.addSubview(backToRegisterButton)
         backToRegisterButton.anchor(top: nil, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor)
