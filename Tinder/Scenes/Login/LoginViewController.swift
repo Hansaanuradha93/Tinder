@@ -8,6 +8,7 @@ class LoginViewController: UIViewController {
     
     let emailTextField = TDTextField(padding: 24, placeholderText: "Enter email", radius: 25)
     let passwordTextField = TDTextField(padding: 24, placeholderText: "Enter password", radius: 25)
+    let loginButton = TDButton(backgroundColor: UIColor.appColor(color: .lightGray), title: "Login", titleColor: .gray, radius: 25, fontSize: 24)
     
     
     lazy var verticalStackView: UIStackView = {
@@ -28,19 +29,19 @@ class LoginViewController: UIViewController {
         }
     }
     
-    let loginButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Login", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
-        button.backgroundColor = .lightGray
-        button.setTitleColor(.gray, for: .disabled)
-        button.isEnabled = false
-        button.heightAnchor.constraint(equalToConstant: 44).isActive = true
-        button.layer.cornerRadius = 22
-        button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
-        return button
-    }()
+//    let loginButton: UIButton = {
+//        let button = UIButton(type: .system)
+//        button.setTitle("Login", for: .normal)
+//        button.setTitleColor(.white, for: .normal)
+//        button.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .heavy)
+//        button.backgroundColor = .lightGray
+//        button.setTitleColor(.gray, for: .disabled)
+//        button.isEnabled = false
+//        button.heightAnchor.constraint(equalToConstant: 44).isActive = true
+//        button.layer.cornerRadius = 22
+//        button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
+//        return button
+//    }()
     
     @objc fileprivate func handleLogin() {
         loginViewModel.performLogin { [weak self] error in
@@ -72,10 +73,8 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupGradientLayer()
         setupLayout()
-        
         setupBindables()
     }
     
@@ -84,9 +83,14 @@ class LoginViewController: UIViewController {
     fileprivate func setupBindables() {
         loginViewModel.isFormValid.bind { [weak self] (isFormValid) in
             guard let self = self, let isFormValid = isFormValid else { return }
+            if isFormValid {
+                self.loginButton.backgroundColor = UIColor.appColor(color: .darkPink)
+                self.loginButton.setTitleColor(.white, for: .normal)
+            } else {
+                self.loginButton.backgroundColor = UIColor.appColor(color: .lightGray)
+                self.loginButton.setTitleColor(.gray, for: .disabled)
+            }
             self.loginButton.isEnabled = isFormValid
-            self.loginButton.backgroundColor = isFormValid ? #colorLiteral(red: 0.8235294118, green: 0, blue: 0.3254901961, alpha: 1) : .lightGray
-            self.loginButton.setTitleColor(isFormValid ? .white : .gray, for: .normal)
         }
         loginViewModel.isLoggingIn.bind { [weak self] isLogin in
             guard let self = self, let isLogin = isLogin else { return }
@@ -122,8 +126,11 @@ class LoginViewController: UIViewController {
         
         emailTextField.keyboardType = .emailAddress
         passwordTextField.isSecureTextEntry = true
+        loginButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        loginButton.isEnabled = false
         emailTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
+        loginButton.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
         
         view.addSubview(backToRegisterButton)
         backToRegisterButton.anchor(top: nil, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor)

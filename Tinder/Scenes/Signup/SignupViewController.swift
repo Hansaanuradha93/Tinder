@@ -8,7 +8,7 @@ class SignupViewController: UIViewController {
     let fullNameTextField = TDTextField(padding: 16, placeholderText: "Enter full name", radius: 25)
     let emailTextField = TDTextField(padding: 16, placeholderText: "Enter email", radius: 25)
     let passwordTextField = TDTextField(padding: 16, placeholderText: "Enter password", radius: 25)
-    let signupButton = TDButton(backgroundColor: UIColor.appColor(color: .darkPink), title: "Sign Up", titleColor: .white, radius: 25, fontSize: 24)
+    let signupButton = TDButton(backgroundColor: UIColor.appColor(color: .lightGray), title: "Sign Up", titleColor: .gray, radius: 25, fontSize: 24)
     let goToLoginButton = TDButton(backgroundColor: .clear, title: "Go to login", titleColor: .white, radius: 0, fontSize: 18)
     
     lazy var verticalStackView: UIStackView = {
@@ -79,7 +79,7 @@ extension SignupViewController {
                 self.signupButton.backgroundColor = UIColor.appColor(color: .darkPink)
                 self.signupButton.setTitleColor(.white, for: .normal)
             } else {
-                self.signupButton.backgroundColor = .lightGray
+                self.signupButton.backgroundColor = UIColor.appColor(color: .lightGray)
                 self.signupButton.setTitleColor(.gray, for: .disabled)
             }
             self.signupButton.isEnabled = isFormValid
@@ -170,8 +170,6 @@ extension SignupViewController {
         goToLoginButton.addTarget(self, action: #selector(handleGoToLogin), for: .touchUpInside)
         
         signupButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        signupButton.backgroundColor = .lightGray
-        signupButton.setTitleColor(.gray, for: .disabled)
         signupButton.isEnabled = false
         
         overrallStackView.axis = .vertical
