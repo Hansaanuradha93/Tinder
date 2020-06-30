@@ -31,7 +31,9 @@ extension HomeViewController {
     
     fileprivate func pushToSignup() {
         if Auth.auth().currentUser == nil {
-            let navigationController = UINavigationController(rootViewController: SignupViewController())
+            let controller = LoginViewController()
+            controller.delegate = self
+            let navigationController = UINavigationController(rootViewController: controller)
             navigationController.modalPresentationStyle = .overFullScreen
             present(navigationController, animated: true)
         }
@@ -111,6 +113,15 @@ extension HomeViewController: SettingsViewControllerDelegete {
     func didSaveSettings() {
         clearCardDeckView()
         fetchData()
+    }
+}
+
+
+// MARK: - LoginViewControllerDelegate
+extension HomeViewController: LoginViewControllerDelegate {
+    
+    func didFinishLoggingIn() {
+      fetchData()
     }
 }
 

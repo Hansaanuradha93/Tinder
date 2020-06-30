@@ -1,6 +1,6 @@
 import UIKit
 
-protocol LoginControllerDelegate {
+protocol LoginViewControllerDelegate {
     func didFinishLoggingIn()
 }
 
@@ -21,7 +21,7 @@ class LoginViewController: UIViewController {
     }()
     
     fileprivate let loginViewModel = LoginViewModel()
-    var delegate: LoginControllerDelegate?
+    var delegate: LoginViewControllerDelegate?
     
     
     // MARK: View Controller
@@ -105,7 +105,7 @@ extension LoginViewController {
     
     
     fileprivate func setupLayout() {
-        navigationController?.isNavigationBarHidden = true
+        navigationController?.setNavigationBarHidden(true, animated: false)
         view.addSubview(verticalStackView)
         verticalStackView.anchor(top: nil, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 0, left: 50, bottom: 0, right: 50))
         verticalStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
