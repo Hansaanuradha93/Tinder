@@ -27,7 +27,8 @@
 		479F609D249B080100BD0774 /* HomeBottomButtonControlsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479F609C249B080100BD0774 /* HomeBottomButtonControlsStackView.swift */; };
 		479F609F249B0ED100BD0774 /* HomeTopButtonControlsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479F609E249B0ED100BD0774 /* HomeTopButtonControlsStackView.swift */; };
 		47A80191249A814300768831 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A80190249A814300768831 /* UIView+Ext.swift */; };
-		47C6358C24AB8D3B00B3C4C6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C6358B24AB8D3B00B3C4C6 /* LoginViewController.swift */; };
+		47C6358E24AB8E7E00B3C4C6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C6358D24AB8E7E00B3C4C6 /* LoginViewController.swift */; };
+		47C6359024AB8EAA00B3C4C6 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C6358F24AB8EAA00B3C4C6 /* LoginViewModel.swift */; };
 		47CE8203249CBCDB00B9696E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CE8202249CBCDB00B9696E /* User.swift */; };
 		47CE8206249CEBFA00B9696E /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CE8205249CEBFA00B9696E /* CardViewModel.swift */; };
 		47CE8208249D009C00B9696E /* Advertiser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CE8207249D009C00B9696E /* Advertiser.swift */; };
@@ -62,7 +63,8 @@
 		479F609C249B080100BD0774 /* HomeBottomButtonControlsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBottomButtonControlsStackView.swift; sourceTree = "<group>"; };
 		479F609E249B0ED100BD0774 /* HomeTopButtonControlsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTopButtonControlsStackView.swift; sourceTree = "<group>"; };
 		47A80190249A814300768831 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
-		47C6358B24AB8D3B00B3C4C6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		47C6358D24AB8E7E00B3C4C6 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		47C6358F24AB8EAA00B3C4C6 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		47CE8202249CBCDB00B9696E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		47CE8205249CEBFA00B9696E /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 		47CE8207249D009C00B9696E /* Advertiser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advertiser.swift; sourceTree = "<group>"; };
@@ -227,7 +229,7 @@
 		47C6358A24AB8D2300B3C4C6 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				47C6358B24AB8D3B00B3C4C6 /* LoginViewController.swift */,
+				47C6358D24AB8E7E00B3C4C6 /* LoginViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -276,6 +278,7 @@
 		47CE8204249CEBE900B9696E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				47C6358F24AB8EAA00B3C4C6 /* LoginViewModel.swift */,
 				47CE8205249CEBFA00B9696E /* CardViewModel.swift */,
 				47DC81F9249FBE7500B9B6FF /* SignUpViewModel.swift */,
 			);
@@ -438,7 +441,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				47C6358C24AB8D3B00B3C4C6 /* LoginViewController.swift in Sources */,
 				4742E8BA24A1C110005EE6EB /* NetworkManager.swift in Sources */,
 				47FC531D249E884D0053C4F7 /* TDTextField.swift in Sources */,
 				479A073724A32B6E00AB21C8 /* SettingsViewController.swift in Sources */,
@@ -451,6 +453,7 @@
 				47A80191249A814300768831 /* UIView+Ext.swift in Sources */,
 				479A073D24A3BAB700AB21C8 /* HeaderLabel.swift in Sources */,
 				47988073249A7B3E00829930 /* HomeViewController.swift in Sources */,
+				47C6358E24AB8E7E00B3C4C6 /* LoginViewController.swift in Sources */,
 				47FC5317249DF0210053C4F7 /* UIColor+Ext.swift in Sources */,
 				479EEFE324A067E90091BEF7 /* Bindable.swift in Sources */,
 				4798806F249A7B3E00829930 /* AppDelegate.swift in Sources */,
@@ -458,6 +461,7 @@
 				47FC5320249E8B5E0053C4F7 /* TDButton.swift in Sources */,
 				47FC531A249E7C660053C4F7 /* SignupViewController.swift in Sources */,
 				47CE8203249CBCDB00B9696E /* User.swift in Sources */,
+				47C6359024AB8EAA00B3C4C6 /* LoginViewModel.swift in Sources */,
 				47DC81FA249FBE7500B9B6FF /* SignUpViewModel.swift in Sources */,
 				479F609D249B080100BD0774 /* HomeBottomButtonControlsStackView.swift in Sources */,
 				4742E8BC24A1C184005EE6EB /* UIImageView+Ext.swift in Sources */,
