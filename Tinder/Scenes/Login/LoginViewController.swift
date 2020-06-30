@@ -13,11 +13,11 @@ class LoginViewController: UIViewController {
     fileprivate let loginButton = TDButton(backgroundColor: UIColor.appColor(color: .lightGray), title: "Login", titleColor: .gray, radius: 25, fontSize: 24)
     fileprivate let backToRegisterButton = TDButton(backgroundColor: .clear, title: "Go back", titleColor: .white, radius: 0, fontSize: 18)
 
-    lazy var verticalStackView: UIStackView = {
-        let sv = UIStackView(arrangedSubviews: [emailTextField, passwordTextField, loginButton])
-        sv.axis = .vertical
-        sv.spacing = 8
-        return sv
+    fileprivate lazy var verticalStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [emailTextField, passwordTextField, loginButton])
+        stackView.axis = .vertical
+        stackView.spacing = 8
+        return stackView
     }()
     
     fileprivate let loginViewModel = LoginViewModel()

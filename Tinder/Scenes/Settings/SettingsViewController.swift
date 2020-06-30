@@ -8,12 +8,12 @@ protocol SettingsViewControllerDelegete {
 class SettingsViewController: UIViewController {
     
     // MARK: Properties
-    lazy var image1Button = createButton(selector: #selector(handleSelectPhoto))
-    lazy var image2Button = createButton(selector: #selector(handleSelectPhoto))
-    lazy var image3Button = createButton(selector: #selector(handleSelectPhoto))
+    fileprivate lazy var image1Button = createButton(selector: #selector(handleSelectPhoto))
+    fileprivate lazy var image2Button = createButton(selector: #selector(handleSelectPhoto))
+    fileprivate lazy var image3Button = createButton(selector: #selector(handleSelectPhoto))
     fileprivate let tableView = UITableView()
     
-    lazy var header: UIView = {
+    fileprivate lazy var header: UIView = {
        let view = UIView()
         view.backgroundColor = .clear
         let padding: CGFloat = 16

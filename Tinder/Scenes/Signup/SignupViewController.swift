@@ -11,7 +11,7 @@ class SignupViewController: UIViewController {
     fileprivate let signupButton = TDButton(backgroundColor: UIColor.appColor(color: .lightGray), title: "Sign Up", titleColor: .gray, radius: 25, fontSize: 24)
     fileprivate let goToLoginButton = TDButton(backgroundColor: .clear, title: "Go to login", titleColor: .white, radius: 0, fontSize: 18)
     
-    lazy var verticalStackView: UIStackView = {
+    fileprivate lazy var verticalStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [fullNameTextField, emailTextField, passwordTextField, signupButton])
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
@@ -19,7 +19,7 @@ class SignupViewController: UIViewController {
         return stackView
     }()
     
-    lazy var overrallStackView = UIStackView(arrangedSubviews: [profilePhotoButton, verticalStackView])
+    fileprivate lazy var overrallStackView = UIStackView(arrangedSubviews: [profilePhotoButton, verticalStackView])
     fileprivate let signupViewModel = SignUpViewModel()
 
     
