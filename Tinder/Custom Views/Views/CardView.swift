@@ -6,7 +6,7 @@ class CardView: UIView {
     fileprivate let imageView = UIImageView()
     fileprivate let informationLabel = UILabel()
     fileprivate let barStackView = UIStackView()
-    
+    fileprivate let moreInfoButton = TDButton()
 
     // MARK: Configurations
     fileprivate let threshold: CGFloat = 100
@@ -36,6 +36,7 @@ class CardView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         configureGradientView()
+        addCornerRadius()
     }
 }
 
@@ -140,6 +141,23 @@ extension CardView {
         configureImageView()
         configureBarViews()
         configureInformationLabel()
+        configureMoreInfoButton()
+    }
+    
+    
+    fileprivate func addCornerRadius() {
+        moreInfoButton.layer.cornerRadius = moreInfoButton.frame.width / 2
+    }
+    
+    
+    fileprivate func configureMoreInfoButton() {
+        let image = UIImage(systemName: "info.circle.fill")?.withRenderingMode(.alwaysTemplate)
+        moreInfoButton.setImage(image, for: .normal)
+        moreInfoButton.tintColor = .white
+        moreInfoButton.contentVerticalAlignment = .fill
+        moreInfoButton.contentHorizontalAlignment = .fill
+        addSubview(moreInfoButton)
+        moreInfoButton.anchor(top: nil, leading: nil, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 0, bottom: 20, right: 16), size: .init(width: 44, height: 44))
     }
     
     
