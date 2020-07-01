@@ -26,6 +26,7 @@ class HomeViewController: UIViewController {
     }
 }
 
+
 // MARK: - Methods
 extension HomeViewController {
     
@@ -46,6 +47,7 @@ extension HomeViewController {
             DispatchQueue.main.async { self.setupCardFrom(user: user) }
         }
     }
+    
     
     fileprivate func setupCardViewModelObserver() {
         cardViewModel.bindableIsFetchingUsers.bind { [weak self] isFetchingUsers in
