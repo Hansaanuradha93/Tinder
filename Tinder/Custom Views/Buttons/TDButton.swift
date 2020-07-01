@@ -11,7 +11,7 @@ class TDButton: UIButton {
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
     
-    convenience init(backgroundColor: UIColor, title: String, titleColor: UIColor = .black, radius: CGFloat = 0, fontSize: CGFloat = 32) {
+    convenience init(backgroundColor: UIColor = .white, title: String = "", titleColor: UIColor = .black, radius: CGFloat = 0, fontSize: CGFloat = 32) {
         self.init(frame: .zero)
         self.setup(backgroundColor: backgroundColor, title: title, titleColor: titleColor, radius: radius, fontSize: fontSize)
     }
