@@ -1,5 +1,10 @@
 import UIKit
 
+protocol CardViewDelegate {
+    func didTapMoreInfo()
+}
+
+
 class CardView: UIView {
     
     // MARK: Properties
@@ -12,6 +17,7 @@ class CardView: UIView {
     fileprivate let threshold: CGFloat = 100
     fileprivate var cardViewModel: CardViewModel!
     fileprivate let barDiselectedColor = UIColor.appColor(color: .darkGray)
+    var delegate: CardViewDelegate?
     
     
     // MARK: Initializers
@@ -150,6 +156,11 @@ extension CardView {
     }
     
     
+    @objc fileprivate func handleMoreInfo() {
+        delegate?.didTapMoreInfo()
+    }
+    
+    
     fileprivate func configureMoreInfoButton() {
         let image = UIImage(systemName: "info.circle.fill")?.withRenderingMode(.alwaysTemplate)
         moreInfoButton.setImage(image, for: .normal)
@@ -158,6 +169,7 @@ extension CardView {
         moreInfoButton.contentHorizontalAlignment = .fill
         addSubview(moreInfoButton)
         moreInfoButton.anchor(top: nil, leading: nil, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 0, bottom: 20, right: 16), size: .init(width: 44, height: 44))
+        moreInfoButton.addTarget(self, action: #selector(handleMoreInfo), for: .touchUpInside)
     }
     
     

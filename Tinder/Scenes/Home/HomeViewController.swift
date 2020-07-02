@@ -83,6 +83,7 @@ extension HomeViewController {
     
     fileprivate func setupCardFrom(user: User) {
         let cardView = CardView(cardViewModel: user.toCardViewModel())
+        cardView.delegate = self
         cardsDeckView.addSubview(cardView)
         cardsDeckView.sendSubviewToBack(cardView)
         cardView.fillSuperview()
@@ -124,6 +125,18 @@ extension HomeViewController: LoginViewControllerDelegate {
     
     func didFinishLoggingIn() {
       fetchData()
+    }
+}
+
+
+// MARK: - CardViewDelegate
+extension HomeViewController: CardViewDelegate {
+
+    func didTapMoreInfo() {
+        let controller = UIViewController()
+        controller.view.backgroundColor = .red
+        controller.modalPresentationStyle = .overCurrentContext
+        present(controller, animated: true)
     }
 }
 
