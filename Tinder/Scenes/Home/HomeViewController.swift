@@ -44,7 +44,9 @@ extension HomeViewController {
     fileprivate func fetchData() {
         cardViewModel.fetchCurrentUser { [weak self] user in
             guard let self = self, let user = user else { return }
-            DispatchQueue.main.async { self.setupCardFrom(user: user) }
+            if user.uid != Auth.auth().currentUser?.uid {
+                DispatchQueue.main.async { self.setupCardFrom(user: user) }
+            }
         }
     }
     
