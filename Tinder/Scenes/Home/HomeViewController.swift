@@ -133,6 +133,7 @@ extension HomeViewController: LoginViewControllerDelegate {
 extension HomeViewController: CardViewDelegate {
 
     func didTapMoreInfo() {
+        // TODO: Create User Info screen here
         let controller = UIViewController()
         controller.view.backgroundColor = .red
         controller.modalPresentationStyle = .overCurrentContext
