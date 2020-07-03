@@ -100,7 +100,6 @@ extension HomeViewController {
         overrallStackView.isLayoutMarginsRelativeArrangement = true
         overrallStackView.layoutMargins = .init(top: 0, left: 8, bottom: 0, right: 8)
         overrallStackView.bringSubviewToFront(cardsDeckView)
-        
         view.addSubview(overrallStackView)
         overrallStackView.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor)
     }
