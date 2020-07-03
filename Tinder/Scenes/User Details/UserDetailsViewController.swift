@@ -24,7 +24,6 @@ extension UserDetailsViewController {
     fileprivate func setupLayout() {
         view.backgroundColor = .white
         
-        scrollView.backgroundColor = .blue
         scrollView.alwaysBounceVertical = true
         scrollView.contentInsetAdjustmentBehavior = .never
         scrollView.delegate = self
