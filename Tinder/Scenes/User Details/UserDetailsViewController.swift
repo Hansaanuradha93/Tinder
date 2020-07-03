@@ -23,7 +23,11 @@ extension UserDetailsViewController {
     
     fileprivate func setupLayout() {
         view.backgroundColor = .white
+        
         scrollView.backgroundColor = .blue
+        scrollView.alwaysBounceVertical = true
+        scrollView.contentInsetAdjustmentBehavior = .never
+        scrollView.delegate = self
         view.addSubview(scrollView)
         scrollView.fillSuperview()
         
@@ -40,5 +44,16 @@ extension UserDetailsViewController {
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
         view.addGestureRecognizer(gesture)
+    }
+}
+
+
+// MARK: - UIScrollViewDelegate
+extension UserDetailsViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let changeY = -scrollView.contentOffset.y
+        let width = view.frame.width + changeY * 2
+        profileImageView.frame = CGRect(x: -changeY, y: -changeY, width: width, height: width)
     }
 }
