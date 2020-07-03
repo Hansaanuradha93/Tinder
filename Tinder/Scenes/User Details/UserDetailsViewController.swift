@@ -53,7 +53,8 @@ extension UserDetailsViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let changeY = -scrollView.contentOffset.y
-        let width = view.frame.width + changeY * 2
-        profileImageView.frame = CGRect(x: -changeY, y: -changeY, width: width, height: width)
+        let width = max(view.frame.width, view.frame.width + changeY * 2)
+        let coordinate = min(0, -changeY)
+        profileImageView.frame = CGRect(x: coordinate, y: coordinate, width: width, height: width)
     }
 }
