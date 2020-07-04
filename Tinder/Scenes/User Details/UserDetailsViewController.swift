@@ -2,10 +2,13 @@ import UIKit
 
 class UserDetailsViewController: UIViewController {
     
+    // MARK: Properties
     let scrollView = UIScrollView()
     let profileImageView = UIImageView()
     let infoLabel = UILabel()
     
+    
+    // MARK: View Controller
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
@@ -22,8 +25,10 @@ extension UserDetailsViewController {
     
     
     func setup(cardViewModel: CardViewModel) {
-//        profileImageView.downloadImage(from: <#T##String#>)
+        // TODO: Use userDetailsViewModel (viewModel for UserDetailsViewController) instead of cardViewModel
         infoLabel.attributedText = cardViewModel.attributedText
+        guard let firstImageUrl = cardViewModel.imageUrls.first else { return  }
+        profileImageView.downloadImage(from: firstImageUrl)
     }
     
     
