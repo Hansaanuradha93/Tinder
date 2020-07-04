@@ -35,7 +35,10 @@ extension UserDetailsViewController {
     
     
     fileprivate func setupVisualBlurEffectView() {
-        
+        let blurEffect = UIBlurEffect(style: .regular)
+        let visualEffectView = UIVisualEffectView(effect: blurEffect)
+        view.addSubview(visualEffectView)
+        visualEffectView.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.topAnchor, trailing: view.trailingAnchor)
     }
     
     
