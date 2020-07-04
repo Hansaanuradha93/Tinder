@@ -1,7 +1,7 @@
 import UIKit
 
 protocol CardViewDelegate {
-    func didTapMoreInfo()
+    func didTapMoreInfo(cardViewModel: CardViewModel)
 }
 
 
@@ -157,7 +157,7 @@ extension CardView {
     
     
     @objc fileprivate func handleMoreInfo() {
-        delegate?.didTapMoreInfo()
+        delegate?.didTapMoreInfo(cardViewModel: self.cardViewModel)
     }
     
     

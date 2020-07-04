@@ -132,9 +132,10 @@ extension HomeViewController: LoginViewControllerDelegate {
 
 // MARK: - CardViewDelegate
 extension HomeViewController: CardViewDelegate {
-
-    func didTapMoreInfo() {
+    
+    func didTapMoreInfo(cardViewModel: CardViewModel) {
         let controller = UserDetailsViewController()
+        controller.setup(cardViewModel: cardViewModel)
         controller.modalPresentationStyle = .overCurrentContext
         present(controller, animated: true)
     }

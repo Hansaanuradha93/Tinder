@@ -21,6 +21,12 @@ extension UserDetailsViewController {
     }
     
     
+    func setup(cardViewModel: CardViewModel) {
+//        profileImageView.downloadImage(from: <#T##String#>)
+        infoLabel.attributedText = cardViewModel.attributedText
+    }
+    
+    
     fileprivate func setupLayout() {
         view.backgroundColor = .white
         
@@ -36,7 +42,6 @@ extension UserDetailsViewController {
         scrollView.addSubview(profileImageView)
         profileImageView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.width)
         
-        infoLabel.text = "Jane Doe\nDoctor\nBio some text"
         infoLabel.numberOfLines = 0
         scrollView.addSubview(infoLabel)
         infoLabel.anchor(top: profileImageView.bottomAnchor, leading: scrollView.leadingAnchor, bottom: nil, trailing: scrollView.trailingAnchor, padding: .init(top: 16, left: 16, bottom: 0, right: 16))
