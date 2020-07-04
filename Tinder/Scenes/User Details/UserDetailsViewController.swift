@@ -6,6 +6,7 @@ class UserDetailsViewController: UIViewController {
     let scrollView = UIScrollView()
     let profileImageView = UIImageView()
     let infoLabel = UILabel()
+    let dismissButton = TDButton()
     
     
     // MARK: View Controller
@@ -51,8 +52,11 @@ extension UserDetailsViewController {
         scrollView.addSubview(infoLabel)
         infoLabel.anchor(top: profileImageView.bottomAnchor, leading: scrollView.leadingAnchor, bottom: nil, trailing: scrollView.trailingAnchor, padding: .init(top: 16, left: 16, bottom: 0, right: 16))
         
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-        view.addGestureRecognizer(gesture)
+        let dimension: CGFloat = 44
+        dismissButton.setImage(UIImage(named: "dismiss_down_arrow"), for: .normal)
+        dismissButton.addTarget(self, action:  #selector(handleTap), for: .touchUpInside)
+        scrollView.addSubview(dismissButton)
+        dismissButton.anchor(top: profileImageView.bottomAnchor, leading: nil, bottom: nil, trailing: profileImageView.trailingAnchor, padding: .init(top: -dimension / 2, left: 0, bottom: 0, right: 16), size: .init(width: dimension, height: dimension))
     }
 }
 
