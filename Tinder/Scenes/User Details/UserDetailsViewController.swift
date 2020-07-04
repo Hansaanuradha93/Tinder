@@ -13,6 +13,7 @@ class UserDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
+        setupVisualBlurEffectView()
     }
 }
 
@@ -30,6 +31,11 @@ extension UserDetailsViewController {
         infoLabel.attributedText = cardViewModel.attributedText
         guard let firstImageUrl = cardViewModel.imageUrls.first else { return  }
         profileImageView.downloadImage(from: firstImageUrl)
+    }
+    
+    
+    fileprivate func setupVisualBlurEffectView() {
+        
     }
     
     
@@ -52,11 +58,11 @@ extension UserDetailsViewController {
         scrollView.addSubview(infoLabel)
         infoLabel.anchor(top: profileImageView.bottomAnchor, leading: scrollView.leadingAnchor, bottom: nil, trailing: scrollView.trailingAnchor, padding: .init(top: 16, left: 16, bottom: 0, right: 16))
         
-        let dimension: CGFloat = 44
+        let dimension: CGFloat = 50
         dismissButton.setImage(UIImage(named: "dismiss_down_arrow"), for: .normal)
         dismissButton.addTarget(self, action:  #selector(handleTap), for: .touchUpInside)
         scrollView.addSubview(dismissButton)
-        dismissButton.anchor(top: profileImageView.bottomAnchor, leading: nil, bottom: nil, trailing: profileImageView.trailingAnchor, padding: .init(top: -dimension / 2, left: 0, bottom: 0, right: 16), size: .init(width: dimension, height: dimension))
+        dismissButton.anchor(top: profileImageView.bottomAnchor, leading: nil, bottom: nil, trailing: profileImageView.trailingAnchor, padding: .init(top: -dimension / 2, left: 0, bottom: 0, right: 24), size: .init(width: dimension, height: dimension))
     }
 }
 
