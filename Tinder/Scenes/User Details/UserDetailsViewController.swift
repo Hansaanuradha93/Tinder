@@ -6,7 +6,11 @@ class UserDetailsViewController: UIViewController {
     let scrollView = UIScrollView()
     let profileImageView = UIImageView()
     let infoLabel = UILabel()
-    let dismissButton = TDButton()
+    lazy var dismissButton = createButton(image: #imageLiteral(resourceName: "dismiss_down_arrow"), selector: #selector(handleTap))
+    lazy var dislikeButton = createButton(image: #imageLiteral(resourceName: "dismiss_circle"), selector: #selector(handleDislike))
+    lazy var superlikeButton = createButton(image: #imageLiteral(resourceName: "super_like_circle"), selector: #selector(handleSuperlike))
+    lazy var likeButton = createButton(image: #imageLiteral(resourceName: "like_circle"), selector: #selector(handlelike))
+
     
     
     // MARK: View Controller
@@ -21,6 +25,21 @@ class UserDetailsViewController: UIViewController {
 // MARK: - Methods
 extension UserDetailsViewController {
     
+    @objc fileprivate func handlelike() {
+        // TODO: Handle like user
+    }
+    
+    
+    @objc fileprivate func handleSuperlike() {
+        // TODO: Handle super like user
+    }
+    
+    
+    @objc fileprivate func handleDislike() {
+        // TODO: Handle dislike user
+    }
+    
+    
     @objc fileprivate func handleTap() {
         dismiss(animated: true)
     }
@@ -31,6 +50,15 @@ extension UserDetailsViewController {
         infoLabel.attributedText = cardViewModel.attributedText
         guard let firstImageUrl = cardViewModel.imageUrls.first else { return  }
         profileImageView.downloadImage(from: firstImageUrl)
+    }
+    
+    
+    fileprivate func createButton(image: UIImage, selector: Selector) -> UIButton {
+        let button = UIButton(type: .system)
+        button.imageView?.contentMode = .scaleAspectFit
+        button.setImage(image.withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: selector, for: .touchUpInside)
+        return button
     }
     
     
@@ -62,10 +90,14 @@ extension UserDetailsViewController {
         infoLabel.anchor(top: profileImageView.bottomAnchor, leading: scrollView.leadingAnchor, bottom: nil, trailing: scrollView.trailingAnchor, padding: .init(top: 16, left: 16, bottom: 0, right: 16))
         
         let dimension: CGFloat = 50
-        dismissButton.setImage(UIImage(named: "dismiss_down_arrow"), for: .normal)
-        dismissButton.addTarget(self, action:  #selector(handleTap), for: .touchUpInside)
         scrollView.addSubview(dismissButton)
         dismissButton.anchor(top: profileImageView.bottomAnchor, leading: nil, bottom: nil, trailing: profileImageView.trailingAnchor, padding: .init(top: -dimension / 2, left: 0, bottom: 0, right: 24), size: .init(width: dimension, height: dimension))
+        
+        let stackView = UIStackView(arrangedSubviews: [dislikeButton, superlikeButton, likeButton])
+        stackView.distribution = .fillEqually
+        scrollView.addSubview(stackView)
+        stackView.anchor(top: nil, leading: nil, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: nil, size: .init(width: 300, height: 100))
+        stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
 }
 
