@@ -3,6 +3,7 @@ import UIKit
 class SwipingPhotosViewController: UIPageViewController {
 
     // MARK: Properties
+    let barStackView = UIStackView(arrangedSubviews: [])
     var controllers = [UIViewController]()
     var cardViewModel: CardViewModel! {
         didSet {
@@ -11,6 +12,7 @@ class SwipingPhotosViewController: UIPageViewController {
                 return photoController
             })
             setViewControllers([controllers.first!], direction: .forward, animated: false)
+            setupBarViews()
         }
     }
     
@@ -18,6 +20,29 @@ class SwipingPhotosViewController: UIPageViewController {
     // MARK: View Controller
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupViewController()
+    }
+}
+
+
+// MARK: - Methods
+extension SwipingPhotosViewController {
+    
+    fileprivate func setupBarViews() {
+        cardViewModel.imageUrls.forEach { _ in
+            let barView = UIView()
+            barView.backgroundColor = .white
+            barView.layer.cornerRadius = 2
+            barStackView.addArrangedSubview(barView)
+        }
+        barStackView.distribution = .fillEqually
+        barStackView.spacing = 5
+        view.addSubview(barStackView)
+        barStackView.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 16, left: 16, bottom: 0, right: 16), size: .init(width: 0, height: 4))
+    }
+    
+    
+    fileprivate func setupViewController() {
         dataSource = self
         view.backgroundColor = .white
     }

@@ -136,6 +136,7 @@ extension CardView {
         cardViewModel.imageUrls.forEach { (_) in
             let barView = UIView()
             barView.backgroundColor = barDiselectedColor
+            barView.layer.cornerRadius = 2
             barStackView.addArrangedSubview(barView)
         }
         barStackView.arrangedSubviews.first?.backgroundColor = .white
