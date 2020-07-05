@@ -4,8 +4,9 @@ class UserDetailsViewController: UIViewController {
     
     // MARK: Properties
     let scrollView = UIScrollView()
-    let profileImageView = UIImageView()
+    let swipingPhotViewController = SwipingPhotosViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
     let infoLabel = UILabel()
+    lazy var swipingView = swipingPhotViewController.view!
     lazy var dismissButton = createButton(image: #imageLiteral(resourceName: "dismiss_down_arrow"), selector: #selector(handleTap))
     lazy var dislikeButton = createButton(image: #imageLiteral(resourceName: "dismiss_circle"), selector: #selector(handleDislike))
     lazy var superlikeButton = createButton(image: #imageLiteral(resourceName: "super_like_circle"), selector: #selector(handleSuperlike))
@@ -18,6 +19,11 @@ class UserDetailsViewController: UIViewController {
         super.viewDidLoad()
         setupLayout()
         setupVisualBlurEffectView()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        swipingView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.width)
     }
 }
 
@@ -48,8 +54,8 @@ extension UserDetailsViewController {
     func setup(cardViewModel: CardViewModel) {
         // TODO: Use userDetailsViewModel (viewModel for UserDetailsViewController) instead of cardViewModel
         infoLabel.attributedText = cardViewModel.attributedText
-        guard let firstImageUrl = cardViewModel.imageUrls.first else { return  }
-        profileImageView.downloadImage(from: firstImageUrl)
+//        guard let firstImageUrl = cardViewModel.imageUrls.first else { return  }
+//        profileImageView.downloadImage(from: firstImageUrl)
     }
     
     
@@ -78,20 +84,15 @@ extension UserDetailsViewController {
         scrollView.delegate = self
         view.addSubview(scrollView)
         scrollView.fillSuperview()
-        
-        profileImageView.image = #imageLiteral(resourceName: "kelly1").withRenderingMode(.alwaysOriginal)
-        profileImageView.clipsToBounds = true
-        profileImageView.contentMode = .scaleAspectFill
-        scrollView.addSubview(profileImageView)
-        profileImageView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.width)
+        scrollView.addSubview(swipingView)
         
         infoLabel.numberOfLines = 0
         scrollView.addSubview(infoLabel)
-        infoLabel.anchor(top: profileImageView.bottomAnchor, leading: scrollView.leadingAnchor, bottom: nil, trailing: scrollView.trailingAnchor, padding: .init(top: 16, left: 16, bottom: 0, right: 16))
+        infoLabel.anchor(top: swipingView.bottomAnchor, leading: scrollView.leadingAnchor, bottom: nil, trailing: scrollView.trailingAnchor, padding: .init(top: 16, left: 16, bottom: 0, right: 16))
         
         let dimension: CGFloat = 50
         scrollView.addSubview(dismissButton)
-        dismissButton.anchor(top: profileImageView.bottomAnchor, leading: nil, bottom: nil, trailing: profileImageView.trailingAnchor, padding: .init(top: -dimension / 2, left: 0, bottom: 0, right: 24), size: .init(width: dimension, height: dimension))
+        dismissButton.anchor(top: swipingView.bottomAnchor, leading: nil, bottom: nil, trailing: swipingView.trailingAnchor, padding: .init(top: -dimension / 2, left: 0, bottom: 0, right: 24), size: .init(width: dimension, height: dimension))
         
         let stackView = UIStackView(arrangedSubviews: [dislikeButton, superlikeButton, likeButton])
         stackView.distribution = .fillEqually
@@ -109,6 +110,6 @@ extension UserDetailsViewController: UIScrollViewDelegate {
         let changeY = -scrollView.contentOffset.y
         let width = max(view.frame.width, view.frame.width + changeY * 2)
         let coordinate = min(0, -changeY)
-        profileImageView.frame = CGRect(x: coordinate, y: coordinate, width: width, height: width)
+        swipingView.frame = CGRect(x: coordinate, y: coordinate, width: width, height: width)
     }
 }
