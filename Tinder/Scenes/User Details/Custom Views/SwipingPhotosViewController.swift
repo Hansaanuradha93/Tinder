@@ -2,37 +2,39 @@ import UIKit
 
 class SwipingPhotosViewController: UIPageViewController {
 
+    // MARK: Properties
+    let controllers = [
+        PhotoViewController(image: #imageLiteral(resourceName: "super_like_circle")),
+        PhotoViewController(image: #imageLiteral(resourceName: "boost_circle")),
+        PhotoViewController(image: #imageLiteral(resourceName: "like_circle")),
+        PhotoViewController(image: #imageLiteral(resourceName: "super_like_circle")),
+        PhotoViewController(image: #imageLiteral(resourceName: "refresh_circle"))
+    ]
+    
+    
+    // MARK: View Controller
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         dataSource = self
-
         view.backgroundColor = .white
-        
-        let redViewController = UIViewController()
-        redViewController.view.backgroundColor = .red
-        
-        let controller = [redViewController]
-        
-        setViewControllers(controller, direction: .forward, animated: false)
+        setViewControllers([controllers.first!], direction: .forward, animated: false)
     }
 }
 
 
-// MARK: -
+// MARK: - UIPageViewControllerDataSource
 extension SwipingPhotosViewController: UIPageViewControllerDataSource {
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        let greenViewController = UIViewController()
-        greenViewController.view.backgroundColor = .green
-        return greenViewController
+        let index = controllers.firstIndex(where: { $0 == viewController }) ?? 0
+        if index == 0 { return nil }
+        return controllers[index - 1]
     }
+    
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        let yellowViewController = UIViewController()
-        yellowViewController.view.backgroundColor = .yellow
-        return yellowViewController
+        let index = controllers.firstIndex(where: { $0 == viewController }) ?? 0
+        if index == controllers.count - 1 { return nil }
+        return controllers[index + 1]
     }
-    
-    
 }
