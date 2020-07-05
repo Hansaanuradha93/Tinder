@@ -40,7 +40,7 @@ extension SwipingPhotosViewController {
         barStackView.spacing = 5
         barStackView.arrangedSubviews.first?.backgroundColor = .white
         view.addSubview(barStackView)
-        barStackView.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 16, left: 16, bottom: 0, right: 16), size: .init(width: 0, height: 4))
+        barStackView.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 60, left: 16, bottom: 0, right: 16), size: .init(width: 0, height: 4))
     }
     
     
