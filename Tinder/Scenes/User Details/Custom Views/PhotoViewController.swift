@@ -20,7 +20,7 @@ class PhotoViewController: UIViewController {
     // MARK: View Controller
     override func viewDidLoad() {
         super.viewDidLoad()
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
         view.addSubview(imageView)
         imageView.fillSuperview()
         imageView.downloadImage(from: imageUrl)
