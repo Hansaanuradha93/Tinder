@@ -3,13 +3,14 @@ import UIKit
 class PhotoViewController: UIViewController {
 
     // MARK: Properties
-    let imageView = UIImageView(image: #imageLiteral(resourceName: "kelly2"))
+    fileprivate let imageView = UIImageView()
+    fileprivate var imageUrl = ""
 
     
     // MARK: Initializers
-    init(image: UIImage) {
+    init(imageUrl: String) {
         super.init(nibName: nil, bundle: nil)
-        imageView.image = image
+        self.imageUrl = imageUrl
     }
     
     
@@ -19,8 +20,9 @@ class PhotoViewController: UIViewController {
     // MARK: View Controller
     override func viewDidLoad() {
         super.viewDidLoad()
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         view.addSubview(imageView)
         imageView.fillSuperview()
+        imageView.downloadImage(from: imageUrl)
     }
 }

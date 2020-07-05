@@ -3,13 +3,16 @@ import UIKit
 class SwipingPhotosViewController: UIPageViewController {
 
     // MARK: Properties
-    let controllers = [
-        PhotoViewController(image: #imageLiteral(resourceName: "super_like_circle")),
-        PhotoViewController(image: #imageLiteral(resourceName: "boost_circle")),
-        PhotoViewController(image: #imageLiteral(resourceName: "like_circle")),
-        PhotoViewController(image: #imageLiteral(resourceName: "super_like_circle")),
-        PhotoViewController(image: #imageLiteral(resourceName: "refresh_circle"))
-    ]
+    var controllers = [UIViewController]()
+    var cardViewModel: CardViewModel! {
+        didSet {
+            controllers = cardViewModel.imageUrls.map({ imageUrl -> UIViewController in
+                let photoController = PhotoViewController(imageUrl: imageUrl)
+                return photoController
+            })
+            setViewControllers([controllers.first!], direction: .forward, animated: false)
+        }
+    }
     
     
     // MARK: View Controller
@@ -17,7 +20,6 @@ class SwipingPhotosViewController: UIPageViewController {
         super.viewDidLoad()
         dataSource = self
         view.backgroundColor = .white
-        setViewControllers([controllers.first!], direction: .forward, animated: false)
     }
 }
 

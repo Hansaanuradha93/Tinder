@@ -54,8 +54,7 @@ extension UserDetailsViewController {
     func setup(cardViewModel: CardViewModel) {
         // TODO: Use userDetailsViewModel (viewModel for UserDetailsViewController) instead of cardViewModel
         infoLabel.attributedText = cardViewModel.attributedText
-//        guard let firstImageUrl = cardViewModel.imageUrls.first else { return  }
-//        profileImageView.downloadImage(from: firstImageUrl)
+        swipingPhotViewController.cardViewModel = cardViewModel
     }
     
     
