@@ -11,8 +11,8 @@ class UserDetailsViewController: UIViewController {
     lazy var dislikeButton = createButton(image: #imageLiteral(resourceName: "dismiss_circle"), selector: #selector(handleDislike))
     lazy var superlikeButton = createButton(image: #imageLiteral(resourceName: "super_like_circle"), selector: #selector(handleSuperlike))
     lazy var likeButton = createButton(image: #imageLiteral(resourceName: "like_circle"), selector: #selector(handlelike))
-
-    
+    lazy var extraSwipingHeight: CGFloat = 100
+   
     
     // MARK: View Controller
     override func viewDidLoad() {
@@ -23,7 +23,7 @@ class UserDetailsViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        swipingView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.width)
+        swipingView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.width + extraSwipingHeight)
     }
 }
 
@@ -109,6 +109,6 @@ extension UserDetailsViewController: UIScrollViewDelegate {
         let changeY = -scrollView.contentOffset.y
         let width = max(view.frame.width, view.frame.width + changeY * 2)
         let coordinate = min(0, -changeY)
-        swipingView.frame = CGRect(x: coordinate, y: coordinate, width: width, height: width)
+        swipingView.frame = CGRect(x: coordinate, y: coordinate, width: width, height: width + extraSwipingHeight)
     }
 }
