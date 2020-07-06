@@ -239,8 +239,8 @@ extension SettingsViewController {
             "imageUrl1": user?.imageUrl1 ?? "",
             "imageUrl2": user?.imageUrl2 ?? "",
             "imageUrl3": user?.imageUrl3 ?? "",
-            "minSeekingAge": user?.minSeekingAge ?? 20,
-            "maxSeekingAge": user?.maxSeekingAge ?? 80
+            "minSeekingAge": user?.minSeekingAge ?? Constants.defaultMinimumSeekingAge,
+            "maxSeekingAge": user?.maxSeekingAge ?? Constants.defaultMaximumSeekingAge
         ]
         
         Firestore.firestore().collection("users").document(uid).updateData(documentData) { [weak self] error in

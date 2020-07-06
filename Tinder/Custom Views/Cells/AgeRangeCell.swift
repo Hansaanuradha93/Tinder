@@ -7,15 +7,15 @@ class AgeRangeCell: UITableViewCell {
     
     var minSlider: UISlider = {
         let slider = UISlider()
-        slider.minimumValue = 18
-        slider.maximumValue = 80
+        slider.minimumValue = Float(Constants.defaultMinimumSeekingAge)
+        slider.maximumValue = Float(Constants.defaultMaximumSeekingAge)
         return slider
     }()
     
     var maxSlider: UISlider = {
         let slider = UISlider()
-        slider.minimumValue = 18
-        slider.maximumValue = 80
+        slider.minimumValue = Float(Constants.defaultMinimumSeekingAge)
+        slider.maximumValue = Float(Constants.defaultMaximumSeekingAge)
         return slider
     }()
     

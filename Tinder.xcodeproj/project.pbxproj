@@ -38,6 +38,7 @@
 		47D3E79E24A457700060B197 /* UIButton+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D3E79D24A457700060B197 /* UIButton+Ext.swift */; };
 		47DC81FA249FBE7500B9B6FF /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DC81F9249FBE7500B9B6FF /* SignUpViewModel.swift */; };
 		47DC81FE249FD13200B9B6FF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 47DC81FD249FD13200B9B6FF /* GoogleService-Info.plist */; };
+		47E2D5BB24B3463F00FECD87 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E2D5BA24B3463F00FECD87 /* Constants.swift */; };
 		47FC5317249DF0210053C4F7 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FC5316249DF0210053C4F7 /* UIColor+Ext.swift */; };
 		47FC531A249E7C660053C4F7 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FC5319249E7C660053C4F7 /* SignupViewController.swift */; };
 		47FC531D249E884D0053C4F7 /* TDTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FC531C249E884D0053C4F7 /* TDTextField.swift */; };
@@ -77,6 +78,7 @@
 		47D3E79D24A457700060B197 /* UIButton+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Ext.swift"; sourceTree = "<group>"; };
 		47DC81F9249FBE7500B9B6FF /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		47DC81FD249FD13200B9B6FF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		47E2D5BA24B3463F00FECD87 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		47FC5316249DF0210053C4F7 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		47FC5319249E7C660053C4F7 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		47FC531C249E884D0053C4F7 /* TDTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDTextField.swift; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				479EEFDC24A04E670091BEF7 /* Keys.swift */,
+				47E2D5BA24B3463F00FECD87 /* Constants.swift */,
 			);
 			path = Contants;
 			sourceTree = "<group>";
@@ -481,6 +484,7 @@
 				479EEFDF24A053F30091BEF7 /* UIViewController+Ext.swift in Sources */,
 				47D3E79E24A457700060B197 /* UIButton+Ext.swift in Sources */,
 				479A073A24A3978E00AB21C8 /* TDImagePickerController.swift in Sources */,
+				47E2D5BB24B3463F00FECD87 /* Constants.swift in Sources */,
 				47CE8208249D009C00B9696E /* Advertiser.swift in Sources */,
 				4738A6CD249BD0B400C55385 /* CardView.swift in Sources */,
 				47A80191249A814300768831 /* UIView+Ext.swift in Sources */,
