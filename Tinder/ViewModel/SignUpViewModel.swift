@@ -67,7 +67,7 @@ extension SignUpViewModel {
         let uid = Auth.auth().currentUser?.uid ?? ""
         let userInfo = [
             "uid": uid,
-            "fullName": fullName ?? "",
+            "fullname": fullName ?? "",
             "email": email ?? "",
             "age": Constants.defaultUserAge,
             "imageUrl1": imageUrl,
