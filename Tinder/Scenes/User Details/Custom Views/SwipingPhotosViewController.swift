@@ -79,7 +79,8 @@ extension SwipingPhotosViewController {
         }
         let nextController = controllers[nextIndex]
         setViewControllers([nextController], direction: .forward, animated: false)
-
+        barStackView.arrangedSubviews.forEach { $0.backgroundColor = barDiselectedColor }
+        barStackView.arrangedSubviews[nextIndex].backgroundColor = .white
         
     }
     
