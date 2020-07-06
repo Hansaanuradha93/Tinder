@@ -21,6 +21,7 @@ class PhotoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         view.addSubview(imageView)
         imageView.fillSuperview()
         imageView.downloadImage(from: imageUrl)
