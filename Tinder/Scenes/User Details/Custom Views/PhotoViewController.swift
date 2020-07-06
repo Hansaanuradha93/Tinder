@@ -20,7 +20,15 @@ class PhotoViewController: UIViewController {
     // MARK: View Controller
     override func viewDidLoad() {
         super.viewDidLoad()
-        // TODO: Refactor this class
+        setupLayout()
+    }
+}
+
+
+// MARK: - Methods
+extension PhotoViewController {
+    
+    fileprivate func setupLayout() {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         view.addSubview(imageView)
