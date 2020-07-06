@@ -8,8 +8,7 @@ protocol CardViewDelegate {
 class CardView: UIView {
     
     // MARK: Properties
-//    fileprivate let imageView = UIImageView()
-    let swipingPhotoController = SwipingPhotosViewController(isCardViewMode: true)
+    fileprivate let swipingPhotoController = SwipingPhotosViewController(isCardViewMode: true)
     lazy var swipingView = swipingPhotoController.view!
     fileprivate let informationLabel = UILabel()
     fileprivate let barStackView = UIStackView()
@@ -33,7 +32,6 @@ class CardView: UIView {
         self.init()
         self.cardViewModel = cardViewModel
         setupViews(cardViewModel)
-//        setupImage(cardViewModel)
     }
     
     
@@ -52,18 +50,18 @@ class CardView: UIView {
 // MARK: - Methods
 extension CardView {
     
-    @objc fileprivate func handleTap(gesture: UITapGestureRecognizer) {
-        guard let cardViewModel = cardViewModel, !cardViewModel.imageUrls.isEmpty else { return }
-        
-        let tapLocation = gesture.location(in: nil)
-        let shouldAdvanceNextPhoto = tapLocation.x > frame.width / 2 ? true : false
-        
-        if shouldAdvanceNextPhoto {
-            cardViewModel.advanceToNextPhoto()
-        } else {
-            cardViewModel.goToPreviousPhoto()
-        }
-    }
+//    @objc fileprivate func handleTap(gesture: UITapGestureRecognizer) {
+//        guard let cardViewModel = cardViewModel, !cardViewModel.imageUrls.isEmpty else { return }
+//        
+//        let tapLocation = gesture.location(in: nil)
+//        let shouldAdvanceNextPhoto = tapLocation.x > frame.width / 2 ? true : false
+//        
+//        if shouldAdvanceNextPhoto {
+//            cardViewModel.advanceToNextPhoto()
+//        } else {
+//            cardViewModel.goToPreviousPhoto()
+//        }
+//    }
     
     
     @objc fileprivate func handlePan(_ gesture: UIPanGestureRecognizer) {
@@ -199,8 +197,6 @@ extension CardView {
         clipsToBounds = true
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
         addGestureRecognizer(panGesture)
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-        addGestureRecognizer(tapGesture)
     }
     
     

@@ -17,18 +17,8 @@ class CardViewModel {
     fileprivate var currentUser: User?
     fileprivate let userPaginationLimit = 2
     
-    fileprivate var imageIndex = 0 {
-        didSet {
-            let imageUrl = imageUrls[imageIndex]
-            imageIndexObserver?(imageIndex, imageUrl)
-        }
-    }
-    
     // MARK: Bindable
     var bindableIsFetchingUsers = Bindable<Bool>()
-    
-    // MARK: Reactive Programming
-    var imageIndexObserver: ((Int, String?) -> ())?
     
     
     // MARK: Initializers
@@ -42,16 +32,6 @@ class CardViewModel {
 
 // MARK: - Methods
 extension CardViewModel {
-    
-    func advanceToNextPhoto() {
-        imageIndex = min(imageIndex + 1, imageUrls.count - 1)
-    }
-    
-    
-    func goToPreviousPhoto() {
-        imageIndex = max(0, imageIndex - 1)
-    }
-    
     
     fileprivate func fetchUsersFromFirestore(completion: @escaping (User?) -> ()) {
         let minAge = currentUser?.minSeekingAge ?? Constants.defaultMinimumSeekingAge
