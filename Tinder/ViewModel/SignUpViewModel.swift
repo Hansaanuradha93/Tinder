@@ -40,7 +40,6 @@ extension SignUpViewModel {
         let storageRef = Storage.storage().reference().child("images/\(filename)")
         
         storageRef.putData(uploadData, metadata: nil) { (_, error) in
-            
             if let error = error {
                 self.bindableIsRegistering.value = false
                 completion(error)
