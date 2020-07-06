@@ -56,10 +56,55 @@ extension SwipingPhotosViewController {
     }
     
     
+    fileprivate func disableSwipingAbility() {
+        for view in view.subviews {
+            if let view = view as? UIScrollView {
+                view.isScrollEnabled = false
+            }
+        }
+    }
+    
+    
+    @objc fileprivate func handleTap(gesture: UITapGestureRecognizer) {
+        
+        guard let currentController = viewControllers?.first, let index = controllers.firstIndex(of: currentController) else { return }
+        var nextIndex: Int = 0
+        
+        let tapLocation = gesture.location(in: nil)
+        let shouldAdvanceNextPhoto = tapLocation.x > view.frame.width / 2 ? true : false
+        if shouldAdvanceNextPhoto {
+            nextIndex = min(index + 1, controllers.count - 1)
+        } else {
+            nextIndex = max(0, index - 1)
+        }
+        let nextController = controllers[nextIndex]
+        setViewControllers([nextController], direction: .forward, animated: false)
+
+        
+    }
+    
+//    @objc fileprivate func handleTap(gesture: UITapGestureRecognizer) {
+//        guard let cardViewModel = cardViewModel, !cardViewModel.imageUrls.isEmpty else { return }
+//
+//        let tapLocation = gesture.location(in: nil)
+//        let shouldAdvanceNextPhoto = tapLocation.x > frame.width / 2 ? true : false
+//
+//        if shouldAdvanceNextPhoto {
+//            cardViewModel.advanceToNextPhoto()
+//        } else {
+//            cardViewModel.goToPreviousPhoto()
+//        }
+//    }
+    
+    
     fileprivate func setupViewController() {
         view.backgroundColor = .white
         dataSource = self
         delegate = self
+        if isCardViewMode {
+            disableSwipingAbility()
+            view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
+        }
     }
 }
 
