@@ -50,20 +50,6 @@ class CardView: UIView {
 // MARK: - Methods
 extension CardView {
     
-//    @objc fileprivate func handleTap(gesture: UITapGestureRecognizer) {
-//        guard let cardViewModel = cardViewModel, !cardViewModel.imageUrls.isEmpty else { return }
-//        
-//        let tapLocation = gesture.location(in: nil)
-//        let shouldAdvanceNextPhoto = tapLocation.x > frame.width / 2 ? true : false
-//        
-//        if shouldAdvanceNextPhoto {
-//            cardViewModel.advanceToNextPhoto()
-//        } else {
-//            cardViewModel.goToPreviousPhoto()
-//        }
-//    }
-    
-    
     @objc fileprivate func handlePan(_ gesture: UIPanGestureRecognizer) {
         switch gesture.state {
             
@@ -76,18 +62,6 @@ extension CardView {
         default: ()
         }
     }
-    
-    
-//    fileprivate func setupImage(_ cardViewModel: CardViewModel) {
-//        cardViewModel.imageIndexObserver = { [weak self] index,imageUrl in
-//            guard let self = self, let imageUrl = imageUrl else { return }
-////            self.imageView.downloadImage(from: imageUrl)
-//            self.barStackView.arrangedSubviews.forEach { (view) in
-//                view.backgroundColor = self.barDiselectedColor
-//            }
-//            self.barStackView.arrangedSubviews[index].backgroundColor = .white
-//        }
-//    }
     
     
     fileprivate func handleBegan() {
@@ -129,8 +103,6 @@ extension CardView {
 
     
     fileprivate func setupViews(_ cardViewModel: CardViewModel) {
-//        let imageUrl = cardViewModel.imageUrls.first ?? ""
-//        imageView.downloadImage(from: imageUrl)
         swipingPhotoController.cardViewModel = cardViewModel
         informationLabel.attributedText = cardViewModel.attributedText
         informationLabel.textAlignment = cardViewModel.textAlignment
@@ -147,7 +119,6 @@ extension CardView {
     fileprivate func layoutUI() {
         configureCard()
         configureSwipingView()
-//        configureBarViews()
         configureInformationLabel()
         configureMoreInfoButton()
     }
@@ -164,7 +135,7 @@ extension CardView {
     
     
     fileprivate func configureMoreInfoButton() {
-        let image = UIImage(systemName: "info.circle.fill")?.withRenderingMode(.alwaysTemplate)
+        let image = Asserts.infoCircleFill.withRenderingMode(.alwaysTemplate)
         moreInfoButton.setImage(image, for: .normal)
         moreInfoButton.tintColor = .white
         moreInfoButton.contentVerticalAlignment = .fill
@@ -173,14 +144,6 @@ extension CardView {
         moreInfoButton.anchor(top: nil, leading: nil, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 0, bottom: 20, right: 16), size: .init(width: 44, height: 44))
         moreInfoButton.addTarget(self, action: #selector(handleMoreInfo), for: .touchUpInside)
     }
-    
-    
-//    fileprivate func configureBarViews() {
-//        barStackView.distribution = .fillEqually
-//        barStackView.spacing = 5
-//        addSubview(barStackView)
-//        barStackView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 8, left: 8, bottom: 0, right: 8), size: .init(width: 0, height: 4))
-//    }
     
     
     fileprivate func configureGradientView() {

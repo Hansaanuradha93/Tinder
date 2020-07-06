@@ -8,4 +8,5 @@ struct Constants {
 
 struct Asserts {
     static let placeHolder = UIImage(named: "placeholder")!
+    static let infoCircleFill = UIImage(systemName: "info.circle.fill")!
 }
