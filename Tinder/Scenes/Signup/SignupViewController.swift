@@ -68,7 +68,15 @@ extension SignupViewController {
                 return
             }
             print("Authentication successfull")
+            self.navigateToHome()
         }
+    }
+    
+    
+    fileprivate func navigateToHome() {
+        let navController = UINavigationController(rootViewController: HomeViewController())
+        navController.modalPresentationStyle = .fullScreen
+        present(navController, animated: true)
     }
     
     

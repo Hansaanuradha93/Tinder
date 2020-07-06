@@ -70,8 +70,11 @@ extension SignUpViewModel {
             "uid": uid,
             "fullName": fullName ?? "",
             "email": email ?? "",
-            "imageUrl1": imageUrl
-        ]
+            "age": Constants.defaultUserAge,
+            "imageUrl1": imageUrl,
+            "minSeekingAge": Constants.defaultMinimumSeekingAge,
+            "maxSeekingAge": Constants.defaultMaximumSeekingAge
+            ] as [String : Any]
         Firestore.firestore().collection("users").document(uid).setData(userInfo) { [weak self] error in
             guard let self = self else { return }
             if let error = error {
