@@ -81,21 +81,7 @@ extension SwipingPhotosViewController {
         setViewControllers([nextController], direction: .forward, animated: false)
         barStackView.arrangedSubviews.forEach { $0.backgroundColor = barDiselectedColor }
         barStackView.arrangedSubviews[nextIndex].backgroundColor = .white
-        
     }
-    
-//    @objc fileprivate func handleTap(gesture: UITapGestureRecognizer) {
-//        guard let cardViewModel = cardViewModel, !cardViewModel.imageUrls.isEmpty else { return }
-//
-//        let tapLocation = gesture.location(in: nil)
-//        let shouldAdvanceNextPhoto = tapLocation.x > frame.width / 2 ? true : false
-//
-//        if shouldAdvanceNextPhoto {
-//            cardViewModel.advanceToNextPhoto()
-//        } else {
-//            cardViewModel.goToPreviousPhoto()
-//        }
-//    }
     
     
     fileprivate func setupViewController() {
