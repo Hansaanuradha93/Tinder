@@ -6,6 +6,7 @@ class SwipingPhotosViewController: UIPageViewController {
     fileprivate let barStackView = UIStackView(arrangedSubviews: [])
     fileprivate var controllers = [UIViewController]()
     fileprivate let barDiselectedColor = UIColor.appColor(color: .darkGray)
+    fileprivate var isCardViewMode: Bool = false
     var cardViewModel: CardViewModel! {
         didSet {
             controllers = cardViewModel.imageUrls.map({ imageUrl -> UIViewController in
@@ -16,6 +17,16 @@ class SwipingPhotosViewController: UIPageViewController {
             setupBarViews()
         }
     }
+    
+    
+    // MARK: Initializers
+    init(isCardViewMode: Bool = false) {
+        super.init(transitionStyle: .scroll, navigationOrientation: .horizontal)
+        self.isCardViewMode = isCardViewMode
+    }
+
+    
+    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
     
     // MARK: View Controller
@@ -40,7 +51,8 @@ extension SwipingPhotosViewController {
         barStackView.spacing = 5
         barStackView.arrangedSubviews.first?.backgroundColor = .white
         view.addSubview(barStackView)
-        barStackView.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 60, left: 16, bottom: 0, right: 16), size: .init(width: 0, height: 4))
+        let topPadding: CGFloat = isCardViewMode ? 16 : 60
+        barStackView.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: topPadding, left: 16, bottom: 0, right: 16), size: .init(width: 0, height: 4))
     }
     
     

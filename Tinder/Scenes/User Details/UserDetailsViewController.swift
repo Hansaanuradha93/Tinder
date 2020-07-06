@@ -4,7 +4,7 @@ class UserDetailsViewController: UIViewController {
     
     // MARK: Properties
     let scrollView = UIScrollView()
-    let swipingPhotViewController = SwipingPhotosViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
+    let swipingPhotViewController = SwipingPhotosViewController()
     let infoLabel = UILabel()
     lazy var swipingView = swipingPhotViewController.view!
     lazy var dismissButton = createButton(image: #imageLiteral(resourceName: "dismiss_down_arrow"), selector: #selector(handleTap))

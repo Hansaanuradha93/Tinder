@@ -8,7 +8,9 @@ protocol CardViewDelegate {
 class CardView: UIView {
     
     // MARK: Properties
-    fileprivate let imageView = UIImageView()
+//    fileprivate let imageView = UIImageView()
+    let swipingPhotoController = SwipingPhotosViewController(isCardViewMode: true)
+    lazy var swipingView = swipingPhotoController.view!
     fileprivate let informationLabel = UILabel()
     fileprivate let barStackView = UIStackView()
     fileprivate let moreInfoButton = TDButton()
@@ -31,7 +33,7 @@ class CardView: UIView {
         self.init()
         self.cardViewModel = cardViewModel
         setupViews(cardViewModel)
-        setupImage(cardViewModel)
+//        setupImage(cardViewModel)
     }
     
     
@@ -78,16 +80,16 @@ extension CardView {
     }
     
     
-    fileprivate func setupImage(_ cardViewModel: CardViewModel) {
-        cardViewModel.imageIndexObserver = { [weak self] index,imageUrl in
-            guard let self = self, let imageUrl = imageUrl else { return }
-            self.imageView.downloadImage(from: imageUrl)
-            self.barStackView.arrangedSubviews.forEach { (view) in
-                view.backgroundColor = self.barDiselectedColor
-            }
-            self.barStackView.arrangedSubviews[index].backgroundColor = .white
-        }
-    }
+//    fileprivate func setupImage(_ cardViewModel: CardViewModel) {
+//        cardViewModel.imageIndexObserver = { [weak self] index,imageUrl in
+//            guard let self = self, let imageUrl = imageUrl else { return }
+////            self.imageView.downloadImage(from: imageUrl)
+//            self.barStackView.arrangedSubviews.forEach { (view) in
+//                view.backgroundColor = self.barDiselectedColor
+//            }
+//            self.barStackView.arrangedSubviews[index].backgroundColor = .white
+//        }
+//    }
     
     
     fileprivate func handleBegan() {
@@ -129,8 +131,9 @@ extension CardView {
 
     
     fileprivate func setupViews(_ cardViewModel: CardViewModel) {
-        let imageUrl = cardViewModel.imageUrls.first ?? ""
-        imageView.downloadImage(from: imageUrl)        
+//        let imageUrl = cardViewModel.imageUrls.first ?? ""
+//        imageView.downloadImage(from: imageUrl)
+        swipingPhotoController.cardViewModel = cardViewModel
         informationLabel.attributedText = cardViewModel.attributedText
         informationLabel.textAlignment = cardViewModel.textAlignment
         cardViewModel.imageUrls.forEach { (_) in
@@ -145,8 +148,8 @@ extension CardView {
     
     fileprivate func layoutUI() {
         configureCard()
-        configureImageView()
-        configureBarViews()
+        configureSwipingView()
+//        configureBarViews()
         configureInformationLabel()
         configureMoreInfoButton()
     }
@@ -174,12 +177,12 @@ extension CardView {
     }
     
     
-    fileprivate func configureBarViews() {
-        barStackView.distribution = .fillEqually
-        barStackView.spacing = 5
-        addSubview(barStackView)
-        barStackView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 8, left: 8, bottom: 0, right: 8), size: .init(width: 0, height: 4))
-    }
+//    fileprivate func configureBarViews() {
+//        barStackView.distribution = .fillEqually
+//        barStackView.spacing = 5
+//        addSubview(barStackView)
+//        barStackView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 8, left: 8, bottom: 0, right: 8), size: .init(width: 0, height: 4))
+//    }
     
     
     fileprivate func configureGradientView() {
@@ -201,10 +204,9 @@ extension CardView {
     }
     
     
-    fileprivate func configureImageView() {
-        imageView.contentMode = .scaleAspectFill
-        addSubview(imageView)
-        imageView.fillSuperview()
+    fileprivate func configureSwipingView() {
+        addSubview(swipingView)
+        swipingView.fillSuperview()
     }
     
     
