@@ -93,6 +93,7 @@ extension HomeViewController {
     
     
     fileprivate func setupLayout() {
+        navigationController?.setNavigationBarHidden(true, animated: false)
         view.backgroundColor = .white
         
         let overrallStackView = UIStackView(arrangedSubviews: [topControllsStackView, cardsDeckView, bottomControllsStackView])
