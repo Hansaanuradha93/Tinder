@@ -221,6 +221,7 @@ extension SignupViewController: UIImagePickerControllerDelegate & UINavigationCo
         } else if let originalImage = info[UIImagePickerController.InfoKey(rawValue: ImagePicker.OriginalImage.key)] as? UIImage {
             signupViewModel.bindableImage.value = originalImage
         }
+        signupViewModel.checkFormValidity()
         dismiss(animated: true, completion: nil)
     }
 }
