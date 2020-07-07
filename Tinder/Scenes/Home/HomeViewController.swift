@@ -87,8 +87,15 @@ extension HomeViewController {
     
     
     @objc fileprivate func handleLike() {
-        topCardView?.removeFromSuperview()
-        topCardView = topCardView?.nextCardView
+        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.1, options: .curveEaseOut, animations: {
+            guard let topCardView = self.topCardView else { return }
+            let angle = 15 * CGFloat.pi / 180
+            let rotationalTransformation = CGAffineTransform(rotationAngle: angle)
+            topCardView.transform = rotationalTransformation.translatedBy(x: 1000, y: 0)
+        }) { (_) in
+            self.topCardView?.removeFromSuperview()
+            self.topCardView = self.topCardView?.nextCardView
+        }
     }
     
     
