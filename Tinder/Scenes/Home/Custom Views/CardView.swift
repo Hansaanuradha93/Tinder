@@ -2,6 +2,7 @@ import UIKit
 
 protocol CardViewDelegate {
     func didTapMoreInfo(cardViewModel: CardViewModel)
+    func didRemove(cardView: CardView)
 }
 
 
@@ -87,6 +88,7 @@ extension CardView {
             self.transform = .identity
             if shoudDismissCard {
                 self.removeFromSuperview()
+                self.delegate?.didRemove(cardView: self)
             }
         }
     }

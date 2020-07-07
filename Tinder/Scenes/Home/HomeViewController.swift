@@ -162,5 +162,11 @@ extension HomeViewController: CardViewDelegate {
         controller.modalPresentationStyle = .overCurrentContext
         present(controller, animated: true)
     }
+    
+    
+    func didRemove(cardView: CardView) {
+        topCardView?.removeFromSuperview()
+        topCardView = self.topCardView?.nextCardView
+    }
 }
 
