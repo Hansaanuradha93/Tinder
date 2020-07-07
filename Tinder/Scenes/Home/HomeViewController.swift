@@ -87,15 +87,28 @@ extension HomeViewController {
     
     
     @objc fileprivate func handleLike() {
-        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.1, options: .curveEaseOut, animations: {
-            guard let topCardView = self.topCardView else { return }
-            let angle = 15 * CGFloat.pi / 180
-            let rotationalTransformation = CGAffineTransform(rotationAngle: angle)
-            topCardView.transform = rotationalTransformation.translatedBy(x: 1000, y: 0)
-        }) { (_) in
-            self.topCardView?.removeFromSuperview()
-            self.topCardView = self.topCardView?.nextCardView
+        let duration: Double = 0.7
+        let translationAnimation = CABasicAnimation(keyPath: "position.x")
+        translationAnimation.toValue = 1000
+        translationAnimation.duration = duration
+        translationAnimation.fillMode = .forwards
+        translationAnimation.isRemovedOnCompletion = false
+        translationAnimation.timingFunction = CAMediaTimingFunction(name: .easeOut)
+        
+        let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+        rotationAnimation.toValue = 15 * CGFloat.pi / 180
+        rotationAnimation.duration = duration
+        
+        let cardView = topCardView
+        topCardView = cardView?.nextCardView
+        
+        CATransaction.setCompletionBlock {
+            cardView?.removeFromSuperview()
         }
+        
+        cardView?.layer.add(translationAnimation, forKey: "translation")
+        cardView?.layer.add(rotationAnimation, forKey: "rotation")
+        CATransaction.commit()
     }
     
     
