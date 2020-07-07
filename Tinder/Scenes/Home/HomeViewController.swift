@@ -87,17 +87,17 @@ extension HomeViewController {
     }
     
     
-    @objc fileprivate func handleDislike() {
+    fileprivate func performSwipeAnimation(translation: CGFloat, angle: CGFloat) {
         let duration: Double = 0.7
         let translationAnimation = CABasicAnimation(keyPath: "position.x")
-        translationAnimation.toValue = -1000
+        translationAnimation.toValue = translation
         translationAnimation.duration = duration
         translationAnimation.fillMode = .forwards
         translationAnimation.isRemovedOnCompletion = false
         translationAnimation.timingFunction = CAMediaTimingFunction(name: .easeOut)
         
         let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
-        rotationAnimation.toValue = -15 * CGFloat.pi / 180
+        rotationAnimation.toValue = angle * CGFloat.pi / 180
         rotationAnimation.duration = duration
         
         let cardView = topCardView
@@ -113,29 +113,13 @@ extension HomeViewController {
     }
     
     
+    @objc fileprivate func handleDislike() {
+        performSwipeAnimation(translation: -1000, angle: -15)
+    }
+    
+    
     @objc fileprivate func handleLike() {
-        let duration: Double = 0.7
-        let translationAnimation = CABasicAnimation(keyPath: "position.x")
-        translationAnimation.toValue = 1000
-        translationAnimation.duration = duration
-        translationAnimation.fillMode = .forwards
-        translationAnimation.isRemovedOnCompletion = false
-        translationAnimation.timingFunction = CAMediaTimingFunction(name: .easeOut)
-        
-        let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
-        rotationAnimation.toValue = 15 * CGFloat.pi / 180
-        rotationAnimation.duration = duration
-        
-        let cardView = topCardView
-        topCardView = cardView?.nextCardView
-        
-        CATransaction.setCompletionBlock {
-            cardView?.removeFromSuperview()
-        }
-        
-        cardView?.layer.add(translationAnimation, forKey: "translation")
-        cardView?.layer.add(rotationAnimation, forKey: "rotation")
-        CATransaction.commit()
+        performSwipeAnimation(translation: 1000, angle: 15)
     }
     
     
