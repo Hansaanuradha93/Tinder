@@ -83,6 +83,33 @@ extension HomeViewController {
         topControllsStackView.settingsButton.addTarget(self, action: #selector(settingsButtonTapped), for: .touchUpInside)
         bottomControllsStackView.refreshButton.addTarget(self, action: #selector(handleRefresh), for: .touchUpInside)
         bottomControllsStackView.likeButton.addTarget(self, action: #selector(handleLike), for: .touchUpInside)
+        bottomControllsStackView.dislikeButton.addTarget(self, action: #selector(handleDislike), for: .touchUpInside)
+    }
+    
+    
+    @objc fileprivate func handleDislike() {
+        let duration: Double = 0.7
+        let translationAnimation = CABasicAnimation(keyPath: "position.x")
+        translationAnimation.toValue = -1000
+        translationAnimation.duration = duration
+        translationAnimation.fillMode = .forwards
+        translationAnimation.isRemovedOnCompletion = false
+        translationAnimation.timingFunction = CAMediaTimingFunction(name: .easeOut)
+        
+        let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
+        rotationAnimation.toValue = -15 * CGFloat.pi / 180
+        rotationAnimation.duration = duration
+        
+        let cardView = topCardView
+        topCardView = cardView?.nextCardView
+        
+        CATransaction.setCompletionBlock {
+            cardView?.removeFromSuperview()
+        }
+        
+        cardView?.layer.add(translationAnimation, forKey: "translation")
+        cardView?.layer.add(rotationAnimation, forKey: "rotation")
+        CATransaction.commit()
     }
     
     
