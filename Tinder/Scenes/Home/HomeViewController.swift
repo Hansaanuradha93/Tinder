@@ -8,6 +8,8 @@ class HomeViewController: UIViewController {
     fileprivate let cardsDeckView = UIView()
     fileprivate let bottomControllsStackView = HomeBottomButtonControlsStackView()
     fileprivate let cardViewModel = CardViewModel()
+    fileprivate var topCardView: CardView?
+    fileprivate var previousCardView: CardView?
     
     
     // MARK: View Controller
@@ -45,7 +47,12 @@ extension HomeViewController {
         cardViewModel.fetchCurrentUser { [weak self] user in
             guard let self = self, let user = user else { return }
             if user.uid != Auth.auth().currentUser?.uid {
-                DispatchQueue.main.async { self.setupCardFrom(user: user) }
+                let cardView = self.setupCardFrom(user: user)
+                self.previousCardView?.nextCardView = cardView
+                self.previousCardView = cardView
+                if self.topCardView == nil {
+                    self.topCardView = cardView
+                }
             }
         }
     }
@@ -75,6 +82,13 @@ extension HomeViewController {
     fileprivate func setupButtonActions() {
         topControllsStackView.settingsButton.addTarget(self, action: #selector(settingsButtonTapped), for: .touchUpInside)
         bottomControllsStackView.refreshButton.addTarget(self, action: #selector(handleRefresh), for: .touchUpInside)
+        bottomControllsStackView.likeButton.addTarget(self, action: #selector(handleLike), for: .touchUpInside)
+    }
+    
+    
+    @objc fileprivate func handleLike() {
+        topCardView?.removeFromSuperview()
+        topCardView = topCardView?.nextCardView
     }
     
     
@@ -83,12 +97,13 @@ extension HomeViewController {
     }
     
     
-    fileprivate func setupCardFrom(user: User) {
+    fileprivate func setupCardFrom(user: User) -> CardView {
         let cardView = CardView(cardViewModel: user.toCardViewModel())
         cardView.delegate = self
         cardsDeckView.addSubview(cardView)
         cardsDeckView.sendSubviewToBack(cardView)
         cardView.fillSuperview()
+        return cardView
     }
     
     
