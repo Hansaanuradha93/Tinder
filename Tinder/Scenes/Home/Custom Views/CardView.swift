@@ -11,13 +11,13 @@ class CardView: UIView {
     fileprivate let swipingPhotoController = SwipingPhotosViewController(isCardViewMode: true)
     lazy var swipingView = swipingPhotoController.view!
     fileprivate let informationLabel = UILabel()
-    fileprivate let barStackView = UIStackView()
     fileprivate let moreInfoButton = TDButton()
 
     // MARK: Configurations
     fileprivate let threshold: CGFloat = 100
     fileprivate var cardViewModel: CardViewModel!
     fileprivate let barDiselectedColor = UIColor.appColor(color: .darkGray)
+    var nextCardView: CardView?
     var delegate: CardViewDelegate?
     
     
@@ -106,13 +106,6 @@ extension CardView {
         swipingPhotoController.cardViewModel = cardViewModel
         informationLabel.attributedText = cardViewModel.attributedText
         informationLabel.textAlignment = cardViewModel.textAlignment
-        cardViewModel.imageUrls.forEach { (_) in
-            let barView = UIView()
-            barView.backgroundColor = barDiselectedColor
-            barView.layer.cornerRadius = 2
-            barStackView.addArrangedSubview(barView)
-        }
-        barStackView.arrangedSubviews.first?.backgroundColor = .white
     }
     
     
