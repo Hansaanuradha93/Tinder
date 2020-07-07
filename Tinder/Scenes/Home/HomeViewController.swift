@@ -44,6 +44,7 @@ extension HomeViewController {
     
     
     fileprivate func fetchData() {
+        topCardView = nil
         cardViewModel.fetchCurrentUser { [weak self] user in
             guard let self = self, let user = user else { return }
             if user.uid != Auth.auth().currentUser?.uid {
