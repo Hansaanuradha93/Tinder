@@ -114,13 +114,13 @@ extension HomeViewController {
     }
     
     
-    @objc func handleDislike() {
+    @objc fileprivate func handleDislike() {
         saveSwipeToFirestore(isLiked: false)
         performSwipeAnimation(translation: -1000, angle: -15)
     }
     
     
-    @objc func handleLike() {
+    @objc fileprivate func handleLike() {
         saveSwipeToFirestore(isLiked: true)
         performSwipeAnimation(translation: 1000, angle: 15)
     }
@@ -226,7 +226,8 @@ extension HomeViewController: CardViewDelegate {
     }
     
     
-    func didRemove(cardView: CardView) {
+    func didRemove(cardView: CardView, isLiked: Bool) {
+        saveSwipeToFirestore(isLiked: isLiked)
         topCardView?.removeFromSuperview()
         topCardView = self.topCardView?.nextCardView
     }

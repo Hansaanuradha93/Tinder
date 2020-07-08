@@ -2,7 +2,7 @@ import UIKit
 
 protocol CardViewDelegate {
     func didTapMoreInfo(cardViewModel: CardViewModel)
-    func didRemove(cardView: CardView)
+    func didRemove(cardView: CardView, isLiked: Bool)
 }
 
 
@@ -77,38 +77,21 @@ extension CardView {
         let translationDirection: CGFloat = translationX > 0 ? 1 : -1
         let shoudDismissCard = abs(translationX) > threshold
         
-        if shoudDismissCard {
-            guard  let homeController = delegate as? HomeViewController else { return }
-            
-            if translationDirection == 1 {
-                homeController.handleLike()
+        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.1, options: .curveEaseOut, animations: {
+            if shoudDismissCard {
+                let offScreenTransform = self.transform.translatedBy(x: 1000 * translationDirection, y: 0)
+                self.transform = offScreenTransform
             } else {
-                homeController.handleDislike()
-            }
-        } else {
-            UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.1, options: .curveEaseOut, animations: {
                 self.transform = .identity
-            })
+            }
+        }) { (_) in
+            self.transform = .identity
+            if shoudDismissCard {
+                self.removeFromSuperview()
+                let isLiked = translationDirection == 1 ? true : false
+                self.delegate?.didRemove(cardView: self, isLiked: isLiked)
+            }
         }
-        
-        
-        
-        
-    
-//        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.1, options: .curveEaseOut, animations: {
-//            if shoudDismissCard {
-//                let offScreenTransform = self.transform.translatedBy(x: 1000 * translationDirection, y: 0)
-//                self.transform = offScreenTransform
-//            } else {
-//                self.transform = .identity
-//            }
-//        }) { (_) in
-//            self.transform = .identity
-//            if shoudDismissCard {
-//                self.removeFromSuperview()
-//                self.delegate?.didRemove(cardView: self)
-//            }
-//        }
     }
     
     
