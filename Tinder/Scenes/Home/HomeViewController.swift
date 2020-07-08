@@ -139,28 +139,51 @@ extension HomeViewController {
         let value = isLiked ? 1 : 0
         let documentData = [cardUID: value]
         
-        reference.getDocument { (snapshot, error) in
+        reference.getDocument { [weak self] snapshot, error in
+            guard let self = self else { return }
             if let error = error {
                 print(error.localizedDescription)
                 return
             }
             
             if snapshot?.exists ?? false {
-                reference.updateData(documentData) { (error) in
+                reference.updateData(documentData) { [weak self] error in
+                    guard let self = self else { return }
                     if let error = error {
                         print(error.localizedDescription)
                         return
                     }
                     print("Swipe successfully updated")
+                    if isLiked { self.checkIfMatchExist(cardUID: cardUID) }
+                    
                 }
             } else {
-                reference.setData(documentData) { error in
+                reference.setData(documentData) { [weak self] error in
+                    guard let self = self else { return }
                     if let error = error {
                         print(error.localizedDescription)
                         return
                     }
                     print("Swipe successfully saved")
+                    if isLiked { self.checkIfMatchExist(cardUID: cardUID) }
                 }
+            }
+        }
+    }
+    
+    
+    fileprivate func checkIfMatchExist(cardUID: String) {
+        let reference = Firestore.firestore().collection("swipes").document(cardUID)
+        reference.getDocument { [weak self] snapshot, error in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            guard let self = self, let data = snapshot?.data(), let uid = Auth.auth().currentUser?.uid else { return }
+            
+            let hasMatched = data[uid] as? Int == 1
+            if hasMatched {
+                self.presentAlert(title: "Matched", message: "You two have matched!", buttonTitle: "Ok")
             }
         }
     }
