@@ -115,12 +115,13 @@ extension HomeViewController {
     
     
     @objc fileprivate func handleDislike() {
+        saveSwipeToFirestore(isLiked: false)
         performSwipeAnimation(translation: -1000, angle: -15)
     }
     
     
     @objc fileprivate func handleLike() {
-        saveSwipeToFirestore()
+        saveSwipeToFirestore(isLiked: true)
         performSwipeAnimation(translation: 1000, angle: 15)
     }
     
@@ -130,12 +131,13 @@ extension HomeViewController {
     }
     
     
-    fileprivate func saveSwipeToFirestore() {
+    fileprivate func saveSwipeToFirestore(isLiked: Bool) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         let reference = Firestore.firestore().collection("swipes").document(uid)
         
         guard let cardUID = topCardView?.cardViewModel.uid else { return }
-        let documentData = [cardUID: 1]
+        let value = isLiked ? 1 : 0
+        let documentData = [cardUID: value]
         
         reference.getDocument { (snapshot, error) in
             if let error = error {
