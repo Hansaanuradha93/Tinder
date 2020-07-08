@@ -35,7 +35,7 @@ class CardViewModel {
 // MARK: - Methods
 extension CardViewModel {
     
-    fileprivate func fetchUsersFromFirestore(completion: @escaping (User?) -> ()) {
+    fileprivate func fetchUsersFromFirestore(uid: String, swipes: [String : Int]?, completion: @escaping (User?) -> ()) {
         let minAge = currentUser?.minSeekingAge ?? Constants.defaultMinimumSeekingAge
         let maxAge = currentUser?.maxSeekingAge ?? Constants.defaultMaximumSeekingAge
         
@@ -52,8 +52,34 @@ extension CardViewModel {
             snapshot!.documents.forEach { (documentSnapshot) in
                 let user = User(dictionary: documentSnapshot.data())
                 self.lastFetchedUser = user
-                completion(user)
+                let isNotCurrentUser = user.uid != uid
+                let hasNotSwipedBefore = swipes?[user.uid ?? ""] == nil
+                if isNotCurrentUser && hasNotSwipedBefore {
+                    completion(user)
+                } else {
+                   completion(nil)
+                }
             }
+        }
+    }
+    
+    
+    fileprivate func fetchSwipes(uid: String, completion: @escaping (User?) -> ()) {
+        let reference = Firestore.firestore().collection("swipes").document(uid)
+        reference.getDocument { snapshot, error in
+            if let error = error {
+                self.bindableIsFetchingUsers.value = false
+                print(error.localizedDescription)
+                completion(nil)
+                return
+            }
+            
+            guard let swipesData = snapshot?.data() as? [String : Int] else {
+                self.bindableIsFetchingUsers.value = false
+                self.fetchUsersFromFirestore(uid: uid, swipes: nil, completion: completion)
+                return
+            }
+            self.fetchUsersFromFirestore(uid: uid, swipes: swipesData, completion: completion)
         }
     }
     
@@ -65,7 +91,7 @@ extension CardViewModel {
         }
         self.bindableIsFetchingUsers.value = true
         let reference = Firestore.firestore().collection("users").document(uid)
-        reference.getDocument { (document, error) in
+        reference.getDocument { document, error in
             if let error = error {
                 self.bindableIsFetchingUsers.value = false
                 print(error.localizedDescription)
@@ -79,7 +105,7 @@ extension CardViewModel {
                 return
             }
             self.currentUser = User(dictionary: dictionary)
-            self.fetchUsersFromFirestore(completion: completion)
+            self.fetchSwipes(uid: uid, completion: completion)
         }
     }
 }

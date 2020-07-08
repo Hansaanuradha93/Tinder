@@ -47,13 +47,11 @@ extension HomeViewController {
         topCardView = nil
         cardViewModel.fetchCurrentUser { [weak self] user in
             guard let self = self, let user = user else { return }
-            if user.uid != Auth.auth().currentUser?.uid {
-                let cardView = self.setupCardFrom(user: user)
-                self.previousCardView?.nextCardView = cardView
-                self.previousCardView = cardView
-                if self.topCardView == nil {
-                    self.topCardView = cardView
-                }
+            let cardView = self.setupCardFrom(user: user)
+            self.previousCardView?.nextCardView = cardView
+            self.previousCardView = cardView
+            if self.topCardView == nil {
+                self.topCardView = cardView
             }
         }
     }
