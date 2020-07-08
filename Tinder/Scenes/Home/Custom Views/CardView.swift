@@ -76,21 +76,39 @@ extension CardView {
         let translationX = gesture.translation(in: nil).x
         let translationDirection: CGFloat = translationX > 0 ? 1 : -1
         let shoudDismissCard = abs(translationX) > threshold
-    
-        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.1, options: .curveEaseOut, animations: {
-            if shoudDismissCard {
-                let offScreenTransform = self.transform.translatedBy(x: 1000 * translationDirection, y: 0)
-                self.transform = offScreenTransform
+        
+        if shoudDismissCard {
+            guard  let homeController = delegate as? HomeViewController else { return }
+            
+            if translationDirection == 1 {
+                homeController.handleLike()
             } else {
+                homeController.handleDislike()
+            }
+        } else {
+            UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.1, options: .curveEaseOut, animations: {
                 self.transform = .identity
-            }
-        }) { (_) in
-            self.transform = .identity
-            if shoudDismissCard {
-                self.removeFromSuperview()
-                self.delegate?.didRemove(cardView: self)
-            }
+            })
         }
+        
+        
+        
+        
+    
+//        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.1, options: .curveEaseOut, animations: {
+//            if shoudDismissCard {
+//                let offScreenTransform = self.transform.translatedBy(x: 1000 * translationDirection, y: 0)
+//                self.transform = offScreenTransform
+//            } else {
+//                self.transform = .identity
+//            }
+//        }) { (_) in
+//            self.transform = .identity
+//            if shoudDismissCard {
+//                self.removeFromSuperview()
+//                self.delegate?.didRemove(cardView: self)
+//            }
+//        }
     }
     
     

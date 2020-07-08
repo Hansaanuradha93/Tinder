@@ -114,13 +114,13 @@ extension HomeViewController {
     }
     
     
-    @objc fileprivate func handleDislike() {
+    @objc func handleDislike() {
         saveSwipeToFirestore(isLiked: false)
         performSwipeAnimation(translation: -1000, angle: -15)
     }
     
     
-    @objc fileprivate func handleLike() {
+    @objc func handleLike() {
         saveSwipeToFirestore(isLiked: true)
         performSwipeAnimation(translation: 1000, angle: 15)
     }
