@@ -120,12 +120,47 @@ extension HomeViewController {
     
     
     @objc fileprivate func handleLike() {
+        saveSwipeToFirestore()
         performSwipeAnimation(translation: 1000, angle: 15)
     }
     
     
     @objc fileprivate func handleRefresh() {
         fetchData()
+    }
+    
+    
+    fileprivate func saveSwipeToFirestore() {
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let reference = Firestore.firestore().collection("swipes").document(uid)
+        
+        guard let cardUID = topCardView?.cardViewModel.uid else { return }
+        let documentData = [cardUID: 1]
+        
+        reference.getDocument { (snapshot, error) in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            
+            if snapshot?.exists ?? false {
+                reference.updateData(documentData) { (error) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                        return
+                    }
+                    print("Swipe successfully updated")
+                }
+            } else {
+                reference.setData(documentData) { error in
+                    if let error = error {
+                        print(error.localizedDescription)
+                        return
+                    }
+                    print("Swipe successfully saved")
+                }
+            }
+        }
     }
     
     

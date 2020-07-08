@@ -9,6 +9,7 @@ protocol ProducesCardViewModel {
 class CardViewModel {
     
     // MARK: Properties
+    let uid: String
     let imageUrls: [String]
     let attributedText: NSAttributedString
     let textAlignment: NSTextAlignment
@@ -22,7 +23,8 @@ class CardViewModel {
     
     
     // MARK: Initializers
-    init(imageUrls: [String] = [""], attributedText: NSAttributedString = NSAttributedString(), textAlignment: NSTextAlignment = .center) {
+    init(uid: String = "", imageUrls: [String] = [""], attributedText: NSAttributedString = NSAttributedString(), textAlignment: NSTextAlignment = .center) {
+        self.uid = uid
         self.imageUrls = imageUrls
         self.attributedText = attributedText
         self.textAlignment = textAlignment

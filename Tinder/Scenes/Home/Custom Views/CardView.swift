@@ -16,8 +16,8 @@ class CardView: UIView {
 
     // MARK: Configurations
     fileprivate let threshold: CGFloat = 100
-    fileprivate var cardViewModel: CardViewModel!
     fileprivate let barDiselectedColor = UIColor.appColor(color: .darkGray)
+    var cardViewModel: CardViewModel!
     var nextCardView: CardView?
     var delegate: CardViewDelegate?
     

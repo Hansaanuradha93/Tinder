@@ -33,6 +33,7 @@ struct User {
 extension User: ProducesCardViewModel {
     
     func toCardViewModel() -> CardViewModel {
+        let uid = self.uid ?? ""
         let nameString = name != nil ? name! : "Not available"
         let ageString = age != nil ? "\(age!)" : "N\\A"
         let professionString = profession != nil ? profession! : "Not available"
@@ -43,6 +44,6 @@ extension User: ProducesCardViewModel {
         if let url = imageUrl1 { imageUrls.append(url) }
         if let imageUrl2 = imageUrl2 { imageUrls.append(imageUrl2) }
         if let imageUrl3 = imageUrl3 { imageUrls.append(imageUrl3) }
-        return CardViewModel(imageUrls: imageUrls, attributedText: attributedText, textAlignment: .left)
+        return CardViewModel(uid: uid, imageUrls: imageUrls, attributedText: attributedText, textAlignment: .left)
     }
 }
