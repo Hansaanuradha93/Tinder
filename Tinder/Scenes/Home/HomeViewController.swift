@@ -125,6 +125,7 @@ extension HomeViewController {
     
     
     @objc fileprivate func handleRefresh() {
+        cardsDeckView.subviews.forEach{ $0.removeFromSuperview() }
         fetchData()
     }
     
