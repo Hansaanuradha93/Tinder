@@ -9,7 +9,8 @@ class MatchView: UIView {
     fileprivate let descriptionLabel = UILabel()
     fileprivate let currentImageView = TDImageView(borderWidth: 2, borderColor: .white)
     fileprivate let cardUserImageView = TDImageView(borderWidth: 2, borderColor: .white)
-    fileprivate let sendMessageButton = TDGradientButton(backgroundColor: .clear, title: "SEND MESSAGE", titleColor: .white, radius: 25)
+    fileprivate let sendMessageButton = TDGradientButton( title: "SEND MESSAGE", titleColor: .white, fontSize: 16)
+    fileprivate let keepSwipingButton = TDGradientBorderButton( title: "Keep Swiping", titleColor: .white, fontSize: 16)
 
     
     // MARK: Initializers
@@ -57,6 +58,7 @@ extension MatchView {
         addSubview(currentImageView)
         addSubview(cardUserImageView)
         addSubview(sendMessageButton)
+        addSubview(keepSwipingButton)
         
         descriptionLabel.text = "You and I have \nLiked eachother"
         descriptionLabel.numberOfLines = 0
@@ -78,7 +80,7 @@ extension MatchView {
         cardUserImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         cardUserImageView.layer.cornerRadius = dimensions / 2
         
-        sendMessageButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        sendMessageButton.anchor(top: currentImageView.bottomAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 32, left: 48, bottom: 0, right: 48), size: .init(width: 0, height: 50))
+        sendMessageButton.anchor(top: currentImageView.bottomAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 32, left: 48, bottom: 0, right: 48), size: .init(width: 0, height: 60))
+        keepSwipingButton.anchor(top: sendMessageButton.bottomAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 16, left: 48, bottom: 0, right: 48), size: .init(width: 0, height: 60))
     }
 }
