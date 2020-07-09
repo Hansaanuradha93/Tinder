@@ -178,9 +178,17 @@ extension HomeViewController {
             
             let hasMatched = data[uid] as? Int == 1
             if hasMatched {
-                self.presentAlert(title: "Matched", message: "You two have matched!", buttonTitle: "Ok")
+                self.presentMatchView(cardUID: cardUID)
             }
         }
+    }
+    
+    
+    fileprivate func presentMatchView(cardUID: String) {
+        let redView = UIView()
+        redView.backgroundColor = .red
+        view.addSubview(redView)
+        redView.fillSuperview()
     }
     
     

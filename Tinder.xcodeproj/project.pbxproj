@@ -10,6 +10,7 @@
 		17358587252E3CA982B52A5A /* Pods_Tinder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC5D9E6E2194471FD3AE46B8 /* Pods_Tinder.framework */; };
 		4702535824A99A9800F725A1 /* AgeRangeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4702535724A99A9800F725A1 /* AgeRangeCell.swift */; };
 		4738A6CD249BD0B400C55385 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4738A6CC249BD0B400C55385 /* CardView.swift */; };
+		474003D524B7067300EC302E /* MatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474003D424B7067300EC302E /* MatchView.swift */; };
 		4742E8BA24A1C110005EE6EB /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4742E8B924A1C110005EE6EB /* NetworkManager.swift */; };
 		4742E8BC24A1C184005EE6EB /* UIImageView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4742E8BB24A1C184005EE6EB /* UIImageView+Ext.swift */; };
 		4750231824B191E7000472EB /* SwipingPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4750231724B191E7000472EB /* SwipingPhotosViewController.swift */; };
@@ -48,6 +49,7 @@
 /* Begin PBXFileReference section */
 		4702535724A99A9800F725A1 /* AgeRangeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeRangeCell.swift; sourceTree = "<group>"; };
 		4738A6CC249BD0B400C55385 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		474003D424B7067300EC302E /* MatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchView.swift; sourceTree = "<group>"; };
 		4742E8B924A1C110005EE6EB /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		4742E8BB24A1C184005EE6EB /* UIImageView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Ext.swift"; sourceTree = "<group>"; };
 		4750231724B191E7000472EB /* SwipingPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipingPhotosViewController.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				4738A6CC249BD0B400C55385 /* CardView.swift */,
 				479F609E249B0ED100BD0774 /* HomeTopButtonControlsStackView.swift */,
 				479F609C249B080100BD0774 /* HomeBottomButtonControlsStackView.swift */,
+				474003D424B7067300EC302E /* MatchView.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -487,6 +490,7 @@
 				47E2D5BB24B3463F00FECD87 /* Constants.swift in Sources */,
 				47CE8208249D009C00B9696E /* Advertiser.swift in Sources */,
 				4738A6CD249BD0B400C55385 /* CardView.swift in Sources */,
+				474003D524B7067300EC302E /* MatchView.swift in Sources */,
 				47A80191249A814300768831 /* UIView+Ext.swift in Sources */,
 				479A073D24A3BAB700AB21C8 /* HeaderLabel.swift in Sources */,
 				4750231824B191E7000472EB /* SwipingPhotosViewController.swift in Sources */,

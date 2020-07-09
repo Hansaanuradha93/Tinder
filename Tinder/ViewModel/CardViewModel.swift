@@ -53,7 +53,9 @@ extension CardViewModel {
                 let user = User(dictionary: documentSnapshot.data())
                 self.lastFetchedUser = user
                 let isNotCurrentUser = user.uid != uid
-                let hasNotSwipedBefore = swipes?[user.uid ?? ""] == nil
+                // TODO: - uncomment below line to filtered already swiped users
+//                let hasNotSwipedBefore = swipes?[user.uid ?? ""] == nil
+                let hasNotSwipedBefore = true
                 if isNotCurrentUser && hasNotSwipedBefore {
                     completion(user)
                 } else {
