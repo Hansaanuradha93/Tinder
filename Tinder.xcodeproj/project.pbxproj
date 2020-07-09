@@ -11,6 +11,7 @@
 		4702535824A99A9800F725A1 /* AgeRangeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4702535724A99A9800F725A1 /* AgeRangeCell.swift */; };
 		4738A6CD249BD0B400C55385 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4738A6CC249BD0B400C55385 /* CardView.swift */; };
 		474003D524B7067300EC302E /* MatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474003D424B7067300EC302E /* MatchView.swift */; };
+		474003D824B71BD900EC302E /* TDImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474003D724B71BD900EC302E /* TDImageView.swift */; };
 		4742E8BA24A1C110005EE6EB /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4742E8B924A1C110005EE6EB /* NetworkManager.swift */; };
 		4742E8BC24A1C184005EE6EB /* UIImageView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4742E8BB24A1C184005EE6EB /* UIImageView+Ext.swift */; };
 		4750231824B191E7000472EB /* SwipingPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4750231724B191E7000472EB /* SwipingPhotosViewController.swift */; };
@@ -50,6 +51,7 @@
 		4702535724A99A9800F725A1 /* AgeRangeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeRangeCell.swift; sourceTree = "<group>"; };
 		4738A6CC249BD0B400C55385 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		474003D424B7067300EC302E /* MatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchView.swift; sourceTree = "<group>"; };
+		474003D724B71BD900EC302E /* TDImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDImageView.swift; sourceTree = "<group>"; };
 		4742E8B924A1C110005EE6EB /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		4742E8BB24A1C184005EE6EB /* UIImageView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Ext.swift"; sourceTree = "<group>"; };
 		4750231724B191E7000472EB /* SwipingPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipingPhotosViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +104,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		474003D624B71BBA00EC302E /* Image Views */ = {
+			isa = PBXGroup;
+			children = (
+				474003D724B71BD900EC302E /* TDImageView.swift */,
+			);
+			path = "Image Views";
+			sourceTree = "<group>";
+		};
 		4742E8B724A1C0EF005EE6EB /* Bindable */ = {
 			isa = PBXGroup;
 			children = (
@@ -234,6 +244,7 @@
 		479F609A249B07BF00BD0774 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				474003D624B71BBA00EC302E /* Image Views */,
 				479A073E24A3BB8900AB21C8 /* Cells */,
 				479A073B24A3BA5400AB21C8 /* Labels */,
 				479A073824A3976B00AB21C8 /* Image Picker */,
@@ -500,6 +511,7 @@
 				47FC5317249DF0210053C4F7 /* UIColor+Ext.swift in Sources */,
 				479EEFE324A067E90091BEF7 /* Bindable.swift in Sources */,
 				4798806F249A7B3E00829930 /* AppDelegate.swift in Sources */,
+				474003D824B71BD900EC302E /* TDImageView.swift in Sources */,
 				479A074024A3BBFD00AB21C8 /* SettingsCell.swift in Sources */,
 				47FC5320249E8B5E0053C4F7 /* TDButton.swift in Sources */,
 				47FC531A249E7C660053C4F7 /* SignupViewController.swift in Sources */,
