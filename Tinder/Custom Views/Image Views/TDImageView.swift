@@ -12,10 +12,11 @@ class TDImageView: UIImageView {
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
     
-    convenience init(borderWidth: CGFloat, borderColor: UIColor) {
+    convenience init(image: UIImage = Asserts.placeHolder, borderWidth: CGFloat = 0, borderColor: UIColor = .clear) {
         self.init(frame: .zero)
-        layer.borderWidth = borderWidth
-        layer.borderColor = borderColor.cgColor
+        self.image = image
+        self.layer.borderWidth = borderWidth
+        self.layer.borderColor = borderColor.cgColor
     }
 }
 
