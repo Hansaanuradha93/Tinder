@@ -185,10 +185,9 @@ extension HomeViewController {
     
     
     fileprivate func presentMatchView(cardUID: String) {
-        let redView = UIView()
-        redView.backgroundColor = .red
-        view.addSubview(redView)
-        redView.fillSuperview()
+        let matchView = MatchView()
+        view.addSubview(matchView)
+        matchView.fillSuperview()
     }
     
     
