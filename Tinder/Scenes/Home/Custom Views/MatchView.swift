@@ -9,6 +9,7 @@ class MatchView: UIView {
     fileprivate let descriptionLabel = UILabel()
     fileprivate let currentImageView = TDImageView(borderWidth: 2, borderColor: .white)
     fileprivate let cardUserImageView = TDImageView(borderWidth: 2, borderColor: .white)
+    fileprivate let sendMessageButton = TDGradientButton(backgroundColor: .clear, title: "SEND MESSAGE", titleColor: .white, radius: 25)
 
     
     // MARK: Initializers
@@ -55,6 +56,7 @@ extension MatchView {
         addSubview(descriptionLabel)
         addSubview(currentImageView)
         addSubview(cardUserImageView)
+        addSubview(sendMessageButton)
         
         descriptionLabel.text = "You and I have \nLiked eachother"
         descriptionLabel.numberOfLines = 0
@@ -62,7 +64,7 @@ extension MatchView {
         descriptionLabel.textColor = .white
         descriptionLabel.font = UIFont.systemFont(ofSize: 20)
         
-        itsMatchImageView.anchor(top: nil, leading: nil, bottom: descriptionLabel.topAnchor, trailing: nil, padding: .init(top: 0, left: 0, bottom: 32, right: 0), size: .init(width: 300, height: 80))
+        itsMatchImageView.anchor(top: nil, leading: nil, bottom: descriptionLabel.topAnchor, trailing: nil, padding: .init(top: 0, left: 0, bottom: 16, right: 0), size: .init(width: 300, height: 80))
         itsMatchImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         descriptionLabel.anchor(top: nil, leading: leadingAnchor, bottom: currentImageView.topAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 0, bottom: 32, right: 0), size: .init(width: 0, height: 50))
         
@@ -75,5 +77,8 @@ extension MatchView {
         cardUserImageView.anchor(top: nil, leading: centerXAnchor, bottom: nil, trailing: nil, padding: .init(top: 0, left: 16, bottom: 0, right: 0), size: .init(width: dimensions, height: dimensions))
         cardUserImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         cardUserImageView.layer.cornerRadius = dimensions / 2
+        
+        sendMessageButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        sendMessageButton.anchor(top: currentImageView.bottomAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, padding: .init(top: 32, left: 48, bottom: 0, right: 48), size: .init(width: 0, height: 50))
     }
 }

@@ -1,6 +1,6 @@
 import UIKit
 
-class TDButton: UIButton {
+class TDGradientButton: UIButton {
 
     // MARK: Initializers
     override init(frame: CGRect) {
@@ -15,11 +15,28 @@ class TDButton: UIButton {
         self.init(frame: .zero)
         self.setup(backgroundColor: backgroundColor, title: title, titleColor: titleColor, radius: radius, fontSize: fontSize)
     }
+    
+    
+    // MARK: Overriden Methods
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        setupGradientView(rect)
+    }
 }
 
 
 // MARK: - Methods
-extension TDButton {
+extension TDGradientButton {
+    
+    fileprivate func setupGradientView(_ rect: CGRect) {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [UIColor.appColor(color: .pink).cgColor, UIColor.appColor(color: .orange).cgColor]
+        gradientLayer.startPoint = CGPoint(x: 0, y: 0.5)
+        gradientLayer.endPoint = CGPoint(x: 1, y: 0.5)
+        layer.insertSublayer(gradientLayer, at: 0)
+        gradientLayer.frame = rect
+    }
+    
     
     fileprivate func setup(backgroundColor: UIColor, title: String, titleColor: UIColor, radius: CGFloat, fontSize: CGFloat) {
         self.setTitle(title, for: .normal)
