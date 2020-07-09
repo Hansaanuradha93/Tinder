@@ -4,6 +4,7 @@ import Firebase
 class SignupViewController: UIViewController {
     
     // MARK: Properties
+    fileprivate let gradientLayer = CAGradientLayer()
     fileprivate let profilePhotoButton = TDButton(backgroundColor: .white, title: "Select Photo", radius: 16, fontSize: 32)
     fileprivate let fullNameTextField = TDTextField(padding: 16, placeholderText: "Enter full name", radius: 25)
     fileprivate let emailTextField = TDTextField(padding: 16, placeholderText: "Enter email", radius: 25)
@@ -26,6 +27,7 @@ class SignupViewController: UIViewController {
     // MARK: View Controller
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupGradient()
         layoutUI()
         setupNotifications()
         handleTapGesture()
@@ -35,7 +37,7 @@ class SignupViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        setupGradient()
+        gradientLayer.frame = view.bounds
     }
     
     
@@ -203,10 +205,8 @@ extension SignupViewController {
     
     
     fileprivate func setupGradient() {
-        let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [UIColor.appColor(color: .orange).cgColor, UIColor.appColor(color: .pink).cgColor]
         gradientLayer.locations = [0, 1]
-        gradientLayer.frame = view.bounds
         view.layer.insertSublayer(gradientLayer, at: 0)
     }
 }

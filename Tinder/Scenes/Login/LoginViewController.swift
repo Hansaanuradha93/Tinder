@@ -8,6 +8,7 @@ protocol LoginViewControllerDelegate {
 class LoginViewController: UIViewController {
     
     // MARK: Properties
+    fileprivate let gradientLayer = CAGradientLayer()
     fileprivate let emailTextField = TDTextField(padding: 24, placeholderText: "Enter email", radius: 25)
     fileprivate let passwordTextField = TDTextField(padding: 24, placeholderText: "Enter password", radius: 25)
     fileprivate let loginButton = TDButton(backgroundColor: UIColor.appColor(color: .lightGray), title: "Login", titleColor: .gray, radius: 25, fontSize: 24)
@@ -27,6 +28,7 @@ class LoginViewController: UIViewController {
     // MARK: View Controller
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupGradient()
         setupLayout()
         setupBindables()
     }
@@ -34,7 +36,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        setupGradient()
+        gradientLayer.frame = view.bounds
     }
 }
 
@@ -96,10 +98,8 @@ extension LoginViewController {
     
     
     fileprivate func setupGradient() {
-        let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [UIColor.appColor(color: .orange).cgColor, UIColor.appColor(color: .pink).cgColor]
         gradientLayer.locations = [0, 1]
-        gradientLayer.frame = view.bounds
         view.layer.insertSublayer(gradientLayer, at: 0)
     }
     
