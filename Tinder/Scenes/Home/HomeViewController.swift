@@ -134,36 +134,32 @@ extension HomeViewController {
         let reference = Firestore.firestore().collection("swipes").document(uid)
         
         guard let cardUID = topCardView?.cardViewModel.uid else { return }
+        if isLiked { self.checkIfMatchExist(cardUID: cardUID) }
+
         let value = isLiked ? 1 : 0
         let documentData = [cardUID: value]
         
-        reference.getDocument { [weak self] snapshot, error in
-            guard let self = self else { return }
+        reference.getDocument { snapshot, error in
             if let error = error {
                 print(error.localizedDescription)
                 return
             }
             
             if snapshot?.exists ?? false {
-                reference.updateData(documentData) { [weak self] error in
-                    guard let self = self else { return }
+                reference.updateData(documentData) { error in
                     if let error = error {
                         print(error.localizedDescription)
                         return
                     }
                     print("Swipe successfully updated")
-                    if isLiked { self.checkIfMatchExist(cardUID: cardUID) }
-                    
                 }
             } else {
-                reference.setData(documentData) { [weak self] error in
-                    guard let self = self else { return }
+                reference.setData(documentData) { error in
                     if let error = error {
                         print(error.localizedDescription)
                         return
                     }
                     print("Swipe successfully saved")
-                    if isLiked { self.checkIfMatchExist(cardUID: cardUID) }
                 }
             }
         }
