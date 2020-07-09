@@ -18,6 +18,7 @@
 		4750231B24B19B45000472EB /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4750231A24B19B45000472EB /* PhotoViewController.swift */; };
 		4753673924AE43D000F257D9 /* UserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4753673824AE43D000F257D9 /* UserDetailsViewController.swift */; };
 		4766586124B789E900E39A97 /* TDGradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4766586024B789E900E39A97 /* TDGradientButton.swift */; };
+		4766586324B78EC100E39A97 /* TDGradientBorderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4766586224B78EC100E39A97 /* TDGradientBorderButton.swift */; };
 		4798806F249A7B3E00829930 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4798806E249A7B3E00829930 /* AppDelegate.swift */; };
 		47988071249A7B3E00829930 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47988070249A7B3E00829930 /* SceneDelegate.swift */; };
 		47988073249A7B3E00829930 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47988072249A7B3E00829930 /* HomeViewController.swift */; };
@@ -59,6 +60,7 @@
 		4750231A24B19B45000472EB /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		4753673824AE43D000F257D9 /* UserDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsViewController.swift; sourceTree = "<group>"; };
 		4766586024B789E900E39A97 /* TDGradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDGradientButton.swift; sourceTree = "<group>"; };
+		4766586224B78EC100E39A97 /* TDGradientBorderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDGradientBorderButton.swift; sourceTree = "<group>"; };
 		4798806B249A7B3E00829930 /* Tinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4798806E249A7B3E00829930 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47988070249A7B3E00829930 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -358,6 +360,7 @@
 			children = (
 				47FC531F249E8B5E0053C4F7 /* TDButton.swift */,
 				4766586024B789E900E39A97 /* TDGradientButton.swift */,
+				4766586224B78EC100E39A97 /* TDGradientBorderButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -521,6 +524,7 @@
 				47FC531A249E7C660053C4F7 /* SignupViewController.swift in Sources */,
 				47CE8203249CBCDB00B9696E /* User.swift in Sources */,
 				47C6359024AB8EAA00B3C4C6 /* LoginViewModel.swift in Sources */,
+				4766586324B78EC100E39A97 /* TDGradientBorderButton.swift in Sources */,
 				47DC81FA249FBE7500B9B6FF /* SignUpViewModel.swift in Sources */,
 				479F609D249B080100BD0774 /* HomeBottomButtonControlsStackView.swift in Sources */,
 				4742E8BC24A1C184005EE6EB /* UIImageView+Ext.swift in Sources */,
