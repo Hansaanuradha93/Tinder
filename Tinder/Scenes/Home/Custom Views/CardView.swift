@@ -9,6 +9,7 @@ protocol CardViewDelegate {
 class CardView: UIView {
     
     // MARK: Properties
+    fileprivate let gradientLayer = CAGradientLayer()
     fileprivate let swipingPhotoController = SwipingPhotosViewController(isCardViewMode: true)
     lazy var swipingView = swipingPhotoController.view!
     fileprivate let informationLabel = UILabel()
@@ -32,6 +33,7 @@ class CardView: UIView {
     convenience init(cardViewModel: CardViewModel) {
         self.init()
         self.cardViewModel = cardViewModel
+        configureGradientView()
         setupViews(cardViewModel)
     }
     
@@ -42,8 +44,8 @@ class CardView: UIView {
     // MARK: Overridden Methods
     override func layoutSubviews() {
         super.layoutSubviews()
-        configureGradientView()
         addCornerRadius()
+        gradientLayer.frame = self.frame
     }
 }
 
@@ -143,10 +145,8 @@ extension CardView {
     
     
     fileprivate func configureGradientView() {
-        let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
         gradientLayer.locations = [0.5, 1.1]
-        gradientLayer.frame = self.frame
         layer.insertSublayer(gradientLayer, at: 1)
     }
     
