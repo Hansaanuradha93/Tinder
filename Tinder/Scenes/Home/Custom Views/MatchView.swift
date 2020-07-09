@@ -8,7 +8,6 @@ class MatchView: UIView {
     fileprivate let currentImageView = TDImageView(borderWidth: 2, borderColor: .white)
     fileprivate let cardUserImageView = TDImageView(borderWidth: 2, borderColor: .white)
 
-
     
     // MARK: Initializers
     override init(frame: CGRect) {
@@ -17,13 +16,13 @@ class MatchView: UIView {
         setupUI()
     }
     
+    
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 }
 
 
 // MARK: - Methods
 extension MatchView {
-    
     
     @objc fileprivate func handleTapDismiss() {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
