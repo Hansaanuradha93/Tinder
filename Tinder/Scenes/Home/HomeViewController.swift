@@ -186,6 +186,7 @@ extension HomeViewController {
     
     fileprivate func presentMatchView(cardUID: String) {
         let matchView = MatchView()
+        matchView.cardUID = cardUID
         view.addSubview(matchView)
         matchView.fillSuperview()
     }

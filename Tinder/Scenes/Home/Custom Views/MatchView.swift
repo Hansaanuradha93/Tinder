@@ -1,4 +1,5 @@
 import UIKit
+import Firebase
 
 class MatchView: UIView {
     
@@ -11,14 +12,19 @@ class MatchView: UIView {
     fileprivate let cardUserImageView = TDImageView(borderWidth: 2, borderColor: .white)
     fileprivate let sendMessageButton = TDGradientButton( title: "SEND MESSAGE", titleColor: .white, fontSize: 16)
     fileprivate let keepSwipingButton = TDGradientBorderButton( title: "Keep Swiping", titleColor: .white, fontSize: 16)
-
+    
+    lazy var views = [itsMatchImageView, descriptionLabel, currentImageView, cardUserImageView, sendMessageButton, keepSwipingButton]
+    var cardUID: String! {
+        didSet {
+            fetchCardUser()
+        }
+    }
     
     // MARK: Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupBlurView()
         setupUI()
-        setupAnimtation()
     }
     
     
@@ -29,7 +35,24 @@ class MatchView: UIView {
 // MARK: - Methods
 extension MatchView {
     
+    fileprivate func fetchCardUser() {
+        let reference = Firestore.firestore().collection("users").document(cardUID)
+        reference.getDocument { snapshot, error in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            guard let dictionary = snapshot?.data() else { return }
+            let user = User(dictionary: dictionary)
+            self.cardUserImageView.downloadImage(from: user.imageUrl1 ?? "")
+            self.setupAnimtation()
+        }
+    }
+    
+    
     fileprivate func setupAnimtation() {
+        views.forEach{ $0.alpha = 1 }
+        
         let angle = 30 * CGFloat.pi / 180
         currentImageView.transform = CGAffineTransform(rotationAngle: angle).concatenating(CGAffineTransform(translationX: 190, y: 0))
         cardUserImageView.transform = CGAffineTransform(rotationAngle: -angle).concatenating(CGAffineTransform(translationX: -190, y: 0))
@@ -81,23 +104,19 @@ extension MatchView {
     fileprivate func setupUI() {
         let dimensions: CGFloat = 140
         
-        addSubview(itsMatchImageView)
-        addSubview(descriptionLabel)
-        addSubview(currentImageView)
-        addSubview(cardUserImageView)
-        addSubview(sendMessageButton)
-        addSubview(keepSwipingButton)
+        for view in views {
+            addSubview(view)
+            view.alpha = 0
+        }
         
         itsMatchImageView.anchor(top: nil, leading: nil, bottom: descriptionLabel.topAnchor, trailing: nil, padding: .init(top: 0, left: 0, bottom: 16, right: 0), size: .init(width: 300, height: 80))
         itsMatchImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         descriptionLabel.anchor(top: nil, leading: leadingAnchor, bottom: currentImageView.topAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 0, bottom: 32, right: 0), size: .init(width: 0, height: 50))
         
-        currentImageView.image = #imageLiteral(resourceName: "kelly1") // TODO: remove this image. this one is temporary
         currentImageView.anchor(top: nil, leading: nil, bottom: nil, trailing: centerXAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 16), size: .init(width: dimensions, height: dimensions))
         currentImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         currentImageView.layer.cornerRadius = dimensions / 2
         
-        cardUserImageView.image = #imageLiteral(resourceName: "lady4c") // TODO: remove this image. this one is temporary
         cardUserImageView.anchor(top: nil, leading: centerXAnchor, bottom: nil, trailing: nil, padding: .init(top: 0, left: 16, bottom: 0, right: 0), size: .init(width: dimensions, height: dimensions))
         cardUserImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         cardUserImageView.layer.cornerRadius = dimensions / 2
