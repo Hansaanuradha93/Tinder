@@ -20,6 +20,12 @@ class MatchView: UIView {
         }
     }
     
+    var currentUser: User! {
+        didSet {
+            setupCurrentUser()
+        }
+    }
+    
     // MARK: Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,6 +40,11 @@ class MatchView: UIView {
 
 // MARK: - Methods
 extension MatchView {
+    
+    fileprivate func setupCurrentUser() {
+        currentImageView.downloadImage(from: currentUser.imageUrl1 ?? "")
+    }
+    
     
     fileprivate func fetchCardUser() {
         let reference = Firestore.firestore().collection("users").document(cardUID)

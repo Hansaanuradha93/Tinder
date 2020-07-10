@@ -15,8 +15,8 @@ class CardViewModel {
     let textAlignment: NSTextAlignment
     
     fileprivate var lastFetchedUser: User?
-    fileprivate var currentUser: User?
     fileprivate let userPaginationLimit = 2
+    var currentUser: User?
     
     // MARK: Bindable
     var bindableIsFetchingUsers = Bindable<Bool>()
