@@ -108,6 +108,7 @@ extension CardViewModel {
             }
             self.currentUser = User(dictionary: dictionary)
             self.fetchSwipes(uid: uid, completion: completion)
+            NetworkManager.shared.cacheImage(from: self.currentUser?.imageUrl1 ?? "")
         }
     }
 }

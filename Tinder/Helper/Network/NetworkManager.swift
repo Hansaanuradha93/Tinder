@@ -14,6 +14,23 @@ class NetworkManager {
 // MARK: - Methods
 extension NetworkManager {
     
+    func cacheImage(from urlString: String) {
+        let cacheKey = NSString(string: urlString)
+        
+        guard let url = URL(string: urlString) else { return }
+        
+        let task = URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
+            guard let self = self,
+                    error == nil,
+                    let response = response as? HTTPURLResponse, response.statusCode == 200,
+                    let data = data,
+                    let image = UIImage(data: data) else { return }
+            self.cache.setObject(image, forKey: cacheKey)
+        }
+        task.resume()
+    }
+    
+    
     func downloadImage(from urlString: String, completed: @escaping(UIImage?) -> Void) {
         let cacheKey = NSString(string: urlString)
         
