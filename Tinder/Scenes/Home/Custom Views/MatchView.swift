@@ -18,6 +18,7 @@ class MatchView: UIView {
         super.init(frame: frame)
         setupBlurView()
         setupUI()
+        setupAnimtation()
     }
     
     
@@ -27,6 +28,28 @@ class MatchView: UIView {
 
 // MARK: - Methods
 extension MatchView {
+    
+    fileprivate func setupAnimtation() {
+        let angle = 30 * CGFloat.pi / 180
+        currentImageView.transform = CGAffineTransform(rotationAngle: angle).concatenating(CGAffineTransform(translationX: 190, y: 0))
+        cardUserImageView.transform = CGAffineTransform(rotationAngle: -angle).concatenating(CGAffineTransform(translationX: -190, y: 0))
+        
+        UIView.animateKeyframes(withDuration: 1.2, delay: 0, options: .calculationModeCubic, animations: {
+            // animation 1: translation back to original position
+            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.45) {
+                self.currentImageView.transform = CGAffineTransform(rotationAngle: angle)
+                self.cardUserImageView.transform = CGAffineTransform(rotationAngle: -angle)
+            }
+            // animation 2: rotation
+            UIView.addKeyframe(withRelativeStartTime: 0.6, relativeDuration: 0.3) {
+                self.currentImageView.transform = .identity
+                self.cardUserImageView.transform = .identity
+            }
+        }) { (_) in
+            
+        }
+    }
+    
     
     @objc fileprivate func handleTapDismiss() {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
