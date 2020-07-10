@@ -19,6 +19,7 @@
 		4753673924AE43D000F257D9 /* UserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4753673824AE43D000F257D9 /* UserDetailsViewController.swift */; };
 		4766586124B789E900E39A97 /* TDGradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4766586024B789E900E39A97 /* TDGradientButton.swift */; };
 		4766586324B78EC100E39A97 /* TDGradientBorderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4766586224B78EC100E39A97 /* TDGradientBorderButton.swift */; };
+		477984BA24B844B40040624B /* TDLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477984B924B844B40040624B /* TDLabel.swift */; };
 		4798806F249A7B3E00829930 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4798806E249A7B3E00829930 /* AppDelegate.swift */; };
 		47988071249A7B3E00829930 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47988070249A7B3E00829930 /* SceneDelegate.swift */; };
 		47988073249A7B3E00829930 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47988072249A7B3E00829930 /* HomeViewController.swift */; };
@@ -61,6 +62,7 @@
 		4753673824AE43D000F257D9 /* UserDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsViewController.swift; sourceTree = "<group>"; };
 		4766586024B789E900E39A97 /* TDGradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDGradientButton.swift; sourceTree = "<group>"; };
 		4766586224B78EC100E39A97 /* TDGradientBorderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDGradientBorderButton.swift; sourceTree = "<group>"; };
+		477984B924B844B40040624B /* TDLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDLabel.swift; sourceTree = "<group>"; };
 		4798806B249A7B3E00829930 /* Tinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4798806E249A7B3E00829930 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47988070249A7B3E00829930 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				479A073C24A3BAB700AB21C8 /* HeaderLabel.swift */,
+				477984B924B844B40040624B /* TDLabel.swift */,
 			);
 			path = Labels;
 			sourceTree = "<group>";
@@ -503,6 +506,7 @@
 				479EEFDD24A04E670091BEF7 /* Keys.swift in Sources */,
 				479EEFDF24A053F30091BEF7 /* UIViewController+Ext.swift in Sources */,
 				47D3E79E24A457700060B197 /* UIButton+Ext.swift in Sources */,
+				477984BA24B844B40040624B /* TDLabel.swift in Sources */,
 				479A073A24A3978E00AB21C8 /* TDImagePickerController.swift in Sources */,
 				47E2D5BB24B3463F00FECD87 /* Constants.swift in Sources */,
 				47CE8208249D009C00B9696E /* Advertiser.swift in Sources */,

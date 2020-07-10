@@ -6,7 +6,7 @@ class MatchView: UIView {
     fileprivate let blurView = UIBlurEffect(style: .dark)
     fileprivate lazy var visualEffectView = UIVisualEffectView(effect: blurView)
     fileprivate let itsMatchImageView = TDImageView(image: Asserts.itsMatch)
-    fileprivate let descriptionLabel = UILabel()
+    fileprivate let descriptionLabel = TDLabel(text: "You and I have \nLiked eachother", textColor: .white, fontSize: 20, numberOfLines: 0)
     fileprivate let currentImageView = TDImageView(borderWidth: 2, borderColor: .white)
     fileprivate let cardUserImageView = TDImageView(borderWidth: 2, borderColor: .white)
     fileprivate let sendMessageButton = TDGradientButton( title: "SEND MESSAGE", titleColor: .white, fontSize: 16)
@@ -87,12 +87,6 @@ extension MatchView {
         addSubview(cardUserImageView)
         addSubview(sendMessageButton)
         addSubview(keepSwipingButton)
-        
-        descriptionLabel.text = "You and I have \nLiked eachother"
-        descriptionLabel.numberOfLines = 0
-        descriptionLabel.textAlignment = .center
-        descriptionLabel.textColor = .white
-        descriptionLabel.font = UIFont.systemFont(ofSize: 20)
         
         itsMatchImageView.anchor(top: nil, leading: nil, bottom: descriptionLabel.topAnchor, trailing: nil, padding: .init(top: 0, left: 0, bottom: 16, right: 0), size: .init(width: 300, height: 80))
         itsMatchImageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
