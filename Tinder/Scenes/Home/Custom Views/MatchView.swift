@@ -7,24 +7,20 @@ class MatchView: UIView {
     fileprivate let blurView = UIBlurEffect(style: .dark)
     fileprivate lazy var visualEffectView = UIVisualEffectView(effect: blurView)
     fileprivate let itsMatchImageView = TDImageView(image: Asserts.itsMatch)
-    fileprivate let descriptionLabel = TDLabel(text: "You and I have \nLiked eachother", textColor: .white, fontSize: 20, numberOfLines: 0)
+    fileprivate let descriptionLabel = TDLabel(textColor: .white, fontSize: 20, numberOfLines: 0)
     fileprivate let currentImageView = TDImageView(borderWidth: 2, borderColor: .white)
     fileprivate let cardUserImageView = TDImageView(borderWidth: 2, borderColor: .white)
     fileprivate let sendMessageButton = TDGradientButton( title: "SEND MESSAGE", titleColor: .white, fontSize: 16)
     fileprivate let keepSwipingButton = TDGradientBorderButton( title: "Keep Swiping", titleColor: .white, fontSize: 16)
     
     lazy var views = [itsMatchImageView, descriptionLabel, currentImageView, cardUserImageView, sendMessageButton, keepSwipingButton]
+    var currentUser: User!
     var cardUID: String! {
         didSet {
             fetchCardUser()
         }
     }
     
-    var currentUser: User! {
-        didSet {
-            setupCurrentUser()
-        }
-    }
     
     // MARK: Initializers
     override init(frame: CGRect) {
@@ -41,8 +37,11 @@ class MatchView: UIView {
 // MARK: - Methods
 extension MatchView {
     
-    fileprivate func setupCurrentUser() {
+    fileprivate func setupCard(user: User) {
         currentImageView.downloadImage(from: currentUser.imageUrl1 ?? "")
+        descriptionLabel.text = "You and \(user.name ?? "")\n have liked eachother"
+        cardUserImageView.downloadImage(from: user.imageUrl1 ?? "")
+        setupAnimtation()
     }
     
     
@@ -55,8 +54,7 @@ extension MatchView {
             }
             guard let dictionary = snapshot?.data() else { return }
             let user = User(dictionary: dictionary)
-            self.cardUserImageView.downloadImage(from: user.imageUrl1 ?? "")
-            self.setupAnimtation()
+            self.setupCard(user: user)
         }
     }
     
