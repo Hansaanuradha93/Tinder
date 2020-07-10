@@ -15,11 +15,7 @@ class MatchView: UIView {
     
     lazy var views = [itsMatchImageView, descriptionLabel, currentImageView, cardUserImageView, sendMessageButton, keepSwipingButton]
     var currentUser: User!
-    var cardUID: String! {
-        didSet {
-            fetchCardUser()
-        }
-    }
+    var cardUID: String! { didSet { fetchCardUser() } }
     
     
     // MARK: Initializers
@@ -104,9 +100,7 @@ extension MatchView {
         
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.alpha = 1
-        }) { (_) in
-            
-        }
+        })
     }
     
     
