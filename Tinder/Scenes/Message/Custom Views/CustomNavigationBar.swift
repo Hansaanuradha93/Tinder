@@ -2,6 +2,7 @@ import UIKit
 
 class CustomNavigationBar: UIView {
     
+    // MARK: Initializers
     fileprivate let iconImageView = TDImageView(image: Asserts.topMessages, contentMode: .scaleAspectFit)
     fileprivate let messagesLabel = TDLabel(text: "Messages", textAlignment: .center, textColor: UIColor.appColor(color: .pink), fontSize: 20)
     fileprivate let feedLabel = TDLabel(text: "Feed", textAlignment: .center, textColor: .gray, fontSize: 20)
@@ -16,6 +17,7 @@ class CustomNavigationBar: UIView {
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
     
+    // MARK: Overriden Methods
     override func layoutSubviews() {
         super.layoutSubviews()
         dropShadow(color: UIColor.black, opacity: 0.05, offset: CGSize(width: 0, height: 10), radius: 8)
