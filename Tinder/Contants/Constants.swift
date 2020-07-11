@@ -10,4 +10,5 @@ struct Asserts {
     static let placeHolder = UIImage(named: "placeholder")!
     static let infoCircleFill = UIImage(systemName: "info.circle.fill")!
     static let itsMatch = UIImage(named: "itsamatch")!
+    static let topMessages = UIImage(named: "top_messages_icon")!
 }
