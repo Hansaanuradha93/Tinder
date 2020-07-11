@@ -2,15 +2,7 @@ import UIKit
 
 class MessageViewController: UICollectionViewController {
 
-    let customNavBar: UIView = {
-        let navBar = UIView()
-        navBar.backgroundColor = .white
-        navBar.layer.shadowColor = UIColor.black.cgColor
-        navBar.layer.shadowOpacity = 0.05
-        navBar.layer.shadowOffset = CGSize(width: 0, height: 10)
-        navBar.layer.shadowRadius = 8
-        return navBar
-    }()
+    let customNavBar = CustomNavigationBar()
     
     override func viewDidLoad() {
         super.viewDidLoad()
