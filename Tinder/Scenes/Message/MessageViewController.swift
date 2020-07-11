@@ -24,7 +24,7 @@ extension MessageViewController {
     
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MessageCell.reuseID, for: indexPath) as! MessageCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MatchCell.reuseID, for: indexPath) as! MatchCell
         cell.backgroundColor = .blue
         return cell
     }
@@ -35,7 +35,7 @@ extension MessageViewController {
 extension MessageViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: view.frame.width)
+        return CGSize(width: 100, height: 120)
     }
 }
 
@@ -52,6 +52,7 @@ extension MessageViewController {
         collectionView.backgroundColor = .white
         collectionView.contentInset.top = 130
         collectionView.register(MessageCell.self, forCellWithReuseIdentifier: MessageCell.reuseID)
+        collectionView.register(MatchCell.self, forCellWithReuseIdentifier: MatchCell.reuseID)
     }
     
     

@@ -1,9 +1,9 @@
 import UIKit
 
-class MessageCell: UICollectionViewCell {
+class MatchCell: UICollectionViewCell {
     
     // MARK: Properties
-    static let reuseID = "MessageCell"
+    static let reuseID = "MatchCell"
     
     
     // MARK: Initializers
