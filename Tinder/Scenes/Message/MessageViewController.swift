@@ -1,9 +1,18 @@
 import UIKit
 
-class MessageViewController: UIViewController {
+class MessageViewController: UICollectionViewController {
 
+    let customNavBar: UIView = {
+        let navBar = UIView()
+        navBar.backgroundColor = .blue
+        return navBar
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+        collectionView.backgroundColor = .white
+        
+        view.addSubview(customNavBar)
+        customNavBar.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, size: .init(width: 0, height: 150))
     }
 }
