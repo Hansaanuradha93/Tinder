@@ -15,13 +15,6 @@ class CustomNavigationBar: UIView {
     
     
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
-    
-    
-    // MARK: Overriden Methods
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        dropShadow(color: UIColor.black, opacity: 0.05, offset: CGSize(width: 0, height: 10), radius: 8)
-    }
 }
 
 
@@ -30,6 +23,7 @@ extension CustomNavigationBar {
     
     fileprivate func setupUI() {
         backgroundColor = .white
+        dropShadow(color: UIColor.black, opacity: 0.05, offset: CGSize(width: 0, height: 10), radius: 8)
         
         iconImageView.image = iconImageView.image?.withRenderingMode(.alwaysTemplate)
         iconImageView.tintColor = UIColor.appColor(color: .pink)
@@ -40,6 +34,8 @@ extension CustomNavigationBar {
         
         let overrallStackView = UIStackView(arrangedSubviews: [iconImageView, stackView])
         overrallStackView.axis = .vertical
+        overrallStackView.isLayoutMarginsRelativeArrangement = true
+        overrallStackView.layoutMargins = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
         addSubview(overrallStackView)
         overrallStackView.fillSuperview()
     }
