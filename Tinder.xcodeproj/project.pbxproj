@@ -22,6 +22,7 @@
 		477984BA24B844B40040624B /* TDLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477984B924B844B40040624B /* TDLabel.swift */; };
 		477B866424B97E3C0059228B /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477B866324B97E3C0059228B /* MessageViewController.swift */; };
 		477B866724B9A3250059228B /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477B866624B9A3250059228B /* CustomNavigationBar.swift */; };
+		477B866B24B9D2800059228B /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477B866A24B9D2800059228B /* MessageCell.swift */; };
 		4798806F249A7B3E00829930 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4798806E249A7B3E00829930 /* AppDelegate.swift */; };
 		47988071249A7B3E00829930 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47988070249A7B3E00829930 /* SceneDelegate.swift */; };
 		47988073249A7B3E00829930 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47988072249A7B3E00829930 /* HomeViewController.swift */; };
@@ -67,6 +68,7 @@
 		477984B924B844B40040624B /* TDLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDLabel.swift; sourceTree = "<group>"; };
 		477B866324B97E3C0059228B /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		477B866624B9A3250059228B /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
+		477B866A24B9D2800059228B /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		4798806B249A7B3E00829930 /* Tinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4798806E249A7B3E00829930 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		47988070249A7B3E00829930 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 		477B866224B97E1E0059228B /* Message */ = {
 			isa = PBXGroup;
 			children = (
+				477B866924B9D2540059228B /* Cells */,
 				477B866524B9A3070059228B /* Custom Views */,
 				477B866324B97E3C0059228B /* MessageViewController.swift */,
 			);
@@ -182,6 +185,14 @@
 				477B866624B9A3250059228B /* CustomNavigationBar.swift */,
 			);
 			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		477B866924B9D2540059228B /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				477B866A24B9D2800059228B /* MessageCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		47988062249A7B3E00829930 = {
@@ -523,6 +534,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4742E8BA24A1C110005EE6EB /* NetworkManager.swift in Sources */,
+				477B866B24B9D2800059228B /* MessageCell.swift in Sources */,
 				47FC531D249E884D0053C4F7 /* TDTextField.swift in Sources */,
 				479A073724A32B6E00AB21C8 /* SettingsViewController.swift in Sources */,
 				479EEFDD24A04E670091BEF7 /* Keys.swift in Sources */,
