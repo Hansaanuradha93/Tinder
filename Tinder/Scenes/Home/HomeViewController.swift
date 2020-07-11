@@ -78,8 +78,15 @@ extension HomeViewController {
     }
     
     
+    @objc fileprivate func messageButtonTapped() {
+        let controller = MessageViewController()
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    
     fileprivate func setupButtonActions() {
         topControllsStackView.settingsButton.addTarget(self, action: #selector(settingsButtonTapped), for: .touchUpInside)
+        topControllsStackView.messagesButton.addTarget(self, action: #selector(messageButtonTapped), for: .touchUpInside)
         bottomControllsStackView.refreshButton.addTarget(self, action: #selector(handleRefresh), for: .touchUpInside)
         bottomControllsStackView.likeButton.addTarget(self, action: #selector(handleLike), for: .touchUpInside)
         bottomControllsStackView.dislikeButton.addTarget(self, action: #selector(handleDislike), for: .touchUpInside)
