@@ -105,7 +105,7 @@ extension LoginViewController {
     
     
     fileprivate func setupLayout() {
-        navigationController?.setNavigationBarHidden(true, animated: false)
+        navigationController?.navigationBar.isHidden = true
         view.addSubview(verticalStackView)
         verticalStackView.anchor(top: nil, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 0, left: 50, bottom: 0, right: 50))
         verticalStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
