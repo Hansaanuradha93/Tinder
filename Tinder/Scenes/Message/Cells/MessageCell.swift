@@ -9,8 +9,17 @@ class MessageCell: UICollectionViewCell {
     // MARK: Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .red
+        setupLayout()
     }
     
     required init?(coder: NSCoder) { fatalError() }
+}
+
+
+// MARK: - Methods
+extension MessageCell {
+    
+    fileprivate func setupLayout() {
+        
+    }
 }
