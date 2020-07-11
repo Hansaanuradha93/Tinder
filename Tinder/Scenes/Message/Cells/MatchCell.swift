@@ -23,8 +23,7 @@ extension MatchCell {
     
     fileprivate func setupLayout() {
         let dimenstions = frame.width
-        profileImageView.widthAnchor.constraint(equalToConstant: dimenstions).isActive = true
-        profileImageView.heightAnchor.constraint(equalToConstant: dimenstions).isActive = true
+        profileImageView.setHeight(dimenstions)
         profileImageView.layer.cornerRadius = dimenstions / 2
         
         let stackView = UIStackView(arrangedSubviews: [profileImageView, usernameLabel])
