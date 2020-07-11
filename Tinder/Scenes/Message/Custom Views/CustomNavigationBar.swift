@@ -4,8 +4,9 @@ class CustomNavigationBar: UIView {
     
     // MARK: Initializers
     fileprivate let iconImageView = TDImageView(image: Asserts.topMessages, contentMode: .scaleAspectFit)
-    fileprivate let messagesLabel = TDLabel(text: "Messages", textAlignment: .center, textColor: UIColor.appColor(color: .pink), fontSize: 20)
-    fileprivate let feedLabel = TDLabel(text: "Feed", textAlignment: .center, textColor: .gray, fontSize: 20)
+    let backButton = TDButton(type: .system)
+    let messagesLabel = TDLabel(text: "Messages", textAlignment: .center, textColor: UIColor.appColor(color: .pink), fontSize: 20)
+    let feedLabel = TDLabel(text: "Feed", textAlignment: .center, textColor: .gray, fontSize: 20)
 
     
     override init(frame: CGRect) {
@@ -38,5 +39,11 @@ extension CustomNavigationBar {
         overrallStackView.layoutMargins = UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
         addSubview(overrallStackView)
         overrallStackView.fillSuperview()
+        
+        backButton.setImage(Asserts.fireIcon, for: .normal)
+        backButton.imageView?.image = backButton.image(for: .normal)?.withRenderingMode(.alwaysTemplate)
+        backButton.tintColor = .lightGray
+        addSubview(backButton)
+        backButton.anchor(top: safeAreaLayoutGuide.topAnchor, leading: leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 12, left: 16, bottom: 0, right: 0), size: .init(width: 34, height: 34))
     }
 }
