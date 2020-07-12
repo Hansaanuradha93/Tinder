@@ -26,6 +26,7 @@ extension MatchCell {
         usernameLabel.text = match.username ?? ""
     }
     
+    
     fileprivate func setupLayout() {
         let dimenstions = frame.width
         profileImageView.setHeight(dimenstions)
