@@ -34,6 +34,16 @@ extension MatchMessagesViewController {
 }
 
 
+// MARK: - Collection View Delegate
+extension MatchMessagesViewController {
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let controller = ChatLogViewController()
+        navigationController?.pushViewController(controller, animated: true)
+    }
+}
+
+
 // MARK: - UICollectionViewDelegateFlowLayout
 extension MatchMessagesViewController: UICollectionViewDelegateFlowLayout {
     

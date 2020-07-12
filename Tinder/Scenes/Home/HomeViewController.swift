@@ -207,7 +207,6 @@ extension HomeViewController {
                 print(error.localizedDescription)
                 return
             }
-            print("Matches saved successfully in Current User side")
         }
         
         guard let currentUser = cardViewModel.currentUser  else { return }
@@ -223,7 +222,6 @@ extension HomeViewController {
                 print(error.localizedDescription)
                 return
             }
-            print("Matches saved successfully in Card User side")
         }
     }
     
