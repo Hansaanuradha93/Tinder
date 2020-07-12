@@ -79,7 +79,7 @@ extension HomeViewController {
     
     
     @objc fileprivate func messageButtonTapped() {
-        let controller = MatchMessagesViewController(collectionViewLayout: UICollectionViewLayout())
+        let controller = MatchMessagesViewController(collectionViewLayout: UICollectionViewFlowLayout())
         navigationController?.pushViewController(controller, animated: true)
     }
     

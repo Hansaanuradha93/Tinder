@@ -12,6 +12,7 @@ class MatchMessagesViewController: UICollectionViewController {
         super.viewDidLoad()
         setupLayout()
         setupCollectionView()
+        fetchMatches()
     }
 }
 
@@ -45,6 +46,11 @@ extension MatchMessagesViewController {
     
     @objc fileprivate func handleBack() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    
+    fileprivate func fetchMatches() {
+        matchMessagesViewModel.fetchMatches()
     }
     
     
