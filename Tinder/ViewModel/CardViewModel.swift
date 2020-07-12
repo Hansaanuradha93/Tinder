@@ -17,6 +17,7 @@ class CardViewModel {
     fileprivate var lastFetchedUser: User?
     fileprivate let userPaginationLimit = 2
     var currentUser: User?
+    var users = [String: User]()
     
     // MARK: Bindable
     var bindableIsFetchingUsers = Bindable<Bool>()
@@ -39,7 +40,7 @@ extension CardViewModel {
         let minAge = currentUser?.minSeekingAge ?? Constants.defaultMinimumSeekingAge
         let maxAge = currentUser?.maxSeekingAge ?? Constants.defaultMaximumSeekingAge
         
-        let query = Firestore.firestore().collection("users").whereField("age", isGreaterThanOrEqualTo: minAge).whereField("age", isLessThanOrEqualTo: maxAge)
+        let query = Firestore.firestore().collection("users").whereField("age", isGreaterThanOrEqualTo: minAge).whereField("age", isLessThanOrEqualTo: maxAge).limit(to: Constants.defaultUsersCount)
 //        let paginationRef = query.order(by: "uid").start(after: [lastFetchedUser?.uid ?? ""]).limit(to: userPaginationLimit)
         query.getDocuments { [weak self] snapshot, error in
             guard let self = self else { return }
@@ -51,6 +52,7 @@ extension CardViewModel {
             
             snapshot!.documents.forEach { (documentSnapshot) in
                 let user = User(dictionary: documentSnapshot.data())
+                self.users[user.uid ?? ""] = user
                 self.lastFetchedUser = user
                 let isNotCurrentUser = user.uid != uid
                 // TODO: - uncomment below line to filtered already swiped users

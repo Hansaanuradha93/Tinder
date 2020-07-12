@@ -186,7 +186,42 @@ extension HomeViewController {
             let hasMatched = data[uid] as? Int == 1
             if hasMatched {
                 self.presentMatchView(cardUID: cardUID)
+                self.saveMatchToFirestore(cardUID: cardUID)
             }
+        }
+    }
+    
+    
+    fileprivate func saveMatchToFirestore(cardUID: String) {
+        guard let currentUserID = Auth.auth().currentUser?.uid, let cardUser = cardViewModel.users[cardUID] else { return }
+        let cardUserData = [
+            "username": cardUser.name ?? "",
+            "profileImageUrl": cardUser.imageUrl1 ?? "",
+            "uid": cardUID
+        ]
+        let ref = Firestore.firestore().collection("matches_messages")
+        let currentUserRef = ref.document(currentUserID).collection("matches").document(cardUID)
+        currentUserRef.setData(cardUserData) { (error) in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            print("Matches saved successfully in Current User side")
+        }
+        
+        guard let currentUser = cardViewModel.currentUser  else { return }
+        let currentUserData = [
+            "username": currentUser.name ?? "",
+            "profileImageUrl": currentUser.imageUrl1 ?? "",
+            "uid": cardUID
+        ]
+        let cardUserRef = ref.document(cardUID).collection("matches").document(currentUserID)
+        cardUserRef.setData(currentUserData) { (error) in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            print("Matches saved successfully in Card User side")
         }
     }
     
