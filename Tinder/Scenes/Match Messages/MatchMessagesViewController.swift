@@ -4,7 +4,7 @@ class MatchMessagesViewController: UICollectionViewController {
 
     // MARK: Properties
     let matchMessagesViewModel = MatchMessagesViewModel()
-    let customNavBar = CustomNavigationBar()
+    let customNavBar = MatchMessagesNavigationBar()
     var matches = [Match]()
     
     

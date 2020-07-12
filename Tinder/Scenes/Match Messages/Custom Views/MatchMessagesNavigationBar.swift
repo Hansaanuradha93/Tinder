@@ -1,6 +1,6 @@
 import UIKit
 
-class CustomNavigationBar: UIView {
+class MatchMessagesNavigationBar: UIView {
     
     // MARK: Initializers
     fileprivate let iconImageView = TDImageView(image: Asserts.topMessages, contentMode: .scaleAspectFit)
@@ -20,7 +20,7 @@ class CustomNavigationBar: UIView {
 
 
 // MARK: Methods
-extension CustomNavigationBar {
+extension MatchMessagesNavigationBar {
     
     fileprivate func setupUI() {
         backgroundColor = .white

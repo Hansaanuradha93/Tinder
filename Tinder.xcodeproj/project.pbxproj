@@ -21,7 +21,7 @@
 		4766586324B78EC100E39A97 /* TDGradientBorderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4766586224B78EC100E39A97 /* TDGradientBorderButton.swift */; };
 		477984BA24B844B40040624B /* TDLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477984B924B844B40040624B /* TDLabel.swift */; };
 		477B866424B97E3C0059228B /* MatchMessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477B866324B97E3C0059228B /* MatchMessagesViewController.swift */; };
-		477B866724B9A3250059228B /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477B866624B9A3250059228B /* CustomNavigationBar.swift */; };
+		477B866724B9A3250059228B /* MatchMessagesNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477B866624B9A3250059228B /* MatchMessagesNavigationBar.swift */; };
 		477B866B24B9D2800059228B /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477B866A24B9D2800059228B /* MessageCell.swift */; };
 		477B866D24BA10230059228B /* MatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477B866C24BA10230059228B /* MatchCell.swift */; };
 		4798806F249A7B3E00829930 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4798806E249A7B3E00829930 /* AppDelegate.swift */; };
@@ -43,6 +43,7 @@
 		47B405C624BAD1DE0064EE13 /* MatchMessagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B405C524BAD1DE0064EE13 /* MatchMessagesViewModel.swift */; };
 		47B405C824BB61E60064EE13 /* ChatLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B405C724BB61E60064EE13 /* ChatLogViewController.swift */; };
 		47B405CA24BB63980064EE13 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B405C924BB63980064EE13 /* Message.swift */; };
+		47B405CC24BB692F0064EE13 /* ChatLogNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B405CB24BB692F0064EE13 /* ChatLogNavigationBar.swift */; };
 		47C6358E24AB8E7E00B3C4C6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C6358D24AB8E7E00B3C4C6 /* LoginViewController.swift */; };
 		47C6359024AB8EAA00B3C4C6 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C6358F24AB8EAA00B3C4C6 /* LoginViewModel.swift */; };
 		47CE8203249CBCDB00B9696E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CE8202249CBCDB00B9696E /* User.swift */; };
@@ -72,7 +73,7 @@
 		4766586224B78EC100E39A97 /* TDGradientBorderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDGradientBorderButton.swift; sourceTree = "<group>"; };
 		477984B924B844B40040624B /* TDLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDLabel.swift; sourceTree = "<group>"; };
 		477B866324B97E3C0059228B /* MatchMessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchMessagesViewController.swift; sourceTree = "<group>"; };
-		477B866624B9A3250059228B /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
+		477B866624B9A3250059228B /* MatchMessagesNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchMessagesNavigationBar.swift; sourceTree = "<group>"; };
 		477B866A24B9D2800059228B /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		477B866C24BA10230059228B /* MatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchCell.swift; sourceTree = "<group>"; };
 		4798806B249A7B3E00829930 /* Tinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,6 +97,7 @@
 		47B405C524BAD1DE0064EE13 /* MatchMessagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchMessagesViewModel.swift; sourceTree = "<group>"; };
 		47B405C724BB61E60064EE13 /* ChatLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogViewController.swift; sourceTree = "<group>"; };
 		47B405C924BB63980064EE13 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		47B405CB24BB692F0064EE13 /* ChatLogNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogNavigationBar.swift; sourceTree = "<group>"; };
 		47C6358D24AB8E7E00B3C4C6 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		47C6358F24AB8EAA00B3C4C6 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		47CE8202249CBCDB00B9696E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -193,7 +195,8 @@
 		477B866524B9A3070059228B /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
-				477B866624B9A3250059228B /* CustomNavigationBar.swift */,
+				477B866624B9A3250059228B /* MatchMessagesNavigationBar.swift */,
+				47B405CB24BB692F0064EE13 /* ChatLogNavigationBar.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -550,6 +553,7 @@
 				47B405C824BB61E60064EE13 /* ChatLogViewController.swift in Sources */,
 				477984BA24B844B40040624B /* TDLabel.swift in Sources */,
 				479A073A24A3978E00AB21C8 /* TDImagePickerController.swift in Sources */,
+				47B405CC24BB692F0064EE13 /* ChatLogNavigationBar.swift in Sources */,
 				47E2D5BB24B3463F00FECD87 /* Constants.swift in Sources */,
 				47CE8208249D009C00B9696E /* Advertiser.swift in Sources */,
 				47B405CA24BB63980064EE13 /* Message.swift in Sources */,
@@ -561,7 +565,7 @@
 				4766586124B789E900E39A97 /* TDGradientButton.swift in Sources */,
 				4750231824B191E7000472EB /* SwipingPhotosViewController.swift in Sources */,
 				4753673924AE43D000F257D9 /* UserDetailsViewController.swift in Sources */,
-				477B866724B9A3250059228B /* CustomNavigationBar.swift in Sources */,
+				477B866724B9A3250059228B /* MatchMessagesNavigationBar.swift in Sources */,
 				47988073249A7B3E00829930 /* HomeViewController.swift in Sources */,
 				47C6358E24AB8E7E00B3C4C6 /* LoginViewController.swift in Sources */,
 				47FC5317249DF0210053C4F7 /* UIColor+Ext.swift in Sources */,
