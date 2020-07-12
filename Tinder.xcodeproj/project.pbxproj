@@ -20,7 +20,7 @@
 		4766586124B789E900E39A97 /* TDGradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4766586024B789E900E39A97 /* TDGradientButton.swift */; };
 		4766586324B78EC100E39A97 /* TDGradientBorderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4766586224B78EC100E39A97 /* TDGradientBorderButton.swift */; };
 		477984BA24B844B40040624B /* TDLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477984B924B844B40040624B /* TDLabel.swift */; };
-		477B866424B97E3C0059228B /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477B866324B97E3C0059228B /* MessageViewController.swift */; };
+		477B866424B97E3C0059228B /* MatchMessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477B866324B97E3C0059228B /* MatchMessagesViewController.swift */; };
 		477B866724B9A3250059228B /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477B866624B9A3250059228B /* CustomNavigationBar.swift */; };
 		477B866B24B9D2800059228B /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477B866A24B9D2800059228B /* MessageCell.swift */; };
 		477B866D24BA10230059228B /* MatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 477B866C24BA10230059228B /* MatchCell.swift */; };
@@ -39,6 +39,7 @@
 		479F609D249B080100BD0774 /* HomeBottomButtonControlsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479F609C249B080100BD0774 /* HomeBottomButtonControlsStackView.swift */; };
 		479F609F249B0ED100BD0774 /* HomeTopButtonControlsStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479F609E249B0ED100BD0774 /* HomeTopButtonControlsStackView.swift */; };
 		47A80191249A814300768831 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A80190249A814300768831 /* UIView+Ext.swift */; };
+		47B405C424BAD18F0064EE13 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B405C324BAD18F0064EE13 /* Match.swift */; };
 		47C6358E24AB8E7E00B3C4C6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C6358D24AB8E7E00B3C4C6 /* LoginViewController.swift */; };
 		47C6359024AB8EAA00B3C4C6 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C6358F24AB8EAA00B3C4C6 /* LoginViewModel.swift */; };
 		47CE8203249CBCDB00B9696E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CE8202249CBCDB00B9696E /* User.swift */; };
@@ -67,7 +68,7 @@
 		4766586024B789E900E39A97 /* TDGradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDGradientButton.swift; sourceTree = "<group>"; };
 		4766586224B78EC100E39A97 /* TDGradientBorderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDGradientBorderButton.swift; sourceTree = "<group>"; };
 		477984B924B844B40040624B /* TDLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDLabel.swift; sourceTree = "<group>"; };
-		477B866324B97E3C0059228B /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
+		477B866324B97E3C0059228B /* MatchMessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchMessagesViewController.swift; sourceTree = "<group>"; };
 		477B866624B9A3250059228B /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
 		477B866A24B9D2800059228B /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		477B866C24BA10230059228B /* MatchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchCell.swift; sourceTree = "<group>"; };
@@ -88,6 +89,7 @@
 		479F609C249B080100BD0774 /* HomeBottomButtonControlsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBottomButtonControlsStackView.swift; sourceTree = "<group>"; };
 		479F609E249B0ED100BD0774 /* HomeTopButtonControlsStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTopButtonControlsStackView.swift; sourceTree = "<group>"; };
 		47A80190249A814300768831 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
+		47B405C324BAD18F0064EE13 /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
 		47C6358D24AB8E7E00B3C4C6 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		47C6358F24AB8EAA00B3C4C6 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		47CE8202249CBCDB00B9696E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -171,14 +173,14 @@
 			path = "User Details";
 			sourceTree = "<group>";
 		};
-		477B866224B97E1E0059228B /* Message */ = {
+		477B866224B97E1E0059228B /* Match Messages */ = {
 			isa = PBXGroup;
 			children = (
 				477B866924B9D2540059228B /* Cells */,
 				477B866524B9A3070059228B /* Custom Views */,
-				477B866324B97E3C0059228B /* MessageViewController.swift */,
+				477B866324B97E3C0059228B /* MatchMessagesViewController.swift */,
 			);
-			path = Message;
+			path = "Match Messages";
 			sourceTree = "<group>";
 		};
 		477B866524B9A3070059228B /* Custom Views */ = {
@@ -327,7 +329,7 @@
 		47CE81FE249CB96500B9696E /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				477B866224B97E1E0059228B /* Message */,
+				477B866224B97E1E0059228B /* Match Messages */,
 				4753673724AE43B400F257D9 /* User Details */,
 				47C6358A24AB8D2300B3C4C6 /* Login */,
 				47FC5318249E7C400053C4F7 /* Signup */,
@@ -364,6 +366,7 @@
 			children = (
 				47CE8202249CBCDB00B9696E /* User.swift */,
 				47CE8207249D009C00B9696E /* Advertiser.swift */,
+				47B405C324BAD18F0064EE13 /* Match.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -551,7 +554,7 @@
 				474003D524B7067300EC302E /* MatchView.swift in Sources */,
 				47A80191249A814300768831 /* UIView+Ext.swift in Sources */,
 				479A073D24A3BAB700AB21C8 /* HeaderLabel.swift in Sources */,
-				477B866424B97E3C0059228B /* MessageViewController.swift in Sources */,
+				477B866424B97E3C0059228B /* MatchMessagesViewController.swift in Sources */,
 				4766586124B789E900E39A97 /* TDGradientButton.swift in Sources */,
 				4750231824B191E7000472EB /* SwipingPhotosViewController.swift in Sources */,
 				4753673924AE43D000F257D9 /* UserDetailsViewController.swift in Sources */,
@@ -577,6 +580,7 @@
 				47988071249A7B3E00829930 /* SceneDelegate.swift in Sources */,
 				47CE8206249CEBFA00B9696E /* CardViewModel.swift in Sources */,
 				4702535824A99A9800F725A1 /* AgeRangeCell.swift in Sources */,
+				47B405C424BAD18F0064EE13 /* Match.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

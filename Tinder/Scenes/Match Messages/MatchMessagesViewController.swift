@@ -1,6 +1,6 @@
 import UIKit
 
-class MessageViewController: UICollectionViewController {
+class MatchMessagesViewController: UICollectionViewController {
 
     // MARK: Properties
     let customNavBar = CustomNavigationBar()
@@ -16,7 +16,7 @@ class MessageViewController: UICollectionViewController {
 
 
 // MARK: - Collection View Datasource
-extension MessageViewController {
+extension MatchMessagesViewController {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 5
@@ -31,7 +31,7 @@ extension MessageViewController {
 
 
 // MARK: - UICollectionViewDelegateFlowLayout
-extension MessageViewController: UICollectionViewDelegateFlowLayout {
+extension MatchMessagesViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 100, height: 150)
@@ -40,7 +40,7 @@ extension MessageViewController: UICollectionViewDelegateFlowLayout {
 
 
 // MARK: - Methods
-extension MessageViewController {
+extension MatchMessagesViewController {
     
     @objc fileprivate func handleBack() {
         navigationController?.popViewController(animated: true)
