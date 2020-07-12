@@ -19,8 +19,8 @@ extension ChatLogViewController {
     
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-        cell.backgroundColor = .red
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MessageCell.reuseID, for: indexPath) as! MessageCell
+        cell.backgroundColor = .blue
         return cell
     }
 }
@@ -31,6 +31,6 @@ extension ChatLogViewController {
     
     fileprivate func setupCollectionView() {
         collectionView.backgroundColor = .white
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.register(MessageCell.self, forCellWithReuseIdentifier: MessageCell.reuseID)
     }
 }
