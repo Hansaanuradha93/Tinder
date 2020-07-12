@@ -13,4 +13,6 @@ struct Asserts {
     static let itsMatch = UIImage(named: "itsamatch")!
     static let topMessages = UIImage(named: "top_messages_icon")!
     static let fireIcon = UIImage(named: "app_icon")!
+    static let flag = UIImage(named: "flag")!
+    static let back = UIImage(named: "back")!
 }

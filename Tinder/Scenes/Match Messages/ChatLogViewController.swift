@@ -49,10 +49,16 @@ extension ChatLogViewController: UICollectionViewDelegateFlowLayout {
 // MARK: - Methods
 extension ChatLogViewController {
     
+    @objc fileprivate func handleBack() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    
     fileprivate func setupLayout() {
         navigationController?.navigationBar.isHidden = true // TODO: remove this line..its not neccessary
         view.addSubview(customNavigationBar)
         customNavigationBar.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, size: .init(width: 0, height: navBarHeight))
+        customNavigationBar.backButton.addTarget(self, action: #selector(handleBack), for: .touchUpInside)
     }
     
     

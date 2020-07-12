@@ -5,8 +5,8 @@ class ChatLogNavigationBar: UIView {
     // MARK: Properties
     fileprivate let profileImageView = TDImageView(image: #imageLiteral(resourceName: "jane1"), contentMode: .scaleAspectFill)
     fileprivate let usernameLabel = TDLabel(text: "Username", textAlignment: .center, textColor: .gray, fontSize: 14, numberOfLines: 2)
-    fileprivate let backButton = TDButton(type: .system)
-    fileprivate let flagButton = TDButton(type: .system)
+    let backButton = TDButton(type: .system)
+    let flagButton = TDButton(type: .system)
 
     
     // MARK: Initializers
@@ -39,11 +39,15 @@ extension ChatLogNavigationBar {
         usernameLabel.anchor(top: profileImageView.bottomAnchor, leading: nil, bottom: nil, trailing: nil, padding: .init(top: 8, left: 0, bottom: 0, right: 0))
         usernameLabel.centerXAnchor.constraint(equalTo: profileImageView.centerXAnchor).isActive = true
         
-        backButton.setImage(#imageLiteral(resourceName: "app_icon").withRenderingMode(.alwaysOriginal), for: .normal)
+        backButton.setImage(Asserts.back, for: .normal)
+        backButton.imageView?.image = backButton.image(for: .normal)?.withRenderingMode(.alwaysTemplate)
+        backButton.tintColor = UIColor.appColor(color: .pink)
         backButton.anchor(top: nil, leading: leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 0, left: 8, bottom: 0, right: 0), size: .init(width: dimensions, height: dimensions))
         backButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
-        flagButton.setImage(#imageLiteral(resourceName: "dismiss_down_arrow").withRenderingMode(.alwaysOriginal), for: .normal)
+        flagButton.setImage(Asserts.flag, for: .normal)
+        flagButton.imageView?.image = flagButton.image(for: .normal)?.withRenderingMode(.alwaysTemplate)
+        flagButton.tintColor = UIColor.appColor(color: .pink)
         flagButton.anchor(top: nil, leading: nil, bottom: nil, trailing: trailingAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 8), size: .init(width: dimensions, height: dimensions))
         flagButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
