@@ -38,7 +38,7 @@ extension MatchMessagesViewController {
 extension MatchMessagesViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let controller = ChatLogViewController()
+        let controller = ChatLogViewController(collectionViewLayout: UICollectionViewFlowLayout())
         navigationController?.pushViewController(controller, animated: true)
     }
 }
