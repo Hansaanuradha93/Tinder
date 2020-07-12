@@ -294,18 +294,10 @@
 				479A073E24A3BB8900AB21C8 /* Cells */,
 				479A073B24A3BA5400AB21C8 /* Labels */,
 				479A073824A3976B00AB21C8 /* Image Picker */,
-				479F609B249B07C900BD0774 /* Views */,
 				47FC531B249E881E0053C4F7 /* Text Fields */,
 				47FC531E249E8B4F0053C4F7 /* Buttons */,
 			);
 			path = "Custom Views";
-			sourceTree = "<group>";
-		};
-		479F609B249B07C900BD0774 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		47A8018F249A811400768831 /* Extensions */ = {

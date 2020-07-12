@@ -5,6 +5,7 @@ class MatchMessagesViewController: UICollectionViewController {
     // MARK: Properties
     let matchMessagesViewModel = MatchMessagesViewModel()
     let customNavBar = CustomNavigationBar()
+    var matches = [Match]()
     
     
     // MARK: View Controller
@@ -21,12 +22,13 @@ class MatchMessagesViewController: UICollectionViewController {
 extension MatchMessagesViewController {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return matches.count
     }
     
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MatchCell.reuseID, for: indexPath) as! MatchCell
+        cell.set(match: matches[indexPath.item])
         return cell
     }
 }
@@ -50,7 +52,11 @@ extension MatchMessagesViewController {
     
     
     fileprivate func fetchMatches() {
-        matchMessagesViewModel.fetchMatches()
+        matchMessagesViewModel.fetchMatches { [weak self] match in
+            guard let self = self, let match = match else { return }
+            self.matches.append(match)
+            DispatchQueue.main.async { self.collectionView.reloadData() }
+        }
     }
     
     
@@ -63,8 +69,6 @@ extension MatchMessagesViewController {
     
     
     fileprivate func setupLayout() {
-        navigationController?.navigationBar.isHidden = true
-
         view.addSubview(customNavBar)
         customNavBar.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, size: .init(width: 0, height: 130))
         customNavBar.backButton.addTarget(self, action: #selector(handleBack), for: .touchUpInside)

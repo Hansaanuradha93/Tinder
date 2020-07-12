@@ -21,6 +21,11 @@ class MatchCell: UICollectionViewCell {
 // MARK: - Methods
 extension MatchCell {
     
+    func set(match: Match) {
+        profileImageView.downloadImage(from: match.profileImageUrl ?? "")
+        usernameLabel.text = match.username ?? ""
+    }
+    
     fileprivate func setupLayout() {
         let dimenstions = frame.width
         profileImageView.setHeight(dimenstions)
