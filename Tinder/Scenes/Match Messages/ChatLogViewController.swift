@@ -3,8 +3,19 @@ import UIKit
 class ChatLogViewController: UICollectionViewController {
 
     // MARK: Properties
-    let navBarHeight: CGFloat = 120
-    let customNavigationBar = ChatLogNavigationBar()
+    fileprivate let navBarHeight: CGFloat = 120
+    fileprivate lazy var customNavigationBar = ChatLogNavigationBar(match: match)
+    fileprivate var match: Match!
+    
+    
+    // MARK: Initializers
+    init(match: Match) {
+        super.init(collectionViewLayout: UICollectionViewFlowLayout())
+        self.match = match
+    }
+    
+    
+    required init?(coder: NSCoder) { fatalError() }
     
     
     // MARK: View Controller

@@ -3,8 +3,9 @@ import UIKit
 class ChatLogNavigationBar: UIView {
     
     // MARK: Properties
-    fileprivate let profileImageView = TDImageView(image: #imageLiteral(resourceName: "jane1"), contentMode: .scaleAspectFill)
-    fileprivate let usernameLabel = TDLabel(text: "Username", textAlignment: .center, textColor: .gray, fontSize: 14, numberOfLines: 2)
+    fileprivate var match: Match!
+    fileprivate let profileImageView = TDImageView(contentMode: .scaleAspectFill)
+    fileprivate let usernameLabel = TDLabel( textAlignment: .center, textColor: .gray, fontSize: 16, numberOfLines: 2)
     let backButton = TDButton(type: .system)
     let flagButton = TDButton(type: .system)
 
@@ -17,11 +18,24 @@ class ChatLogNavigationBar: UIView {
     
     
     required init?(coder: NSCoder) { fatalError() }
+    
+    
+    convenience init(match: Match) {
+        self.init(frame: .zero)
+        self.match = match
+        setupUser()
+    }
 }
 
 
 // MARK: - Methods
 extension ChatLogNavigationBar {
+    
+    fileprivate func setupUser() {
+        profileImageView.downloadImage(from: match.profileImageUrl ?? "")
+        usernameLabel.text = match.username ?? ""
+    }
+    
     
     fileprivate func setupUI() {
         backgroundColor = .white

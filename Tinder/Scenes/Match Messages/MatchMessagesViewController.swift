@@ -3,10 +3,10 @@ import UIKit
 class MatchMessagesViewController: UICollectionViewController {
 
     // MARK: Properties
-    let navBarHeight: CGFloat = 130
-    let matchMessagesViewModel = MatchMessagesViewModel()
-    let customNavBar = MatchMessagesNavigationBar()
-    var matches = [Match]()
+    fileprivate let navBarHeight: CGFloat = 130
+    fileprivate let matchMessagesViewModel = MatchMessagesViewModel()
+    fileprivate let customNavBar = MatchMessagesNavigationBar()
+    fileprivate var matches = [Match]()
     
     
     // MARK: View Controller
@@ -39,7 +39,7 @@ extension MatchMessagesViewController {
 extension MatchMessagesViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let controller = ChatLogViewController(collectionViewLayout: UICollectionViewFlowLayout())
+        let controller = ChatLogViewController(match: matches[indexPath.item])
         navigationController?.pushViewController(controller, animated: true)
     }
 }
@@ -51,6 +51,7 @@ extension MatchMessagesViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 100, height: 150)
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
