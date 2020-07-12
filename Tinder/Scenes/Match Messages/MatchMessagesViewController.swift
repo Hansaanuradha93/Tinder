@@ -3,6 +3,7 @@ import UIKit
 class MatchMessagesViewController: UICollectionViewController {
 
     // MARK: Properties
+    let navBarHeight: CGFloat = 130
     let matchMessagesViewModel = MatchMessagesViewModel()
     let customNavBar = MatchMessagesNavigationBar()
     var matches = [Match]()
@@ -76,7 +77,7 @@ extension MatchMessagesViewController {
     
     fileprivate func setupCollectionView() {
         collectionView.backgroundColor = .white
-        collectionView.contentInset.top = 130
+        collectionView.contentInset.top = navBarHeight
         collectionView.register(MessageCell.self, forCellWithReuseIdentifier: MessageCell.reuseID)
         collectionView.register(MatchCell.self, forCellWithReuseIdentifier: MatchCell.reuseID)
     }
@@ -84,7 +85,7 @@ extension MatchMessagesViewController {
     
     fileprivate func setupLayout() {
         view.addSubview(customNavBar)
-        customNavBar.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, size: .init(width: 0, height: 130))
+        customNavBar.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, size: .init(width: 0, height: navBarHeight))
         customNavBar.backButton.addTarget(self, action: #selector(handleBack), for: .touchUpInside)
     }
 }
