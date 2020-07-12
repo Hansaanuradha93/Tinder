@@ -42,6 +42,7 @@
 		47B405C424BAD18F0064EE13 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B405C324BAD18F0064EE13 /* Match.swift */; };
 		47B405C624BAD1DE0064EE13 /* MatchMessagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B405C524BAD1DE0064EE13 /* MatchMessagesViewModel.swift */; };
 		47B405C824BB61E60064EE13 /* ChatLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B405C724BB61E60064EE13 /* ChatLogViewController.swift */; };
+		47B405CA24BB63980064EE13 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B405C924BB63980064EE13 /* Message.swift */; };
 		47C6358E24AB8E7E00B3C4C6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C6358D24AB8E7E00B3C4C6 /* LoginViewController.swift */; };
 		47C6359024AB8EAA00B3C4C6 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C6358F24AB8EAA00B3C4C6 /* LoginViewModel.swift */; };
 		47CE8203249CBCDB00B9696E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47CE8202249CBCDB00B9696E /* User.swift */; };
@@ -94,6 +95,7 @@
 		47B405C324BAD18F0064EE13 /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
 		47B405C524BAD1DE0064EE13 /* MatchMessagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchMessagesViewModel.swift; sourceTree = "<group>"; };
 		47B405C724BB61E60064EE13 /* ChatLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogViewController.swift; sourceTree = "<group>"; };
+		47B405C924BB63980064EE13 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		47C6358D24AB8E7E00B3C4C6 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		47C6358F24AB8EAA00B3C4C6 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		47CE8202249CBCDB00B9696E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -364,6 +366,7 @@
 				47CE8202249CBCDB00B9696E /* User.swift */,
 				47CE8207249D009C00B9696E /* Advertiser.swift */,
 				47B405C324BAD18F0064EE13 /* Match.swift */,
+				47B405C924BB63980064EE13 /* Message.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -549,6 +552,7 @@
 				479A073A24A3978E00AB21C8 /* TDImagePickerController.swift in Sources */,
 				47E2D5BB24B3463F00FECD87 /* Constants.swift in Sources */,
 				47CE8208249D009C00B9696E /* Advertiser.swift in Sources */,
+				47B405CA24BB63980064EE13 /* Message.swift in Sources */,
 				4738A6CD249BD0B400C55385 /* CardView.swift in Sources */,
 				474003D524B7067300EC302E /* MatchView.swift in Sources */,
 				47A80191249A814300768831 /* UIView+Ext.swift in Sources */,
