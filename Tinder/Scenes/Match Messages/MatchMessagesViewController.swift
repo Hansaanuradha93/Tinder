@@ -3,6 +3,7 @@ import UIKit
 class MatchMessagesViewController: UICollectionViewController {
 
     // MARK: Properties
+    let matchMessagesViewModel = MatchMessagesViewModel()
     let customNavBar = CustomNavigationBar()
     
     
