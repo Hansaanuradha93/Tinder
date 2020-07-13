@@ -6,6 +6,10 @@ class ChatLogViewController: UICollectionViewController {
     fileprivate let navBarHeight: CGFloat = 120
     fileprivate lazy var customNavigationBar = ChatLogNavigationBar(match: match)
     fileprivate var match: Match!
+    fileprivate var messages = [Message(text: "Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1"),
+                                Message(text: "Message 2"),
+                                Message(text: "Message 3"),
+                                Message(text: "Message 4"),]
     
     
     // MARK: Initializers
@@ -31,13 +35,14 @@ class ChatLogViewController: UICollectionViewController {
 extension ChatLogViewController {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        return messages.count
     }
     
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MessageCell.reuseID, for: indexPath) as! MessageCell
-        cell.backgroundColor = .blue
+        cell.set(message: messages[indexPath.item])
+        cell.backgroundColor = .red
         return cell
     }
 }
@@ -47,7 +52,11 @@ extension ChatLogViewController {
 extension ChatLogViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 100)
+        let estimatedCell = MessageCell(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 1000))
+        estimatedCell.set(message: messages[indexPath.item])
+        estimatedCell.layoutIfNeeded()
+        let estimatedSize = estimatedCell.systemLayoutSizeFitting(CGSize(width: view.frame.width, height: 1000))
+        return CGSize(width: view.frame.width, height: estimatedSize.height)
     }
     
     
