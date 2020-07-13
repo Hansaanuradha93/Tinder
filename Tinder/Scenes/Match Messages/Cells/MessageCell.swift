@@ -4,6 +4,14 @@ class MessageCell: UICollectionViewCell {
     
     // MARK: Properties
     static let reuseID = "MessageCell"
+    fileprivate let textView: UITextView = {
+       let tv = UITextView()
+        tv.backgroundColor = .clear
+        tv.font = UIFont.systemFont(ofSize: 20)
+        tv.isScrollEnabled = false
+        tv.isEditable = false
+        return tv
+    }()
     
     
     // MARK: Initializers
@@ -19,7 +27,13 @@ class MessageCell: UICollectionViewCell {
 // MARK: - Methods
 extension MessageCell {
     
+    func set(message: Message) {
+        textView.text = message.text ?? ""
+    }
+    
+    
     fileprivate func setupLayout() {
-        
+        addSubview(textView)
+        textView.fillSuperview()
     }
 }
