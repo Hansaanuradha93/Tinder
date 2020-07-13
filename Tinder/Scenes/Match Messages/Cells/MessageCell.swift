@@ -13,6 +13,12 @@ class MessageCell: UICollectionViewCell {
         return tv
     }()
     
+    fileprivate let bubbleView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .lightGray
+        return view
+    }()
+    
     
     // MARK: Initializers
     override init(frame: CGRect) {
@@ -33,7 +39,20 @@ extension MessageCell {
     
     
     fileprivate func setupLayout() {
-        addSubview(textView)
-        textView.fillSuperview()
+        addSubview(bubbleView)
+        bubbleView.layer.cornerRadius = 12
+        let anchoredConstraints = bubbleView.anchor(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor)
+        anchoredConstraints.leading?.constant = 20
+        anchoredConstraints.trailing?.constant = -20
+        
+        anchoredConstraints.trailing?.isActive = false
+        
+//        anchoredConstraints.leading?.isActive = false
+//        anchoredConstraints.trailing?.isActive = true
+        
+        bubbleView.widthAnchor.constraint(lessThanOrEqualToConstant: 300).isActive = true
+        
+        bubbleView.addSubview(textView)
+        textView.fillSuperview(padding: .init(top: 4, left: 12, bottom: 4, right: 12))
     }
 }
