@@ -21,6 +21,13 @@ class TDButton: UIButton {
 // MARK: - Methods
 extension TDButton {
     
+    func set(image: UIImage,withTint color: UIColor) {
+        self.setImage(image, for: .normal)
+        self.imageView?.image = self.image(for: .normal)?.withRenderingMode(.alwaysTemplate)
+        self.tintColor = color
+    }
+    
+    
     fileprivate func setup(backgroundColor: UIColor, title: String, titleColor: UIColor, radius: CGFloat, fontSize: CGFloat) {
         self.setTitle(title, for: .normal)
         self.setTitleColor(titleColor, for: .normal)
