@@ -7,6 +7,11 @@ struct Message {
     
     
     // MARK: Initializers
+    init(text: String) {
+        self.text = text
+    }
+    
+    
     init(dictionary: [String : Any]) {
         self.text = dictionary["text"] as? String
     }
