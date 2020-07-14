@@ -6,10 +6,10 @@ class ChatLogViewController: UICollectionViewController {
     fileprivate let navBarHeight: CGFloat = 120
     fileprivate lazy var customNavigationBar = ChatLogNavigationBar(match: match)
     fileprivate var match: Match!
-    fileprivate var messages = [Message(text: "Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1"),
-                                Message(text: "Message 2"),
-                                Message(text: "Message 3"),
-                                Message(text: "Message 4"),]
+    fileprivate var messages = [Message(text: "Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1", isFromCurrentUser: true),
+                                Message(text: "Message 2", isFromCurrentUser: false),
+                                Message(text: "Message 3", isFromCurrentUser: false),
+                                Message(text: "Message 4", isFromCurrentUser: true)]
     
     
     // MARK: Initializers

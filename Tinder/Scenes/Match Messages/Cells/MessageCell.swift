@@ -4,6 +4,7 @@ class MessageCell: UICollectionViewCell {
     
     // MARK: Properties
     static let reuseID = "MessageCell"
+    fileprivate var anchoredConstraints: AnchoredConstraints?
     fileprivate let textView: UITextView = {
        let tv = UITextView()
         tv.backgroundColor = .clear
@@ -35,21 +36,28 @@ extension MessageCell {
     
     func set(message: Message) {
         textView.text = message.text ?? ""
+        if message.isFromCurrentUser ?? false {
+            anchoredConstraints?.leading?.isActive = false
+            anchoredConstraints?.trailing?.isActive = true
+            bubbleView.backgroundColor = .blue
+            textView.textColor = .white
+        } else {
+            anchoredConstraints?.leading?.isActive = true
+            anchoredConstraints?.trailing?.isActive = false
+            bubbleView.backgroundColor = .lightGray
+            textView.textColor = .black
+        }
     }
     
     
     fileprivate func setupLayout() {
         addSubview(bubbleView)
         bubbleView.layer.cornerRadius = 12
-        let anchoredConstraints = bubbleView.anchor(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor)
-        anchoredConstraints.leading?.constant = 20
-        anchoredConstraints.trailing?.constant = -20
+        anchoredConstraints = bubbleView.anchor(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor)
         
-        anchoredConstraints.trailing?.isActive = false
-        
-//        anchoredConstraints.leading?.isActive = false
-//        anchoredConstraints.trailing?.isActive = true
-        
+        anchoredConstraints?.leading?.constant = 20
+        anchoredConstraints?.trailing?.constant = -20
+        anchoredConstraints?.trailing?.isActive = false
         bubbleView.widthAnchor.constraint(lessThanOrEqualToConstant: 300).isActive = true
         
         bubbleView.addSubview(textView)
