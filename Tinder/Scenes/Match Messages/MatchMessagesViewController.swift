@@ -80,6 +80,7 @@ extension MatchMessagesViewController {
     fileprivate func setupCollectionView() {
         collectionView.backgroundColor = .white
         collectionView.contentInset.top = navBarHeight
+        collectionView.verticalScrollIndicatorInsets.top = navBarHeight
         collectionView.register(MessageCell.self, forCellWithReuseIdentifier: MessageCell.reuseID)
         collectionView.register(MatchCell.self, forCellWithReuseIdentifier: MatchCell.reuseID)
     }

@@ -87,6 +87,7 @@ extension ChatLogViewController {
     fileprivate func setupCollectionView() {
         collectionView.backgroundColor = .white
         collectionView.contentInset.top = navBarHeight
+        collectionView.verticalScrollIndicatorInsets.top = navBarHeight
         collectionView.alwaysBounceVertical = true
         collectionView.register(MessageCell.self, forCellWithReuseIdentifier: MessageCell.reuseID)
     }
