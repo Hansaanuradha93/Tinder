@@ -5,6 +5,7 @@ class ChatLogViewController: UICollectionViewController {
     // MARK: Properties
     fileprivate let navBarHeight: CGFloat = 120
     fileprivate lazy var customNavigationBar = ChatLogNavigationBar(match: match)
+    fileprivate let statusBar = UIView()
     fileprivate var match: Match!
     fileprivate var messages = [Message(text: "Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1", isFromCurrentUser: true),
                                 Message(text: "Message 2", isFromCurrentUser: false),
@@ -77,12 +78,16 @@ extension ChatLogViewController {
         view.addSubview(customNavigationBar)
         customNavigationBar.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, size: .init(width: 0, height: navBarHeight))
         customNavigationBar.backButton.addTarget(self, action: #selector(handleBack), for: .touchUpInside)
+        statusBar.backgroundColor = .white
+        view.addSubview(statusBar)
+        statusBar.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.topAnchor, trailing: view.trailingAnchor)
     }
     
     
     fileprivate func setupCollectionView() {
         collectionView.backgroundColor = .white
         collectionView.contentInset.top = navBarHeight
+        collectionView.alwaysBounceVertical = true
         collectionView.register(MessageCell.self, forCellWithReuseIdentifier: MessageCell.reuseID)
     }
 }
