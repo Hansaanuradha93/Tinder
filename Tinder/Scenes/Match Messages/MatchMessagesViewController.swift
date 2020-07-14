@@ -6,6 +6,7 @@ class MatchMessagesViewController: UICollectionViewController {
     fileprivate let navBarHeight: CGFloat = 130
     fileprivate let matchMessagesViewModel = MatchMessagesViewModel()
     fileprivate let customNavBar = MatchMessagesNavigationBar()
+    fileprivate let statusBar = UIView()
     fileprivate var matches = [Match]()
     
     
@@ -88,5 +89,8 @@ extension MatchMessagesViewController {
         view.addSubview(customNavBar)
         customNavBar.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, size: .init(width: 0, height: navBarHeight))
         customNavBar.backButton.addTarget(self, action: #selector(handleBack), for: .touchUpInside)
+        statusBar.backgroundColor = .white
+        view.addSubview(statusBar)
+        statusBar.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.topAnchor, trailing: view.trailingAnchor)
     }
 }
