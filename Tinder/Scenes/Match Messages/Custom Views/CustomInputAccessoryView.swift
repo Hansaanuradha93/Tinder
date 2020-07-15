@@ -2,6 +2,11 @@ import UIKit
 
 class CustomInputAccessoryView: UIView {
     
+    // MARK: Properties
+    let textView = UITextView()
+    let sendButton = TDButton(title: "SEND", titleColor: .black, fontSize: 14)
+
+    
     // MARK: Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,16 +28,14 @@ class CustomInputAccessoryView: UIView {
 extension CustomInputAccessoryView {
     
     fileprivate func setupUI() {
-        dropShadow(color: .lightGray, opacity: 0.1, offset: .init(width: 0, height: -8), radius: 8)
         backgroundColor = .white
         autoresizingMask = .flexibleHeight
+        dropShadow(color: .lightGray, opacity: 0.1, offset: .init(width: 0, height: -8), radius: 8)
         
-        let textView = UITextView()
-        textView.text = "It's working"
+        textView.font = UIFont.systemFont(ofSize: 16)
         textView.isScrollEnabled = false
         
         let dimensions: CGFloat = 60
-        let sendButton = TDButton(title: "SEND", titleColor: .black, fontSize: 14)
         sendButton.setHeight(dimensions)
         sendButton.setWidth(dimensions)
 
