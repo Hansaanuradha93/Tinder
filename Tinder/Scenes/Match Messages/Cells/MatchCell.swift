@@ -14,6 +14,7 @@ class MatchCell: UICollectionViewCell {
         setupLayout()
     }
     
+    
     required init?(coder: NSCoder) { fatalError() }
 }
 
