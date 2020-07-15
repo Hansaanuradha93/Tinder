@@ -15,11 +15,23 @@ class ChatLogViewController: UICollectionViewController {
     lazy var redView: CustomInputAccessoryView = {
         let redView = CustomInputAccessoryView(frame: .init(x: 0, y: 0, width: view.frame.width, height: 50))
         redView.dropShadow(color: .lightGray, opacity: 0.1, offset: .init(width: 0, height: -8), radius: 8)
+        redView.backgroundColor = .white
+        redView.autoresizingMask = .flexibleHeight
         
         let textView = UITextView()
         textView.text = "It's working"
-        redView.addSubview(textView)
-        textView.fillSuperview()
+        textView.isScrollEnabled = false
+        
+        let dimensions: CGFloat = 60
+        let sendButton = TDButton(title: "SEND", titleColor: .black, fontSize: 14)
+        sendButton.setHeight(dimensions)
+        sendButton.setWidth(dimensions)
+
+        let stackView = UIStackView(arrangedSubviews: [textView, sendButton])
+        stackView.alignment = .center
+        redView.addSubview(stackView)
+        stackView.fillSuperview()
+        stackView.isLayoutMarginsRelativeArrangement = true
         
         return redView
     }()
