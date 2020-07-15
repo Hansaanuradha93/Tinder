@@ -12,6 +12,18 @@ class ChatLogViewController: UICollectionViewController {
                                 Message(text: "Message 3", isFromCurrentUser: false),
                                 Message(text: "Message 4", isFromCurrentUser: true)]
     
+    lazy var redView: CustomInputAccessoryView = {
+        let redView = CustomInputAccessoryView(frame: .init(x: 0, y: 0, width: view.frame.width, height: 50))
+        redView.dropShadow(color: .lightGray, opacity: 0.1, offset: .init(width: 0, height: -8), radius: 8)
+        
+        let textView = UITextView()
+        textView.text = "It's working"
+        redView.addSubview(textView)
+        textView.fillSuperview()
+        
+        return redView
+    }()
+    
     
     // MARK: Initializers
     init(match: Match) {
@@ -28,6 +40,16 @@ class ChatLogViewController: UICollectionViewController {
         super.viewDidLoad()
         setupLayout()
         setupCollectionView()
+    }
+    
+    
+    override var inputAccessoryView: UIView? {
+        get { return redView }
+    }
+    
+    
+    override var canBecomeFirstResponder: Bool {
+        return true
     }
 }
 
@@ -89,6 +111,7 @@ extension ChatLogViewController {
         collectionView.contentInset.top = navBarHeight
         collectionView.verticalScrollIndicatorInsets.top = navBarHeight
         collectionView.alwaysBounceVertical = true
+        collectionView.keyboardDismissMode = .interactive
         collectionView.register(MessageCell.self, forCellWithReuseIdentifier: MessageCell.reuseID)
     }
 }
