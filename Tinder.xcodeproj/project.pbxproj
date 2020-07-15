@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		17358587252E3CA982B52A5A /* Pods_Tinder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC5D9E6E2194471FD3AE46B8 /* Pods_Tinder.framework */; };
 		4702535824A99A9800F725A1 /* AgeRangeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4702535724A99A9800F725A1 /* AgeRangeCell.swift */; };
+		47288FF024BF6E30006E2241 /* CustomInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47288FEF24BF6E30006E2241 /* CustomInputAccessoryView.swift */; };
 		4738A6CD249BD0B400C55385 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4738A6CC249BD0B400C55385 /* CardView.swift */; };
 		474003D524B7067300EC302E /* MatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474003D424B7067300EC302E /* MatchView.swift */; };
 		474003D824B71BD900EC302E /* TDImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474003D724B71BD900EC302E /* TDImageView.swift */; };
@@ -61,6 +62,7 @@
 
 /* Begin PBXFileReference section */
 		4702535724A99A9800F725A1 /* AgeRangeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeRangeCell.swift; sourceTree = "<group>"; };
+		47288FEF24BF6E30006E2241 /* CustomInputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputAccessoryView.swift; sourceTree = "<group>"; };
 		4738A6CC249BD0B400C55385 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		474003D424B7067300EC302E /* MatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchView.swift; sourceTree = "<group>"; };
 		474003D724B71BD900EC302E /* TDImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDImageView.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 			children = (
 				477B866624B9A3250059228B /* MatchMessagesNavigationBar.swift */,
 				47B405CB24BB692F0064EE13 /* ChatLogNavigationBar.swift */,
+				47288FEF24BF6E30006E2241 /* CustomInputAccessoryView.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -544,6 +547,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4742E8BA24A1C110005EE6EB /* NetworkManager.swift in Sources */,
+				47288FF024BF6E30006E2241 /* CustomInputAccessoryView.swift in Sources */,
 				477B866B24B9D2800059228B /* MessageCell.swift in Sources */,
 				47FC531D249E884D0053C4F7 /* TDTextField.swift in Sources */,
 				479A073724A32B6E00AB21C8 /* SettingsViewController.swift in Sources */,
