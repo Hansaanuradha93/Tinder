@@ -6,35 +6,12 @@ class ChatLogViewController: UICollectionViewController {
     fileprivate let navBarHeight: CGFloat = 120
     fileprivate lazy var customNavigationBar = ChatLogNavigationBar(match: match)
     fileprivate let statusBar = UIView()
+    fileprivate lazy var redView = CustomInputAccessoryView(frame: .init(x: 0, y: 0, width: view.frame.width, height: 50))
     fileprivate var match: Match!
     fileprivate var messages = [Message(text: "Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1", isFromCurrentUser: true),
                                 Message(text: "Message 2", isFromCurrentUser: false),
                                 Message(text: "Message 3", isFromCurrentUser: false),
                                 Message(text: "Message 4", isFromCurrentUser: true)]
-    
-    lazy var redView: CustomInputAccessoryView = {
-        let redView = CustomInputAccessoryView(frame: .init(x: 0, y: 0, width: view.frame.width, height: 50))
-        redView.dropShadow(color: .lightGray, opacity: 0.1, offset: .init(width: 0, height: -8), radius: 8)
-        redView.backgroundColor = .white
-        redView.autoresizingMask = .flexibleHeight
-        
-        let textView = UITextView()
-        textView.text = "It's working"
-        textView.isScrollEnabled = false
-        
-        let dimensions: CGFloat = 60
-        let sendButton = TDButton(title: "SEND", titleColor: .black, fontSize: 14)
-        sendButton.setHeight(dimensions)
-        sendButton.setWidth(dimensions)
-
-        let stackView = UIStackView(arrangedSubviews: [textView, sendButton])
-        stackView.alignment = .center
-        redView.addSubview(stackView)
-        stackView.fillSuperview()
-        stackView.isLayoutMarginsRelativeArrangement = true
-        
-        return redView
-    }()
     
     
     // MARK: Initializers
