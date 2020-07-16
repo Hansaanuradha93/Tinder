@@ -6,7 +6,7 @@ class ChatLogViewController: UICollectionViewController {
     fileprivate let navBarHeight: CGFloat = 120
     fileprivate lazy var customNavigationBar = ChatLogNavigationBar(match: match)
     fileprivate let statusBar = UIView()
-    fileprivate lazy var redView = CustomInputAccessoryView(frame: .init(x: 0, y: 0, width: view.frame.width, height: 50))
+    fileprivate lazy var messageInputView = CustomInputAccessoryView(frame: .init(x: 0, y: 0, width: view.frame.width, height: 50))
     fileprivate var match: Match!
     fileprivate var messages = [Message(text: "Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1", isFromCurrentUser: true),
                                 Message(text: "Message 2", isFromCurrentUser: false),
@@ -33,7 +33,7 @@ class ChatLogViewController: UICollectionViewController {
     
     
     override var inputAccessoryView: UIView? {
-        get { return redView }
+        get { return messageInputView }
     }
     
     

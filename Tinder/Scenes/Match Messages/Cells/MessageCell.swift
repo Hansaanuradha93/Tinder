@@ -40,7 +40,7 @@ extension MessageCell {
         if message.isFromCurrentUser ?? false {
             anchoredConstraints?.leading?.isActive = false
             anchoredConstraints?.trailing?.isActive = true
-            bubbleView.backgroundColor = UIColor.appColor(color: .tealBlue)
+            bubbleView.backgroundColor = UIColor.appColor(color: .orange)
             textView.textColor = .white
         } else {
             anchoredConstraints?.leading?.isActive = true
