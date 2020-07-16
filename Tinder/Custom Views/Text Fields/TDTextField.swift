@@ -3,7 +3,7 @@ import UIKit
 class TDTextField: UITextField {
     
     // MARK: Properties
-    var padding: CGFloat = 0
+    fileprivate var padding: CGFloat = 0
     
     
     // MARK: Initializers
@@ -21,8 +21,8 @@ class TDTextField: UITextField {
     }
     
     
-    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
-    
+    required init?(coder: NSCoder) { fatalError() }
+
     
     // MARK: Overridden Methods
     override func editingRect(forBounds bounds: CGRect) -> CGRect { return bounds.insetBy(dx: padding, dy: 0) }

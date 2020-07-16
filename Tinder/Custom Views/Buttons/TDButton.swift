@@ -8,8 +8,8 @@ class TDButton: UIButton {
     }
     
     
-    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
-    
+    required init?(coder: NSCoder) { fatalError() }
+
     
     convenience init(backgroundColor: UIColor = .white, title: String = "", titleColor: UIColor = .black, radius: CGFloat = 0, fontSize: CGFloat = 32) {
         self.init(frame: .zero)

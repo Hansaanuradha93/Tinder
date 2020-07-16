@@ -8,8 +8,8 @@ class TDLabel: UILabel {
     }
     
     
-    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
-    
+    required init?(coder: NSCoder) { fatalError() }
+
     
     convenience init(text: String = "", textAlignment: NSTextAlignment = .center, textColor: UIColor = .black, fontSize: CGFloat = 16, numberOfLines: Int = 1) {
         self.init(frame: .zero)

@@ -8,8 +8,8 @@ class TDImageView: UIImageView {
     }
     
     
-    required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
-    
+    required init?(coder: NSCoder) { fatalError() }
+
     
     convenience init(image: UIImage = Asserts.placeHolder, borderWidth: CGFloat = 0, borderColor: UIColor = .clear, contentMode: ContentMode = .scaleAspectFill) {
         self.init(frame: .zero)
