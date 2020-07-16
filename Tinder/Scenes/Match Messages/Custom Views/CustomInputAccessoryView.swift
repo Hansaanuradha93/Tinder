@@ -17,6 +17,9 @@ class CustomInputAccessoryView: UIView {
     required init?(coder: NSCoder) { fatalError() }
     
     
+    deinit { NotificationCenter.default.removeObserver(self) }
+    
+    
     // MARK: Overriden Methods
     override var intrinsicContentSize: CGSize {
         return .zero
@@ -27,6 +30,11 @@ class CustomInputAccessoryView: UIView {
 // MARK: - Methods
 extension CustomInputAccessoryView {
     
+    @objc fileprivate func handleTextChange() {
+        placeHolderLabel.isHidden = textView.text.count != 0
+    }
+    
+    
     fileprivate func setupUI() {
         backgroundColor = .white
         autoresizingMask = .flexibleHeight
@@ -34,6 +42,7 @@ extension CustomInputAccessoryView {
         
         textView.font = UIFont.systemFont(ofSize: 16)
         textView.isScrollEnabled = false
+        NotificationCenter.default.addObserver(self, selector: #selector(handleTextChange), name: UITextView.textDidChangeNotification, object: nil)
         
         sendButton.setHeight(50)
         sendButton.setWidth(80)
@@ -47,7 +56,7 @@ extension CustomInputAccessoryView {
         stackView.layoutMargins = UIEdgeInsets(top: 8, left: 16, bottom: 0, right: 16)
         
         addSubview(placeHolderLabel)
-        placeHolderLabel.anchor(top: nil, leading: leadingAnchor, bottom: nil, trailing: sendButton.leadingAnchor, padding: .init(top: 8, left: 16, bottom: 0, right: 16))
+        placeHolderLabel.anchor(top: nil, leading: leadingAnchor, bottom: nil, trailing: sendButton.leadingAnchor, padding: .init(top: 8, left: 20, bottom: 0, right: 16))
         placeHolderLabel.centerYAnchor.constraint(equalTo: sendButton.centerYAnchor).isActive = true
     }
 }
