@@ -35,6 +35,7 @@ class SettingsViewController: UIViewController {
     var user: User?
     var delegate: SettingsViewControllerDelegete?
     
+    
     // MARK: View Controller
     override func viewDidLoad() {
         super.viewDidLoad()

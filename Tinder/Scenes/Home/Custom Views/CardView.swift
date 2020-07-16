@@ -38,8 +38,8 @@ class CardView: UIView {
     }
     
     
-    required init(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
-    
+    required init?(coder: NSCoder) { fatalError() }
+
     
     // MARK: Overridden Methods
     override func layoutSubviews() {
