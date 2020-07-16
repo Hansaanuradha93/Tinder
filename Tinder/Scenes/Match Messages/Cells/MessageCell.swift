@@ -16,7 +16,7 @@ class MessageCell: UICollectionViewCell {
     
     fileprivate let bubbleView: UIView = {
         let view = UIView()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = UIColor.appColor(color: .regularGray)
         return view
     }()
     
@@ -40,12 +40,12 @@ extension MessageCell {
         if message.isFromCurrentUser ?? false {
             anchoredConstraints?.leading?.isActive = false
             anchoredConstraints?.trailing?.isActive = true
-            bubbleView.backgroundColor = .blue
+            bubbleView.backgroundColor = UIColor.appColor(color: .tealBlue)
             textView.textColor = .white
         } else {
             anchoredConstraints?.leading?.isActive = true
             anchoredConstraints?.trailing?.isActive = false
-            bubbleView.backgroundColor = .lightGray
+            bubbleView.backgroundColor = UIColor.appColor(color: .regularGray)
             textView.textColor = .black
         }
     }
