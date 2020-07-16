@@ -4,8 +4,8 @@ class CustomInputAccessoryView: UIView {
     
     // MARK: Properties
     let textView = UITextView()
-    let sendButton = TDButton(title: "SEND", titleColor: .black, fontSize: 14)
-
+    let sendButton = TDButton(backgroundColor: UIColor.appColor(color: .pink), title: "SEND", titleColor: .white, fontSize: 14)
+    let placeHolderLabel = TDLabel(text: "Enter Message", textAlignment: .left, textColor: .lightGray, fontSize: 16)
     
     // MARK: Initializers
     override init(frame: CGRect) {
@@ -35,15 +35,19 @@ extension CustomInputAccessoryView {
         textView.font = UIFont.systemFont(ofSize: 16)
         textView.isScrollEnabled = false
         
-        let dimensions: CGFloat = 60
-        sendButton.setHeight(dimensions)
-        sendButton.setWidth(dimensions)
+        sendButton.setHeight(50)
+        sendButton.setWidth(80)
+        sendButton.layer.cornerRadius = 10
 
         let stackView = UIStackView(arrangedSubviews: [textView, sendButton])
         stackView.alignment = .center
         addSubview(stackView)
         stackView.fillSuperview()
         stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.layoutMargins = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        stackView.layoutMargins = UIEdgeInsets(top: 8, left: 16, bottom: 0, right: 16)
+        
+        addSubview(placeHolderLabel)
+        placeHolderLabel.anchor(top: nil, leading: leadingAnchor, bottom: nil, trailing: sendButton.leadingAnchor, padding: .init(top: 8, left: 16, bottom: 0, right: 16))
+        placeHolderLabel.centerYAnchor.constraint(equalTo: sendButton.centerYAnchor).isActive = true
     }
 }
