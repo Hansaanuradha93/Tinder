@@ -13,6 +13,7 @@
 		4738A6CD249BD0B400C55385 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4738A6CC249BD0B400C55385 /* CardView.swift */; };
 		474003D524B7067300EC302E /* MatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474003D424B7067300EC302E /* MatchView.swift */; };
 		474003D824B71BD900EC302E /* TDImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474003D724B71BD900EC302E /* TDImageView.swift */; };
+		4742960624C0BB3700FB92AF /* SettingsTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4742960524C0BB3700FB92AF /* SettingsTextField.swift */; };
 		4742E8BA24A1C110005EE6EB /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4742E8B924A1C110005EE6EB /* NetworkManager.swift */; };
 		4742E8BC24A1C184005EE6EB /* UIImageView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4742E8BB24A1C184005EE6EB /* UIImageView+Ext.swift */; };
 		4750231824B191E7000472EB /* SwipingPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4750231724B191E7000472EB /* SwipingPhotosViewController.swift */; };
@@ -66,6 +67,7 @@
 		4738A6CC249BD0B400C55385 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		474003D424B7067300EC302E /* MatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchView.swift; sourceTree = "<group>"; };
 		474003D724B71BD900EC302E /* TDImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDImageView.swift; sourceTree = "<group>"; };
+		4742960524C0BB3700FB92AF /* SettingsTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTextField.swift; sourceTree = "<group>"; };
 		4742E8B924A1C110005EE6EB /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		4742E8BB24A1C184005EE6EB /* UIImageView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Ext.swift"; sourceTree = "<group>"; };
 		4750231724B191E7000472EB /* SwipingPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipingPhotosViewController.swift; sourceTree = "<group>"; };
@@ -136,6 +138,15 @@
 				474003D724B71BD900EC302E /* TDImageView.swift */,
 			);
 			path = "Image Views";
+			sourceTree = "<group>";
+		};
+		4742960324C0BADD00FB92AF /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				4742960524C0BB3700FB92AF /* SettingsTextField.swift */,
+				479A073C24A3BAB700AB21C8 /* HeaderLabel.swift */,
+			);
+			path = "Custom Views";
 			sourceTree = "<group>";
 		};
 		4742E8B724A1C0EF005EE6EB /* Bindable */ = {
@@ -249,6 +260,8 @@
 		479A073524A32B4E00AB21C8 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				479A073E24A3BB8900AB21C8 /* Cells */,
+				4742960324C0BADD00FB92AF /* Custom Views */,
 				479A073624A32B6E00AB21C8 /* SettingsViewController.swift */,
 			);
 			path = Settings;
@@ -265,7 +278,6 @@
 		479A073B24A3BA5400AB21C8 /* Labels */ = {
 			isa = PBXGroup;
 			children = (
-				479A073C24A3BAB700AB21C8 /* HeaderLabel.swift */,
 				477984B924B844B40040624B /* TDLabel.swift */,
 			);
 			path = Labels;
@@ -302,7 +314,6 @@
 			isa = PBXGroup;
 			children = (
 				474003D624B71BBA00EC302E /* Image Views */,
-				479A073E24A3BB8900AB21C8 /* Cells */,
 				479A073B24A3BA5400AB21C8 /* Labels */,
 				479A073824A3976B00AB21C8 /* Image Picker */,
 				47FC531B249E881E0053C4F7 /* Text Fields */,
@@ -558,6 +569,7 @@
 				477984BA24B844B40040624B /* TDLabel.swift in Sources */,
 				479A073A24A3978E00AB21C8 /* TDImagePickerController.swift in Sources */,
 				47B405CC24BB692F0064EE13 /* ChatLogNavigationBar.swift in Sources */,
+				4742960624C0BB3700FB92AF /* SettingsTextField.swift in Sources */,
 				47E2D5BB24B3463F00FECD87 /* Constants.swift in Sources */,
 				47CE8208249D009C00B9696E /* Advertiser.swift in Sources */,
 				47B405CA24BB63980064EE13 /* Message.swift in Sources */,
