@@ -88,7 +88,9 @@ extension ChatLogViewController {
     
     @objc fileprivate func handleSend() {
         guard let currentUserID = Auth.auth().currentUser?.uid, let matchID = match.uid else { return }
-        let reference = Firestore.firestore().collection("matches_messages").document(currentUserID).collection(matchID)
+        
+        let rootRef = Firestore.firestore().collection("matches_messages")
+        let currentUserRef = rootRef.document(currentUserID).collection(matchID)
         let documentData: [String : Any] = [
             "text" : messageInputView.textView.text ?? "",
             "fromID": currentUserID,
@@ -96,12 +98,24 @@ extension ChatLogViewController {
             "timestamp": Timestamp(date: Date())
         ]
         
-        reference.addDocument(data: documentData) { error in
+        currentUserRef.addDocument(data: documentData) { error in
             if let error = error {
                 print(error.localizedDescription)
                 return
             }
-            print("document added")
+            print("current user message saved")
+            self.messageInputView.textView.text = nil
+            self.messageInputView.placeHolderLabel.isHidden = false
+        }
+        
+        let matchUserRef = rootRef.document(matchID).collection(currentUserID)
+        
+        matchUserRef.addDocument(data: documentData) { error in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            print("match user message saved")
             self.messageInputView.textView.text = nil
             self.messageInputView.placeHolderLabel.isHidden = false
         }
