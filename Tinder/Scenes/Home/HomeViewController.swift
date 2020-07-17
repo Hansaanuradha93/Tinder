@@ -213,7 +213,7 @@ extension HomeViewController {
         let currentUserData: [String: Any] = [
             "username": currentUser.name ?? "",
             "profileImageUrl": currentUser.imageUrl1 ?? "",
-            "uid": cardUID,
+            "uid": currentUser.uid ?? "",
             "timestamp": Timestamp(date: Date())
         ]
         let cardUserRef = ref.document(cardUID).collection("matches").document(currentUserID)
