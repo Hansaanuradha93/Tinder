@@ -109,12 +109,13 @@ extension ChatLogViewController {
     fileprivate func fetchMessages() {
         guard let currentUserID = Auth.auth().currentUser?.uid, let matchID = match.uid else { return }
         let query = Firestore.firestore().collection("matches_messages").document(currentUserID).collection(matchID).order(by: "timestamp")
-        query.getDocuments { (querySnapshot, error) in
+        
+        query.addSnapshotListener { (querySnapshot, error) in
             if let error = error {
                 print(error.localizedDescription)
                 return
             }
-            
+            self.messages = []
             guard let documents = querySnapshot?.documents else { return }
             for document in documents {
                 self.messages.append(Message(dictionary: document.data()))
