@@ -28,6 +28,7 @@ class ChatLogViewController: UICollectionViewController {
         setupLayout()
         setupCollectionView()
         fetchMessages()
+        setupNotifications()
     }
     
     
@@ -103,6 +104,16 @@ extension ChatLogViewController {
     
     @objc fileprivate func handleBack() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    
+    @objc fileprivate func handleKeyboardShow() {
+        collectionView.scrollToItem(at: IndexPath(item: messages.count - 1, section: 0), at: .bottom, animated: true)
+    }
+    
+    
+    fileprivate func setupNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardShow), name: UIResponder.keyboardDidShowNotification, object: nil)
     }
     
     
