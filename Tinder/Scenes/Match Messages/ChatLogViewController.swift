@@ -115,10 +115,11 @@ extension ChatLogViewController {
                 print(error.localizedDescription)
                 return
             }
-            self.messages = []
-            guard let documents = querySnapshot?.documents else { return }
-            for document in documents {
-                self.messages.append(Message(dictionary: document.data()))
+            guard let documentChanges = querySnapshot?.documentChanges else { return }
+            for change in documentChanges {
+                if change.type == .added {
+                    self.messages.append(Message(dictionary: change.document.data()))
+                }
             }
             DispatchQueue.main.async { self.collectionView.reloadData() }
         }
