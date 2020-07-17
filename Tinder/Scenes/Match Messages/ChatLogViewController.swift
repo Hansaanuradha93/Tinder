@@ -9,10 +9,7 @@ class ChatLogViewController: UICollectionViewController {
     fileprivate let statusBar = UIView()
     fileprivate lazy var messageInputView = CustomInputAccessoryView(frame: .init(x: 0, y: 0, width: view.frame.width, height: 50))
     fileprivate var match: Match!
-    fileprivate var messages = [Message(text: "Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1 Message 1", isFromCurrentUser: true),
-                                Message(text: "Message 2", isFromCurrentUser: false),
-                                Message(text: "Message 3", isFromCurrentUser: false),
-                                Message(text: "Message 4", isFromCurrentUser: true)]
+    fileprivate var messages = [Message]()
     
     
     // MARK: Initializers
@@ -30,6 +27,7 @@ class ChatLogViewController: UICollectionViewController {
         super.viewDidLoad()
         setupLayout()
         setupCollectionView()
+        fetchMessages()
     }
     
     
@@ -105,6 +103,24 @@ extension ChatLogViewController {
     
     @objc fileprivate func handleBack() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    
+    fileprivate func fetchMessages() {
+        guard let currentUserID = Auth.auth().currentUser?.uid, let matchID = match.uid else { return }
+        let query = Firestore.firestore().collection("matches_messages").document(currentUserID).collection(matchID).order(by: "timestamp")
+        query.getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            
+            guard let documents = querySnapshot?.documents else { return }
+            for document in documents {
+                self.messages.append(Message(dictionary: document.data()))
+            }
+            DispatchQueue.main.async { self.collectionView.reloadData() }
+        }
     }
     
     
