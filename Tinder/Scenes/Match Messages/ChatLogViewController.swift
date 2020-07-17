@@ -32,6 +32,12 @@ class ChatLogViewController: UICollectionViewController {
     }
     
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    
     override var inputAccessoryView: UIView? {
         get { return messageInputView }
     }
