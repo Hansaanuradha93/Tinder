@@ -1,4 +1,5 @@
 import UIKit
+import Firebase
 
 class ChatLogViewController: UICollectionViewController {
 
@@ -80,6 +81,28 @@ extension ChatLogViewController: UICollectionViewDelegateFlowLayout {
 // MARK: - Methods
 extension ChatLogViewController {
     
+    @objc fileprivate func handleSend() {
+        guard let currentUserID = Auth.auth().currentUser?.uid, let matchID = match.uid else { return }
+        let reference = Firestore.firestore().collection("matches_messages").document(currentUserID).collection(matchID)
+        let documentData: [String : Any] = [
+            "text" : messageInputView.textView.text ?? "",
+            "fromID": currentUserID,
+            "toID": matchID,
+            "timestamp": Timestamp(date: Date())
+        ]
+        
+        reference.addDocument(data: documentData) { error in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            print("document added")
+            self.messageInputView.textView.text = nil
+            self.messageInputView.placeHolderLabel.isHidden = false
+        }
+    }
+    
+    
     @objc fileprivate func handleBack() {
         navigationController?.popViewController(animated: true)
     }
@@ -89,6 +112,7 @@ extension ChatLogViewController {
         view.addSubview(customNavigationBar)
         customNavigationBar.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, size: .init(width: 0, height: navBarHeight))
         customNavigationBar.backButton.addTarget(self, action: #selector(handleBack), for: .touchUpInside)
+        messageInputView.sendButton.addTarget(self, action: #selector(handleSend), for: .touchUpInside)
         statusBar.backgroundColor = .white
         view.addSubview(statusBar)
         statusBar.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.topAnchor, trailing: view.trailingAnchor)
