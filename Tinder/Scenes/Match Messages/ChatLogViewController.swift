@@ -138,7 +138,10 @@ extension ChatLogViewController {
                     self.messages.append(Message(dictionary: change.document.data()))
                 }
             }
-            DispatchQueue.main.async { self.collectionView.reloadData() }
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+                self.collectionView.scrollToItem(at: IndexPath(item: self.messages.count - 1, section: 0), at: .bottom, animated: true)
+            }
         }
     }
     
