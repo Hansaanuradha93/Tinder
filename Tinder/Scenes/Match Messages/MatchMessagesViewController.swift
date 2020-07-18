@@ -28,7 +28,6 @@ extension MatchMessagesViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MatchCell.reuseID, for: indexPath) as! MatchCell
-        cell.backgroundColor = .yellow
         return cell
     }
     
