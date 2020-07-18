@@ -4,9 +4,9 @@ class MatchesHeaderView: UICollectionReusableView {
      
     // MARK: Properties
     static let reuseID = "MatchesHeaderView"
-    let newMatchesLabel = TDLabel(text: "New Matches", textAlignment: .left, textColor: UIColor.appColor(color: .pink), fontSize: 16)
-    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-    let messagesLabel = TDLabel(text: "Messages", textAlignment: .left, textColor: UIColor.appColor(color: .pink), fontSize: 16)
+    let newMatchesLabel = TDLabel(text: "New Matches", textAlignment: .left, textColor: UIColor.appColor(color: .pink), fontSize: 18)
+    let matchesController = MatchesViewController(collectionViewLayout: UICollectionViewFlowLayout())
+    let messagesLabel = TDLabel(text: "Messages", textAlignment: .left, textColor: UIColor.appColor(color: .pink), fontSize: 18)
     
     // Initializers
     override init(frame: CGRect) {
@@ -24,9 +24,8 @@ extension MatchesHeaderView {
     
     fileprivate func setupUI() {
         backgroundColor = .white
-        collectionView.backgroundColor = .white
         
-        let stackView = UIStackView(arrangedSubviews: [newMatchesLabel, collectionView, messagesLabel])
+        let stackView = UIStackView(arrangedSubviews: [newMatchesLabel, matchesController.view, messagesLabel])
         stackView.axis = .vertical
         stackView.spacing = 16
         addSubview(stackView)
