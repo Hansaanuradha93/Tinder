@@ -1,30 +1,77 @@
-//
-//  MatchesViewController.swift
-//  Tinder
-//
-//  Created by Hansa Anuradha on 7/18/20.
-//  Copyright © 2020 Hansa Anuradha. All rights reserved.
-//
-
 import UIKit
 
-class MatchesViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
+class MatchesViewController: UICollectionViewController {
+    
+    // MARK: Properties
+    fileprivate var matches = [Match]()
+    fileprivate let matchesViewModel = MatchesViewModel()
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // MARK: View Controller
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupUI()
+        fetchMatches()
     }
-    */
+}
 
+
+// MARK: - Collection View Datasource
+extension MatchesViewController {
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return matches.count
+    }
+    
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MatchCell.reuseID, for: indexPath) as! MatchCell
+        cell.set(match: matches[indexPath.item])
+        return cell
+    }
+}
+
+
+// MARK: - UICollectionViewDelegateFlowLayout
+extension MatchesViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 100, height: 150)
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+    }
+}
+
+
+// MARK: - Collection View Delegate
+extension MatchesViewController {
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let controller = ChatLogViewController(match: matches[indexPath.item])
+        navigationController?.pushViewController(controller, animated: true)
+    }
+}
+
+
+// MARK: - Methods
+extension MatchesViewController {
+    
+    fileprivate func fetchMatches() {
+        matchesViewModel.fetchMatches { [weak self] match in
+            guard let self = self, let match = match else { return }
+            self.matches.append(match)
+            DispatchQueue.main.async { self.collectionView.reloadData() }
+        }
+    }
+    
+    fileprivate func setupUI() {
+        collectionView.backgroundColor = .white
+        collectionView.register(MatchCell.self, forCellWithReuseIdentifier: MatchCell.reuseID)
+        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.scrollDirection = .horizontal
+        }
+    }
 }
