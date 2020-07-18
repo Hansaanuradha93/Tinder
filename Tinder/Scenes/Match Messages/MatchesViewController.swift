@@ -1,8 +1,15 @@
 import UIKit
 
+protocol MatchesDelegate {
+    func tappedOn(match: Match)
+}
+
+
 class MatchesViewController: UICollectionViewController {
     
     // MARK: Properties
+    var matchesDelegate: MatchesDelegate?
+
     fileprivate var matches = [Match]()
     fileprivate let matchesViewModel = MatchesViewModel()
     
@@ -50,8 +57,7 @@ extension MatchesViewController: UICollectionViewDelegateFlowLayout {
 extension MatchesViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let controller = ChatLogViewController(match: matches[indexPath.item])
-        navigationController?.pushViewController(controller, animated: true)
+        matchesDelegate?.tappedOn(match: matches[indexPath.item])
     }
 }
 
