@@ -35,8 +35,7 @@ extension MatchMessagesViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Header", for: indexPath)
-        headerView.backgroundColor = UIColor.blue
+        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: MatchesHeaderView.reuseID, for: indexPath) as! MatchesHeaderView
         return headerView
     }
     
@@ -93,7 +92,7 @@ extension MatchMessagesViewController {
         collectionView.verticalScrollIndicatorInsets.top = navBarHeight
         collectionView.register(MessageCell.self, forCellWithReuseIdentifier: MessageCell.reuseID)
         collectionView.register(MatchCell.self, forCellWithReuseIdentifier: MatchCell.reuseID)
-        collectionView.register(UICollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "Header")
+        collectionView.register(MatchesHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MatchesHeaderView.reuseID)
     }
     
     
