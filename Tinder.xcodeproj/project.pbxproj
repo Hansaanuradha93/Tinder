@@ -197,6 +197,7 @@
 		477B866224B97E1E0059228B /* Match Messages */ = {
 			isa = PBXGroup;
 			children = (
+				4796748824C353880010051A /* Headers */,
 				477B866924B9D2540059228B /* Cells */,
 				477B866524B9A3070059228B /* Custom Views */,
 				477B866324B97E3C0059228B /* MatchMessagesViewController.swift */,
@@ -222,6 +223,13 @@
 				477B866C24BA10230059228B /* MatchCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		4796748824C353880010051A /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Headers;
 			sourceTree = "<group>";
 		};
 		47988062249A7B3E00829930 = {
