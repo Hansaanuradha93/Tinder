@@ -7,7 +7,6 @@ class MatchMessagesViewController: UICollectionViewController {
     fileprivate let matchMessagesViewModel = MatchMessagesViewModel()
     fileprivate let customNavBar = MatchMessagesNavigationBar()
     fileprivate let statusBar = UIView()
-    fileprivate var matches = [Match]()
     
     
     // MARK: View Controller
@@ -15,7 +14,6 @@ class MatchMessagesViewController: UICollectionViewController {
         super.viewDidLoad()
         setupLayout()
         setupCollectionView()
-        fetchMatches()
     }
 }
 
@@ -24,13 +22,13 @@ class MatchMessagesViewController: UICollectionViewController {
 extension MatchMessagesViewController {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return matches.count
+        return 10
     }
     
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MatchCell.reuseID, for: indexPath) as! MatchCell
-        cell.set(match: matches[indexPath.item])
+        cell.backgroundColor = .yellow
         return cell
     }
     
@@ -38,16 +36,6 @@ extension MatchMessagesViewController {
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: MatchesHeaderView.reuseID, for: indexPath) as! MatchesHeaderView
         return headerView
-    }
-}
-
-
-// MARK: - Collection View Delegate
-extension MatchMessagesViewController {
-    
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let controller = ChatLogViewController(match: matches[indexPath.item])
-        navigationController?.pushViewController(controller, animated: true)
     }
 }
 
@@ -79,20 +67,10 @@ extension MatchMessagesViewController {
     }
     
     
-    fileprivate func fetchMatches() {
-        matchMessagesViewModel.fetchMatches { [weak self] match in
-            guard let self = self, let match = match else { return }
-            self.matches.append(match)
-            DispatchQueue.main.async { self.collectionView.reloadData() }
-        }
-    }
-    
-    
     fileprivate func setupCollectionView() {
         collectionView.backgroundColor = .white
         collectionView.contentInset.top = navBarHeight
         collectionView.verticalScrollIndicatorInsets.top = navBarHeight
-        collectionView.register(MessageCell.self, forCellWithReuseIdentifier: MessageCell.reuseID)
         collectionView.register(MatchCell.self, forCellWithReuseIdentifier: MatchCell.reuseID)
         collectionView.register(MatchesHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MatchesHeaderView.reuseID)
     }
