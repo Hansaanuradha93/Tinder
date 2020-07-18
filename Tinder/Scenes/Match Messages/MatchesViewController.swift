@@ -36,12 +36,12 @@ extension MatchesViewController {
 extension MatchesViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: 150)
+        return CGSize(width: 100, height: collectionView.frame.height)
     }
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+        return UIEdgeInsets(top: 16, left: 16, bottom: 0, right: 0)
     }
 }
 
@@ -66,6 +66,7 @@ extension MatchesViewController {
             DispatchQueue.main.async { self.collectionView.reloadData() }
         }
     }
+    
     
     fileprivate func setupUI() {
         collectionView.backgroundColor = .white
