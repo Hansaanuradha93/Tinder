@@ -76,6 +76,7 @@ extension MatchesViewController {
     
     fileprivate func setupUI() {
         collectionView.backgroundColor = .white
+        collectionView.showsHorizontalScrollIndicator = false
         collectionView.register(MatchCell.self, forCellWithReuseIdentifier: MatchCell.reuseID)
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.scrollDirection = .horizontal
