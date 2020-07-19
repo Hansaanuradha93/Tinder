@@ -91,6 +91,70 @@ extension UIView {
     }
     
     
+    func centerVerticallyInSuperView(padding: CGFloat = .zero, size: CGSize = .zero) {
+        translatesAutoresizingMaskIntoConstraints = false
+        if let superviewCenterYAnchor = superview?.centerYAnchor {
+            centerYAnchor.constraint(equalTo: superviewCenterYAnchor, constant: padding).isActive = true
+        }
+        
+        if size.width != 0 {
+            widthAnchor.constraint(equalToConstant: size.width).isActive = true
+        }
+        
+        if size.height != 0 {
+            heightAnchor.constraint(equalToConstant: size.height).isActive = true
+        }
+    }
+    
+    
+    @discardableResult
+    func alignLeadingInSuperView(leading: NSLayoutXAxisAnchor?, paddingLeading: CGFloat = .zero) -> AnchoredConstraints {
+        translatesAutoresizingMaskIntoConstraints = false
+        
+        var anchoredConstraints = AnchoredConstraints()
+        
+        if let leading = leading {
+            anchoredConstraints.leading = leadingAnchor.constraint(equalTo: leading, constant: paddingLeading)
+        }
+        
+        anchoredConstraints.leading?.isActive = true
+                
+        return anchoredConstraints
+    }
+    
+    
+    @discardableResult
+    func alignTrailingInSuperView(trailing: NSLayoutXAxisAnchor?, paddingTrailing: CGFloat = .zero) -> AnchoredConstraints {
+        translatesAutoresizingMaskIntoConstraints = false
+        
+        var anchoredConstraints = AnchoredConstraints()
+        
+        if let trailing = trailing {
+            anchoredConstraints.trailing = leadingAnchor.constraint(equalTo: trailing, constant: paddingTrailing)
+        }
+        
+        anchoredConstraints.trailing?.isActive = true
+                
+        return anchoredConstraints
+    }
+    
+    
+    func centerHorizontallyInSuperView(size: CGSize = .zero) {
+        translatesAutoresizingMaskIntoConstraints = false
+        if let superviewCenterXAnchor = superview?.centerXAnchor {
+            centerXAnchor.constraint(equalTo: superviewCenterXAnchor).isActive = true
+        }
+        
+        if size.width != 0 {
+            widthAnchor.constraint(equalToConstant: size.width).isActive = true
+        }
+        
+        if size.height != 0 {
+            heightAnchor.constraint(equalToConstant: size.height).isActive = true
+        }
+    }
+    
+    
     func setHeight(_ height: CGFloat) {
         translatesAutoresizingMaskIntoConstraints = false
         heightAnchor.constraint(equalToConstant: height).isActive = true
