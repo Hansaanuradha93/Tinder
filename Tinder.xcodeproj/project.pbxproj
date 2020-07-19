@@ -58,6 +58,7 @@
 		47DC81FA249FBE7500B9B6FF /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DC81F9249FBE7500B9B6FF /* SignUpViewModel.swift */; };
 		47DC81FE249FD13200B9B6FF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 47DC81FD249FD13200B9B6FF /* GoogleService-Info.plist */; };
 		47E2D5BB24B3463F00FECD87 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E2D5BA24B3463F00FECD87 /* Constants.swift */; };
+		47F3F4A124C42BC300A3A211 /* RecentMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F3F4A024C42BC300A3A211 /* RecentMessageCell.swift */; };
 		47FC5317249DF0210053C4F7 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FC5316249DF0210053C4F7 /* UIColor+Ext.swift */; };
 		47FC531A249E7C660053C4F7 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FC5319249E7C660053C4F7 /* SignupViewController.swift */; };
 		47FC531D249E884D0053C4F7 /* TDTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FC531C249E884D0053C4F7 /* TDTextField.swift */; };
@@ -117,6 +118,7 @@
 		47DC81F9249FBE7500B9B6FF /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		47DC81FD249FD13200B9B6FF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		47E2D5BA24B3463F00FECD87 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		47F3F4A024C42BC300A3A211 /* RecentMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentMessageCell.swift; sourceTree = "<group>"; };
 		47FC5316249DF0210053C4F7 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		47FC5319249E7C660053C4F7 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		47FC531C249E884D0053C4F7 /* TDTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TDTextField.swift; sourceTree = "<group>"; };
@@ -228,6 +230,7 @@
 			children = (
 				477B866A24B9D2800059228B /* MessageCell.swift */,
 				477B866C24BA10230059228B /* MatchCell.swift */,
+				47F3F4A024C42BC300A3A211 /* RecentMessageCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -606,6 +609,7 @@
 				47B405C624BAD1DE0064EE13 /* MatchMessagesViewModel.swift in Sources */,
 				479EEFE324A067E90091BEF7 /* Bindable.swift in Sources */,
 				4798806F249A7B3E00829930 /* AppDelegate.swift in Sources */,
+				47F3F4A124C42BC300A3A211 /* RecentMessageCell.swift in Sources */,
 				474003D824B71BD900EC302E /* TDImageView.swift in Sources */,
 				4796748C24C362B40010051A /* MatchesViewController.swift in Sources */,
 				477B866D24BA10230059228B /* MatchCell.swift in Sources */,

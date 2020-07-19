@@ -27,7 +27,7 @@ extension MatchMessagesViewController {
     
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MatchCell.reuseID, for: indexPath) as! MatchCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecentMessageCell.reuseID, for: indexPath) as! RecentMessageCell
         return cell
     }
     
@@ -44,7 +44,7 @@ extension MatchMessagesViewController {
 extension MatchMessagesViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: 150)
+        return CGSize(width: collectionView.frame.width, height: 150)
     }
     
     
@@ -71,7 +71,7 @@ extension MatchMessagesViewController {
         collectionView.backgroundColor = .white
         collectionView.contentInset.top = navBarHeight
         collectionView.verticalScrollIndicatorInsets.top = navBarHeight
-        collectionView.register(MatchCell.self, forCellWithReuseIdentifier: MatchCell.reuseID)
+        collectionView.register(RecentMessageCell.self, forCellWithReuseIdentifier: RecentMessageCell.reuseID)
         collectionView.register(MatchesHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MatchesHeaderView.reuseID)
     }
     

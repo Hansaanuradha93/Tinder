@@ -1,13 +1,26 @@
-//
-//  RecentMessageCell.swift
-//  Tinder
-//
-//  Created by Hansa Anuradha on 7/19/20.
-//  Copyright © 2020 Hansa Anuradha. All rights reserved.
-//
-
 import UIKit
 
 class RecentMessageCell: UICollectionViewCell {
     
+    // MARK: Properties
+    static let reuseID = "RecentMessageCell"
+    
+    
+    // MARK: Initializers
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupUI()
+    }
+    
+    
+    required init?(coder: NSCoder) { fatalError() }
+}
+
+
+// MARK: - Methods
+extension RecentMessageCell {
+    
+    fileprivate func setupUI() {
+        backgroundColor = .red
+    }
 }
