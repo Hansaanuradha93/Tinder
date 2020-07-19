@@ -4,8 +4,9 @@ class MatchCell: UICollectionViewCell {
     
     // MARK: Properties
     static let reuseID = "MatchCell"
+    
     fileprivate let profileImageView = TDImageView(contentMode: .scaleAspectFill)
-    fileprivate let usernameLabel = TDLabel(textColor: UIColor.gray, fontSize: 14, numberOfLines: 2)
+    fileprivate let usernameLabel = TDLabel(textColor: .gray, fontSize: 14, numberOfLines: 2)
     
     
     // MARK: Initializers

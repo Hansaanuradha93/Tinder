@@ -4,6 +4,7 @@ class MessageCell: UICollectionViewCell {
     
     // MARK: Properties
     static let reuseID = "MessageCell"
+    
     fileprivate var anchoredConstraints: AnchoredConstraints?
     fileprivate let textView: UITextView = {
        let tv = UITextView()
