@@ -44,7 +44,7 @@ extension MatchMessagesViewController {
 extension MatchMessagesViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 150)
+        return CGSize(width: collectionView.frame.width, height: 130)
     }
     
     
