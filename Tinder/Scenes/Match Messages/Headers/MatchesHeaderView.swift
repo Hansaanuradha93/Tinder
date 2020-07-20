@@ -15,6 +15,7 @@ class MatchesHeaderView: UICollectionReusableView {
     let matchesController = MatchesViewController(collectionViewLayout: UICollectionViewFlowLayout())
     let messagesLabel = TDLabel(text: "Messages", textAlignment: .left, textColor: UIColor.appColor(color: .pink), fontSize: 18)
     
+    
     // Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -52,6 +53,7 @@ extension MatchesHeaderView {
 
 // MARK: - MatchesDelegate
 extension MatchesHeaderView: MatchesDelegate {
+    
     func tappedOn(match: Match) {
         delegate?.tappedOn(match: match)
     }
