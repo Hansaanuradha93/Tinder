@@ -1,7 +1,7 @@
 import UIKit
 import Firebase
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController { // TODO: Refactor this class
 
     // MARK: Properties
     fileprivate let topControllsStackView = HomeTopButtonControlsStackView()

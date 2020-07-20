@@ -15,6 +15,7 @@ class CardView: UIView {
     fileprivate let informationLabel = UILabel()
     fileprivate let moreInfoButton = TDButton()
 
+    
     // MARK: Configurations
     fileprivate let threshold: CGFloat = 100
     fileprivate let barDiselectedColor = UIColor.appColor(color: .darkGray)

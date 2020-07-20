@@ -5,7 +5,7 @@ class AgeRangeCell: UITableViewCell {
     // MARK: Properties
     static let reuseIdentifier = "AgeRangeCell"
     
-    var minSlider: UISlider = {
+    var minSlider: UISlider = { // TODO: Refactor the UISlider
         let slider = UISlider()
         slider.minimumValue = Float(Constants.defaultMinimumSeekingAge)
         slider.maximumValue = Float(Constants.defaultMaximumSeekingAge)

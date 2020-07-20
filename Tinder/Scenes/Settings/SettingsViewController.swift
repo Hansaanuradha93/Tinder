@@ -6,7 +6,7 @@ protocol SettingsViewControllerDelegete {
 }
 
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: UIViewController { // TODO: Refactor this class
     
     // MARK: Properties
     fileprivate lazy var image1Button = createButton(selector: #selector(handleSelectPhoto))
