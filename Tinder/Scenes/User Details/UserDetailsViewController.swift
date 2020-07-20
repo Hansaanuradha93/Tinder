@@ -21,6 +21,7 @@ class UserDetailsViewController: UIViewController {
         setupVisualBlurEffectView()
     }
     
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         swipingView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.width + extraSwipingHeight)
