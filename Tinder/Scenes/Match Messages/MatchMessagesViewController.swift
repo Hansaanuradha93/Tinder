@@ -89,6 +89,7 @@ extension MatchMessagesViewController {
 
 // MARK: - MatchesHeaderViewDelegate
 extension MatchMessagesViewController: MatchesHeaderViewDelegate {
+    
     func tappedOn(match: Match) {
         let controller = ChatLogViewController(match: match)
         navigationController?.pushViewController(controller, animated: true)
