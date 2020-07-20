@@ -10,6 +10,7 @@ class RecentMessageCell: UICollectionViewCell {
     fileprivate let messageLabel = TDLabel(text: "This is really a long sentense since i want to check if a long text will filt in", textAlignment: .left, textColor: .gray, fontSize: 14, numberOfLines: 2)
     fileprivate let barView = UIView()
     
+    
     // MARK: Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
