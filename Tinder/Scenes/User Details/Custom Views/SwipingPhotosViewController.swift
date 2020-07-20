@@ -66,7 +66,6 @@ extension SwipingPhotosViewController {
     
     
     @objc fileprivate func handleTap(gesture: UITapGestureRecognizer) {
-        
         guard let currentController = viewControllers?.first, let index = controllers.firstIndex(of: currentController) else { return }
         var nextIndex: Int = 0
         
