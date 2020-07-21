@@ -86,7 +86,7 @@ extension ChatLogViewController: UICollectionViewDelegateFlowLayout {
 // MARK: - Methods
 extension ChatLogViewController {
     
-    @objc fileprivate func handleSend() {
+    @objc fileprivate func handleSend() { // TODO: refactor this code here
         guard let currentUserID = Auth.auth().currentUser?.uid, let matchID = match.uid else { return }
         
         let rootRef = Firestore.firestore().collection("matches_messages")

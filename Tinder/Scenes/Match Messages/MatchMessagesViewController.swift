@@ -1,4 +1,5 @@
 import UIKit
+import Firebase
 
 class MatchMessagesViewController: UICollectionViewController {
 
@@ -7,6 +8,7 @@ class MatchMessagesViewController: UICollectionViewController {
     fileprivate let matchMessagesViewModel = MatchMessagesViewModel()
     fileprivate let customNavBar = MatchMessagesNavigationBar()
     fileprivate let statusBar = UIView()
+    fileprivate var recentMessages = [RecentMessage]()
     
     
     // MARK: View Controller
@@ -14,6 +16,7 @@ class MatchMessagesViewController: UICollectionViewController {
         super.viewDidLoad()
         setupLayout()
         setupCollectionView()
+        fetchRecentMessages()
     }
 }
 
@@ -22,12 +25,13 @@ class MatchMessagesViewController: UICollectionViewController {
 extension MatchMessagesViewController {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return recentMessages.count
     }
     
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecentMessageCell.reuseID, for: indexPath) as! RecentMessageCell
+        cell.set(recentMessage: recentMessages[indexPath.row])
         return cell
     }
     
@@ -64,6 +68,25 @@ extension MatchMessagesViewController {
     
     @objc fileprivate func handleBack() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    
+    fileprivate func fetchRecentMessages() { // TODO: Refactor this code
+        guard let currentUserId = Auth.auth().currentUser?.uid else { return }
+        let reference = Firestore.firestore().collection("matches_messages").document(currentUserId).collection("recent_messages")
+        reference.getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            guard let documentChanges = querySnapshot?.documentChanges else { return }
+            for change in documentChanges {
+                if change.type == .added {
+                    self.recentMessages.append(RecentMessage(dictionary: change.document.data()))
+                }
+            }
+            DispatchQueue.main.async { self.collectionView.reloadData() }
+        }
     }
     
     
