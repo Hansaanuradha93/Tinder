@@ -25,6 +25,13 @@ class RecentMessageCell: UICollectionViewCell {
 // MARK: - Methods
 extension RecentMessageCell {
     
+    func set(recentMessage: RecentMessage) {
+        profileImageView.downloadImage(from: recentMessage.profileImageUrl ?? "")
+        usernameLabel.text = recentMessage.name ?? ""
+        messageLabel.text = recentMessage.text ?? ""
+    }
+    
+    
     fileprivate func setupUI() {
         let dimensions: CGFloat = 100
         let padding = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 20)
