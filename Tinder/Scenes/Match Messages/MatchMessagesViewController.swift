@@ -9,6 +9,7 @@ class MatchMessagesViewController: UICollectionViewController {
     fileprivate let customNavBar = MatchMessagesNavigationBar()
     fileprivate let statusBar = UIView()
     fileprivate var recentMessages = [RecentMessage]()
+    fileprivate var recentMessagesDictionary = [String : RecentMessage]()
     
     
     // MARK: View Controller
@@ -81,12 +82,20 @@ extension MatchMessagesViewController {
             }
             guard let documentChanges = querySnapshot?.documentChanges else { return }
             for change in documentChanges {
-                if change.type == .added {
-                    self.recentMessages.append(RecentMessage(dictionary: change.document.data()))
+                if change.type == .added || change.type == .modified {
+                    let recentMessage = RecentMessage(dictionary: change.document.data())
+                    self.recentMessagesDictionary[recentMessage.uid ?? ""] = recentMessage
                 }
             }
-            DispatchQueue.main.async { self.collectionView.reloadData() }
+            self.resetRecentMessages()
         }
+    }
+    
+    
+    fileprivate func resetRecentMessages() {
+        let values = Array(recentMessagesDictionary.values)
+        recentMessages = values
+        collectionView.reloadData()
     }
     
     
