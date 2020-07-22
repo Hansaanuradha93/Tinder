@@ -3,7 +3,7 @@ import UIKit
 class ChatLogNavigationBar: UIView {
     
     // MARK: Properties
-    fileprivate var match: Match!
+    fileprivate var chatLogViewModel: ChatLogViewModel!
     fileprivate let dimensions: CGFloat = 50
     fileprivate let profileImageView = TDImageView(contentMode: .scaleAspectFill)
     fileprivate let usernameLabel = TDLabel( textAlignment: .center, textColor: .gray, fontSize: 16, numberOfLines: 2)
@@ -22,9 +22,9 @@ class ChatLogNavigationBar: UIView {
     required init?(coder: NSCoder) { fatalError() }
     
     
-    convenience init(match: Match) {
+    convenience init(chatLogViewModel: ChatLogViewModel) {
         self.init(frame: .zero)
-        self.match = match
+        self.chatLogViewModel = chatLogViewModel
         setupUser()
     }
 }
@@ -34,8 +34,8 @@ class ChatLogNavigationBar: UIView {
 extension ChatLogNavigationBar {
     
     fileprivate func setupUser() {
-        profileImageView.downloadImage(from: match.profileImageUrl ?? "")
-        usernameLabel.text = match.username ?? ""
+        profileImageView.downloadImage(from: chatLogViewModel.profileImageUrl)
+        usernameLabel.text = chatLogViewModel.username
     }
     
     

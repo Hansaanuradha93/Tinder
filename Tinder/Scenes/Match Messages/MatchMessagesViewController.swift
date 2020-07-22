@@ -45,6 +45,15 @@ extension MatchMessagesViewController {
 }
 
 
+// MARK: - Collection View Delegate
+extension MatchMessagesViewController {
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(124)
+    }
+}
+
+
 // MARK: - UICollectionViewDelegateFlowLayout
 extension MatchMessagesViewController: UICollectionViewDelegateFlowLayout {
     
@@ -102,6 +111,12 @@ extension MatchMessagesViewController {
     }
     
     
+    fileprivate func navigateToChatLog(chatLogViewModel: ChatLogViewModel) {
+        let controller = ChatLogViewController(chatLogViewModel: chatLogViewModel)
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    
     fileprivate func setupCollectionView() {
         collectionView.backgroundColor = .white
         collectionView.contentInset.top = navBarHeight
@@ -126,7 +141,6 @@ extension MatchMessagesViewController {
 extension MatchMessagesViewController: MatchesHeaderViewDelegate {
     
     func tappedOn(match: Match) {
-        let controller = ChatLogViewController(match: match)
-        navigationController?.pushViewController(controller, animated: true)
+        navigateToChatLog(chatLogViewModel: match.toChatLogViewModel())
     }
 }

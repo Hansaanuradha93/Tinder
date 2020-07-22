@@ -4,18 +4,18 @@ import Firebase
 class ChatLogViewController: UICollectionViewController {
 
     // MARK: Properties
+    fileprivate var chatLogViewModel: ChatLogViewModel!
     fileprivate let navBarHeight: CGFloat = 120
-    fileprivate lazy var customNavigationBar = ChatLogNavigationBar(match: match)
+    fileprivate lazy var customNavigationBar = ChatLogNavigationBar(chatLogViewModel: chatLogViewModel)
     fileprivate let statusBar = UIView()
     fileprivate lazy var messageInputView = CustomInputAccessoryView(frame: .init(x: 0, y: 0, width: view.frame.width, height: 50))
-    fileprivate var match: Match!
     fileprivate var messages = [Message]()
     
     
     // MARK: Initializers
-    init(match: Match) {
+    init(chatLogViewModel: ChatLogViewModel) {
         super.init(collectionViewLayout: UICollectionViewFlowLayout())
-        self.match = match
+        self.chatLogViewModel = chatLogViewModel
     }
     
     
@@ -87,8 +87,8 @@ extension ChatLogViewController: UICollectionViewDelegateFlowLayout {
 extension ChatLogViewController {
     
     @objc fileprivate func handleSend() { // TODO: refactor this code here
-        guard let currentUserID = Auth.auth().currentUser?.uid, let matchID = match.uid else { return }
-        
+        guard let currentUserID = Auth.auth().currentUser?.uid else { return }
+        let matchID = chatLogViewModel.uid
         let rootRef = Firestore.firestore().collection("matches_messages")
         let currentUserRef = rootRef.document(currentUserID).collection(matchID)
         let documentData: [String : Any] = [
@@ -137,8 +137,9 @@ extension ChatLogViewController {
     }
     
     
-    fileprivate func fetchMessages() {
-        guard let currentUserID = Auth.auth().currentUser?.uid, let matchID = match.uid else { return }
+    fileprivate func fetchMessages() { // TODO: Refactor this code
+        guard let currentUserID = Auth.auth().currentUser?.uid else { return }
+        let matchID = chatLogViewModel.uid
         let query = Firestore.firestore().collection("matches_messages").document(currentUserID).collection(matchID).order(by: "timestamp")
         
         query.addSnapshotListener { (querySnapshot, error) in
