@@ -75,7 +75,7 @@ extension MatchMessagesViewController {
     fileprivate func fetchRecentMessages() { // TODO: Refactor this code
         guard let currentUserId = Auth.auth().currentUser?.uid else { return }
         let reference = Firestore.firestore().collection("matches_messages").document(currentUserId).collection("recent_messages")
-        reference.getDocuments { (querySnapshot, error) in
+        reference.addSnapshotListener { (querySnapshot, error) in
             if let error = error {
                 print(error.localizedDescription)
                 return
@@ -94,7 +94,10 @@ extension MatchMessagesViewController {
     
     fileprivate func resetRecentMessages() {
         let values = Array(recentMessagesDictionary.values)
-        recentMessages = values
+        recentMessages = values.sorted(by: { (recentMessage1, recentMessage2) -> Bool in
+            guard let timestamp1 = recentMessage1.timestamp, let timestamp2 = recentMessage2.timestamp else { return false }
+            return timestamp1.compare(timestamp2) == .orderedDescending
+        })
         collectionView.reloadData()
     }
     
