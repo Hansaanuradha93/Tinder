@@ -32,7 +32,7 @@ extension MatchMessagesViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecentMessageCell.reuseID, for: indexPath) as! RecentMessageCell
-        cell.set(recentMessage: recentMessages[indexPath.row])
+        cell.set(recentMessage: recentMessages[indexPath.item])
         return cell
     }
     
@@ -49,7 +49,7 @@ extension MatchMessagesViewController {
 extension MatchMessagesViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(124)
+        navigateToChatLog(chatLogViewModel: recentMessages[indexPath.item].toChatLogViewModel())
     }
 }
 
