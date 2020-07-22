@@ -16,3 +16,12 @@ struct RecentMessage {
         self.timestamp = dictionary["timestamp"] as? Timestamp
     }
 }
+
+
+// MARK: - ProducesChatLogViewModel
+extension RecentMessage: ProducesChatLogViewModel {
+    
+    func toChatLogViewModel() -> ChatLogViewModel {
+        return ChatLogViewModel(uid: uid ?? "", username: name ?? "", profileImageUrl: profileImageUrl ?? "")
+    }
+}

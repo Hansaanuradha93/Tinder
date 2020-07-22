@@ -15,3 +15,12 @@ struct Match {
         self.profileImageUrl = dictionary["profileImageUrl"] as? String
     }
 }
+
+
+// MARK: - ProducesChatLogViewModel
+extension Match: ProducesChatLogViewModel {
+    
+    func toChatLogViewModel() -> ChatLogViewModel {
+        return ChatLogViewModel(uid: uid ?? "", username: username ?? "", profileImageUrl: profileImageUrl ?? "")
+    }
+}
