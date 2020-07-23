@@ -103,59 +103,63 @@ extension ChatLogViewController {
     
     
     fileprivate func saveRecentMessages() {  // TODO: refactor this code here
-        guard let currentUserID = Auth.auth().currentUser?.uid else { return }
-        let rootRef = Firestore.firestore().collection("matches_messages")
-        let matchID = chatLogViewModel.uid
-        let recentMessageRef = rootRef.document(currentUserID).collection("recent_messages").document(matchID)
-        let recentMessageData: [String : Any] = [
-            "uid": matchID,
-            "name": chatLogViewModel.username,
-            "profileImageUrl": chatLogViewModel.profileImageUrl,
-            "text": messageInputView.textView.text ?? "",
-            "timestamp": Timestamp(date: Date())
-        ]
-        recentMessageRef.setData(recentMessageData) { error in
-            if let error = error {
-                print(error.localizedDescription)
-                return
+        if let message = messageInputView.textView.text, !message.isEmpty {
+            guard let currentUserID = Auth.auth().currentUser?.uid else { return }
+            let rootRef = Firestore.firestore().collection("matches_messages")
+            let matchID = chatLogViewModel.uid
+            let recentMessageRef = rootRef.document(currentUserID).collection("recent_messages").document(matchID)
+            let recentMessageData: [String : Any] = [
+                "uid": matchID,
+                "name": chatLogViewModel.username,
+                "profileImageUrl": chatLogViewModel.profileImageUrl,
+                "text": messageInputView.textView.text ?? "",
+                "timestamp": Timestamp(date: Date())
+            ]
+            recentMessageRef.setData(recentMessageData) { error in
+                if let error = error {
+                    print(error.localizedDescription)
+                    return
+                }
+                print("Recent message saved successfully")
             }
-            print("Recent message saved successfully")
         }
     }
     
     
     fileprivate func saveMessages() {  // TODO: refactor this code here
-        guard let currentUserID = Auth.auth().currentUser?.uid else { return }
-        let matchID = chatLogViewModel.uid
-        let rootRef = Firestore.firestore().collection("matches_messages")
-        let currentUserRef = rootRef.document(currentUserID).collection(matchID)
-        let documentData: [String : Any] = [
-            "text" : messageInputView.textView.text ?? "",
-            "fromID": currentUserID,
-            "toID": matchID,
-            "timestamp": Timestamp(date: Date())
-        ]
-        
-        currentUserRef.addDocument(data: documentData) { error in
-            if let error = error {
-                print(error.localizedDescription)
-                return
+        if let message = messageInputView.textView.text, !message.isEmpty {
+            guard let currentUserID = Auth.auth().currentUser?.uid else { return }
+            let matchID = chatLogViewModel.uid
+            let rootRef = Firestore.firestore().collection("matches_messages")
+            let currentUserRef = rootRef.document(currentUserID).collection(matchID)
+            let documentData: [String : Any] = [
+                "text" : message,
+                "fromID": currentUserID,
+                "toID": matchID,
+                "timestamp": Timestamp(date: Date())
+            ]
+            
+            currentUserRef.addDocument(data: documentData) { error in
+                if let error = error {
+                    print(error.localizedDescription)
+                    return
+                }
+                print("current user message saved")
+                self.messageInputView.textView.text = nil
+                self.messageInputView.placeHolderLabel.isHidden = false
             }
-            print("current user message saved")
-            self.messageInputView.textView.text = nil
-            self.messageInputView.placeHolderLabel.isHidden = false
-        }
-        
-        let matchUserRef = rootRef.document(matchID).collection(currentUserID)
-        
-        matchUserRef.addDocument(data: documentData) { error in
-            if let error = error {
-                print(error.localizedDescription)
-                return
+            
+            let matchUserRef = rootRef.document(matchID).collection(currentUserID)
+            
+            matchUserRef.addDocument(data: documentData) { error in
+                if let error = error {
+                    print(error.localizedDescription)
+                    return
+                }
+                print("match user message saved")
+                self.messageInputView.textView.text = nil
+                self.messageInputView.placeHolderLabel.isHidden = false
             }
-            print("match user message saved")
-            self.messageInputView.textView.text = nil
-            self.messageInputView.placeHolderLabel.isHidden = false
         }
     }
     
