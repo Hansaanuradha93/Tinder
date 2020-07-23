@@ -86,7 +86,45 @@ extension ChatLogViewController: UICollectionViewDelegateFlowLayout {
 // MARK: - Methods
 extension ChatLogViewController {
     
-    @objc fileprivate func handleSend() { // TODO: refactor this code here
+    @objc fileprivate func handleSend() {
+        saveMessages()
+        saveRecentMessages()
+    }
+    
+    
+    @objc fileprivate func handleBack() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    
+    @objc fileprivate func handleKeyboardShow() {
+        collectionView.scrollToItem(at: IndexPath(item: messages.count - 1, section: 0), at: .bottom, animated: true)
+    }
+    
+    
+    fileprivate func saveRecentMessages() {  // TODO: refactor this code here
+        guard let currentUserID = Auth.auth().currentUser?.uid else { return }
+        let rootRef = Firestore.firestore().collection("matches_messages")
+        let matchID = chatLogViewModel.uid
+        let recentMessageRef = rootRef.document(currentUserID).collection("recent_messages").document(matchID)
+        let recentMessageData: [String : Any] = [
+            "uid": matchID,
+            "name": chatLogViewModel.username,
+            "profileImageUrl": chatLogViewModel.profileImageUrl,
+            "text": messageInputView.textView.text ?? "",
+            "timestamp": Timestamp(date: Date())
+        ]
+        recentMessageRef.setData(recentMessageData) { error in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            print("Recent message saved successfully")
+        }
+    }
+    
+    
+    fileprivate func saveMessages() {  // TODO: refactor this code here
         guard let currentUserID = Auth.auth().currentUser?.uid else { return }
         let matchID = chatLogViewModel.uid
         let rootRef = Firestore.firestore().collection("matches_messages")
@@ -119,32 +157,6 @@ extension ChatLogViewController {
             self.messageInputView.textView.text = nil
             self.messageInputView.placeHolderLabel.isHidden = false
         }
-        
-        let recentMessageRef = rootRef.document(currentUserID).collection("recent_messages").document(matchID)
-        let recentMessageData: [String : Any] = [
-            "uid": matchID,
-            "name": chatLogViewModel.username,
-            "profileImageUrl": chatLogViewModel.profileImageUrl,
-            "text": messageInputView.textView.text ?? "",
-            "timestamp": Timestamp(date: Date())
-        ]
-        recentMessageRef.setData(recentMessageData) { error in
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            }
-            print("Recent message saved successfully")
-        }
-    }
-    
-    
-    @objc fileprivate func handleBack() {
-        navigationController?.popViewController(animated: true)
-    }
-    
-    
-    @objc fileprivate func handleKeyboardShow() {
-        collectionView.scrollToItem(at: IndexPath(item: messages.count - 1, section: 0), at: .bottom, animated: true)
     }
     
     
