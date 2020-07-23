@@ -80,6 +80,7 @@ extension HomeViewController {
     
     @objc fileprivate func messageButtonTapped() {
         let controller = MatchMessagesViewController(collectionViewLayout: UICollectionViewFlowLayout())
+        controller.currentUser = cardViewModel.currentUser
         navigationController?.pushViewController(controller, animated: true)
     }
     

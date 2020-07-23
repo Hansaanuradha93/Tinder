@@ -10,6 +10,7 @@ class MatchMessagesViewController: UICollectionViewController {
     fileprivate let statusBar = UIView()
     fileprivate var recentMessages = [RecentMessage]()
     fileprivate var recentMessagesDictionary = [String : RecentMessage]()
+    var currentUser: User?
     
     
     // MARK: View Controller
@@ -113,6 +114,7 @@ extension MatchMessagesViewController {
     
     fileprivate func navigateToChatLog(chatLogViewModel: ChatLogViewModel) {
         let controller = ChatLogViewController(chatLogViewModel: chatLogViewModel)
+        controller.currentUser = currentUser
         navigationController?.pushViewController(controller, animated: true)
     }
     

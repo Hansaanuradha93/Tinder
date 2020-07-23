@@ -10,7 +10,7 @@ class ChatLogViewController: UICollectionViewController {
     fileprivate let statusBar = UIView()
     fileprivate lazy var messageInputView = CustomInputAccessoryView(frame: .init(x: 0, y: 0, width: view.frame.width, height: 50))
     fileprivate var messages = [Message]()
-    fileprivate var currentUser: User?
+    var currentUser: User?
     
     
     // MARK: Initializers
@@ -30,7 +30,6 @@ class ChatLogViewController: UICollectionViewController {
         setupCollectionView()
         fetchMessages()
         setupNotifications()
-        fetchCurrentUser()
     }
     
     
@@ -101,20 +100,6 @@ extension ChatLogViewController {
     
     @objc fileprivate func handleKeyboardShow() {
         collectionView.scrollToItem(at: IndexPath(item: messages.count - 1, section: 0), at: .bottom, animated: true)
-    }
-    
-    
-    fileprivate func fetchCurrentUser() {
-        guard let currentUserID = Auth.auth().currentUser?.uid else { return }
-        let ref = Firestore.firestore().collection("users").document(currentUserID)
-        ref.getDocument { (snapshot, error) in
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            }
-            guard let dictionary = snapshot?.data() else { return }
-            self.currentUser = User(dictionary: dictionary)
-        }
     }
     
     
