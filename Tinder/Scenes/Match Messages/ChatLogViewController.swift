@@ -10,6 +10,7 @@ class ChatLogViewController: UICollectionViewController {
     fileprivate let statusBar = UIView()
     fileprivate lazy var messageInputView = CustomInputAccessoryView(frame: .init(x: 0, y: 0, width: view.frame.width, height: 50))
     fileprivate var messages = [Message]()
+    fileprivate var currentUser: User?
     
     
     // MARK: Initializers
@@ -29,6 +30,7 @@ class ChatLogViewController: UICollectionViewController {
         setupCollectionView()
         fetchMessages()
         setupNotifications()
+        fetchCurrentUser()
     }
     
     
@@ -102,25 +104,58 @@ extension ChatLogViewController {
     }
     
     
+    fileprivate func fetchCurrentUser() {
+        guard let currentUserID = Auth.auth().currentUser?.uid else { return }
+        let ref = Firestore.firestore().collection("users").document(currentUserID)
+        ref.getDocument { (snapshot, error) in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            guard let dictionary = snapshot?.data() else { return }
+            self.currentUser = User(dictionary: dictionary)
+        }
+    }
+    
+    
     fileprivate func saveRecentMessages() {  // TODO: refactor this code here
         if let message = messageInputView.textView.text, !message.isEmpty {
             guard let currentUserID = Auth.auth().currentUser?.uid else { return }
             let rootRef = Firestore.firestore().collection("matches_messages")
             let matchID = chatLogViewModel.uid
-            let recentMessageRef = rootRef.document(currentUserID).collection("recent_messages").document(matchID)
-            let recentMessageData: [String : Any] = [
+            
+            let data: [String : Any] = [
                 "uid": matchID,
                 "name": chatLogViewModel.username,
                 "profileImageUrl": chatLogViewModel.profileImageUrl,
                 "text": messageInputView.textView.text ?? "",
                 "timestamp": Timestamp(date: Date())
             ]
-            recentMessageRef.setData(recentMessageData) { error in
+            
+            let currentUserRef = rootRef.document(currentUserID).collection("recent_messages").document(matchID)
+            currentUserRef.setData(data) { error in
                 if let error = error {
                     print(error.localizedDescription)
                     return
                 }
-                print("Recent message saved successfully")
+                print("Recent message saved successfully in current user side")
+            }
+            
+            let messageData: [String : Any] = [
+                "uid": currentUserID,
+                "name": currentUser?.name ?? "",
+                "profileImageUrl": currentUser?.imageUrl1 ?? "",
+                "text": messageInputView.textView.text ?? "",
+                "timestamp": Timestamp(date: Date())
+            ]
+            
+            let matchedUserRef = rootRef.document(matchID).collection("recent_messages").document(currentUserID)
+            matchedUserRef.setData(messageData) { error in
+                if let error = error {
+                    print(error.localizedDescription)
+                    return
+                }
+                print("Recent message saved successfully in matched user side")
             }
         }
     }
