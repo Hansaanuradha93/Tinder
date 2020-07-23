@@ -119,6 +119,22 @@ extension ChatLogViewController {
             self.messageInputView.textView.text = nil
             self.messageInputView.placeHolderLabel.isHidden = false
         }
+        
+        let recentMessageRef = rootRef.document(currentUserID).collection("recent_messages").document(matchID)
+        let recentMessageData: [String : Any] = [
+            "uid": matchID,
+            "name": chatLogViewModel.username,
+            "profileImageUrl": chatLogViewModel.profileImageUrl,
+            "text": messageInputView.textView.text ?? "",
+            "timestamp": Timestamp(date: Date())
+        ]
+        recentMessageRef.setData(recentMessageData) { error in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            print("Recent message saved successfully")
+        }
     }
     
     
