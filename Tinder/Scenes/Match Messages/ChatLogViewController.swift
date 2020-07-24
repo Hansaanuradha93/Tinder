@@ -10,6 +10,7 @@ class ChatLogViewController: UICollectionViewController {
     fileprivate let statusBar = UIView()
     fileprivate lazy var messageInputView = CustomInputAccessoryView(frame: .init(x: 0, y: 0, width: view.frame.width, height: 50))
     fileprivate var messages = [Message]()
+    fileprivate var listener: ListenerRegistration?
     var currentUser: User?
     
     
@@ -36,6 +37,7 @@ class ChatLogViewController: UICollectionViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self)
+        if isMovingFromParent { listener?.remove() }
     }
     
     
@@ -194,7 +196,7 @@ extension ChatLogViewController {
         let matchID = chatLogViewModel.uid
         let query = Firestore.firestore().collection("matches_messages").document(currentUserID).collection(matchID).order(by: "timestamp")
         
-        query.addSnapshotListener { (querySnapshot, error) in
+        listener = query.addSnapshotListener { querySnapshot, error in
             if let error = error {
                 print(error.localizedDescription)
                 return
