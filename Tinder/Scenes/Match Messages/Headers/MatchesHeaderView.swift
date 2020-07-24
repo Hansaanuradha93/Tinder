@@ -32,7 +32,7 @@ extension MatchesHeaderView {
     
     fileprivate func setupUI() {
         backgroundColor = .white
-        matchesController.matchesDelegate = self
+//        matchesController.matchesDelegate = self
         
         let matchStackView = UIStackView(arrangedSubviews: [newMatchesLabel])
         matchStackView.isLayoutMarginsRelativeArrangement = true

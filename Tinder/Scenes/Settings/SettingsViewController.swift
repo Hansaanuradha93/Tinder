@@ -35,6 +35,9 @@ class SettingsViewController: UIViewController { // TODO: Refactor this class
     var user: User?
     var delegate: SettingsViewControllerDelegete?
     
+    deinit {
+        print("memory reclaimed")
+    }
     
     // MARK: View Controller
     override func viewDidLoad() {

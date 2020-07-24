@@ -10,6 +10,7 @@ class MatchMessagesViewController: UICollectionViewController {
     fileprivate let statusBar = UIView()
     fileprivate var recentMessages = [RecentMessage]()
     fileprivate var recentMessagesDictionary = [String : RecentMessage]()
+    fileprivate var listener: ListenerRegistration?
     var currentUser: User?
     
     
@@ -19,6 +20,16 @@ class MatchMessagesViewController: UICollectionViewController {
         setupLayout()
         setupCollectionView()
         fetchRecentMessages()
+    }
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if isMovingFromParent { listener?.remove() }
+    }
+    
+    deinit {
+        print("MatchMessagesViewController ------------- memory reclaimed")
     }
 }
 
@@ -40,7 +51,8 @@ extension MatchMessagesViewController {
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: MatchesHeaderView.reuseID, for: indexPath) as! MatchesHeaderView
-        headerView.delegate = self
+        headerView.matchesController.rootMatchesController = self
+//        headerView.delegate = self
         return headerView
     }
 }
@@ -82,10 +94,16 @@ extension MatchMessagesViewController {
     }
     
     
+    func didSelectMatchFromHeader(match: Match) {
+        navigateToChatLog(chatLogViewModel: match.toChatLogViewModel())
+    }
+    
+    
     fileprivate func fetchRecentMessages() { // TODO: Refactor this code
         guard let currentUserId = Auth.auth().currentUser?.uid else { return }
         let reference = Firestore.firestore().collection("matches_messages").document(currentUserId).collection("recent_messages")
-        reference.addSnapshotListener { (querySnapshot, error) in
+        listener = reference.addSnapshotListener { [weak self] querySnapshot, error in
+            guard let self = self else { return }
             if let error = error {
                 print(error.localizedDescription)
                 return
@@ -143,6 +161,6 @@ extension MatchMessagesViewController {
 extension MatchMessagesViewController: MatchesHeaderViewDelegate {
     
     func tappedOn(match: Match) {
-        navigateToChatLog(chatLogViewModel: match.toChatLogViewModel())
+//        navigateToChatLog(chatLogViewModel: match.toChatLogViewModel())
     }
 }

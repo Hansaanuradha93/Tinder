@@ -1,14 +1,15 @@
 import UIKit
 
-protocol MatchesDelegate {
-    func tappedOn(match: Match)
-}
+//protocol MatchesDelegate {
+//    func tappedOn(match: Match)
+//}
 
 
 class MatchesViewController: UICollectionViewController {
     
     // MARK: Properties
-    var matchesDelegate: MatchesDelegate?
+//    var matchesDelegate: MatchesDelegate?
+    weak var rootMatchesController: MatchMessagesViewController?
 
     fileprivate var matches = [Match]()
     fileprivate let matchesViewModel = MatchesViewModel()
@@ -19,6 +20,10 @@ class MatchesViewController: UICollectionViewController {
         super.viewDidLoad()
         setupUI()
         fetchMatches()
+    }
+    
+    deinit {
+        print("memory reclaimed")
     }
 }
 
@@ -57,7 +62,7 @@ extension MatchesViewController: UICollectionViewDelegateFlowLayout {
 extension MatchesViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        matchesDelegate?.tappedOn(match: matches[indexPath.item])
+        rootMatchesController?.didSelectMatchFromHeader(match: matches[indexPath.item])
     }
 }
 
