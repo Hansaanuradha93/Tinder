@@ -2,9 +2,23 @@ import Foundation
 import Firebase
 
 class MatchMessagesViewModel {
-    
     fileprivate var recentMessagesDictionary = [String : RecentMessage]()
     fileprivate var recentMessages = [RecentMessage]()
+}
+
+
+// MARK: - Methods
+extension MatchMessagesViewModel {
+    
+    func getRecentMessageCount() -> Int {
+        return recentMessages.count
+    }
+    
+    
+    func getRecentMessageAt(_ indexPath: IndexPath) -> RecentMessage {
+        return recentMessages[indexPath.item]
+    }
+    
     
     func fetchRecentMessages(completion: @escaping ([RecentMessage]?) -> ()) -> ListenerRegistration? {
         guard let currentUserId = Auth.auth().currentUser?.uid else { return nil }
@@ -29,6 +43,7 @@ class MatchMessagesViewModel {
         }
         return listener
     }
+    
     
     fileprivate func resetRecentMessages(completion: @escaping ([RecentMessage]?) -> ()) {
         let values = Array(recentMessagesDictionary.values)
