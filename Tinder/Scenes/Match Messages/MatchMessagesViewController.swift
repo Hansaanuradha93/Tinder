@@ -19,7 +19,8 @@ class MatchMessagesViewController: UICollectionViewController {
         super.viewDidLoad()
         setupLayout()
         setupCollectionView()
-        fetchRecentMessages()
+//        fetchRecentMessages()
+        fetchData()
     }
     
     
@@ -94,35 +95,46 @@ extension MatchMessagesViewController {
     }
     
     
-    fileprivate func fetchRecentMessages() { // TODO: Refactor this code
-        guard let currentUserId = Auth.auth().currentUser?.uid else { return }
-        let reference = Firestore.firestore().collection("matches_messages").document(currentUserId).collection("recent_messages")
-        listener = reference.addSnapshotListener { [weak self] querySnapshot, error in
-            guard let self = self else { return }
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            }
-            guard let documentChanges = querySnapshot?.documentChanges else { return }
-            for change in documentChanges {
-                if change.type == .added || change.type == .modified {
-                    let recentMessage = RecentMessage(dictionary: change.document.data())
-                    self.recentMessagesDictionary[recentMessage.uid ?? ""] = recentMessage
-                }
-            }
-            self.resetRecentMessages()
-        }
-    }
+//    fileprivate func fetchRecentMessages() { // TODO: Refactor this code
+//        guard let currentUserId = Auth.auth().currentUser?.uid else { return }
+//        let reference = Firestore.firestore().collection("matches_messages").document(currentUserId).collection("recent_messages")
+//        listener = reference.addSnapshotListener { [weak self] querySnapshot, error in
+//            guard let self = self else { return }
+//            if let error = error {
+//                print(error.localizedDescription)
+//                return
+//            }
+//            guard let documentChanges = querySnapshot?.documentChanges else { return }
+//            for change in documentChanges {
+//                if change.type == .added || change.type == .modified {
+//                    let recentMessage = RecentMessage(dictionary: change.document.data())
+//                    self.recentMessagesDictionary[recentMessage.uid ?? ""] = recentMessage
+//                }
+//            }
+//            self.resetRecentMessages()
+//        }
+//    }
     
     
-    fileprivate func resetRecentMessages() {
-        let values = Array(recentMessagesDictionary.values)
-        recentMessages = values.sorted(by: { (recentMessage1, recentMessage2) -> Bool in
-            guard let timestamp1 = recentMessage1.timestamp, let timestamp2 = recentMessage2.timestamp else { return false }
-            return timestamp1.compare(timestamp2) == .orderedDescending
+    fileprivate func fetchData() {
+        listener = matchMessagesViewModel.fetchRecentMessages(completion: { [weak self] recentMessages in
+            guard let self = self, let recentMessages = recentMessages else { return }
+            self.recentMessages = recentMessages
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
         })
-        collectionView.reloadData()
     }
+    
+    
+//    fileprivate func resetRecentMessages() {
+//        let values = Array(recentMessagesDictionary.values)
+//        recentMessages = values.sorted(by: { (recentMessage1, recentMessage2) -> Bool in
+//            guard let timestamp1 = recentMessage1.timestamp, let timestamp2 = recentMessage2.timestamp else { return false }
+//            return timestamp1.compare(timestamp2) == .orderedDescending
+//        })
+//        collectionView.reloadData()
+//    }
     
     
     fileprivate func navigateToChatLog(chatLogViewModel: ChatLogViewModel) {
