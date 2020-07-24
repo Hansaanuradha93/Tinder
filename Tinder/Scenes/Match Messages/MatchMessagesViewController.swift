@@ -27,10 +27,6 @@ class MatchMessagesViewController: UICollectionViewController {
         super.viewWillDisappear(animated)
         if isMovingFromParent { listener?.remove() }
     }
-    
-    deinit {
-        print("MatchMessagesViewController ------------- memory reclaimed")
-    }
 }
 
 
@@ -52,7 +48,6 @@ extension MatchMessagesViewController {
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: MatchesHeaderView.reuseID, for: indexPath) as! MatchesHeaderView
         headerView.matchesController.rootMatchesController = self
-//        headerView.delegate = self
         return headerView
     }
 }
@@ -153,14 +148,5 @@ extension MatchMessagesViewController {
         statusBar.backgroundColor = .white
         view.addSubview(statusBar)
         statusBar.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.topAnchor, trailing: view.trailingAnchor)
-    }
-}
-
-
-// MARK: - MatchesHeaderViewDelegate
-extension MatchMessagesViewController: MatchesHeaderViewDelegate {
-    
-    func tappedOn(match: Match) {
-//        navigateToChatLog(chatLogViewModel: match.toChatLogViewModel())
     }
 }

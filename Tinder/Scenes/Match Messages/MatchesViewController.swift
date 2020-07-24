@@ -1,18 +1,11 @@
 import UIKit
 
-//protocol MatchesDelegate {
-//    func tappedOn(match: Match)
-//}
-
-
 class MatchesViewController: UICollectionViewController {
     
     // MARK: Properties
-//    var matchesDelegate: MatchesDelegate?
-    weak var rootMatchesController: MatchMessagesViewController?
-
-    fileprivate var matches = [Match]()
     fileprivate let matchesViewModel = MatchesViewModel()
+    fileprivate var matches = [Match]()
+    weak var rootMatchesController: MatchMessagesViewController?
     
 
     // MARK: View Controller
@@ -20,10 +13,6 @@ class MatchesViewController: UICollectionViewController {
         super.viewDidLoad()
         setupUI()
         fetchMatches()
-    }
-    
-    deinit {
-        print("memory reclaimed")
     }
 }
 
