@@ -5,9 +5,9 @@ class MatchesHeaderView: UICollectionReusableView {
     // MARK: Properties
     static let reuseID = "MatchesHeaderView"
 
-    let newMatchesLabel = TDLabel(text: "New Matches", textAlignment: .left, textColor: UIColor.appColor(color: .pink), fontSize: 18)
+    let newMatchesLabel = TDLabel(text: Strings.newMessages, textAlignment: .left, textColor: UIColor.appColor(color: .pink), fontSize: 18)
     let matchesController = MatchesViewController(collectionViewLayout: UICollectionViewFlowLayout())
-    let messagesLabel = TDLabel(text: "Messages", textAlignment: .left, textColor: UIColor.appColor(color: .pink), fontSize: 18)
+    let messagesLabel = TDLabel(text: Strings.messages, textAlignment: .left, textColor: UIColor.appColor(color: .pink), fontSize: 18)
     
     
     // Initializers

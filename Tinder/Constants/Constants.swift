@@ -22,4 +22,5 @@ struct Strings {
     static let feed = "Feed"
     static let send = "SEND"
     static let enterMaessage = "Enter Message"
+    static let newMessages = "New Matches"
 }
