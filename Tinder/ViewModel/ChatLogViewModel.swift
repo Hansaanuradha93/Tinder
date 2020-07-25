@@ -13,12 +13,54 @@ class ChatLogViewModel {
     let profileImageUrl: String
     var currentUser: User?
     
+    fileprivate var messages = [Message]()
+    
     
     // MARK: Initializers
     init( uid: String, username: String, profileImageUrl: String) {
         self.uid = uid
         self.username = username
         self.profileImageUrl = profileImageUrl
+    }
+}
+
+
+// MARK: - Methods
+extension ChatLogViewModel {
+    
+    func getMessagesCount() -> Int {
+        return messages.count
+    }
+    
+    
+    func getMessageAt(_ indexPath: IndexPath) -> Message {
+        return messages[indexPath.item]
+    }
+    
+    
+    func fetchMessages(completion: @escaping (Bool) -> ()) -> ListenerRegistration? {
+        guard let currentUserID = Auth.auth().currentUser?.uid else {
+            completion(false)
+            return nil
+        }
+        let matchID = uid
+        let query = Firestore.firestore().collection("matches_messages").document(currentUserID).collection(matchID).order(by: "timestamp")
+        
+        let listener = query.addSnapshotListener { querySnapshot, error in
+            if let error = error {
+                print(error.localizedDescription)
+                completion(false)
+                return
+            }
+            guard let documentChanges = querySnapshot?.documentChanges else { return }
+            for change in documentChanges {
+                if change.type == .added {
+                    self.messages.append(Message(dictionary: change.document.data()))
+                }
+            }
+            completion(true)
+        }
+        return listener
     }
     
     
