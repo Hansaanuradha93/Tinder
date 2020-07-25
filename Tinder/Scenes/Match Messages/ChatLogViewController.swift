@@ -4,20 +4,19 @@ import Firebase
 class ChatLogViewController: UICollectionViewController {
 
     // MARK: Properties
-    fileprivate var chatLogViewModel: ChatLogViewModel!
+    fileprivate var viewModel: ChatLogViewModel!
     fileprivate let navBarHeight: CGFloat = 120
-    fileprivate lazy var customNavigationBar = ChatLogNavigationBar(chatLogViewModel: chatLogViewModel)
+    fileprivate lazy var customNavigationBar = ChatLogNavigationBar(chatLogViewModel: viewModel)
     fileprivate let statusBar = UIView()
     fileprivate lazy var messageInputView = CustomInputAccessoryView(frame: .init(x: 0, y: 0, width: view.frame.width, height: 50))
     fileprivate var messages = [Message]()
     fileprivate var listener: ListenerRegistration?
-    var currentUser: User?
     
     
     // MARK: Initializers
     init(chatLogViewModel: ChatLogViewModel) {
         super.init(collectionViewLayout: UICollectionViewFlowLayout())
-        self.chatLogViewModel = chatLogViewModel
+        self.viewModel = chatLogViewModel
     }
     
     
@@ -105,51 +104,56 @@ extension ChatLogViewController {
     }
     
     
-    fileprivate func saveRecentMessages() {  // TODO: refactor this code here
-        if let message = messageInputView.textView.text, !message.isEmpty {
-            guard let currentUserID = Auth.auth().currentUser?.uid else { return }
-            let rootRef = Firestore.firestore().collection("matches_messages")
-            let matchID = chatLogViewModel.uid
-            
-            let data: [String : Any] = [
-                "uid": matchID,
-                "name": chatLogViewModel.username,
-                "profileImageUrl": chatLogViewModel.profileImageUrl,
-                "text": messageInputView.textView.text ?? "",
-                "timestamp": Timestamp(date: Date())
-            ]
-            
-            let currentUserRef = rootRef.document(currentUserID).collection("recent_messages").document(matchID)
-            currentUserRef.setData(data) { error in
-                if let error = error {
-                    print(error.localizedDescription)
-                    return
-                }
-                print("Recent message saved successfully in current user side")
-            }
-            
-            let messageData: [String : Any] = [
-                "uid": currentUserID,
-                "name": currentUser?.name ?? "",
-                "profileImageUrl": currentUser?.imageUrl1 ?? "",
-                "text": messageInputView.textView.text ?? "",
-                "timestamp": Timestamp(date: Date())
-            ]
-            
-            let matchedUserRef = rootRef.document(matchID).collection("recent_messages").document(currentUserID)
-            matchedUserRef.setData(messageData) { error in
-                if let error = error {
-                    print(error.localizedDescription)
-                    return
-                }
-                print("Recent message saved successfully in matched user side")
-            }
-        }
+    fileprivate func saveRecentMessages() {
+        viewModel.saveRecentMessages(message: messageInputView.textView.text) { status in print(status) }
     }
     
     
+//    fileprivate func saveRecentMessages() {  // TODO: refactor this code here
+//        if let message = messageInputView.textView.text, !message.isEmpty {
+//            guard let currentUserID = Auth.auth().currentUser?.uid else { return }
+//            let rootRef = Firestore.firestore().collection("matches_messages")
+//            let matchID = viewModel.uid
+//
+//            let data: [String : Any] = [
+//                "uid": matchID,
+//                "name": viewModel.username,
+//                "profileImageUrl": viewModel.profileImageUrl,
+//                "text": messageInputView.textView.text ?? "",
+//                "timestamp": Timestamp(date: Date())
+//            ]
+//
+//            let currentUserRef = rootRef.document(currentUserID).collection("recent_messages").document(matchID)
+//            currentUserRef.setData(data) { error in
+//                if let error = error {
+//                    print(error.localizedDescription)
+//                    return
+//                }
+//                print("Recent message saved successfully in current user side")
+//            }
+//
+//            let messageData: [String : Any] = [
+//                "uid": currentUserID,
+//                "name": currentUser?.name ?? "",
+//                "profileImageUrl": currentUser?.imageUrl1 ?? "",
+//                "text": messageInputView.textView.text ?? "",
+//                "timestamp": Timestamp(date: Date())
+//            ]
+//
+//            let matchedUserRef = rootRef.document(matchID).collection("recent_messages").document(currentUserID)
+//            matchedUserRef.setData(messageData) { error in
+//                if let error = error {
+//                    print(error.localizedDescription)
+//                    return
+//                }
+//                print("Recent message saved successfully in matched user side")
+//            }
+//        }
+//    }
+    
+    
     fileprivate func saveMessages() {
-        chatLogViewModel.saveMessages(message: messageInputView.textView.text) { [weak self] status in
+        viewModel.saveMessages(message: messageInputView.textView.text) { [weak self] status in
             guard let self = self else { return }
             if status {
                 self.messageInputView.textView.text = nil
@@ -166,7 +170,7 @@ extension ChatLogViewController {
     
     fileprivate func fetchMessages() { // TODO: Refactor this code
         guard let currentUserID = Auth.auth().currentUser?.uid else { return }
-        let matchID = chatLogViewModel.uid
+        let matchID = viewModel.uid
         let query = Firestore.firestore().collection("matches_messages").document(currentUserID).collection(matchID).order(by: "timestamp")
         
         listener = query.addSnapshotListener { querySnapshot, error in

@@ -101,8 +101,8 @@ extension MatchMessagesViewController {
     
     
     fileprivate func navigateToChatLog(chatLogViewModel: ChatLogViewModel) {
+        chatLogViewModel.currentUser = currentUser
         let controller = ChatLogViewController(chatLogViewModel: chatLogViewModel)
-        controller.currentUser = currentUser
         navigationController?.pushViewController(controller, animated: true)
     }
     
