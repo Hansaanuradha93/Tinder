@@ -148,43 +148,16 @@ extension ChatLogViewController {
     }
     
     
-    fileprivate func saveMessages() {  // TODO: refactor this code here
-        if let message = messageInputView.textView.text, !message.isEmpty {
-            guard let currentUserID = Auth.auth().currentUser?.uid else { return }
-            let matchID = chatLogViewModel.uid
-            let rootRef = Firestore.firestore().collection("matches_messages")
-            let currentUserRef = rootRef.document(currentUserID).collection(matchID)
-            let documentData: [String : Any] = [
-                "text" : message,
-                "fromID": currentUserID,
-                "toID": matchID,
-                "timestamp": Timestamp(date: Date())
-            ]
-            
-            currentUserRef.addDocument(data: documentData) { error in
-                if let error = error {
-                    print(error.localizedDescription)
-                    return
-                }
-                print("current user message saved")
-                self.messageInputView.textView.text = nil
-                self.messageInputView.placeHolderLabel.isHidden = false
-            }
-            
-            let matchUserRef = rootRef.document(matchID).collection(currentUserID)
-            
-            matchUserRef.addDocument(data: documentData) { error in
-                if let error = error {
-                    print(error.localizedDescription)
-                    return
-                }
-                print("match user message saved")
+    fileprivate func saveMessages() {
+        chatLogViewModel.saveMessages(message: messageInputView.textView.text) { [weak self] status in
+            guard let self = self else { return }
+            if status {
                 self.messageInputView.textView.text = nil
                 self.messageInputView.placeHolderLabel.isHidden = false
             }
         }
     }
-    
+
     
     fileprivate func setupNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardShow), name: UIResponder.keyboardDidShowNotification, object: nil)
