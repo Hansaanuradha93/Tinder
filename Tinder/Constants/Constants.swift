@@ -16,3 +16,8 @@ struct Asserts {
     static let flag = UIImage(named: "flag")!
     static let back = UIImage(named: "back")!
 }
+
+struct Strings {
+    static let messages = "Messages"
+    static let feed = "Feed"
+}

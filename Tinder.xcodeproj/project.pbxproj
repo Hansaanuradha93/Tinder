@@ -274,7 +274,7 @@
 				479F609A249B07BF00BD0774 /* Custom Views */,
 				479EEFE124A067D20091BEF7 /* Helper */,
 				47A8018F249A811400768831 /* Extensions */,
-				479EEFDB24A04E5A0091BEF7 /* Contants */,
+				479EEFDB24A04E5A0091BEF7 /* Constants */,
 				47CE8200249CB9A100B9696E /* Support Files */,
 			);
 			path = Tinder;
@@ -315,13 +315,13 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		479EEFDB24A04E5A0091BEF7 /* Contants */ = {
+		479EEFDB24A04E5A0091BEF7 /* Constants */ = {
 			isa = PBXGroup;
 			children = (
 				479EEFDC24A04E670091BEF7 /* Keys.swift */,
 				47E2D5BA24B3463F00FECD87 /* Constants.swift */,
 			);
-			path = Contants;
+			path = Constants;
 			sourceTree = "<group>";
 		};
 		479EEFE124A067D20091BEF7 /* Helper */ = {
