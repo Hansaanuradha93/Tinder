@@ -4,8 +4,8 @@ class CustomInputAccessoryView: UIView {
     
     // MARK: Properties
     let textView = UITextView()
-    let sendButton = TDButton(backgroundColor: UIColor.appColor(color: .pink), title: "SEND", titleColor: .white, fontSize: 14)
-    let placeHolderLabel = TDLabel(text: "Enter Message", textAlignment: .left, textColor: .lightGray, fontSize: 16)
+    let sendButton = TDButton(backgroundColor: UIColor.appColor(color: .pink), title: Strings.send, titleColor: .white, fontSize: 14)
+    let placeHolderLabel = TDLabel(text: Strings.enterMaessage, textAlignment: .left, textColor: .lightGray, fontSize: 16)
     
     // MARK: Initializers
     override init(frame: CGRect) {

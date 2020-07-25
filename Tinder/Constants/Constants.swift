@@ -20,4 +20,6 @@ struct Asserts {
 struct Strings {
     static let messages = "Messages"
     static let feed = "Feed"
+    static let send = "SEND"
+    static let enterMaessage = "Enter Message"
 }
