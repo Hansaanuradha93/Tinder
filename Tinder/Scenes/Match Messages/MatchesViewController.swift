@@ -3,8 +3,7 @@ import UIKit
 class MatchesViewController: UICollectionViewController {
     
     // MARK: Properties
-    fileprivate let matchesViewModel = MatchesViewModel()
-    fileprivate var matches = [Match]()
+    fileprivate let viewModel = MatchesViewModel()
     weak var rootMatchesController: MatchMessagesViewController?
     
 
@@ -21,13 +20,13 @@ class MatchesViewController: UICollectionViewController {
 extension MatchesViewController {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return matches.count
+        return viewModel.getMatchesCount()
     }
     
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MatchCell.reuseID, for: indexPath) as! MatchCell
-        cell.set(match: matches[indexPath.item])
+        cell.set(match: viewModel.getMatchAt(indexPath))
         return cell
     }
 }
@@ -51,7 +50,7 @@ extension MatchesViewController: UICollectionViewDelegateFlowLayout {
 extension MatchesViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        rootMatchesController?.didSelectMatchFromHeader(match: matches[indexPath.item])
+        rootMatchesController?.didSelectMatchFromHeader(match: viewModel.getMatchAt(indexPath))
     }
 }
 
@@ -60,10 +59,9 @@ extension MatchesViewController {
 extension MatchesViewController {
     
     fileprivate func fetchMatches() {
-        matchesViewModel.fetchMatches { [weak self] match in
-            guard let self = self, let match = match else { return }
-            self.matches.append(match)
-            DispatchQueue.main.async { self.collectionView.reloadData() }
+        viewModel.fetchMatches { [weak self] status in
+            guard let self = self else { return }
+            if status { DispatchQueue.main.async { self.collectionView.reloadData() } }
         }
     }
     
