@@ -9,7 +9,6 @@ class ChatLogViewController: UICollectionViewController {
     fileprivate lazy var customNavigationBar = ChatLogNavigationBar(chatLogViewModel: viewModel)
     fileprivate let statusBar = UIView()
     fileprivate lazy var messageInputView = CustomInputAccessoryView(frame: .init(x: 0, y: 0, width: view.frame.width, height: 50))
-    fileprivate var messages = [Message]()
     fileprivate var listener: ListenerRegistration?
     
     
@@ -55,13 +54,13 @@ class ChatLogViewController: UICollectionViewController {
 extension ChatLogViewController {
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return messages.count
+        return viewModel.getMessagesCount()
     }
     
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MessageCell.reuseID, for: indexPath) as! MessageCell
-        cell.set(message: messages[indexPath.item])
+        cell.set(message: viewModel.getMessageAt(indexPath))
         return cell
     }
 }
@@ -72,7 +71,7 @@ extension ChatLogViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let estimatedCell = MessageCell(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 1000))
-        estimatedCell.set(message: messages[indexPath.item])
+        estimatedCell.set(message: viewModel.getMessageAt(indexPath))
         estimatedCell.layoutIfNeeded()
         let estimatedSize = estimatedCell.systemLayoutSizeFitting(CGSize(width: view.frame.width, height: 1000))
         return CGSize(width: view.frame.width, height: estimatedSize.height)
@@ -100,7 +99,7 @@ extension ChatLogViewController {
     
     
     @objc fileprivate func handleKeyboardShow() {
-        collectionView.scrollToItem(at: IndexPath(item: messages.count - 1, section: 0), at: .bottom, animated: true)
+        collectionView.scrollToItem(at: IndexPath(item: viewModel.getMessagesCount() - 1, section: 0), at: .bottom, animated: true)
     }
     
     
@@ -125,26 +124,18 @@ extension ChatLogViewController {
     }
     
     
-    fileprivate func fetchMessages() { // TODO: Refactor this code
-        guard let currentUserID = Auth.auth().currentUser?.uid else { return }
-        let matchID = viewModel.uid
-        let query = Firestore.firestore().collection("matches_messages").document(currentUserID).collection(matchID).order(by: "timestamp")
-        
-        listener = query.addSnapshotListener { querySnapshot, error in
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            }
-            guard let documentChanges = querySnapshot?.documentChanges else { return }
-            for change in documentChanges {
-                if change.type == .added {
-                    self.messages.append(Message(dictionary: change.document.data()))
-                }
-            }
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-                self.collectionView.scrollToItem(at: IndexPath(item: self.messages.count - 1, section: 0), at: .bottom, animated: true)
-            }
+    fileprivate func fetchMessages() {
+        listener = viewModel.fetchMessages { [weak self] status in
+            guard let self = self else { return }
+            if status { self.updateUI() }
+        }
+    }
+    
+    
+    fileprivate func updateUI() {
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+            self.collectionView.scrollToItem(at: IndexPath(item: self.viewModel.getMessagesCount() - 1, section: 0), at: .bottom, animated: true)
         }
     }
     
