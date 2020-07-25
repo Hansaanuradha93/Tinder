@@ -6,8 +6,8 @@ class RecentMessageCell: UICollectionViewCell {
     static let reuseID = "RecentMessageCell"
     
     fileprivate let profileImageView = TDImageView()
-    fileprivate let usernameLabel = TDLabel(text: "Username here", textAlignment: .left, fontSize: 16)
-    fileprivate let messageLabel = TDLabel(text: "This is really a long sentense since i want to check if a long text will filt in", textAlignment: .left, textColor: .gray, fontSize: 14, numberOfLines: 2)
+    fileprivate let usernameLabel = TDLabel(textAlignment: .left, fontSize: 16)
+    fileprivate let messageLabel = TDLabel(textAlignment: .left, textColor: .gray, fontSize: 14, numberOfLines: 2)
     fileprivate let barView = UIView()
     
     
