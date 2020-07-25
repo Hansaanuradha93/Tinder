@@ -109,49 +109,6 @@ extension ChatLogViewController {
     }
     
     
-//    fileprivate func saveRecentMessages() {  // TODO: refactor this code here
-//        if let message = messageInputView.textView.text, !message.isEmpty {
-//            guard let currentUserID = Auth.auth().currentUser?.uid else { return }
-//            let rootRef = Firestore.firestore().collection("matches_messages")
-//            let matchID = viewModel.uid
-//
-//            let data: [String : Any] = [
-//                "uid": matchID,
-//                "name": viewModel.username,
-//                "profileImageUrl": viewModel.profileImageUrl,
-//                "text": messageInputView.textView.text ?? "",
-//                "timestamp": Timestamp(date: Date())
-//            ]
-//
-//            let currentUserRef = rootRef.document(currentUserID).collection("recent_messages").document(matchID)
-//            currentUserRef.setData(data) { error in
-//                if let error = error {
-//                    print(error.localizedDescription)
-//                    return
-//                }
-//                print("Recent message saved successfully in current user side")
-//            }
-//
-//            let messageData: [String : Any] = [
-//                "uid": currentUserID,
-//                "name": currentUser?.name ?? "",
-//                "profileImageUrl": currentUser?.imageUrl1 ?? "",
-//                "text": messageInputView.textView.text ?? "",
-//                "timestamp": Timestamp(date: Date())
-//            ]
-//
-//            let matchedUserRef = rootRef.document(matchID).collection("recent_messages").document(currentUserID)
-//            matchedUserRef.setData(messageData) { error in
-//                if let error = error {
-//                    print(error.localizedDescription)
-//                    return
-//                }
-//                print("Recent message saved successfully in matched user side")
-//            }
-//        }
-//    }
-    
-    
     fileprivate func saveMessages() {
         viewModel.saveMessages(message: messageInputView.textView.text) { [weak self] status in
             guard let self = self else { return }
