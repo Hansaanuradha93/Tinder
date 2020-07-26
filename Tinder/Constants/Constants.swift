@@ -19,7 +19,7 @@ struct Asserts {
     static let dismissCircle = UIImage(named: "dismiss_circle")!
     static let superLike = UIImage(named: "super_like_circle")!
     static let like = UIImage(named: "like_circle")!
-
+    static let sliderThumb = UIImage(named: "slider_thumb")!
 }
 
 struct Strings {
