@@ -76,13 +76,13 @@ extension SignUpViewModel {
             ] as [String : Any]
         Firestore.firestore().collection("users").document(uid).setData(userInfo) { [weak self] error in
             guard let self = self else { return }
+            self.bindableIsRegistering.value = false
             if let error = error {
-                self.bindableIsRegistering.value = false
                 completion(error)
                 return
             }
+            print("Authentication successfull")
             completion(nil)
-            self.bindableIsRegistering.value = false
         }
     }
     

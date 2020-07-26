@@ -5,12 +5,12 @@ class SignupViewController: UIViewController {
     
     // MARK: Properties
     fileprivate let gradientLayer = CAGradientLayer()
-    fileprivate let profilePhotoButton = TDButton(backgroundColor: .white, title: "Select Photo", radius: 16, fontSize: 32)
-    fileprivate let fullNameTextField = TDTextField(padding: 16, placeholderText: "Enter full name", radius: 25)
-    fileprivate let emailTextField = TDTextField(padding: 16, placeholderText: "Enter email", radius: 25)
-    fileprivate let passwordTextField = TDTextField(padding: 16, placeholderText: "Enter password", radius: 25)
-    fileprivate let signupButton = TDButton(backgroundColor: UIColor.appColor(color: .lightGray), title: "Sign Up", titleColor: .gray, radius: 25, fontSize: 24)
-    fileprivate let goToLoginButton = TDButton(backgroundColor: .clear, title: "Go to login", titleColor: .white, radius: 0, fontSize: 18)
+    fileprivate let profilePhotoButton = TDButton(backgroundColor: .white, title: Strings.selectPhoto, radius: 16, fontSize: 32)
+    fileprivate let fullNameTextField = TDTextField(padding: 16, placeholderText: Strings.enterFullName, radius: 25)
+    fileprivate let emailTextField = TDTextField(padding: 16, placeholderText: Strings.enterEmail, radius: 25)
+    fileprivate let passwordTextField = TDTextField(padding: 16, placeholderText: Strings.enterPassword, radius: 25)
+    fileprivate let signupButton = TDButton(backgroundColor: UIColor.appColor(color: .lightGray), title: Strings.signup, titleColor: .gray, radius: 25, fontSize: 24)
+    fileprivate let goToLoginButton = TDButton(backgroundColor: .clear, title: Strings.goToLogin, titleColor: .white, radius: 0, fontSize: 18)
     
     fileprivate lazy var verticalStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [fullNameTextField, emailTextField, passwordTextField, signupButton])
@@ -66,10 +66,9 @@ extension SignupViewController {
         signupViewModel.performSignUp { [weak self] error in
             guard let self = self else { return }
             if let error = error {
-                self.presentAlert(title: "Signup Failed", message: error.localizedDescription, buttonTitle: "Ok")
+                self.presentAlert(title: Strings.signupFailed, message: error.localizedDescription, buttonTitle: Strings.ok)
                 return
             }
-            print("Authentication successfull")
             self.navigateToHome()
         }
     }

@@ -34,4 +34,9 @@ struct Strings {
     static let goBack = "Go back"
     static let loginFailed = "Login Failed"
     static let ok = "Ok"
+    static let selectPhoto = "Select Photo"
+    static let enterFullName = "Enter full name"
+    static let signup = "Sign Up"
+    static let goToLogin = "Go to login"
+    static let signupFailed = "Signup Failed"
 }
