@@ -7,6 +7,8 @@ class SettingsViewModel {
     // MARK: Bindable
     var bindableIsFetchingData = Bindable<Bool>()
     var bindableIsSavingUserData = Bindable<Bool>()
+    var bindableIsUploadingImage = Bindable<Bool>()
+
 
     
     func fetchCurrentUser(completion: @escaping (User?) -> ()) {
@@ -54,6 +56,41 @@ class SettingsViewModel {
             }
             print("user info updated successfully")
             completion(true)
+        }
+    }
+    
+    
+    func uploadImage(image: UIImage?, completion: @escaping (String?) -> ()) {
+        guard let image = image, let uploadData = image.jpegData(compressionQuality: 0.75) else {
+            completion(nil)
+            return
+        }
+        let filename = UUID().uuidString
+        bindableIsUploadingImage.value = true
+        
+        let reference = Storage.storage().reference().child("images/\(filename)")
+        reference.putData(uploadData, metadata: nil) { (_, error) in
+            if let error = error {
+                self.bindableIsUploadingImage.value = false
+                print(error.localizedDescription)
+                completion(nil)
+                return
+            }
+            
+            reference.downloadURL { (url, error) in
+                self.bindableIsUploadingImage.value = false
+                if let error = error {
+                    print(error.localizedDescription)
+                    completion(nil)
+                    return
+                }
+                
+                guard let downloadUrl = url?.absoluteString else {
+                    completion(nil)
+                    return
+                }
+                completion(downloadUrl)
+            }
         }
     }
 }

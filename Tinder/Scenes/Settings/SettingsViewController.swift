@@ -164,6 +164,56 @@ extension SettingsViewController {
     }
     
     
+    @objc fileprivate func handleTap() {
+        view.endEditing(true)
+    }
+    
+    
+    @objc fileprivate func handleSelectPhoto(button: UIButton) {
+       let imagePickerController = TDImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.allowsEditing = true
+        imagePickerController.button = button
+        present(imagePickerController, animated: true)
+    }
+    
+    
+    @objc fileprivate func handleCancel() {
+        dismiss(animated: true)
+    }
+    
+    
+    @objc fileprivate func handleSave() {
+        viewModel.saveUserData(user: user) { [weak self] status in
+            guard let self = self else { return }
+            if status {
+                self.dismiss(animated: true) { self.delegate?.didSaveSettings() }
+            }
+        }
+    }
+    
+    
+    @objc fileprivate func handleLogout() {
+        try? Auth.auth().signOut()
+        dismiss(animated: true)
+    }
+    
+    
+    fileprivate func uploadImageOn(button: UIButton?) {
+        viewModel.uploadImage(image: button?.image(for: .normal)) { [weak self] downloadUrl in
+            guard let self = self, let downloadUrl = downloadUrl else { return }
+            if button == self.image1Button {
+                self.user?.imageUrl1 = downloadUrl
+            } else if button == self.image2Button {
+                self.user?.imageUrl2 = downloadUrl
+            } else {
+                self.user?.imageUrl3 = downloadUrl
+            }
+            self.handleSave()
+        }
+    }
+    
+    
     fileprivate func setupSettingsViewModelObservers() {
         viewModel.bindableIsFetchingData.bind { [weak self] isFetching in
             guard let self = self, let isFetching = isFetching else { return }
@@ -182,7 +232,17 @@ extension SettingsViewController {
                 self.hidePreloader()
             }
         }
+        
+        viewModel.bindableIsUploadingImage.bind { [weak self] isUploading in
+        guard let self = self, let isUploading = isUploading else { return }
+            if isUploading {
+                self.showPreloader()
+            } else {
+                self.hidePreloader()
+            }
+        }
     }
+    
     
     fileprivate func fetchCurrentUser() {
         viewModel.fetchCurrentUser { [weak self] user in
@@ -222,41 +282,6 @@ extension SettingsViewController {
     }
     
     
-    @objc fileprivate func handleTap() {
-        view.endEditing(true)
-    }
-    
-    
-    @objc fileprivate func handleSelectPhoto(button: UIButton) {
-       let imagePickerController = TDImagePickerController()
-        imagePickerController.delegate = self
-        imagePickerController.allowsEditing = true
-        imagePickerController.button = button
-        present(imagePickerController, animated: true)
-    }
-    
-    
-    @objc fileprivate func handleCancel() {
-        dismiss(animated: true)
-    }
-    
-    
-    @objc fileprivate func handleSave() {
-        viewModel.saveUserData(user: user) { [weak self] status in
-            guard let self = self else { return }
-            if status {
-                self.dismiss(animated: true) { self.delegate?.didSaveSettings() }
-            }
-        }
-    }
-    
-    
-    @objc fileprivate func handleLogout() {
-        try? Auth.auth().signOut()
-        dismiss(animated: true)
-    }
-    
-    
     fileprivate func createButton(selector: Selector) -> UIButton {
         let button = TDButton(backgroundColor: .white, title: Strings.selectPhoto, radius: 16, fontSize: 20)
         button.addTarget(self, action: selector, for: .touchUpInside)
@@ -289,37 +314,6 @@ extension SettingsViewController: UIImagePickerControllerDelegate & UINavigation
             button?.setImage(originalImage.withRenderingMode(.alwaysOriginal), for: .normal)
         }
         dismiss(animated: true, completion: nil)
-        
-        guard let image = button?.image(for: .normal), let uploadData = image.jpegData(compressionQuality: 0.75) else { return }
-        let filename = UUID().uuidString
-        let reference = Storage.storage().reference().child("images/\(filename)")
-        
-        self.showPreloader()
-        reference.putData(uploadData, metadata: nil) { (_, error) in
-            if let error = error {
-                print(error.localizedDescription)
-                self.hidePreloader()
-                return
-            }
-            
-            reference.downloadURL { (url, error) in
-                if let error = error {
-                    print(error.localizedDescription)
-                    self.hidePreloader()
-                    return
-                }
-                
-                guard let downloadUrl = url?.absoluteString else { return }
-                self.hidePreloader()
-                if button == self.image1Button {
-                    self.user?.imageUrl1 = downloadUrl
-                } else if button == self.image2Button {
-                    self.user?.imageUrl2 = downloadUrl
-                } else {
-                    self.user?.imageUrl3 = downloadUrl
-                }
-                self.handleSave()
-            }
-        }
+        uploadImageOn(button: button)
     }
 }
