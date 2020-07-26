@@ -160,7 +160,7 @@ extension SettingsViewController {
     
     
     @objc fileprivate func handleBioChange(textField: UITextField) {
-        // TODO: capture the user's bio
+        user?.bio = textField.text ?? ""
     }
     
     
@@ -168,6 +168,15 @@ extension SettingsViewController {
         viewModel.bindableIsFetchingData.bind { [weak self] isFetching in
             guard let self = self, let isFetching = isFetching else { return }
             if isFetching {
+                self.showPreloader()
+            } else {
+                self.hidePreloader()
+            }
+        }
+        
+        viewModel.bindableIsSavingUserData.bind { [weak self] isSaving in
+            guard let self = self, let isSaving = isSaving else { return }
+            if isSaving {
                 self.showPreloader()
             } else {
                 self.hidePreloader()
@@ -233,30 +242,11 @@ extension SettingsViewController {
     
     
     @objc fileprivate func handleSave() {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        self.showPreloader()
-    
-        let documentData: [String: Any] = [
-            "uid": uid,
-            "fullname": user?.name ?? "",
-            "age": user?.age ?? -1,
-            "profession": user?.profession ?? "",
-            "imageUrl1": user?.imageUrl1 ?? "",
-            "imageUrl2": user?.imageUrl2 ?? "",
-            "imageUrl3": user?.imageUrl3 ?? "",
-            "minSeekingAge": user?.minSeekingAge ?? Constants.defaultMinimumSeekingAge,
-            "maxSeekingAge": user?.maxSeekingAge ?? Constants.defaultMaximumSeekingAge
-        ]
-        
-        Firestore.firestore().collection("users").document(uid).updateData(documentData) { [weak self] error in
+        viewModel.saveUserData(user: user) { [weak self] status in
             guard let self = self else { return }
-            self.hidePreloader()
-            if let error = error {
-                print(error.localizedDescription)
-                return
+            if status {
+                self.dismiss(animated: true) { self.delegate?.didSaveSettings() }
             }
-            print("user info updated successfully")
-            self.dismiss(animated: true) { self.delegate?.didSaveSettings() }
         }
     }
     
