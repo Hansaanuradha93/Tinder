@@ -109,7 +109,7 @@ extension CardView {
 
     
     fileprivate func setupViews(_ cardViewModel: CardViewModel) {
-        swipingPhotoController.cardViewModel = cardViewModel
+        swipingPhotoController.imageUrls = cardViewModel.imageUrls
         informationLabel.attributedText = cardViewModel.attributedText
         informationLabel.textAlignment = cardViewModel.textAlignment
     }

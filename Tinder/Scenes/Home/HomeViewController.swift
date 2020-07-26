@@ -289,8 +289,9 @@ extension HomeViewController: LoginViewControllerDelegate {
 extension HomeViewController: CardViewDelegate {
     
     func didTapMoreInfo(cardViewModel: CardViewModel) {
+        let viewModel = UserDetailsViewModel(uid: cardViewModel.uid, imageUrls: cardViewModel.imageUrls, attributedText: cardViewModel.attributedText)
         let controller = UserDetailsViewController()
-        controller.setup(cardViewModel: cardViewModel)
+        controller.setup(viewModel: viewModel)
         controller.modalPresentationStyle = .overCurrentContext
         present(controller, animated: true)
     }

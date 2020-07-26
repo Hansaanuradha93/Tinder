@@ -7,10 +7,10 @@ class UserDetailsViewController: UIViewController {
     let swipingPhotViewController = SwipingPhotosViewController()
     let infoLabel = UILabel()
     lazy var swipingView = swipingPhotViewController.view!
-    lazy var dismissButton = createButton(image: #imageLiteral(resourceName: "dismiss_down_arrow"), selector: #selector(handleTap))
-    lazy var dislikeButton = createButton(image: #imageLiteral(resourceName: "dismiss_circle"), selector: #selector(handleDislike))
-    lazy var superlikeButton = createButton(image: #imageLiteral(resourceName: "super_like_circle"), selector: #selector(handleSuperlike))
-    lazy var likeButton = createButton(image: #imageLiteral(resourceName: "like_circle"), selector: #selector(handlelike))
+    lazy var dismissButton = createButton(image: Asserts.dismissDownArrow, selector: #selector(handleTap))
+    lazy var dislikeButton = createButton(image: Asserts.dismissCircle, selector: #selector(handleDislike))
+    lazy var superlikeButton = createButton(image: Asserts.superLike, selector: #selector(handleSuperlike))
+    lazy var likeButton = createButton(image: Asserts.like, selector: #selector(handlelike))
     lazy var extraSwipingHeight: CGFloat = 100
    
     
@@ -52,10 +52,9 @@ extension UserDetailsViewController {
     }
     
     
-    func setup(cardViewModel: CardViewModel) {
-        // TODO: Use userDetailsViewModel (viewModel for UserDetailsViewController) instead of cardViewModel
-        infoLabel.attributedText = cardViewModel.attributedText
-        swipingPhotViewController.cardViewModel = cardViewModel
+    func setup(viewModel: UserDetailsViewModel) {
+        infoLabel.attributedText = viewModel.attributedText
+        swipingPhotViewController.imageUrls = viewModel.imageUrls
     }
     
     

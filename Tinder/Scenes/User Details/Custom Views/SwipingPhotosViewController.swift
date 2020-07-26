@@ -7,9 +7,10 @@ class SwipingPhotosViewController: UIPageViewController {
     fileprivate var controllers = [UIViewController]()
     fileprivate let barDiselectedColor = UIColor.appColor(color: .darkGray)
     fileprivate var isCardViewMode: Bool = false
-    var cardViewModel: CardViewModel! {
+    
+    var imageUrls: [String]! {
         didSet {
-            controllers = cardViewModel.imageUrls.map({ imageUrl -> UIViewController in
+            controllers = imageUrls.map({ imageUrl -> UIViewController in
                 let photoController = PhotoViewController(imageUrl: imageUrl)
                 return photoController
             })
@@ -41,7 +42,7 @@ class SwipingPhotosViewController: UIPageViewController {
 extension SwipingPhotosViewController {
     
     fileprivate func setupBarViews() {
-        cardViewModel.imageUrls.forEach { _ in
+        imageUrls.forEach { _ in
             let barView = UIView()
             barView.backgroundColor = barDiselectedColor
             barView.layer.cornerRadius = 2
