@@ -9,10 +9,10 @@ class LoginViewController: UIViewController {
     
     // MARK: Properties
     fileprivate let gradientLayer = CAGradientLayer()
-    fileprivate let emailTextField = TDTextField(padding: 24, placeholderText: "Enter email", radius: 25)
-    fileprivate let passwordTextField = TDTextField(padding: 24, placeholderText: "Enter password", radius: 25)
-    fileprivate let loginButton = TDButton(backgroundColor: UIColor.appColor(color: .lightGray), title: "Login", titleColor: .gray, radius: 25, fontSize: 24)
-    fileprivate let backToRegisterButton = TDButton(backgroundColor: .clear, title: "Go back", titleColor: .white, radius: 0, fontSize: 18)
+    fileprivate let emailTextField = TDTextField(padding: 24, placeholderText: Strings.enterEmail, radius: 25)
+    fileprivate let passwordTextField = TDTextField(padding: 24, placeholderText: Strings.enterPassword, radius: 25)
+    fileprivate let loginButton = TDButton(backgroundColor: UIColor.appColor(color: .lightGray), title: Strings.login, titleColor: .gray, radius: 25, fontSize: 24)
+    fileprivate let backToRegisterButton = TDButton(backgroundColor: .clear, title: Strings.goBack, titleColor: .white, radius: 0, fontSize: 18)
 
     fileprivate lazy var verticalStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [emailTextField, passwordTextField, loginButton])
@@ -21,7 +21,7 @@ class LoginViewController: UIViewController {
         return stackView
     }()
     
-    fileprivate let loginViewModel = LoginViewModel()
+    fileprivate let viewModel = LoginViewModel()
     var delegate: LoginViewControllerDelegate?
     
     
@@ -46,22 +46,21 @@ extension LoginViewController {
     
     @objc fileprivate func handleTextChange(textField: UITextField) {
         if textField == emailTextField {
-            loginViewModel.email = textField.text
+            viewModel.email = textField.text
         } else {
-            loginViewModel.password = textField.text
+            viewModel.password = textField.text
         }
     }
     
     
     @objc fileprivate func handleLogin() {
-        loginViewModel.performLogin { [weak self] error in
+        viewModel.performLogin { [weak self] error in
             guard let self = self else { return }
             if let error = error {
-                self.presentAlert(title: "Login Failed", message: error.localizedDescription, buttonTitle: "Ok")
+                self.presentAlert(title: Strings.loginFailed, message: error.localizedDescription, buttonTitle: Strings.ok)
                 return
             }
             
-            print("Logged in successfully")
             self.dismiss(animated: true, completion: {
                 self.delegate?.didFinishLoggingIn()
             })
@@ -75,7 +74,7 @@ extension LoginViewController {
 
     
     fileprivate func setupBindables() {
-        loginViewModel.isFormValid.bind { [weak self] (isFormValid) in
+        viewModel.isFormValid.bind { [weak self] (isFormValid) in
             guard let self = self, let isFormValid = isFormValid else { return }
             if isFormValid {
                 self.loginButton.backgroundColor = UIColor.appColor(color: .darkPink)
@@ -86,7 +85,7 @@ extension LoginViewController {
             }
             self.loginButton.isEnabled = isFormValid
         }
-        loginViewModel.isLoggingIn.bind { [weak self] isLogin in
+        viewModel.isLoggingIn.bind { [weak self] isLogin in
             guard let self = self, let isLogin = isLogin else { return }
             if isLogin {
                 self.showPreloader()

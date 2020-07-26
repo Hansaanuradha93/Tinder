@@ -28,4 +28,10 @@ struct Strings {
     static let send = "SEND"
     static let enterMaessage = "Enter Message"
     static let newMessages = "New Matches"
+    static let enterEmail = "Enter email"
+    static let enterPassword = "Enter password"
+    static let login = "Login"
+    static let goBack = "Go back"
+    static let loginFailed = "Login Failed"
+    static let ok = "Ok"
 }

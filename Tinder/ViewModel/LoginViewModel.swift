@@ -32,6 +32,7 @@ extension LoginViewModel {
                 completion(error)
                 return
             }
+            print("Logged in successfully")
             completion(nil)
         }
     }
