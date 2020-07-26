@@ -5,10 +5,7 @@ class SettingsCell: UITableViewCell {
     // MARK: Properties
     static let reuseIdentifier = "SettingsCell"
 
-    var textField: SettingsTextField = {
-        let textField = SettingsTextField()
-        return textField
-    }()
+    let textField = SettingsTextField()
         
     
     // MARK: Initializers
