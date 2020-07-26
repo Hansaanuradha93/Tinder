@@ -1,15 +1,16 @@
 import Firebase
 
 class SettingsViewModel {
-    
-    // MARK: Properties
-    
+        
     // MARK: Bindable
     var bindableIsFetchingData = Bindable<Bool>()
     var bindableIsSavingUserData = Bindable<Bool>()
     var bindableIsUploadingImage = Bindable<Bool>()
+}
 
 
+// MARK: - Methods
+extension SettingsViewModel {
     
     func fetchCurrentUser(completion: @escaping (User?) -> ()) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
