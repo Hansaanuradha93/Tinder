@@ -9,6 +9,7 @@ protocol SettingsViewControllerDelegete {
 class SettingsViewController: UIViewController {
     
     // MARK: Properties
+    fileprivate let viewModel = SettingsViewModel()
     fileprivate lazy var image1Button = createButton(selector: #selector(handleSelectPhoto))
     fileprivate lazy var image2Button = createButton(selector: #selector(handleSelectPhoto))
     fileprivate lazy var image3Button = createButton(selector: #selector(handleSelectPhoto))
@@ -41,6 +42,7 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         setupNavigationBar()
         setupTableView()
+        setupSettingsViewModelObservers()
         fetchCurrentUser()
     }
 }
@@ -162,19 +164,21 @@ extension SettingsViewController {
     }
     
     
-    fileprivate func fetchCurrentUser() {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        self.showPreloader()
-        let reference = Firestore.firestore().collection("users").document(uid)
-        reference.getDocument { (document, error) in
-            self.hidePreloader()
-            if let error = error {
-                print(error.localizedDescription)
-                return
+    fileprivate func setupSettingsViewModelObservers() {
+        viewModel.bindableIsFetchingData.bind { [weak self] isFetching in
+            guard let self = self, let isFetching = isFetching else { return }
+            if isFetching {
+                self.showPreloader()
+            } else {
+                self.hidePreloader()
             }
-            
-            guard let dictionary = document?.data() else { return }
-            self.user = User(dictionary: dictionary)
+        }
+    }
+    
+    fileprivate func fetchCurrentUser() {
+        viewModel.fetchCurrentUser { [weak self] user in
+            guard let self = self, let user = user else { return }
+            self.user = user
             self.updateUI()
         }
     }
