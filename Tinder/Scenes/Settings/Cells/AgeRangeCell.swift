@@ -38,11 +38,20 @@ extension AgeRangeCell {
     
     
     fileprivate func layoutUI() {
+        let edgeInsets = UIEdgeInsets(top: 4, left: 0, bottom: 4, right: 0)
+        let spacing: CGFloat = 10
+        
         let minStackView = UIStackView(arrangedSubviews: [minLabel, minSlider])
-        minStackView.spacing = 8
+        minStackView.spacing = spacing
+        minStackView.alignment = .center
+        minStackView.isLayoutMarginsRelativeArrangement = true
+        minStackView.layoutMargins = edgeInsets
         
         let maxStackView = UIStackView(arrangedSubviews: [maxLabel, maxSlider])
-        maxStackView.spacing = 8
+        maxStackView.spacing = spacing
+        maxStackView.alignment = .center
+        maxStackView.isLayoutMarginsRelativeArrangement = true
+        maxStackView.layoutMargins = edgeInsets
         
         let padding: CGFloat = 16
         let overallSrachView = UIStackView(arrangedSubviews: [minStackView, maxStackView])
