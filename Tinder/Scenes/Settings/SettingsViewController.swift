@@ -6,7 +6,7 @@ protocol SettingsViewControllerDelegete {
 }
 
 
-class SettingsViewController: UIViewController { // TODO: Refactor this class
+class SettingsViewController: UIViewController {
     
     // MARK: Properties
     fileprivate lazy var image1Button = createButton(selector: #selector(handleSelectPhoto))
@@ -34,10 +34,7 @@ class SettingsViewController: UIViewController { // TODO: Refactor this class
     
     var user: User?
     var delegate: SettingsViewControllerDelegete?
-    
-    deinit {
-        print("memory reclaimed")
-    }
+
     
     // MARK: View Controller
     override func viewDidLoad() {
@@ -59,15 +56,15 @@ extension SettingsViewController: UITableViewDelegate {
         case 0:
             return header
         case 1:
-            headerName.text = "Name"
+            headerName.text = Strings.name
         case 2:
-            headerName.text = "Profession"
+            headerName.text = Strings.profession
         case 3:
-            headerName.text = "Age"
+            headerName.text = Strings.age
         case 4:
-            headerName.text = "Bio"
+            headerName.text = Strings.bio
         default:
-            headerName.text = "Seeking Age Range"
+            headerName.text = Strings.seekingAgeRange
         }
         return headerName
     }
@@ -101,16 +98,16 @@ extension SettingsViewController: UITableViewDataSource {
         let settingsCell = tableView.dequeueReusableCell(withIdentifier: SettingsCell.reuseIdentifier, for: indexPath) as! SettingsCell
         switch indexPath.section {
         case 1:
-            settingsCell.setup(placehoder: "Name", text: user?.name ?? "")
+            settingsCell.setup(placehoder: Strings.name, text: user?.name ?? "")
             settingsCell.textField.addTarget(self, action: #selector(handleNameChange), for: .editingChanged)
         case 2:
-            settingsCell.setup(placehoder: "Proofession", text: user?.profession ?? "")
+            settingsCell.setup(placehoder: Strings.profession, text: user?.profession ?? "")
             settingsCell.textField.addTarget(self, action: #selector(handleProfessionChange), for: .editingChanged)
         case 3:
-            settingsCell.setup(placehoder: "Age", text: "\(user?.age ?? 0)")
+            settingsCell.setup(placehoder: Strings.age, text: "\(user?.age ?? 0)")
             settingsCell.textField.addTarget(self, action: #selector(handleAgeChange), for: .editingChanged)
         case 4:
-            settingsCell.setup(placehoder: "Bio", text: "")
+            settingsCell.setup(placehoder: Strings.bio, text: "")
             settingsCell.textField.addTarget(self, action: #selector(handleBioChange), for: .editingChanged)
         default:
             let ageRangeCell = tableView.dequeueReusableCell(withIdentifier: AgeRangeCell.reuseIdentifier, for: indexPath) as! AgeRangeCell
@@ -267,7 +264,7 @@ extension SettingsViewController {
     
     
     fileprivate func createButton(selector: Selector) -> UIButton {
-        let button = TDButton(backgroundColor: .white, title: "Select Photo", radius: 16, fontSize: 20)
+        let button = TDButton(backgroundColor: .white, title: Strings.selectPhoto, radius: 16, fontSize: 20)
         button.addTarget(self, action: selector, for: .touchUpInside)
         button.imageView?.contentMode = .scaleAspectFill
         return button
@@ -275,12 +272,12 @@ extension SettingsViewController {
     
     
     fileprivate func setupNavigationBar() {
-        navigationItem.title = "Settings"
+        navigationItem.title = Strings.settings
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: Strings.cancel, style: .plain, target: self, action: #selector(handleCancel))
         navigationItem.rightBarButtonItems = [
-            UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(handleSave)),
-            UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
+            UIBarButtonItem(title: Strings.save, style: .plain, target: self, action: #selector(handleSave)),
+            UIBarButtonItem(title: Strings.logout, style: .plain, target: self, action: #selector(handleLogout))
         ]
     }
 }

@@ -39,4 +39,14 @@ struct Strings {
     static let signup = "Sign Up"
     static let goToLogin = "Go to login"
     static let signupFailed = "Signup Failed"
+    static let name = "Name"
+    static let profession = "Profession"
+    static let age = "Age"
+    static let bio = "Bio"
+    static let seekingAgeRange = "Seeking Age Range"
+    static let settings = "Settings"
+    static let cancel = "Cancel"
+    static let save = "Save"
+    static let logout = "Logout"
+
 }
