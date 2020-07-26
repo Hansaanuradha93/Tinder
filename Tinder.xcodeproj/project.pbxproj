@@ -10,6 +10,7 @@
 		17358587252E3CA982B52A5A /* Pods_Tinder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC5D9E6E2194471FD3AE46B8 /* Pods_Tinder.framework */; };
 		4702535824A99A9800F725A1 /* AgeRangeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4702535724A99A9800F725A1 /* AgeRangeCell.swift */; };
 		470DA88224CD43780014EE72 /* UserDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470DA88124CD43780014EE72 /* UserDetailsViewModel.swift */; };
+		470DA88424CD66D10014EE72 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470DA88324CD66D10014EE72 /* SettingsViewModel.swift */; };
 		47288FF024BF6E30006E2241 /* CustomInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47288FEF24BF6E30006E2241 /* CustomInputAccessoryView.swift */; };
 		4738A6CD249BD0B400C55385 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4738A6CC249BD0B400C55385 /* CardView.swift */; };
 		474003D524B7067300EC302E /* MatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474003D424B7067300EC302E /* MatchView.swift */; };
@@ -71,6 +72,7 @@
 /* Begin PBXFileReference section */
 		4702535724A99A9800F725A1 /* AgeRangeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgeRangeCell.swift; sourceTree = "<group>"; };
 		470DA88124CD43780014EE72 /* UserDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsViewModel.swift; sourceTree = "<group>"; };
+		470DA88324CD66D10014EE72 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		47288FEF24BF6E30006E2241 /* CustomInputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputAccessoryView.swift; sourceTree = "<group>"; };
 		4738A6CC249BD0B400C55385 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		474003D424B7067300EC302E /* MatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchView.swift; sourceTree = "<group>"; };
@@ -424,6 +426,7 @@
 				4796748D24C366CB0010051A /* MatchesViewModel.swift */,
 				47AA843C24C8AB7F00798C99 /* ChatLogViewModel.swift */,
 				470DA88124CD43780014EE72 /* UserDetailsViewModel.swift */,
+				470DA88324CD66D10014EE72 /* SettingsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -641,6 +644,7 @@
 				47CE8206249CEBFA00B9696E /* CardViewModel.swift in Sources */,
 				4702535824A99A9800F725A1 /* AgeRangeCell.swift in Sources */,
 				47B405C424BAD18F0064EE13 /* Match.swift in Sources */,
+				470DA88424CD66D10014EE72 /* SettingsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
