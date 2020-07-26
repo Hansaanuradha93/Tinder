@@ -1,7 +1,7 @@
 import UIKit
 import Firebase
 
-class HomeViewController: UIViewController { // TODO: Refactor this class
+class HomeViewController: UIViewController {
 
     // MARK: Properties
     fileprivate let topControllsStackView = HomeTopButtonControlsStackView()
@@ -139,52 +139,8 @@ extension HomeViewController {
     
     
     fileprivate func saveSwipeToFirestore(isLiked: Bool) {
-        guard let uid = Auth.auth().currentUser?.uid else { return }
-        let reference = Firestore.firestore().collection("swipes").document(uid)
-        
-        guard let cardUID = topCardView?.cardViewModel.uid else { return }
-        if isLiked { self.checkIfMatchExist(cardUID: cardUID) }
-
-        let value = isLiked ? 1 : 0
-        let documentData = [cardUID: value]
-        
-        reference.getDocument { snapshot, error in
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            }
-            
-            if snapshot?.exists ?? false {
-                reference.updateData(documentData) { error in
-                    if let error = error {
-                        print(error.localizedDescription)
-                        return
-                    }
-                    print("Swipe successfully updated")
-                }
-            } else {
-                reference.setData(documentData) { error in
-                    if let error = error {
-                        print(error.localizedDescription)
-                        return
-                    }
-                    print("Swipe successfully saved")
-                }
-            }
-        }
-    }
-    
-    
-    fileprivate func checkIfMatchExist(cardUID: String) {
-        let reference = Firestore.firestore().collection("swipes").document(cardUID)
-        reference.getDocument { [weak self] snapshot, error in
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            }
-            guard let self = self, let data = snapshot?.data(), let uid = Auth.auth().currentUser?.uid else { return }
-            
-            let hasMatched = data[uid] as? Int == 1
+        cardViewModel.saveSwipe(isLiked: isLiked, cardView: topCardView) { [weak self] hasMatched, cardUID in
+            guard let self = self else { return }
             if hasMatched {
                 self.presentMatchView(cardUID: cardUID)
                 self.saveMatchToFirestore(cardUID: cardUID)
