@@ -5,31 +5,10 @@ class AgeRangeCell: UITableViewCell {
     // MARK: Properties
     static let reuseIdentifier = "AgeRangeCell"
     
-    var minSlider: UISlider = { // TODO: Refactor the UISlider
-        let slider = UISlider()
-        slider.minimumValue = Float(Constants.defaultMinimumSeekingAge)
-        slider.maximumValue = Float(Constants.defaultMaximumSeekingAge)
-        return slider
-    }()
-    
-    var maxSlider: UISlider = {
-        let slider = UISlider()
-        slider.minimumValue = Float(Constants.defaultMinimumSeekingAge)
-        slider.maximumValue = Float(Constants.defaultMaximumSeekingAge)
-        return slider
-    }()
-    
-    fileprivate var minLabel: UILabel = { // TODO: Refactor and make it a TDLabel
-        let label = UILabel()
-        label.text = "Min .."
-        return label
-    }()
-    
-    fileprivate var maxLabel: UILabel = { // TODO: Refactor and make it a TDLabel
-        let label = UILabel()
-        label.text = "Max .."
-        return label
-    }()
+    let minSlider = TDSlider()
+    let maxSlider = TDSlider()
+    fileprivate let minLabel = TDLabel(text: Strings.minimumPlaceholder, textAlignment: .left)
+    fileprivate let maxLabel = TDLabel(text: Strings.maximumPlaceholder, textAlignment: .left)
     
     
     // MARK: Initializers

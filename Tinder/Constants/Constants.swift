@@ -48,5 +48,6 @@ struct Strings {
     static let cancel = "Cancel"
     static let save = "Save"
     static let logout = "Logout"
-
+    static let minimumPlaceholder = "Min .."
+    static let maximumPlaceholder = "Max .."
 }
