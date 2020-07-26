@@ -15,6 +15,11 @@ struct Asserts {
     static let fireIcon = UIImage(named: "app_icon")!
     static let flag = UIImage(named: "flag")!
     static let back = UIImage(named: "back")!
+    static let dismissDownArrow = UIImage(named: "dismiss_down_arrow")!
+    static let dismissCircle = UIImage(named: "dismiss_circle")!
+    static let superLike = UIImage(named: "super_like_circle")!
+    static let like = UIImage(named: "like_circle")!
+
 }
 
 struct Strings {
