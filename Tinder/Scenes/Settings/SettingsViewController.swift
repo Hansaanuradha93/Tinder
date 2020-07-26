@@ -109,7 +109,7 @@ extension SettingsViewController: UITableViewDataSource {
             settingsCell.setup(placehoder: Strings.age, text: "\(user?.age ?? 0)")
             settingsCell.textField.addTarget(self, action: #selector(handleAgeChange), for: .editingChanged)
         case 4:
-            settingsCell.setup(placehoder: Strings.bio, text: "")
+            settingsCell.setup(placehoder: Strings.bio, text: user?.bio ?? "")
             settingsCell.textField.addTarget(self, action: #selector(handleBioChange), for: .editingChanged)
         default:
             let ageRangeCell = tableView.dequeueReusableCell(withIdentifier: AgeRangeCell.reuseIdentifier, for: indexPath) as! AgeRangeCell
