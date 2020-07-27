@@ -3,11 +3,11 @@ import UIKit
 class HomeBottomButtonControlsStackView: UIStackView {
 
     // MARK: Properties
-    lazy var refreshButton = createButton(image: #imageLiteral(resourceName: "refresh_circle").withRenderingMode(.alwaysOriginal))
-    lazy var dislikeButton = createButton(image: #imageLiteral(resourceName: "dismiss_circle").withRenderingMode(.alwaysOriginal))
-    lazy var superLikeButton = createButton(image: #imageLiteral(resourceName: "super_like_circle").withRenderingMode(.alwaysOriginal))
-    lazy var likeButton = createButton(image:  #imageLiteral(resourceName: "like_circle").withRenderingMode(.alwaysOriginal))
-    lazy var thunderButton = createButton(image: #imageLiteral(resourceName: "boost_circle").withRenderingMode(.alwaysOriginal))
+    lazy var refreshButton = createButton(image: Asserts.refresh.withRenderingMode(.alwaysOriginal))
+    lazy var dislikeButton = createButton(image: Asserts.dismissCircle.withRenderingMode(.alwaysOriginal))
+    lazy var superLikeButton = createButton(image: Asserts.superLike.withRenderingMode(.alwaysOriginal))
+    lazy var likeButton = createButton(image:  Asserts.like.withRenderingMode(.alwaysOriginal))
+    lazy var thunderButton = createButton(image: Asserts.boostCircle.withRenderingMode(.alwaysOriginal))
 
     
     // MARK: Initializers

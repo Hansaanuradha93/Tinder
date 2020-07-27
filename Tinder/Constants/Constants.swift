@@ -22,6 +22,8 @@ struct Asserts {
     static let sliderThumb = UIImage(named: "slider_thumb")!
     static let profile = UIImage(named: "top_left_profile")!
     static let topMessagesRight = UIImage(named: "top_right_messages")!
+    static let refresh = UIImage(named: "refresh_circle")!
+    static let boostCircle = UIImage(named: "boost_circle")!
 }
 
 struct Strings {
