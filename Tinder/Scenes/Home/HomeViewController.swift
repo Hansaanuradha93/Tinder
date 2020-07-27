@@ -138,6 +138,11 @@ extension HomeViewController {
     }
     
     
+    @objc fileprivate func handleSendMessage() {
+        print("send message")
+    }
+    
+    
     fileprivate func saveSwipeToFirestore(isLiked: Bool) {
         cardViewModel.saveSwipe(isLiked: isLiked, cardView: topCardView) { [weak self] hasMatched, cardUID in
             guard let self = self else { return }
@@ -158,6 +163,7 @@ extension HomeViewController {
         let matchView = MatchView()
         matchView.cardUID = cardUID
         matchView.currentUser = cardViewModel.currentUser
+        matchView.sendMessageButton.addTarget(self, action: #selector(handleSendMessage), for: .touchUpInside)
         view.addSubview(matchView)
         matchView.fillSuperview()
     }
