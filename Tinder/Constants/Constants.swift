@@ -20,6 +20,8 @@ struct Asserts {
     static let superLike = UIImage(named: "super_like_circle")!
     static let like = UIImage(named: "like_circle")!
     static let sliderThumb = UIImage(named: "slider_thumb")!
+    static let profile = UIImage(named: "top_left_profile")!
+    static let topMessagesRight = UIImage(named: "top_right_messages")!
 }
 
 struct Strings {
