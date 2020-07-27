@@ -49,3 +49,12 @@ extension User: ProducesCardViewModel {
         return CardViewModel(uid: uid, imageUrls: imageUrls, attributedText: attributedText, textAlignment: .left)
     }
 }
+
+
+// MARK: - ProducesChatLogViewModel
+extension User: ProducesChatLogViewModel {
+    
+    func toChatLogViewModel() -> ChatLogViewModel {
+        return ChatLogViewModel(uid: uid ?? "", username: name ?? "", profileImageUrl: imageUrl1 ?? "")
+    }
+}

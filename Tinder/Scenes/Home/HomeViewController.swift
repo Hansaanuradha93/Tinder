@@ -10,6 +10,7 @@ class HomeViewController: UIViewController {
     fileprivate let cardViewModel = CardViewModel()
     fileprivate var topCardView: CardView?
     fileprivate var previousCardView: CardView?
+    fileprivate var matchedUser: User?
     
     
     // MARK: View Controller
@@ -139,7 +140,15 @@ extension HomeViewController {
     
     
     @objc fileprivate func handleSendMessage() {
-        print("send message")
+        guard let matchedUser = matchedUser else { return }
+        navigateToChatLog(chatLogViewModel: matchedUser.toChatLogViewModel())
+    }
+    
+    
+    fileprivate func navigateToChatLog(chatLogViewModel: ChatLogViewModel) {
+        chatLogViewModel.currentUser = cardViewModel.currentUser
+        let controller = ChatLogViewController(chatLogViewModel: chatLogViewModel)
+        navigationController?.pushViewController(controller, animated: true)
     }
     
     
@@ -163,6 +172,7 @@ extension HomeViewController {
         let matchView = MatchView()
         matchView.cardUID = cardUID
         matchView.currentUser = cardViewModel.currentUser
+        matchView.delegate = self
         matchView.sendMessageButton.addTarget(self, action: #selector(handleSendMessage), for: .touchUpInside)
         view.addSubview(matchView)
         matchView.fillSuperview()
@@ -237,3 +247,11 @@ extension HomeViewController: CardViewDelegate {
     }
 }
 
+
+// MARK: -
+extension HomeViewController: MatchViewDelegate {
+    
+    func getMatchedUser(user: User) {
+        self.matchedUser = user
+    }
+}

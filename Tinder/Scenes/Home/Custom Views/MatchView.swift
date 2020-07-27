@@ -1,5 +1,9 @@
 import UIKit
 
+protocol MatchViewDelegate {
+    func getMatchedUser(user: User)
+}
+
 class MatchView: UIView {
     
     // MARK: Properties
@@ -15,6 +19,7 @@ class MatchView: UIView {
     
     lazy var views = [itsMatchImageView, descriptionLabel, currentImageView, cardUserImageView, sendMessageButton, keepSwipingButton]
     var currentUser: User!
+    var delegate: MatchViewDelegate?
     var cardUID: String! { didSet { fetchCardUser() } }
     
     
@@ -45,6 +50,7 @@ extension MatchView {
         viewModel.fetchCardUser(cardUID: cardUID) { [weak self] user in
             guard let self = self, let user = user else { return }
             self.setupCard(user: user)
+            self.delegate?.getMatchedUser(user: user)
         }
     }
     
