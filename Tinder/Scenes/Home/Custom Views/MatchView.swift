@@ -1,17 +1,17 @@
 import UIKit
-import Firebase
 
 class MatchView: UIView {
     
     // MARK: Properties
+    fileprivate let viewModel = MatchViewModel()
     fileprivate let blurView = UIBlurEffect(style: .dark)
     fileprivate lazy var visualEffectView = UIVisualEffectView(effect: blurView)
     fileprivate let itsMatchImageView = TDImageView(image: Asserts.itsMatch)
     fileprivate let descriptionLabel = TDLabel(textColor: .white, fontSize: 20, numberOfLines: 0)
     fileprivate let currentImageView = TDImageView(borderWidth: 2, borderColor: .white)
     fileprivate let cardUserImageView = TDImageView(borderWidth: 2, borderColor: .white)
-    fileprivate let sendMessageButton = TDGradientButton( title: "SEND MESSAGE", titleColor: .white, fontSize: 16)
-    fileprivate let keepSwipingButton = TDGradientBorderButton( title: "Keep Swiping", titleColor: .white, fontSize: 16)
+    let sendMessageButton = TDGradientButton( title: Strings.sendMessage, titleColor: .white, fontSize: 16)
+    let keepSwipingButton = TDGradientBorderButton( title: Strings.keepSwiping, titleColor: .white, fontSize: 16)
     
     lazy var views = [itsMatchImageView, descriptionLabel, currentImageView, cardUserImageView, sendMessageButton, keepSwipingButton]
     var currentUser: User!
@@ -42,14 +42,8 @@ extension MatchView {
     
     
     fileprivate func fetchCardUser() {
-        let reference = Firestore.firestore().collection("users").document(cardUID)
-        reference.getDocument { snapshot, error in
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            }
-            guard let dictionary = snapshot?.data() else { return }
-            let user = User(dictionary: dictionary)
+        viewModel.fetchCardUser(cardUID: cardUID) { [weak self] user in
+            guard let self = self, let user = user else { return }
             self.setupCard(user: user)
         }
     }

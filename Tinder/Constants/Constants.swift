@@ -54,4 +54,6 @@ struct Strings {
     static let logout = "Logout"
     static let minimumPlaceholder = "Min .."
     static let maximumPlaceholder = "Max .."
+    static let sendMessage = "SEND MESSAGE"
+    static let keepSwiping = "Keep Swiping"
 }
