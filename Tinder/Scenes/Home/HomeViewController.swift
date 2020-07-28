@@ -232,7 +232,7 @@ extension HomeViewController: LoginViewControllerDelegate {
 extension HomeViewController: CardViewDelegate {
     
     func didTapMoreInfo(cardViewModel: CardViewModel) {
-        let viewModel = UserDetailsViewModel(uid: cardViewModel.uid, imageUrls: cardViewModel.imageUrls, attributedText: cardViewModel.attributedText)
+        let viewModel = UserDetailsViewModel(uid: cardViewModel.uid, imageUrls: cardViewModel.imageUrls, attributedText: cardViewModel.attributedText, currentUser: self.cardViewModel.currentUser)
         let controller = UserDetailsViewController()
         controller.setup(viewModel: viewModel)
         controller.modalPresentationStyle = .overCurrentContext

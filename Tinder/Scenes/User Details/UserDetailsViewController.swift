@@ -6,7 +6,7 @@ class UserDetailsViewController: UIViewController {
     let scrollView = UIScrollView()
     let swipingPhotViewController = SwipingPhotosViewController()
     let infoLabel = UILabel()
-    var viewModel = UserDetailsViewModel()
+    var viewModel: UserDetailsViewModel!
     lazy var swipingView = swipingPhotViewController.view!
     lazy var dismissButton = createButton(image: Asserts.dismissDownArrow, selector: #selector(handleTap))
     lazy var dislikeButton = createButton(image: Asserts.dismissCircle, selector: #selector(handleDislike))
@@ -65,10 +65,26 @@ extension UserDetailsViewController {
             guard let self = self else { return }
             if hasMatched {
                 print("User has matched")
-//                self.presentMatchView(cardUID: cardUID)
-//                self.saveMatchToFirestore(cardUID: cardUID)
+                self.presentMatchView(cardUID: cardUID)
+                self.saveMatchToFirestore()
             }
         }
+    }
+    
+    
+    fileprivate func presentMatchView(cardUID: String) {
+        let matchView = MatchView()
+        matchView.cardUID = cardUID
+        matchView.currentUser = viewModel.currentUser
+//        matchView.delegate = self
+//        matchView.sendMessageButton.addTarget(self, action: #selector(handleSendMessage), for: .touchUpInside)
+        view.addSubview(matchView)
+        matchView.fillSuperview()
+    }
+    
+    
+    fileprivate func saveMatchToFirestore() {
+        viewModel.saveMatchToFirestore()
     }
     
     
