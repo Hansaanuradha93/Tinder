@@ -6,6 +6,7 @@ class UserDetailsViewController: UIViewController {
     let scrollView = UIScrollView()
     let swipingPhotViewController = SwipingPhotosViewController()
     let infoLabel = UILabel()
+    var viewModel = UserDetailsViewModel()
     lazy var swipingView = swipingPhotViewController.view!
     lazy var dismissButton = createButton(image: Asserts.dismissDownArrow, selector: #selector(handleTap))
     lazy var dislikeButton = createButton(image: Asserts.dismissCircle, selector: #selector(handleDislike))
@@ -33,7 +34,7 @@ class UserDetailsViewController: UIViewController {
 extension UserDetailsViewController {
     
     @objc fileprivate func handlelike() {
-        // TODO: Handle like user
+        print("like")
     }
     
     
@@ -43,7 +44,7 @@ extension UserDetailsViewController {
     
     
     @objc fileprivate func handleDislike() {
-        // TODO: Handle dislike user
+        saveSwipeToFirestore(isLiked: false)
     }
     
     
@@ -53,8 +54,21 @@ extension UserDetailsViewController {
     
     
     func setup(viewModel: UserDetailsViewModel) {
+        self.viewModel = viewModel
         infoLabel.attributedText = viewModel.attributedText
         swipingPhotViewController.imageUrls = viewModel.imageUrls
+    }
+    
+    
+    fileprivate func saveSwipeToFirestore(isLiked: Bool) {
+        viewModel.saveSwipe(isLiked: isLiked) { [weak self] hasMatched, cardUID in
+            guard let self = self else { return }
+            if hasMatched {
+                print("User has matched")
+//                self.presentMatchView(cardUID: cardUID)
+//                self.saveMatchToFirestore(cardUID: cardUID)
+            }
+        }
     }
     
     
