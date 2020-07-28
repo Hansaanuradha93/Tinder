@@ -3,16 +3,17 @@ import UIKit
 class UserDetailsViewController: UIViewController {
     
     // MARK: Properties
-    let scrollView = UIScrollView()
-    let swipingPhotViewController = SwipingPhotosViewController()
-    let infoLabel = UILabel()
-    var viewModel: UserDetailsViewModel!
-    lazy var swipingView = swipingPhotViewController.view!
-    lazy var dismissButton = createButton(image: Asserts.dismissDownArrow, selector: #selector(handleTap))
-    lazy var dislikeButton = createButton(image: Asserts.dismissCircle, selector: #selector(handleDislike))
-    lazy var superlikeButton = createButton(image: Asserts.superLike, selector: #selector(handleSuperlike))
-    lazy var likeButton = createButton(image: Asserts.like, selector: #selector(handlelike))
-    lazy var extraSwipingHeight: CGFloat = 100
+    fileprivate let scrollView = UIScrollView()
+    fileprivate let swipingPhotViewController = SwipingPhotosViewController()
+    fileprivate let infoLabel = UILabel()
+    fileprivate var viewModel: UserDetailsViewModel!
+    fileprivate var matchedUser: User?
+    fileprivate lazy var swipingView = swipingPhotViewController.view!
+    fileprivate lazy var dismissButton = createButton(image: Asserts.dismissDownArrow, selector: #selector(handleTap))
+    fileprivate lazy var dislikeButton = createButton(image: Asserts.dismissCircle, selector: #selector(handleDislike))
+    fileprivate lazy var superlikeButton = createButton(image: Asserts.superLike, selector: #selector(handleSuperlike))
+    fileprivate lazy var likeButton = createButton(image: Asserts.like, selector: #selector(handlelike))
+    fileprivate lazy var extraSwipingHeight: CGFloat = 100
    
     
     // MARK: View Controller
@@ -53,6 +54,12 @@ extension UserDetailsViewController {
     }
     
     
+    @objc fileprivate func handleSendMessage() {
+        guard let matchedUser = matchedUser else { return }
+        navigateToChatLog(chatLogViewModel: matchedUser.toChatLogViewModel())
+    }
+    
+    
     func setup(viewModel: UserDetailsViewModel) {
         self.viewModel = viewModel
         infoLabel.attributedText = viewModel.attributedText
@@ -64,7 +71,6 @@ extension UserDetailsViewController {
         viewModel.saveSwipe(isLiked: isLiked) { [weak self] hasMatched, cardUID in
             guard let self = self else { return }
             if hasMatched {
-                print("User has matched")
                 self.presentMatchView(cardUID: cardUID)
                 self.saveMatchToFirestore()
             }
@@ -76,8 +82,8 @@ extension UserDetailsViewController {
         let matchView = MatchView()
         matchView.cardUID = cardUID
         matchView.currentUser = viewModel.currentUser
-//        matchView.delegate = self
-//        matchView.sendMessageButton.addTarget(self, action: #selector(handleSendMessage), for: .touchUpInside)
+        matchView.delegate = self
+        matchView.sendMessageButton.addTarget(self, action: #selector(handleSendMessage), for: .touchUpInside)
         view.addSubview(matchView)
         matchView.fillSuperview()
     }
@@ -85,6 +91,14 @@ extension UserDetailsViewController {
     
     fileprivate func saveMatchToFirestore() {
         viewModel.saveMatchToFirestore()
+    }
+    
+    
+    fileprivate func navigateToChatLog(chatLogViewModel: ChatLogViewModel) {
+        chatLogViewModel.currentUser = viewModel.currentUser
+        let controller = ChatLogViewController(chatLogViewModel: chatLogViewModel)
+        controller.modalPresentationStyle = .overCurrentContext
+        present(controller, animated: true)
     }
     
     
@@ -140,5 +154,14 @@ extension UserDetailsViewController: UIScrollViewDelegate {
         let width = max(view.frame.width, view.frame.width + changeY * 2)
         let coordinate = min(0, -changeY)
         swipingView.frame = CGRect(x: coordinate, y: coordinate, width: width, height: width + extraSwipingHeight)
+    }
+}
+
+
+// MARK: - MatchViewDelegate
+extension UserDetailsViewController: MatchViewDelegate {
+    
+    func getMatchedUser(user: User) {
+        self.matchedUser = user
     }
 }

@@ -248,7 +248,7 @@ extension HomeViewController: CardViewDelegate {
 }
 
 
-// MARK: -
+// MARK: - MatchViewDelegate
 extension HomeViewController: MatchViewDelegate {
     
     func getMatchedUser(user: User) {
