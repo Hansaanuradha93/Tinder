@@ -94,7 +94,11 @@ extension ChatLogViewController {
     
     
     @objc fileprivate func handleBack() {
-        navigationController?.popViewController(animated: true)
+        if let navigationController = navigationController {
+            navigationController.popViewController(animated: true)
+        } else {
+            dismiss(animated: true)
+        }
     }
     
     
