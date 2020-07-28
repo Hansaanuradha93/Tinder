@@ -21,9 +21,7 @@ class UserDetailsViewModel {
         let reference = Firestore.firestore().collection("swipes").document(uid)
         
         let cardUID = self.uid
-        if isLiked {
-//            self.checkIfMatchExist(cardUID: uid, completion: completion)
-        }
+        if isLiked { self.checkIfMatchExist(cardUID: cardUID, completion: completion) }
 
         let value = isLiked ? 1 : 0
         let documentData = [cardUID: value]
@@ -51,6 +49,25 @@ class UserDetailsViewModel {
                     print("Swipe successfully saved")
                 }
             }
+        }
+    }
+    
+    
+    fileprivate func checkIfMatchExist(cardUID: String, completion: @escaping (Bool, String) -> ()) {
+        let reference = Firestore.firestore().collection("swipes").document(cardUID)
+        reference.getDocument { snapshot, error in
+            if let error = error {
+                print(error.localizedDescription)
+                completion(false, "")
+                return
+            }
+            guard let data = snapshot?.data(), let uid = Auth.auth().currentUser?.uid else {
+                completion(false, "")
+                return
+            }
+            
+            let hasMatched = data[uid] as? Int == 1
+            completion(hasMatched, cardUID)
         }
     }
 }
