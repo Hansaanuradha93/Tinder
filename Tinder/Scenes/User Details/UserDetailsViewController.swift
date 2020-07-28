@@ -34,7 +34,7 @@ class UserDetailsViewController: UIViewController {
 extension UserDetailsViewController {
     
     @objc fileprivate func handlelike() {
-        print("like")
+        saveSwipeToFirestore(isLiked: true)
     }
     
     
