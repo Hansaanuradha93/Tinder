@@ -7,6 +7,7 @@ struct Constants {
     static let defaultUsersCount = 10
 }
 
+
 struct Asserts {
     static let placeHolder = UIImage(named: "placeholder")!
     static let infoCircleFill = UIImage(systemName: "info.circle.fill")!
@@ -25,6 +26,7 @@ struct Asserts {
     static let refresh = UIImage(named: "refresh_circle")!
     static let boostCircle = UIImage(named: "boost_circle")!
 }
+
 
 struct Strings {
     static let messages = "Messages"
