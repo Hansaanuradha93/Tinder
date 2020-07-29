@@ -84,7 +84,7 @@ extension ChatLogViewController: UICollectionViewDelegateFlowLayout {
 }
 
 
-// MARK: - Methods
+// MARK: - Objc Methods
 extension ChatLogViewController {
     
     @objc fileprivate func handleSend() {
@@ -105,7 +105,11 @@ extension ChatLogViewController {
     @objc fileprivate func handleKeyboardShow() {
         collectionView.scrollToItem(at: IndexPath(item: viewModel.getMessagesCount() - 1, section: 0), at: .bottom, animated: true)
     }
-    
+}
+
+
+// MARK: - Methods
+extension ChatLogViewController {
     
     fileprivate func saveRecentMessages() {
         viewModel.saveRecentMessages(message: messageInputView.textView.text) { status in print(status) }
