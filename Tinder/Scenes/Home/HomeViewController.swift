@@ -30,6 +30,50 @@ class HomeViewController: UIViewController {
 }
 
 
+// MARK: - Objc Methods
+extension HomeViewController {
+    
+    @objc fileprivate func settingsButtonTapped() {
+        let controller = SettingsViewController()
+        controller.delegate = self
+        let navigationController = UINavigationController(rootViewController: controller)
+        navigationController.modalPresentationStyle = .fullScreen
+        self.present(navigationController, animated: true)
+    }
+    
+    
+    @objc fileprivate func messageButtonTapped() {
+        let controller = MatchMessagesViewController(collectionViewLayout: UICollectionViewFlowLayout())
+        controller.currentUser = cardViewModel.currentUser
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    
+    @objc fileprivate func handleDislike() {
+        saveSwipeToFirestore(isLiked: false)
+        performSwipeAnimation(translation: -1000, angle: -15)
+    }
+    
+    
+    @objc fileprivate func handleLike() {
+        saveSwipeToFirestore(isLiked: true)
+        performSwipeAnimation(translation: 1000, angle: 15)
+    }
+    
+    
+    @objc fileprivate func handleRefresh() {
+        cardsDeckView.subviews.forEach{ $0.removeFromSuperview() }
+        fetchData()
+    }
+    
+    
+    @objc fileprivate func handleSendMessage() {
+        guard let matchedUser = matchedUser else { return }
+        navigateToChatLog(chatLogViewModel: matchedUser.toChatLogViewModel())
+    }
+}
+
+
 // MARK: - Methods
 extension HomeViewController {
     
@@ -70,22 +114,6 @@ extension HomeViewController {
     }
     
     
-    @objc fileprivate func settingsButtonTapped() {
-        let controller = SettingsViewController()
-        controller.delegate = self
-        let navigationController = UINavigationController(rootViewController: controller)
-        navigationController.modalPresentationStyle = .fullScreen
-        self.present(navigationController, animated: true)
-    }
-    
-    
-    @objc fileprivate func messageButtonTapped() {
-        let controller = MatchMessagesViewController(collectionViewLayout: UICollectionViewFlowLayout())
-        controller.currentUser = cardViewModel.currentUser
-        navigationController?.pushViewController(controller, animated: true)
-    }
-    
-    
     fileprivate func setupButtonActions() {
         topControllsStackView.settingsButton.addTarget(self, action: #selector(settingsButtonTapped), for: .touchUpInside)
         topControllsStackView.messagesButton.addTarget(self, action: #selector(messageButtonTapped), for: .touchUpInside)
@@ -118,30 +146,6 @@ extension HomeViewController {
         cardView?.layer.add(translationAnimation, forKey: "translation")
         cardView?.layer.add(rotationAnimation, forKey: "rotation")
         CATransaction.commit()
-    }
-    
-    
-    @objc fileprivate func handleDislike() {
-        saveSwipeToFirestore(isLiked: false)
-        performSwipeAnimation(translation: -1000, angle: -15)
-    }
-    
-    
-    @objc fileprivate func handleLike() {
-        saveSwipeToFirestore(isLiked: true)
-        performSwipeAnimation(translation: 1000, angle: 15)
-    }
-    
-    
-    @objc fileprivate func handleRefresh() {
-        cardsDeckView.subviews.forEach{ $0.removeFromSuperview() }
-        fetchData()
-    }
-    
-    
-    @objc fileprivate func handleSendMessage() {
-        guard let matchedUser = matchedUser else { return }
-        navigateToChatLog(chatLogViewModel: matchedUser.toChatLogViewModel())
     }
     
     
