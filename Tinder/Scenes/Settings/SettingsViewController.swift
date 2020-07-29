@@ -123,7 +123,7 @@ extension SettingsViewController: UITableViewDataSource {
 }
 
 
-// MARK: - Methods
+// MARK: - Objc Methods
 extension SettingsViewController {
     
     @objc fileprivate func handleMinSlider(slider: UISlider) {
@@ -145,7 +145,7 @@ extension SettingsViewController {
     
     
     @objc fileprivate func handleNameChange(textField: UITextField) {
-        user?.name = textField.text 
+        user?.name = textField.text
     }
     
     
@@ -197,7 +197,11 @@ extension SettingsViewController {
         try? Auth.auth().signOut()
         dismiss(animated: true)
     }
-    
+}
+
+
+// MARK: - Methods
+extension SettingsViewController {
     
     fileprivate func uploadImageOn(button: UIButton?) {
         viewModel.uploadImage(image: button?.image(for: .normal)) { [weak self] downloadUrl in
