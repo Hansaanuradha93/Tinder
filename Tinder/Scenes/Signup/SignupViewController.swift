@@ -1,5 +1,4 @@
 import UIKit
-import Firebase
 
 class SignupViewController: UIViewController {
     
@@ -58,7 +57,7 @@ class SignupViewController: UIViewController {
 }
 
 
-// MARK: - Methods
+// MARK: - Objc Methods
 extension SignupViewController {
     
     @objc fileprivate func handleSignUp() {
@@ -73,6 +72,52 @@ extension SignupViewController {
         }
     }
     
+    
+    @objc fileprivate func handleTextChange(textField: UITextField) {
+        signupViewModel.fullName = fullNameTextField.text
+        signupViewModel.email = emailTextField.text
+        signupViewModel.password = passwordTextField.text
+    }
+    
+    
+    @objc fileprivate func handleKeyboardHide() {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.view.transform = .identity
+        })
+    }
+    
+    
+    @objc fileprivate func handleKeyboardShow(notification: Notification) {
+        guard let value = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+        let keyboardFrame = value.cgRectValue
+        let bottomSpace = view.frame.height - overrallStackView.frame.origin.y - overrallStackView.frame.height
+        let difference = keyboardFrame.height - bottomSpace
+        self.view.transform = CGAffineTransform(translationX: 0, y: -(difference + 10))
+    }
+    
+    
+    @objc fileprivate func handleTapDismiss() {
+        view.endEditing(true)
+    }
+    
+    
+    @objc fileprivate func handleGoToLogin() {
+        let loginController = LoginViewController()
+        navigationController?.pushViewController(loginController, animated: true)
+    }
+    
+    
+    @objc fileprivate func handleSelectPhoto() {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.allowsEditing = true
+        present(imagePickerController, animated: true)
+    }
+}
+
+
+// MARK: - Methods
+extension SignupViewController {
     
     fileprivate func navigateToHome() {
         let navController = UINavigationController(rootViewController: HomeViewController())
@@ -110,13 +155,6 @@ extension SignupViewController {
     }
     
     
-    @objc fileprivate func handleTextChange(textField: UITextField) {
-        signupViewModel.fullName = fullNameTextField.text
-        signupViewModel.email = emailTextField.text
-        signupViewModel.password = passwordTextField.text
-    }
-    
-    
     fileprivate func handleLandscapeOrientation() {
         overrallStackView.axis = .horizontal
         profilePhotoButton.widthAnchor.constraint(equalToConstant: 275).isActive = true
@@ -135,30 +173,9 @@ extension SignupViewController {
     }
     
     
-    @objc fileprivate func handleTapDismiss() {
-        view.endEditing(true)
-    }
-    
-    
     fileprivate func setupNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
-    
-    @objc fileprivate func handleKeyboardHide() {
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-            self.view.transform = .identity
-        })
-    }
-    
-    
-    @objc fileprivate func handleKeyboardShow(notification: Notification) {
-        guard let value = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
-        let keyboardFrame = value.cgRectValue
-        let bottomSpace = view.frame.height - overrallStackView.frame.origin.y - overrallStackView.frame.height
-        let difference = keyboardFrame.height - bottomSpace
-        self.view.transform = CGAffineTransform(translationX: 0, y: -(difference + 10))
     }
     
     
@@ -186,20 +203,6 @@ extension SignupViewController {
         view.addSubview(overrallStackView)
         overrallStackView.centerInSuperview()
         overrallStackView.anchor(top: nil, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 0, left: 50, bottom: 0, right: 50))
-    }
-    
-    
-    @objc fileprivate func handleGoToLogin() {
-        let loginController = LoginViewController()
-        navigationController?.pushViewController(loginController, animated: true)
-    }
-    
-    
-    @objc fileprivate func handleSelectPhoto() {
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.delegate = self
-        imagePickerController.allowsEditing = true
-        present(imagePickerController, animated: true)
     }
     
     
