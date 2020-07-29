@@ -31,7 +31,7 @@ class UserDetailsViewController: UIViewController {
 }
 
 
-// MARK: - Methods
+// MARK: - Objc Methods
 extension UserDetailsViewController {
     
     @objc fileprivate func handlelike() {
@@ -58,7 +58,11 @@ extension UserDetailsViewController {
         guard let matchedUser = matchedUser else { return }
         navigateToChatLog(chatLogViewModel: matchedUser.toChatLogViewModel())
     }
-    
+}
+
+
+// MARK: - Methods
+extension UserDetailsViewController {
     
     func setup(viewModel: UserDetailsViewModel) {
         self.viewModel = viewModel
