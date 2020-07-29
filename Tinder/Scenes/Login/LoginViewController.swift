@@ -41,7 +41,7 @@ class LoginViewController: UIViewController {
 }
 
 
-// MARK: - Methods
+// MARK: - Objc Methods
 extension LoginViewController {
     
     @objc fileprivate func handleTextChange(textField: UITextField) {
@@ -71,8 +71,12 @@ extension LoginViewController {
     @objc fileprivate func handleBack() {
         navigationController?.popViewController(animated: true)
     }
+}
 
-    
+
+// MARK: - Methods
+extension LoginViewController {
+
     fileprivate func setupBindables() {
         viewModel.isFormValid.bind { [weak self] (isFormValid) in
             guard let self = self, let isFormValid = isFormValid else { return }
