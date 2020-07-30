@@ -21,6 +21,7 @@ class HomeTopButtonControlsStackView: UIStackView {
 
 // MARK: - Methods
 extension HomeTopButtonControlsStackView {
+    
     fileprivate func setupUI() {
         distribution = .equalCentering
         heightAnchor.constraint(equalToConstant: 80).isActive = true
