@@ -1,5 +1,10 @@
 import UIKit
 
+protocol SwipingPhotosViewControllerDelegate {
+    func didTapCardViewBottom()
+}
+
+
 class SwipingPhotosViewController: UIPageViewController {
 
     // MARK: Properties
@@ -7,6 +12,7 @@ class SwipingPhotosViewController: UIPageViewController {
     fileprivate var controllers = [UIViewController]()
     fileprivate let barDiselectedColor = UIColor.appColor(color: .darkGray)
     fileprivate var isCardViewMode: Bool = false
+    var swipingDelegate: SwipingPhotosViewControllerDelegate?
     
     var imageUrls: [String]! {
         didSet {
@@ -41,6 +47,29 @@ class SwipingPhotosViewController: UIPageViewController {
 // MARK: - Methods
 extension SwipingPhotosViewController {
     
+    @objc fileprivate func handleTap(gesture: UITapGestureRecognizer) {
+        guard let currentController = viewControllers?.first, let index = controllers.firstIndex(of: currentController) else { return }
+        var nextIndex: Int = 0
+        
+        let tapLocation = gesture.location(in: nil)
+        if tapLocation.y < 3.5 * view.frame.height / 4 {
+            let shouldAdvanceNextPhoto = tapLocation.x > view.frame.width / 2 ? true : false
+            if shouldAdvanceNextPhoto {
+                nextIndex = min(index + 1, controllers.count - 1)
+            } else {
+                nextIndex = max(0, index - 1)
+            }
+        } else {
+            swipingDelegate?.didTapCardViewBottom()
+        }
+        
+        let nextController = controllers[nextIndex]
+        setViewControllers([nextController], direction: .forward, animated: false)
+        barStackView.arrangedSubviews.forEach { $0.backgroundColor = barDiselectedColor }
+        barStackView.arrangedSubviews[nextIndex].backgroundColor = .white
+    }
+    
+    
     fileprivate func setupBarViews() {
         imageUrls.forEach { _ in
             let barView = UIView()
@@ -63,24 +92,6 @@ extension SwipingPhotosViewController {
                 view.isScrollEnabled = false
             }
         }
-    }
-    
-    
-    @objc fileprivate func handleTap(gesture: UITapGestureRecognizer) {
-        guard let currentController = viewControllers?.first, let index = controllers.firstIndex(of: currentController) else { return }
-        var nextIndex: Int = 0
-        
-        let tapLocation = gesture.location(in: nil)
-        let shouldAdvanceNextPhoto = tapLocation.x > view.frame.width / 2 ? true : false
-        if shouldAdvanceNextPhoto {
-            nextIndex = min(index + 1, controllers.count - 1)
-        } else {
-            nextIndex = max(0, index - 1)
-        }
-        let nextController = controllers[nextIndex]
-        setViewControllers([nextController], direction: .forward, animated: false)
-        barStackView.arrangedSubviews.forEach { $0.backgroundColor = barDiselectedColor }
-        barStackView.arrangedSubviews[nextIndex].backgroundColor = .white
     }
     
     

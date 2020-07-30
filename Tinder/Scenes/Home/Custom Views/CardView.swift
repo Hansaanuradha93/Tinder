@@ -2,6 +2,7 @@ import UIKit
 
 protocol CardViewDelegate {
     func didTapMoreInfo(cardViewModel: CardViewModel)
+    func didTapCardViewBotton(cardViewModel: CardViewModel)
     func didRemove(cardView: CardView, isLiked: Bool)
 }
 
@@ -54,9 +55,13 @@ class CardView: UIView {
 // MARK: - Methods
 extension CardView {
     
+    @objc fileprivate func handleMoreInfo() {
+        delegate?.didTapMoreInfo(cardViewModel: cardViewModel)
+    }
+    
+    
     @objc fileprivate func handlePan(_ gesture: UIPanGestureRecognizer) {
         switch gesture.state {
-            
         case .began:
             handleBegan()
         case .changed:
@@ -109,6 +114,7 @@ extension CardView {
 
     
     fileprivate func setupViews(_ cardViewModel: CardViewModel) {
+        swipingPhotoController.swipingDelegate = self
         swipingPhotoController.imageUrls = cardViewModel.imageUrls
         informationLabel.attributedText = cardViewModel.attributedText
         informationLabel.textAlignment = cardViewModel.textAlignment
@@ -125,11 +131,6 @@ extension CardView {
     
     fileprivate func addCornerRadius() {
         moreInfoButton.layer.cornerRadius = moreInfoButton.frame.width / 2
-    }
-    
-    
-    @objc fileprivate func handleMoreInfo() {
-        delegate?.didTapMoreInfo(cardViewModel: self.cardViewModel)
     }
     
     
@@ -172,5 +173,14 @@ extension CardView {
         informationLabel.numberOfLines = 0
         addSubview(informationLabel)
         informationLabel.anchor(top: nil, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: .init(top: 0, left: 16, bottom: 16, right: 16))
+    }
+}
+
+
+// MARK: - SwipingPhotosViewControllerDelegate
+extension CardView: SwipingPhotosViewControllerDelegate {
+    
+    func didTapCardViewBottom() {
+        delegate?.didTapCardViewBotton(cardViewModel: cardViewModel)
     }
 }
