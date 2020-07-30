@@ -210,6 +210,15 @@ extension HomeViewController {
     fileprivate func clearCardDeckView() {
         cardsDeckView.subviews.forEach({ $0.removeFromSuperview() })
     }
+    
+    
+    fileprivate func navigateToUserDetailsController(cardViewModel: CardViewModel) {
+        let viewModel = UserDetailsViewModel(uid: cardViewModel.uid, imageUrls: cardViewModel.imageUrls, attributedText: cardViewModel.attributedText, currentUser: self.cardViewModel.currentUser)
+        let controller = UserDetailsViewController()
+        controller.setup(viewModel: viewModel)
+        controller.modalPresentationStyle = .overCurrentContext
+        present(controller, animated: true)
+    }
 }
 
 
@@ -234,21 +243,14 @@ extension HomeViewController: LoginViewControllerDelegate {
 
 // MARK: - CardViewDelegate
 extension HomeViewController: CardViewDelegate {
+    
     func didTapCardViewBotton(cardViewModel: CardViewModel) {
-        let viewModel = UserDetailsViewModel(uid: cardViewModel.uid, imageUrls: cardViewModel.imageUrls, attributedText: cardViewModel.attributedText, currentUser: self.cardViewModel.currentUser)
-        let controller = UserDetailsViewController()
-        controller.setup(viewModel: viewModel)
-        controller.modalPresentationStyle = .overCurrentContext
-        present(controller, animated: true)
+        navigateToUserDetailsController(cardViewModel: cardViewModel)
     }
     
     
     func didTapMoreInfo(cardViewModel: CardViewModel) {
-        let viewModel = UserDetailsViewModel(uid: cardViewModel.uid, imageUrls: cardViewModel.imageUrls, attributedText: cardViewModel.attributedText, currentUser: self.cardViewModel.currentUser)
-        let controller = UserDetailsViewController()
-        controller.setup(viewModel: viewModel)
-        controller.modalPresentationStyle = .overCurrentContext
-        present(controller, animated: true)
+        navigateToUserDetailsController(cardViewModel: cardViewModel)
     }
     
     
