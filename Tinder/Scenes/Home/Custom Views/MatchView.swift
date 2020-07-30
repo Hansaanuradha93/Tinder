@@ -38,6 +38,15 @@ class MatchView: UIView {
 // MARK: - Methods
 extension MatchView {
     
+    @objc fileprivate func handleTapDismiss() {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.alpha = 0
+        }) { (_) in
+            self.removeFromSuperview()
+        }
+    }
+    
+    
     fileprivate func setupCard(user: User) {
         currentImageView.downloadImage(from: currentUser.imageUrl1 ?? "")
         descriptionLabel.text = "You and \(user.name ?? "")\n have liked eachother"
@@ -81,15 +90,6 @@ extension MatchView {
             self.sendMessageButton.transform = .identity
             self.keepSwipingButton.transform = .identity
         })
-    }
-    
-    
-    @objc fileprivate func handleTapDismiss() {
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-            self.alpha = 0
-        }) { (_) in
-            self.removeFromSuperview()
-        }
     }
     
     
