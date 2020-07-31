@@ -59,6 +59,18 @@ extension SwipingPhotosViewController {
             } else {
                 nextIndex = max(0, index - 1)
             }
+            
+            if nextIndex == 0 || nextIndex == controllers.count - 1 {
+                let generator = UIImpactFeedbackGenerator(style: .heavy)
+                generator.prepare()
+                generator.impactOccurred()
+            } else {
+                let generator = UIImpactFeedbackGenerator(style: .light)
+                generator.prepare()
+                generator.impactOccurred()
+            }
+            
+            
         } else {
             swipingDelegate?.didTapCardViewBottom()
         }
