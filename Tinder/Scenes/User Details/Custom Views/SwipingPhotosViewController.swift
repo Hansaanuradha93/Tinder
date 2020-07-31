@@ -61,16 +61,10 @@ extension SwipingPhotosViewController {
             }
             
             if nextIndex == 0 || nextIndex == controllers.count - 1 {
-                let generator = UIImpactFeedbackGenerator(style: .heavy)
-                generator.prepare()
-                generator.impactOccurred()
+                generateHaptics(style: .heavy)
             } else {
-                let generator = UIImpactFeedbackGenerator(style: .light)
-                generator.prepare()
-                generator.impactOccurred()
+                generateHaptics(style: .soft)
             }
-            
-            
         } else {
             swipingDelegate?.didTapCardViewBottom()
         }
@@ -79,6 +73,13 @@ extension SwipingPhotosViewController {
         setViewControllers([nextController], direction: .forward, animated: false)
         barStackView.arrangedSubviews.forEach { $0.backgroundColor = barDiselectedColor }
         barStackView.arrangedSubviews[nextIndex].backgroundColor = .white
+    }
+    
+    
+    fileprivate func generateHaptics(style: UIImpactFeedbackGenerator.FeedbackStyle) {
+        let generator = UIImpactFeedbackGenerator(style: style)
+        generator.prepare()
+        generator.impactOccurred()
     }
     
     
