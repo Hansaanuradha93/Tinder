@@ -8,12 +8,20 @@ struct AnchoredConstraints {
 // Reference Video: https://youtu.be/iqpAP7s3b-8
 extension UIView {
     
+    func addBorder(borderWidth: CGFloat, borderColor: UIColor, corderRadius: CGFloat) {
+        layer.borderWidth = borderWidth
+        layer.borderColor = borderColor.cgColor
+        layer.cornerRadius = corderRadius
+    }
+    
+    
     func dropShadow(color: UIColor, opacity: Float, offset: CGSize, radius: CGFloat) {
         layer.shadowColor = color.cgColor
         layer.shadowOpacity = opacity
         layer.shadowOffset = offset
         layer.shadowRadius = radius
     }
+    
     
     @discardableResult
     func anchor(top: NSLayoutYAxisAnchor?, leading: NSLayoutXAxisAnchor?, bottom: NSLayoutYAxisAnchor?, trailing: NSLayoutXAxisAnchor?, padding: UIEdgeInsets = .zero, size: CGSize = .zero) -> AnchoredConstraints {
