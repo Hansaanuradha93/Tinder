@@ -96,6 +96,7 @@ extension CardView {
             } else {
                 self.transform = .identity
                 self.likeContainerView.alpha = 0
+                self.dislikeContainerView.alpha = 0
             }
         }) { (_) in
             self.transform = .identity
@@ -115,8 +116,10 @@ extension CardView {
 
         if degrees > 0 {
             likeContainerView.alpha = 1
+            dislikeContainerView.alpha = 0
         } else {
             likeContainerView.alpha = 0
+            dislikeContainerView.alpha = 1
         }
         
         let rotationalTransformation = CGAffineTransform(rotationAngle: angle)
