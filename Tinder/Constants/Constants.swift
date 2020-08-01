@@ -58,4 +58,6 @@ struct Strings {
     static let maximumPlaceholder = "Max .."
     static let sendMessage = "SEND MESSAGE"
     static let keepSwiping = "Keep Swiping"
+    static let like = "LIKE"
+    static let nope = "NOPE"
 }
