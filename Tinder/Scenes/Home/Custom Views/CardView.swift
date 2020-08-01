@@ -15,6 +15,8 @@ class CardView: UIView {
     lazy var swipingView = swipingPhotoController.view!
     fileprivate let informationLabel = UILabel()
     fileprivate let moreInfoButton = TDButton()
+    fileprivate let likeContainerView = UIView()
+    fileprivate let likeLabel = TDLabel(text: "LIKE", textAlignment: .center, textColor: .green, fontSize: 55)
 
     
     // MARK: Configurations
@@ -126,11 +128,29 @@ extension CardView {
         configureSwipingView()
         configureInformationLabel()
         configureMoreInfoButton()
+        configureLikeAndDislikeLabels()
     }
     
     
     fileprivate func addCornerRadius() {
         moreInfoButton.layer.cornerRadius = moreInfoButton.frame.width / 2
+    }
+    
+    
+    fileprivate func configureLikeAndDislikeLabels() {
+        
+        let angle = -10 * CGFloat.pi / 180
+        let rotationalTransformation = CGAffineTransform(rotationAngle: angle)
+        likeContainerView.transform = rotationalTransformation
+        
+        addSubview(likeContainerView)
+        likeContainerView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 40, left: 20, bottom: 0, right: 0), size: .init(width: 130, height: 65))
+        likeContainerView.layer.borderWidth = 5
+        likeContainerView.layer.borderColor = UIColor.green.cgColor
+        likeContainerView.layer.cornerRadius = 8
+        
+        likeContainerView.addSubview(likeLabel)
+        likeLabel.centerInSuperview()
     }
     
     
