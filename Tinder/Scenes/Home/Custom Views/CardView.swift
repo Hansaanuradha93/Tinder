@@ -16,7 +16,9 @@ class CardView: UIView {
     fileprivate let informationLabel = UILabel()
     fileprivate let moreInfoButton = TDButton()
     fileprivate let likeContainerView = UIView()
+    fileprivate let dislikeContainerView = UIView()
     fileprivate let likeLabel = TDLabel(text: "LIKE", textAlignment: .center, textColor: .green, fontSize: 55)
+    fileprivate let dislikeLabel = TDLabel(text: "NOPE", textAlignment: .center, textColor: UIColor.appColor(color: .pink), fontSize: 55)
 
     
     // MARK: Configurations
@@ -93,6 +95,7 @@ extension CardView {
                 self.transform = offScreenTransform
             } else {
                 self.transform = .identity
+                self.likeContainerView.alpha = 0
             }
         }) { (_) in
             self.transform = .identity
@@ -110,6 +113,12 @@ extension CardView {
         let degrees: CGFloat = translation.x / 20
         let angle = degrees * .pi / 180
 
+        if degrees > 0 {
+            likeContainerView.alpha = 1
+        } else {
+            likeContainerView.alpha = 0
+        }
+        
         let rotationalTransformation = CGAffineTransform(rotationAngle: angle)
         self.transform = rotationalTransformation.translatedBy(x: translation.x, y: translation.y)
     }
@@ -139,9 +148,10 @@ extension CardView {
     
     fileprivate func configureLikeAndDislikeLabels() {
         
-        let angle = -10 * CGFloat.pi / 180
-        let rotationalTransformation = CGAffineTransform(rotationAngle: angle)
-        likeContainerView.transform = rotationalTransformation
+        let angle = 10 * CGFloat.pi / 180
+        
+        likeContainerView.transform = CGAffineTransform(rotationAngle: -angle)
+        likeContainerView.alpha = 0
         
         addSubview(likeContainerView)
         likeContainerView.anchor(top: topAnchor, leading: leadingAnchor, bottom: nil, trailing: nil, padding: .init(top: 40, left: 20, bottom: 0, right: 0), size: .init(width: 130, height: 65))
@@ -151,6 +161,18 @@ extension CardView {
         
         likeContainerView.addSubview(likeLabel)
         likeLabel.centerInSuperview()
+        
+        dislikeContainerView.transform = CGAffineTransform(rotationAngle: angle)
+        dislikeContainerView.alpha = 0
+        
+        addSubview(dislikeContainerView)
+        dislikeContainerView.anchor(top: topAnchor, leading: nil, bottom: nil, trailing: trailingAnchor, padding: .init(top: 40, left: 0, bottom: 0, right: 20), size: .init(width: 160, height: 65))
+        dislikeContainerView.layer.borderWidth = 5
+        dislikeContainerView.layer.borderColor = UIColor.appColor(color: .pink).cgColor
+        dislikeContainerView.layer.cornerRadius = 8
+        
+        dislikeContainerView.addSubview(dislikeLabel)
+        dislikeLabel.centerInSuperview()
     }
     
     
