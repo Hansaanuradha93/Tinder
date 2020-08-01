@@ -433,16 +433,64 @@
 		47CE8204249CEBE900B9696E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				47C6358F24AB8EAA00B3C4C6 /* LoginViewModel.swift */,
-				47CE8205249CEBFA00B9696E /* CardViewModel.swift */,
-				47DC81F9249FBE7500B9B6FF /* SignUpViewModel.swift */,
-				47B405C524BAD1DE0064EE13 /* MatchMessagesViewModel.swift */,
-				4796748D24C366CB0010051A /* MatchesViewModel.swift */,
-				47AA843C24C8AB7F00798C99 /* ChatLogViewModel.swift */,
-				470DA88124CD43780014EE72 /* UserDetailsViewModel.swift */,
-				470DA88324CD66D10014EE72 /* SettingsViewModel.swift */,
+				47E442D524D5BE3600B803C6 /* Match Messages */,
+				47E442D624D5BE6200B803C6 /* User Details */,
+				47E442D724D5BE7A00B803C6 /* Login */,
+				47E442D824D5BE9000B803C6 /* Signup */,
+				47E442D924D5BEA500B803C6 /* Settings */,
+				47E442DA24D5BEB300B803C6 /* Home */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		47E442D524D5BE3600B803C6 /* Match Messages */ = {
+			isa = PBXGroup;
+			children = (
+				47B405C524BAD1DE0064EE13 /* MatchMessagesViewModel.swift */,
+				47AA843C24C8AB7F00798C99 /* ChatLogViewModel.swift */,
+				4796748D24C366CB0010051A /* MatchesViewModel.swift */,
+			);
+			path = "Match Messages";
+			sourceTree = "<group>";
+		};
+		47E442D624D5BE6200B803C6 /* User Details */ = {
+			isa = PBXGroup;
+			children = (
+				470DA88124CD43780014EE72 /* UserDetailsViewModel.swift */,
+			);
+			path = "User Details";
+			sourceTree = "<group>";
+		};
+		47E442D724D5BE7A00B803C6 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				47C6358F24AB8EAA00B3C4C6 /* LoginViewModel.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		47E442D824D5BE9000B803C6 /* Signup */ = {
+			isa = PBXGroup;
+			children = (
+				47DC81F9249FBE7500B9B6FF /* SignUpViewModel.swift */,
+			);
+			path = Signup;
+			sourceTree = "<group>";
+		};
+		47E442D924D5BEA500B803C6 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				470DA88324CD66D10014EE72 /* SettingsViewModel.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		47E442DA24D5BEB300B803C6 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				47CE8205249CEBFA00B9696E /* CardViewModel.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		47FC5318249E7C400053C4F7 /* Signup */ = {
