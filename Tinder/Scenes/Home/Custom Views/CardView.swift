@@ -109,17 +109,24 @@ extension CardView {
     }
     
     
+    fileprivate func handleLike(isLiked: Bool) {
+        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.1, options: .curveEaseOut, animations: {
+            self.likeContainerView.alpha = isLiked ? 1 : 0
+            self.dislikeContainerView.alpha = isLiked ? 0 : 1
+        })
+    }
+    
+    
     fileprivate func handleChanged(_ gesture: UIPanGestureRecognizer) {
         let translation = gesture.translation(in: nil)
         let degrees: CGFloat = translation.x / 20
+        let likeStartAngle = 5 * CGFloat.pi / 180
         let angle = degrees * .pi / 180
 
-        if degrees > 0 {
-            likeContainerView.alpha = 1
-            dislikeContainerView.alpha = 0
-        } else {
-            likeContainerView.alpha = 0
-            dislikeContainerView.alpha = 1
+        if degrees > likeStartAngle {
+            handleLike(isLiked: true)
+        } else if degrees < -likeStartAngle {
+            handleLike(isLiked: false)
         }
         
         let rotationalTransformation = CGAffineTransform(rotationAngle: angle)
