@@ -1,5 +1,9 @@
 import UIKit
 
+protocol UserDetailsViewControllerDelegate {
+    func didTapLike(isLiked: Bool)
+}
+
 class UserDetailsViewController: UIViewController {
     
     // MARK: Properties
@@ -14,6 +18,7 @@ class UserDetailsViewController: UIViewController {
     fileprivate lazy var superlikeButton = createButton(image: Asserts.superLike, selector: #selector(handleSuperlike))
     fileprivate lazy var likeButton = createButton(image: Asserts.like, selector: #selector(handlelike))
     fileprivate lazy var extraSwipingHeight: CGFloat = 100
+    var delegate: UserDetailsViewControllerDelegate?
    
     
     // MARK: View Controller
@@ -35,7 +40,8 @@ class UserDetailsViewController: UIViewController {
 extension UserDetailsViewController {
     
     @objc fileprivate func handlelike() {
-        saveSwipeToFirestore(isLiked: true)
+        delegate?.didTapLike(isLiked: true)
+        dismiss(animated: true)
     }
     
     
@@ -45,7 +51,8 @@ extension UserDetailsViewController {
     
     
     @objc fileprivate func handleDislike() {
-        saveSwipeToFirestore(isLiked: false)
+        delegate?.didTapLike(isLiked: false)
+        dismiss(animated: true)
     }
     
     
@@ -71,31 +78,31 @@ extension UserDetailsViewController {
     }
     
     
-    fileprivate func saveSwipeToFirestore(isLiked: Bool) {
-        viewModel.saveSwipe(isLiked: isLiked) { [weak self] hasMatched, cardUID in
-            guard let self = self else { return }
-            if hasMatched {
-                self.presentMatchView(cardUID: cardUID)
-                self.saveMatchToFirestore()
-            }
-        }
-    }
+//    fileprivate func saveSwipeToFirestore(isLiked: Bool) {
+//        viewModel.saveSwipe(isLiked: isLiked) { [weak self] hasMatched, cardUID in
+//            guard let self = self else { return }
+//            if hasMatched {
+//                self.presentMatchView(cardUID: cardUID)
+//                self.saveMatchToFirestore()
+//            }
+//        }
+//    }
     
     
-    fileprivate func presentMatchView(cardUID: String) {
-        let matchView = MatchView()
-        matchView.cardUID = cardUID
-        matchView.currentUser = viewModel.currentUser
-        matchView.delegate = self
-        matchView.sendMessageButton.addTarget(self, action: #selector(handleSendMessage), for: .touchUpInside)
-        view.addSubview(matchView)
-        matchView.fillSuperview()
-    }
+//    fileprivate func presentMatchView(cardUID: String) {
+//        let matchView = MatchView()
+//        matchView.cardUID = cardUID
+//        matchView.currentUser = viewModel.currentUser
+//        matchView.delegate = self
+//        matchView.sendMessageButton.addTarget(self, action: #selector(handleSendMessage), for: .touchUpInside)
+//        view.addSubview(matchView)
+//        matchView.fillSuperview()
+//    }
     
     
-    fileprivate func saveMatchToFirestore() {
-        viewModel.saveMatchToFirestore()
-    }
+//    fileprivate func saveMatchToFirestore() {
+//        viewModel.saveMatchToFirestore()
+//    }
     
     
     fileprivate func navigateToChatLog(chatLogViewModel: ChatLogViewModel) {
@@ -162,10 +169,10 @@ extension UserDetailsViewController: UIScrollViewDelegate {
 }
 
 
-// MARK: - MatchViewDelegate
-extension UserDetailsViewController: MatchViewDelegate {
-    
-    func getMatchedUser(user: User) {
-        self.matchedUser = user
-    }
-}
+//// MARK: - MatchViewDelegate
+//extension UserDetailsViewController: MatchViewDelegate {
+//
+//    func getMatchedUser(user: User) {
+//        self.matchedUser = user
+//    }
+//}
