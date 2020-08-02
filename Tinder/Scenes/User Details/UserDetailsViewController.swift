@@ -4,6 +4,7 @@ protocol UserDetailsViewControllerDelegate {
     func didTapLike(isLiked: Bool)
 }
 
+
 class UserDetailsViewController: UIViewController {
     
     // MARK: Properties
@@ -78,33 +79,6 @@ extension UserDetailsViewController {
     }
     
     
-//    fileprivate func saveSwipeToFirestore(isLiked: Bool) {
-//        viewModel.saveSwipe(isLiked: isLiked) { [weak self] hasMatched, cardUID in
-//            guard let self = self else { return }
-//            if hasMatched {
-//                self.presentMatchView(cardUID: cardUID)
-//                self.saveMatchToFirestore()
-//            }
-//        }
-//    }
-    
-    
-//    fileprivate func presentMatchView(cardUID: String) {
-//        let matchView = MatchView()
-//        matchView.cardUID = cardUID
-//        matchView.currentUser = viewModel.currentUser
-//        matchView.delegate = self
-//        matchView.sendMessageButton.addTarget(self, action: #selector(handleSendMessage), for: .touchUpInside)
-//        view.addSubview(matchView)
-//        matchView.fillSuperview()
-//    }
-    
-    
-//    fileprivate func saveMatchToFirestore() {
-//        viewModel.saveMatchToFirestore()
-//    }
-    
-    
     fileprivate func navigateToChatLog(chatLogViewModel: ChatLogViewModel) {
         chatLogViewModel.currentUser = viewModel.currentUser
         let controller = ChatLogViewController(chatLogViewModel: chatLogViewModel)
@@ -167,12 +141,3 @@ extension UserDetailsViewController: UIScrollViewDelegate {
         swipingView.frame = CGRect(x: coordinate, y: coordinate, width: width, height: width + extraSwipingHeight)
     }
 }
-
-
-//// MARK: - MatchViewDelegate
-//extension UserDetailsViewController: MatchViewDelegate {
-//
-//    func getMatchedUser(user: User) {
-//        self.matchedUser = user
-//    }
-//}
