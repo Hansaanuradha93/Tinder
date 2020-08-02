@@ -1,4 +1,4 @@
-import Firebase
+import Foundation
 
 class UserDetailsViewModel {
     
