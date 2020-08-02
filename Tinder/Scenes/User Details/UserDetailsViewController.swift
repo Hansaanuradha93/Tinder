@@ -41,8 +41,7 @@ class UserDetailsViewController: UIViewController {
 extension UserDetailsViewController {
     
     @objc fileprivate func handlelike() {
-        delegate?.didTapLike(isLiked: true)
-        dismiss(animated: true)
+        dismiss(animated: true) { self.delegate?.didTapLike(isLiked: true) }
     }
     
     
@@ -52,8 +51,7 @@ extension UserDetailsViewController {
     
     
     @objc fileprivate func handleDislike() {
-        delegate?.didTapLike(isLiked: false)
-        dismiss(animated: true)
+        dismiss(animated: true) { self.delegate?.didTapLike(isLiked: false) }
     }
     
     
