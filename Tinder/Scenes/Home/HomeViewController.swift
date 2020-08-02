@@ -215,6 +215,7 @@ extension HomeViewController {
     fileprivate func navigateToUserDetailsController(cardViewModel: CardViewModel) {
         let viewModel = UserDetailsViewModel(uid: cardViewModel.uid, imageUrls: cardViewModel.imageUrls, attributedText: cardViewModel.attributedText, currentUser: self.cardViewModel.currentUser)
         let controller = UserDetailsViewController()
+        controller.delegate = self
         controller.setup(viewModel: viewModel)
         controller.modalPresentationStyle = .overCurrentContext
         present(controller, animated: true)
@@ -267,5 +268,18 @@ extension HomeViewController: MatchViewDelegate {
     
     func getMatchedUser(user: User) {
         self.matchedUser = user
+    }
+}
+
+
+// MARK: - UserDetailsViewControllerDelegate
+extension HomeViewController: UserDetailsViewControllerDelegate {
+    
+    func didTapLike(isLiked: Bool) {
+        if isLiked {
+            handleLike()
+        } else {
+            handleDislike()
+        }
     }
 }
