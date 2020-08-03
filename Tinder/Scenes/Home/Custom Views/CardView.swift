@@ -114,7 +114,7 @@ extension CardView {
     }
     
     
-    fileprivate func handleLike(isLiked: Bool) {
+    func handleLike(isLiked: Bool) {
         UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.1, options: .curveEaseOut, animations: {
             self.likeContainerView.alpha = isLiked ? 1 : 0
             self.dislikeContainerView.alpha = isLiked ? 0 : 1

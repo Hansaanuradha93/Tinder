@@ -51,13 +51,13 @@ extension HomeViewController {
     
     @objc fileprivate func handleDislike() {
         saveSwipeToFirestore(isLiked: false)
-        performSwipeAnimation(translation: -1000, angle: -15)
+        performSwipeAnimation(isLiked: false)
     }
     
     
     @objc fileprivate func handleLike() {
         saveSwipeToFirestore(isLiked: true)
-        performSwipeAnimation(translation: 1000, angle: 15)
+        performSwipeAnimation(isLiked: true)
     }
     
     
@@ -123,8 +123,16 @@ extension HomeViewController {
     }
     
     
-    fileprivate func performSwipeAnimation(translation: CGFloat, angle: CGFloat) {
-        let duration: Double = 0.7
+    fileprivate func performSwipeAnimation(isLiked: Bool) {
+        var translation: CGFloat = 1000
+        var angle: CGFloat = 15
+
+        if !isLiked {
+            translation = -translation
+            angle = -angle
+        }
+        
+        let duration: Double = 5
         let translationAnimation = CABasicAnimation(keyPath: "position.x")
         translationAnimation.toValue = translation
         translationAnimation.duration = duration
@@ -136,12 +144,15 @@ extension HomeViewController {
         rotationAnimation.toValue = angle * CGFloat.pi / 180
         rotationAnimation.duration = duration
         
+//        topCardView?.handleLike(isLiked: true)
+
         let cardView = topCardView
         topCardView = cardView?.nextCardView
         
         CATransaction.setCompletionBlock {
             cardView?.removeFromSuperview()
         }
+        
         
         cardView?.layer.add(translationAnimation, forKey: "translation")
         cardView?.layer.add(rotationAnimation, forKey: "rotation")
