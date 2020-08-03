@@ -171,14 +171,9 @@ extension HomeViewController {
             guard let self = self else { return }
             if hasMatched {
                 self.presentMatchView(cardUID: cardUID)
-                self.saveMatchToFirestore(cardUID: cardUID)
+                self.cardViewModel.saveMatchToFirestore(cardUID: cardUID)
             }
         }
-    }
-    
-    
-    fileprivate func saveMatchToFirestore(cardUID: String) {
-        cardViewModel.saveMatchToFirestore(cardUID: cardUID)
     }
     
     
