@@ -124,6 +124,8 @@ extension HomeViewController {
     
     
     fileprivate func performSwipeAnimation(isLiked: Bool) {
+        topCardView?.handleLike(isLiked: isLiked)
+        
         var translation: CGFloat = 1000
         var angle: CGFloat = 15
 
@@ -132,7 +134,7 @@ extension HomeViewController {
             angle = -angle
         }
         
-        let duration: Double = 5
+        let duration: Double = 1
         let translationAnimation = CABasicAnimation(keyPath: "position.x")
         translationAnimation.toValue = translation
         translationAnimation.duration = duration
@@ -144,15 +146,12 @@ extension HomeViewController {
         rotationAnimation.toValue = angle * CGFloat.pi / 180
         rotationAnimation.duration = duration
         
-//        topCardView?.handleLike(isLiked: true)
-
         let cardView = topCardView
         topCardView = cardView?.nextCardView
         
         CATransaction.setCompletionBlock {
             cardView?.removeFromSuperview()
         }
-        
         
         cardView?.layer.add(translationAnimation, forKey: "translation")
         cardView?.layer.add(rotationAnimation, forKey: "rotation")
