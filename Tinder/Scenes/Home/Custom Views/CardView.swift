@@ -56,7 +56,7 @@ class CardView: UIView {
 }
 
 
-// MARK: - Methods
+// MARK: - Objc Methods
 extension CardView {
     
     @objc fileprivate func handleMoreInfo() {
@@ -75,7 +75,11 @@ extension CardView {
         default: ()
         }
     }
-    
+}
+
+
+// MARK: - Methods
+extension CardView {
     
     func performSwipeAnimation(isLiked: Bool) -> CardView? {
         self.handleLike(isLiked: isLiked)
