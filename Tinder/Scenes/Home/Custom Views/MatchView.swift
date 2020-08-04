@@ -4,6 +4,7 @@ protocol MatchViewDelegate {
     func getMatchedUser(user: User)
 }
 
+
 class MatchView: UIView {
     
     // MARK: Properties
