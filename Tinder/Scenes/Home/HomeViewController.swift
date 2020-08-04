@@ -124,38 +124,7 @@ extension HomeViewController {
     
     
     fileprivate func performSwipeAnimation(isLiked: Bool) {
-        topCardView?.handleLike(isLiked: isLiked)
-        
-        var translation: CGFloat = 1000
-        var angle: CGFloat = 15
-
-        if !isLiked {
-            translation = -translation
-            angle = -angle
-        }
-        
-        let duration: Double = 1
-        let translationAnimation = CABasicAnimation(keyPath: "position.x")
-        translationAnimation.toValue = translation
-        translationAnimation.duration = duration
-        translationAnimation.fillMode = .forwards
-        translationAnimation.isRemovedOnCompletion = false
-        translationAnimation.timingFunction = CAMediaTimingFunction(name: .easeOut)
-        
-        let rotationAnimation = CABasicAnimation(keyPath: "transform.rotation.z")
-        rotationAnimation.toValue = angle * CGFloat.pi / 180
-        rotationAnimation.duration = duration
-        
-        let cardView = topCardView
-        topCardView = cardView?.nextCardView
-        
-        CATransaction.setCompletionBlock {
-            cardView?.removeFromSuperview()
-        }
-        
-        cardView?.layer.add(translationAnimation, forKey: "translation")
-        cardView?.layer.add(rotationAnimation, forKey: "rotation")
-        CATransaction.commit()
+        topCardView = topCardView?.performSwipeAnimation(isLiked: isLiked)
     }
     
     
