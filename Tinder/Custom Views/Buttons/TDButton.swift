@@ -36,5 +36,6 @@ extension TDButton {
         self.titleLabel?.font = UIFont.systemFont(ofSize: fontSize, weight: .heavy)
         self.layer.masksToBounds = false
         self.clipsToBounds = true
+        self.imageView?.contentMode = .scaleAspectFill
     }
 }
