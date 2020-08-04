@@ -28,6 +28,7 @@ class SignupViewController: UIViewController {
         super.viewDidLoad()
         setupGradient()
         layoutUI()
+        addTargets()
         setupNotifications()
         handleTapGesture()
         setupRegistrationViewModelObserver()
@@ -187,14 +188,6 @@ extension SignupViewController {
         
         view.addSubview(goToLoginButton)
         goToLoginButton.anchor(top: nil, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor)
-        
-        profilePhotoButton.addTarget(self, action: #selector(handleSelectPhoto), for: .touchUpInside)
-        fullNameTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
-        emailTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
-        passwordTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
-        signupButton.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
-        goToLoginButton.addTarget(self, action: #selector(handleGoToLogin), for: .touchUpInside)
-        
         signupButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         signupButton.isEnabled = false
         
@@ -203,6 +196,16 @@ extension SignupViewController {
         view.addSubview(overrallStackView)
         overrallStackView.centerInSuperview()
         overrallStackView.anchor(top: nil, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 0, left: 50, bottom: 0, right: 50))
+    }
+    
+    
+    fileprivate func addTargets() {
+        profilePhotoButton.addTarget(self, action: #selector(handleSelectPhoto), for: .touchUpInside)
+        fullNameTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
+        emailTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
+        signupButton.addTarget(self, action: #selector(handleSignUp), for: .touchUpInside)
+        goToLoginButton.addTarget(self, action: #selector(handleGoToLogin), for: .touchUpInside)
     }
     
     
