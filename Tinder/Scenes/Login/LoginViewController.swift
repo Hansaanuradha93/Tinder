@@ -30,6 +30,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         setupGradient()
         setupLayout()
+        addTargets()
         setupBindables()
     }
     
@@ -117,12 +118,16 @@ extension LoginViewController {
         passwordTextField.isSecureTextEntry = true
         loginButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         loginButton.isEnabled = false
+        
+        view.addSubview(backToRegisterButton)
+        backToRegisterButton.anchor(top: nil, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor)
+    }
+    
+    
+    fileprivate func addTargets() {
         emailTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         loginButton.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
         backToRegisterButton.addTarget(self, action: #selector(handleBack), for: .touchUpInside)
-        
-        view.addSubview(backToRegisterButton)
-        backToRegisterButton.anchor(top: nil, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, trailing: view.trailingAnchor)
     }
 }
