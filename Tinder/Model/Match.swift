@@ -3,9 +3,7 @@ import Foundation
 struct Match {
     
     // MARK: Properties
-    let uid: String?
-    let username: String?
-    let profileImageUrl: String?
+    let uid, username, profileImageUrl: String?
     
     
     // MARK: Initializers
