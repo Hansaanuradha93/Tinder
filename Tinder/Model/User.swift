@@ -3,16 +3,8 @@ import UIKit
 struct User {
     
     // MARK: Properties
-    var uid: String?
-    var name: String?
-    var age: Int?
-    var profession: String?
-    var bio: String?
-    var imageUrl1: String?
-    var imageUrl2: String?
-    var imageUrl3: String?
-    var minSeekingAge: Int?
-    var maxSeekingAge: Int?
+    var uid, name, profession, bio, imageUrl1, imageUrl2, imageUrl3: String?
+    var age, minSeekingAge, maxSeekingAge: Int?
 
     
     // MARK: Initializers
