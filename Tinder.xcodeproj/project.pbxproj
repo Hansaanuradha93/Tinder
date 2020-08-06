@@ -425,7 +425,6 @@
 				47B405C324BAD18F0064EE13 /* Match.swift */,
 				47B405C924BB63980064EE13 /* Message.swift */,
 				47BF33E824C758AC00D7F70D /* RecentMessage.swift */,
-				4728D4E224CF342500B4E4CE /* MatchViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -489,6 +488,7 @@
 			isa = PBXGroup;
 			children = (
 				47CE8205249CEBFA00B9696E /* CardViewModel.swift */,
+				4728D4E224CF342500B4E4CE /* MatchViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
