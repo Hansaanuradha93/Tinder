@@ -21,7 +21,6 @@ Tinder uses Firebase, Firestore, Firebase Storage, Firebase Authentication as ex
 <br/><br/>
 <br/><br/>
 <br/><br/>
-<br/><br/>
 
 ## Getting Started
 
