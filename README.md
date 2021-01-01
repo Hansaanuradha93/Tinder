@@ -1,6 +1,6 @@
 # Tinder
 
-Tinder is a dating app which is a clone of famous Tinder app. This app is started with a online course hoseted by #LestBuildThatApp. Several basic features were taken from the course.
+Tinder is a dating app which is a clone of famous Tinder app. This app is started with a online course hosted by #LestBuildThatApp. Several basic features were taken from the course.
 
 Tinder has features such as Card Swipe to like or dislike users, User authentication, User profile details, Chat and etc. Users will be able to filter other users too.
 
