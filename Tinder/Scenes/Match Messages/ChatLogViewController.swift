@@ -4,12 +4,12 @@ import Firebase
 class ChatLogViewController: UICollectionViewController {
 
     // MARK: Properties
-    fileprivate var viewModel: ChatLogViewModel!
-    fileprivate let navBarHeight: CGFloat = 120
-    fileprivate lazy var customNavigationBar = ChatLogNavigationBar(chatLogViewModel: viewModel)
-    fileprivate let statusBar = UIView()
-    fileprivate lazy var messageInputView = CustomInputAccessoryView(frame: .init(x: 0, y: 0, width: view.frame.width, height: 50))
-    fileprivate var listener: ListenerRegistration?
+    private var viewModel: ChatLogViewModel!
+    private let navBarHeight: CGFloat = 120
+    private lazy var customNavigationBar = ChatLogNavigationBar(chatLogViewModel: viewModel)
+    private let statusBar = UIView()
+    private lazy var messageInputView = CustomInputAccessoryView(frame: .init(x: 0, y: 0, width: view.frame.width, height: 50))
+    private var listener: ListenerRegistration?
     
     
     // MARK: Initializers
@@ -85,15 +85,15 @@ extension ChatLogViewController: UICollectionViewDelegateFlowLayout {
 
 
 // MARK: - Objc Methods
-extension ChatLogViewController {
+private extension ChatLogViewController {
     
-    @objc fileprivate func handleSend() {
+    @objc func handleSend() {
         saveMessages()
         saveRecentMessages()
     }
     
     
-    @objc fileprivate func handleBack() {
+    @objc func handleBack() {
         if let navigationController = navigationController {
             navigationController.popViewController(animated: true)
         } else {
@@ -102,21 +102,21 @@ extension ChatLogViewController {
     }
     
     
-    @objc fileprivate func handleKeyboardShow() {
+    @objc func handleKeyboardShow() {
         collectionView.scrollToItem(at: IndexPath(item: viewModel.getMessagesCount() - 1, section: 0), at: .bottom, animated: true)
     }
 }
 
 
 // MARK: - Methods
-extension ChatLogViewController {
+private extension ChatLogViewController {
     
-    fileprivate func saveRecentMessages() {
+    func saveRecentMessages() {
         viewModel.saveRecentMessages(message: messageInputView.textView.text) { status in print(status) }
     }
     
     
-    fileprivate func saveMessages() {
+    func saveMessages() {
         viewModel.saveMessages(message: messageInputView.textView.text) { [weak self] status in
             guard let self = self else { return }
             if status {
@@ -127,12 +127,12 @@ extension ChatLogViewController {
     }
 
     
-    fileprivate func setupNotifications() {
+    func setupNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardShow), name: UIResponder.keyboardDidShowNotification, object: nil)
     }
     
     
-    fileprivate func fetchMessages() {
+    func fetchMessages() {
         listener = viewModel.fetchMessages { [weak self] status in
             guard let self = self else { return }
             if status { self.updateUI() }
@@ -140,7 +140,7 @@ extension ChatLogViewController {
     }
     
     
-    fileprivate func updateUI() {
+    func updateUI() {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
             self.collectionView.scrollToItem(at: IndexPath(item: self.viewModel.getMessagesCount() - 1, section: 0), at: .bottom, animated: true)
@@ -148,7 +148,7 @@ extension ChatLogViewController {
     }
     
     
-    fileprivate func setupLayout() {
+    func setupLayout() {
         view.addSubview(customNavigationBar)
         customNavigationBar.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, size: .init(width: 0, height: navBarHeight))
         customNavigationBar.backButton.addTarget(self, action: #selector(handleBack), for: .touchUpInside)
@@ -159,7 +159,7 @@ extension ChatLogViewController {
     }
     
     
-    fileprivate func setupCollectionView() {
+    func setupCollectionView() {
         collectionView.backgroundColor = .white
         collectionView.contentInset.top = navBarHeight
         collectionView.verticalScrollIndicatorInsets.top = navBarHeight
