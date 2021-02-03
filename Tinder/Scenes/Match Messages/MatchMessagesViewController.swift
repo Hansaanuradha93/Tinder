@@ -4,11 +4,11 @@ import Firebase
 class MatchMessagesViewController: UICollectionViewController {
 
     // MARK: Properties
-    fileprivate let navBarHeight: CGFloat = 130
-    fileprivate let viewModel = MatchMessagesViewModel()
-    fileprivate let customNavBar = MatchMessagesNavigationBar()
-    fileprivate let statusBar = UIView()
-    fileprivate var listener: ListenerRegistration?
+    private let navBarHeight: CGFloat = 130
+    private let viewModel = MatchMessagesViewModel()
+    private let customNavBar = MatchMessagesNavigationBar()
+    private let statusBar = UIView()
+    private var listener: ListenerRegistration?
     var currentUser: User?
     
     
@@ -80,9 +80,9 @@ extension MatchMessagesViewController: UICollectionViewDelegateFlowLayout {
 
 
 // MARK: - Methods
-extension MatchMessagesViewController {
+private extension MatchMessagesViewController {
     
-    @objc fileprivate func handleBack() {
+    @objc func handleBack() {
         navigationController?.popViewController(animated: true)
     }
     
@@ -92,7 +92,7 @@ extension MatchMessagesViewController {
     }
     
     
-    fileprivate func fectchRecentMessages() {
+    func fectchRecentMessages() {
         listener = viewModel.fetchRecentMessages(completion: { [weak self] recentMessages in
             guard let self = self, let _ = recentMessages else { return }
             DispatchQueue.main.async { self.collectionView.reloadData() }
@@ -100,14 +100,14 @@ extension MatchMessagesViewController {
     }
     
     
-    fileprivate func navigateToChatLog(chatLogViewModel: ChatLogViewModel) {
+    func navigateToChatLog(chatLogViewModel: ChatLogViewModel) {
         chatLogViewModel.currentUser = currentUser
         let controller = ChatLogViewController(chatLogViewModel: chatLogViewModel)
         navigationController?.pushViewController(controller, animated: true)
     }
     
     
-    fileprivate func setupCollectionView() {
+    func setupCollectionView() {
         collectionView.backgroundColor = .white
         collectionView.contentInset.top = navBarHeight
         collectionView.verticalScrollIndicatorInsets.top = navBarHeight
@@ -116,7 +116,7 @@ extension MatchMessagesViewController {
     }
     
     
-    fileprivate func setupLayout() {
+    func setupLayout() {
         view.addSubview(customNavBar)
         customNavBar.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, size: .init(width: 0, height: navBarHeight))
         customNavBar.backButton.addTarget(self, action: #selector(handleBack), for: .touchUpInside)
