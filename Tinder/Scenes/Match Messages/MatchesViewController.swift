@@ -3,7 +3,7 @@ import UIKit
 class MatchesViewController: UICollectionViewController {
     
     // MARK: Properties
-    fileprivate let viewModel = MatchesViewModel()
+    private let viewModel = MatchesViewModel()
     weak var rootMatchesController: MatchMessagesViewController?
     
 
@@ -55,10 +55,10 @@ extension MatchesViewController {
 }
 
 
-// MARK: - Methods
-extension MatchesViewController {
+// MARK: - Private Methods
+private extension MatchesViewController {
     
-    fileprivate func fetchMatches() {
+    func fetchMatches() {
         viewModel.fetchMatches { [weak self] status in
             guard let self = self else { return }
             if status { DispatchQueue.main.async { self.collectionView.reloadData() } }
@@ -66,7 +66,7 @@ extension MatchesViewController {
     }
     
     
-    fileprivate func setupUI() {
+    func setupUI() {
         collectionView.backgroundColor = .white
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.register(MatchCell.self, forCellWithReuseIdentifier: MatchCell.reuseID)

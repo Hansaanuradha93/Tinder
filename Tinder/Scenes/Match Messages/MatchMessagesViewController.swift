@@ -78,17 +78,20 @@ extension MatchMessagesViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+// MARK: - Public Methods
+extension MatchMessagesViewController {
+    
+    func didSelectMatchFromHeader(match: Match) {
+        navigateToChatLog(chatLogViewModel: match.toChatLogViewModel())
+    }
+}
 
-// MARK: - Methods
+
+// MARK: - Private Methods
 private extension MatchMessagesViewController {
     
     @objc func handleBack() {
         navigationController?.popViewController(animated: true)
-    }
-    
-    
-    func didSelectMatchFromHeader(match: Match) {
-        navigateToChatLog(chatLogViewModel: match.toChatLogViewModel())
     }
     
     

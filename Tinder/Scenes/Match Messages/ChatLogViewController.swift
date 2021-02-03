@@ -108,7 +108,7 @@ private extension ChatLogViewController {
 }
 
 
-// MARK: - Methods
+// MARK: - Private Methods
 private extension ChatLogViewController {
     
     func saveRecentMessages() {
