@@ -21,10 +21,10 @@ class MatchesHeaderView: UICollectionReusableView {
 }
 
 
-// MARK - Methods
-extension MatchesHeaderView {
+// MARK: - Private Methods
+private extension MatchesHeaderView {
     
-    fileprivate func setupUI() {
+    func setupUI() {
         backgroundColor = .white
         
         let matchStackView = UIStackView(arrangedSubviews: [newMatchesLabel])
