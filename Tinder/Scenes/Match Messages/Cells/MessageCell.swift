@@ -5,8 +5,8 @@ class MessageCell: UICollectionViewCell {
     // MARK: Properties
     static let reuseID = "MessageCell"
     
-    fileprivate var anchoredConstraints: AnchoredConstraints?
-    fileprivate let textView: UITextView = {
+    private var anchoredConstraints: AnchoredConstraints?
+    private let textView: UITextView = {
        let tv = UITextView()
         tv.backgroundColor = .clear
         tv.font = UIFont.systemFont(ofSize: 20)
@@ -15,7 +15,7 @@ class MessageCell: UICollectionViewCell {
         return tv
     }()
     
-    fileprivate let bubbleView: UIView = {
+    private let bubbleView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.appColor(color: .regularGray)
         return view
@@ -52,7 +52,7 @@ extension MessageCell {
     }
     
     
-    fileprivate func setupLayout() {
+    private func setupLayout() {
         addSubview(bubbleView)
         bubbleView.layer.cornerRadius = 12
         anchoredConstraints = bubbleView.anchor(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor)
