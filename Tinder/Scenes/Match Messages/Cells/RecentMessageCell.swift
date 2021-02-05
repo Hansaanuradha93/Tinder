@@ -5,10 +5,10 @@ class RecentMessageCell: UICollectionViewCell {
     // MARK: Properties
     static let reuseID = "RecentMessageCell"
     
-    fileprivate let profileImageView = TDImageView()
-    fileprivate let usernameLabel = TDLabel(textAlignment: .left, fontSize: 16)
-    fileprivate let messageLabel = TDLabel(textAlignment: .left, textColor: .gray, fontSize: 14, numberOfLines: 2)
-    fileprivate let barView = UIView()
+    private let profileImageView = TDImageView()
+    private let usernameLabel = TDLabel(textAlignment: .left, fontSize: 16)
+    private let messageLabel = TDLabel(textAlignment: .left, textColor: .gray, fontSize: 14, numberOfLines: 2)
+    private let barView = UIView()
     
     
     // MARK: Initializers
@@ -32,7 +32,7 @@ extension RecentMessageCell {
     }
     
     
-    fileprivate func setupUI() {
+    private func setupUI() {
         let dimensions: CGFloat = 100
         let padding = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 20)
         backgroundColor = .white
