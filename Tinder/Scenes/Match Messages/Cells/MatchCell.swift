@@ -5,8 +5,8 @@ class MatchCell: UICollectionViewCell {
     // MARK: Properties
     static let reuseID = "MatchCell"
     
-    fileprivate let profileImageView = TDImageView(contentMode: .scaleAspectFill)
-    fileprivate let usernameLabel = TDLabel(textColor: .gray, fontSize: 14, numberOfLines: 2)
+    private let profileImageView = TDImageView(contentMode: .scaleAspectFill)
+    private let usernameLabel = TDLabel(textColor: .gray, fontSize: 14, numberOfLines: 2)
     
     
     // MARK: Initializers
@@ -29,7 +29,7 @@ extension MatchCell {
     }
     
     
-    fileprivate func setupLayout() {
+    private func setupLayout() {
         let dimenstions = frame.width
         profileImageView.setHeight(dimenstions)
         profileImageView.layer.cornerRadius = dimenstions / 2
