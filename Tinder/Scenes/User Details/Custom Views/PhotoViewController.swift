@@ -3,8 +3,8 @@ import UIKit
 class PhotoViewController: UIViewController {
 
     // MARK: Properties
-    fileprivate let imageView = UIImageView()
-    fileprivate var imageUrl = ""
+    private let imageView = UIImageView()
+    private var imageUrl = ""
 
     
     // MARK: Initializers
@@ -26,9 +26,9 @@ class PhotoViewController: UIViewController {
 
 
 // MARK: - Methods
-extension PhotoViewController {
+private extension PhotoViewController {
     
-    fileprivate func setupLayout() {
+    func setupLayout() {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         view.addSubview(imageView)
