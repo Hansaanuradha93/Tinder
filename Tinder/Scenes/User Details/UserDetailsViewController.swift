@@ -38,29 +38,29 @@ class UserDetailsViewController: UIViewController {
 
 
 // MARK: - Objc Methods
-extension UserDetailsViewController {
+private extension UserDetailsViewController {
     
-    @objc fileprivate func handlelike() {
+    @objc func handlelike() {
         dismiss(animated: true) { self.delegate?.didTapLike(isLiked: true) }
     }
     
     
-    @objc fileprivate func handleSuperlike() {
+    @objc func handleSuperlike() {
         // TODO: Handle super like user
     }
     
     
-    @objc fileprivate func handleDislike() {
+    @objc func handleDislike() {
         dismiss(animated: true) { self.delegate?.didTapLike(isLiked: false) }
     }
     
     
-    @objc fileprivate func handleTap() {
+    @objc func handleTap() {
         dismiss(animated: true)
     }
     
     
-    @objc fileprivate func handleSendMessage() {
+    @objc func handleSendMessage() {
         guard let matchedUser = matchedUser else { return }
         navigateToChatLog(chatLogViewModel: matchedUser.toChatLogViewModel())
     }
@@ -77,7 +77,7 @@ extension UserDetailsViewController {
     }
     
     
-    fileprivate func navigateToChatLog(chatLogViewModel: ChatLogViewModel) {
+    private func navigateToChatLog(chatLogViewModel: ChatLogViewModel) {
         chatLogViewModel.currentUser = viewModel.currentUser
         let controller = ChatLogViewController(chatLogViewModel: chatLogViewModel)
         controller.modalPresentationStyle = .overCurrentContext
@@ -85,7 +85,7 @@ extension UserDetailsViewController {
     }
     
     
-    fileprivate func createButton(image: UIImage, selector: Selector) -> UIButton {
+    private func createButton(image: UIImage, selector: Selector) -> UIButton {
         let button = UIButton(type: .system)
         button.imageView?.contentMode = .scaleAspectFit
         button.setImage(image.withRenderingMode(.alwaysOriginal), for: .normal)
@@ -94,7 +94,7 @@ extension UserDetailsViewController {
     }
     
     
-    fileprivate func setupVisualBlurEffectView() {
+    private func setupVisualBlurEffectView() {
         let blurEffect = UIBlurEffect(style: .regular)
         let visualEffectView = UIVisualEffectView(effect: blurEffect)
         view.addSubview(visualEffectView)
@@ -102,7 +102,7 @@ extension UserDetailsViewController {
     }
     
     
-    fileprivate func setupLayout() {
+    private func setupLayout() {
         view.backgroundColor = .white
         
         scrollView.alwaysBounceVertical = true
