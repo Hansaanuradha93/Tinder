@@ -8,13 +8,13 @@ protocol LoginViewControllerDelegate {
 class LoginViewController: UIViewController {
     
     // MARK: Properties
-    fileprivate let gradientLayer = CAGradientLayer()
-    fileprivate let emailTextField = TDTextField(padding: 24, placeholderText: Strings.enterEmail, radius: 25)
-    fileprivate let passwordTextField = TDTextField(padding: 24, placeholderText: Strings.enterPassword, radius: 25)
-    fileprivate let loginButton = TDButton(backgroundColor: UIColor.appColor(color: .lightGray), title: Strings.login, titleColor: .gray, radius: 25, fontSize: 24)
-    fileprivate let backToRegisterButton = TDButton(backgroundColor: .clear, title: Strings.goBack, titleColor: .white, radius: 0, fontSize: 18)
+    private let gradientLayer = CAGradientLayer()
+    private let emailTextField = TDTextField(padding: 24, placeholderText: Strings.enterEmail, radius: 25)
+    private let passwordTextField = TDTextField(padding: 24, placeholderText: Strings.enterPassword, radius: 25)
+    private let loginButton = TDButton(backgroundColor: UIColor.appColor(color: .lightGray), title: Strings.login, titleColor: .gray, radius: 25, fontSize: 24)
+    private let backToRegisterButton = TDButton(backgroundColor: .clear, title: Strings.goBack, titleColor: .white, radius: 0, fontSize: 18)
 
-    fileprivate lazy var verticalStackView: UIStackView = {
+    private lazy var verticalStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [emailTextField, passwordTextField, loginButton])
         stackView.axis = .vertical
         stackView.spacing = 8
@@ -43,9 +43,9 @@ class LoginViewController: UIViewController {
 
 
 // MARK: - Objc Methods
-extension LoginViewController {
+private extension LoginViewController {
     
-    @objc fileprivate func handleTextChange(textField: UITextField) {
+    @objc func handleTextChange(textField: UITextField) {
         if textField == emailTextField {
             viewModel.email = textField.text
         } else {
@@ -54,7 +54,7 @@ extension LoginViewController {
     }
     
     
-    @objc fileprivate func handleLogin() {
+    @objc func handleLogin() {
         viewModel.performLogin { [weak self] error in
             guard let self = self else { return }
             if let error = error {
@@ -69,16 +69,16 @@ extension LoginViewController {
     }
     
     
-    @objc fileprivate func handleBack() {
+    @objc func handleBack() {
         navigationController?.popViewController(animated: true)
     }
 }
 
 
 // MARK: - Methods
-extension LoginViewController {
+private extension LoginViewController {
 
-    fileprivate func setupBindables() {
+    func setupBindables() {
         viewModel.isFormValid.bind { [weak self] (isFormValid) in
             guard let self = self, let isFormValid = isFormValid else { return }
             if isFormValid {
@@ -101,14 +101,14 @@ extension LoginViewController {
     }
     
     
-    fileprivate func setupGradient() {
+    func setupGradient() {
         gradientLayer.colors = [UIColor.appColor(color: .orange).cgColor, UIColor.appColor(color: .pink).cgColor]
         gradientLayer.locations = [0, 1]
         view.layer.insertSublayer(gradientLayer, at: 0)
     }
     
     
-    fileprivate func setupLayout() {
+    func setupLayout() {
         navigationController?.navigationBar.isHidden = true
         view.addSubview(verticalStackView)
         verticalStackView.anchor(top: nil, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 0, left: 50, bottom: 0, right: 50))
@@ -124,7 +124,7 @@ extension LoginViewController {
     }
     
     
-    fileprivate func addTargets() {
+    func addTargets() {
         emailTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(handleTextChange), for: .editingChanged)
         loginButton.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
