@@ -7,8 +7,8 @@ class AgeRangeCell: UITableViewCell {
     
     let minSlider = TDSlider()
     let maxSlider = TDSlider()
-    fileprivate let minLabel = TDLabel(text: Strings.minimumPlaceholder, textAlignment: .left)
-    fileprivate let maxLabel = TDLabel(text: Strings.maximumPlaceholder, textAlignment: .left)
+    private let minLabel = TDLabel(text: Strings.minimumPlaceholder, textAlignment: .left)
+    private let maxLabel = TDLabel(text: Strings.maximumPlaceholder, textAlignment: .left)
     
     
     // MARK: Initializers
@@ -37,7 +37,7 @@ extension AgeRangeCell {
     }
     
     
-    fileprivate func layoutUI() {
+    private func layoutUI() {
         let edgeInsets = UIEdgeInsets(top: 4, left: 0, bottom: 4, right: 0)
         let spacing: CGFloat = 10
         
