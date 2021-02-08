@@ -124,9 +124,9 @@ extension SettingsViewController: UITableViewDataSource {
 
 
 // MARK: - Objc Methods
-extension SettingsViewController {
+private extension SettingsViewController {
     
-    @objc fileprivate func handleMinSlider(slider: UISlider) {
+    @objc  func handleMinSlider(slider: UISlider) {
         let indexPath = IndexPath(row: 0, section: 5)
         let ageCell = tableView.cellForRow(at: indexPath) as! AgeRangeCell
         let minValue = Int(slider.value)
@@ -135,7 +135,7 @@ extension SettingsViewController {
     }
     
     
-    @objc fileprivate func handleMaxSlider(slider: UISlider) {
+    @objc func handleMaxSlider(slider: UISlider) {
         let indexPath = IndexPath(row: 0, section: 5)
         let ageCell = tableView.cellForRow(at: indexPath) as! AgeRangeCell
         let maxValue = Int(slider.value)
@@ -144,32 +144,32 @@ extension SettingsViewController {
     }
     
     
-    @objc fileprivate func handleNameChange(textField: UITextField) {
+    @objc func handleNameChange(textField: UITextField) {
         user?.name = textField.text
     }
     
     
-    @objc fileprivate func handleProfessionChange(textField: UITextField) {
+    @objc func handleProfessionChange(textField: UITextField) {
         user?.profession = textField.text
     }
     
     
-    @objc fileprivate func handleAgeChange(textField: UITextField) {
+    @objc func handleAgeChange(textField: UITextField) {
         user?.age = Int(textField.text ?? "")
     }
     
     
-    @objc fileprivate func handleBioChange(textField: UITextField) {
+    @objc func handleBioChange(textField: UITextField) {
         user?.bio = textField.text ?? ""
     }
     
     
-    @objc fileprivate func handleTap() {
+    @objc func handleTap() {
         view.endEditing(true)
     }
     
     
-    @objc fileprivate func handleSelectPhoto(button: UIButton) {
+    @objc func handleSelectPhoto(button: UIButton) {
        let imagePickerController = TDImagePickerController()
         imagePickerController.delegate = self
         imagePickerController.allowsEditing = true
@@ -178,12 +178,12 @@ extension SettingsViewController {
     }
     
     
-    @objc fileprivate func handleCancel() {
+    @objc func handleCancel() {
         dismiss(animated: true)
     }
     
     
-    @objc fileprivate func handleSave() {
+    @objc func handleSave() {
         viewModel.saveUserData(user: user) { [weak self] status in
             guard let self = self else { return }
             if status {
@@ -193,7 +193,7 @@ extension SettingsViewController {
     }
     
     
-    @objc fileprivate func handleLogout() {
+    @objc func handleLogout() {
         try? Auth.auth().signOut()
         dismiss(animated: true)
     }
@@ -201,9 +201,9 @@ extension SettingsViewController {
 
 
 // MARK: - Methods
-extension SettingsViewController {
+private extension SettingsViewController {
     
-    fileprivate func uploadImageOn(button: UIButton?) {
+    func uploadImageOn(button: UIButton?) {
         viewModel.uploadImage(image: button?.image(for: .normal)) { [weak self] downloadUrl in
             guard let self = self, let downloadUrl = downloadUrl else { return }
             if button == self.image1Button {
@@ -218,7 +218,7 @@ extension SettingsViewController {
     }
     
     
-    fileprivate func setupSettingsViewModelObservers() {
+    func setupSettingsViewModelObservers() {
         viewModel.bindableIsFetchingData.bind { [weak self] isFetching in
             guard let self = self, let isFetching = isFetching else { return }
             if isFetching {
@@ -248,7 +248,7 @@ extension SettingsViewController {
     }
     
     
-    fileprivate func fetchCurrentUser() {
+    func fetchCurrentUser() {
         viewModel.fetchCurrentUser { [weak self] user in
             guard let self = self, let user = user else { return }
             self.user = user
@@ -257,7 +257,7 @@ extension SettingsViewController {
     }
     
     
-    fileprivate func updateUI() {
+    func updateUI() {
         DispatchQueue.main.async { self.tableView.reloadData() }
         if let imageUrl1 = user?.imageUrl1 {
             image1Button.downloadImage(from: imageUrl1)
@@ -271,7 +271,7 @@ extension SettingsViewController {
     }
     
     
-    fileprivate func setupTableView() {
+    func setupTableView() {
         view.addSubview(tableView)
         tableView.fillSuperview()
         tableView.dataSource = self
@@ -286,7 +286,7 @@ extension SettingsViewController {
     }
     
     
-    fileprivate func createButton(selector: Selector) -> UIButton {
+    func createButton(selector: Selector) -> UIButton {
         let button = TDButton(backgroundColor: .white, title: Strings.selectPhoto, radius: 16, fontSize: 20)
         button.addTarget(self, action: selector, for: .touchUpInside)
         button.imageView?.contentMode = .scaleAspectFill
@@ -294,7 +294,7 @@ extension SettingsViewController {
     }
     
     
-    fileprivate func setupNavigationBar() {
+    func setupNavigationBar() {
         navigationItem.title = Strings.settings
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: Strings.cancel, style: .plain, target: self, action: #selector(handleCancel))
