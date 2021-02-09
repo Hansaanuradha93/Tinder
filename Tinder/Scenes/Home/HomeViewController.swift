@@ -31,9 +31,9 @@ class HomeViewController: UIViewController {
 
 
 // MARK: - Objc Methods
-extension HomeViewController {
+private extension HomeViewController {
     
-    @objc fileprivate func settingsButtonTapped() {
+    @objc func settingsButtonTapped() {
         let controller = SettingsViewController()
         controller.delegate = self
         let navigationController = UINavigationController(rootViewController: controller)
@@ -42,32 +42,32 @@ extension HomeViewController {
     }
     
     
-    @objc fileprivate func messageButtonTapped() {
+    @objc func messageButtonTapped() {
         let controller = MatchMessagesViewController(collectionViewLayout: UICollectionViewFlowLayout())
         controller.currentUser = cardViewModel.currentUser
         navigationController?.pushViewController(controller, animated: true)
     }
     
     
-    @objc fileprivate func handleDislike() {
+    @objc func handleDislike() {
         saveSwipeToFirestore(isLiked: false)
         performSwipeAnimation(isLiked: false)
     }
     
     
-    @objc fileprivate func handleLike() {
+    @objc func handleLike() {
         saveSwipeToFirestore(isLiked: true)
         performSwipeAnimation(isLiked: true)
     }
     
     
-    @objc fileprivate func handleRefresh() {
+    @objc func handleRefresh() {
         cardsDeckView.subviews.forEach{ $0.removeFromSuperview() }
         fetchData()
     }
     
     
-    @objc fileprivate func handleSendMessage() {
+    @objc func handleSendMessage() {
         guard let matchedUser = matchedUser else { return }
         navigateToChatLog(chatLogViewModel: matchedUser.toChatLogViewModel())
     }
@@ -75,9 +75,9 @@ extension HomeViewController {
 
 
 // MARK: - Methods
-extension HomeViewController {
+private extension HomeViewController {
     
-    fileprivate func pushToSignup() {
+    func pushToSignup() {
         if Auth.auth().currentUser == nil {
             let controller = LoginViewController()
             controller.delegate = self
@@ -88,7 +88,7 @@ extension HomeViewController {
     }
     
     
-    fileprivate func fetchData() {
+    func fetchData() {
         topCardView = nil
         cardViewModel.fetchCurrentUser { [weak self] user in
             guard let self = self, let user = user else { return }
@@ -102,7 +102,7 @@ extension HomeViewController {
     }
     
     
-    fileprivate func setupCardViewModelObserver() {
+    func setupCardViewModelObserver() {
         cardViewModel.bindableIsFetchingUsers.bind { [weak self] isFetchingUsers in
             guard let self = self, let isFetchingUsers = isFetchingUsers else { return }
             if isFetchingUsers {
@@ -114,7 +114,7 @@ extension HomeViewController {
     }
     
     
-    fileprivate func setupButtonActions() {
+    func setupButtonActions() {
         topControllsStackView.settingsButton.addTarget(self, action: #selector(settingsButtonTapped), for: .touchUpInside)
         topControllsStackView.messagesButton.addTarget(self, action: #selector(messageButtonTapped), for: .touchUpInside)
         bottomControllsStackView.refreshButton.addTarget(self, action: #selector(handleRefresh), for: .touchUpInside)
@@ -123,19 +123,19 @@ extension HomeViewController {
     }
     
     
-    fileprivate func performSwipeAnimation(isLiked: Bool) {
+    func performSwipeAnimation(isLiked: Bool) {
         topCardView = topCardView?.performSwipeAnimation(isLiked: isLiked)
     }
     
     
-    fileprivate func navigateToChatLog(chatLogViewModel: ChatLogViewModel) {
+    func navigateToChatLog(chatLogViewModel: ChatLogViewModel) {
         chatLogViewModel.currentUser = cardViewModel.currentUser
         let controller = ChatLogViewController(chatLogViewModel: chatLogViewModel)
         navigationController?.pushViewController(controller, animated: true)
     }
     
     
-    fileprivate func saveSwipeToFirestore(isLiked: Bool) {
+    func saveSwipeToFirestore(isLiked: Bool) {
         cardViewModel.saveSwipe(isLiked: isLiked, cardView: topCardView) { [weak self] hasMatched, cardUID in
             guard let self = self else { return }
             if hasMatched {
@@ -146,7 +146,7 @@ extension HomeViewController {
     }
     
     
-    fileprivate func presentMatchView(cardUID: String) {
+    func presentMatchView(cardUID: String) {
         let matchView = MatchView()
         matchView.cardUID = cardUID
         matchView.currentUser = cardViewModel.currentUser
@@ -157,7 +157,7 @@ extension HomeViewController {
     }
     
     
-    fileprivate func setupCardFrom(user: User) -> CardView {
+    func setupCardFrom(user: User) -> CardView {
         let cardView = CardView(cardViewModel: user.toCardViewModel())
         cardView.delegate = self
         cardsDeckView.addSubview(cardView)
@@ -167,7 +167,7 @@ extension HomeViewController {
     }
     
     
-    fileprivate func setupLayout() {
+    func setupLayout() {
         navigationController?.navigationBar.isHidden = true
         view.backgroundColor = .white
         
@@ -181,12 +181,12 @@ extension HomeViewController {
     }
     
     
-    fileprivate func clearCardDeckView() {
+    func clearCardDeckView() {
         cardsDeckView.subviews.forEach({ $0.removeFromSuperview() })
     }
     
     
-    fileprivate func navigateToUserDetailsController(cardViewModel: CardViewModel) {
+    func navigateToUserDetailsController(cardViewModel: CardViewModel) {
         let viewModel = UserDetailsViewModel(uid: cardViewModel.uid, imageUrls: cardViewModel.imageUrls, attributedText: cardViewModel.attributedText, currentUser: self.cardViewModel.currentUser)
         let controller = UserDetailsViewController()
         controller.delegate = self
