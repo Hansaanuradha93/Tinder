@@ -4,13 +4,13 @@ import Firebase
 class HomeViewController: UIViewController {
 
     // MARK: Properties
-    fileprivate let topControllsStackView = HomeTopButtonControlsStackView()
-    fileprivate let cardsDeckView = UIView()
-    fileprivate let bottomControllsStackView = HomeBottomButtonControlsStackView()
-    fileprivate let cardViewModel = CardViewModel()
-    fileprivate var topCardView: CardView?
-    fileprivate var previousCardView: CardView?
-    fileprivate var matchedUser: User?
+    private let topControllsStackView = HomeTopButtonControlsStackView()
+    private let cardsDeckView = UIView()
+    private let bottomControllsStackView = HomeBottomButtonControlsStackView()
+    private let cardViewModel = CardViewModel()
+    private var topCardView: CardView?
+    private var previousCardView: CardView?
+    private var matchedUser: User?
     
     
     // MARK: View Controller
