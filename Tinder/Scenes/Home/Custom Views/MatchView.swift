@@ -8,13 +8,13 @@ protocol MatchViewDelegate {
 class MatchView: UIView {
     
     // MARK: Properties
-    fileprivate let viewModel = MatchViewModel()
-    fileprivate let blurView = UIBlurEffect(style: .dark)
-    fileprivate lazy var visualEffectView = UIVisualEffectView(effect: blurView)
-    fileprivate let itsMatchImageView = TDImageView(image: Asserts.itsMatch)
-    fileprivate let descriptionLabel = TDLabel(textColor: .white, fontSize: 20, numberOfLines: 0)
-    fileprivate let currentImageView = TDImageView(borderWidth: 2, borderColor: .white)
-    fileprivate let cardUserImageView = TDImageView(borderWidth: 2, borderColor: .white)
+    private let viewModel = MatchViewModel()
+    private let blurView = UIBlurEffect(style: .dark)
+    private lazy var visualEffectView = UIVisualEffectView(effect: blurView)
+    private let itsMatchImageView = TDImageView(image: Asserts.itsMatch)
+    private let descriptionLabel = TDLabel(textColor: .white, fontSize: 20, numberOfLines: 0)
+    private let currentImageView = TDImageView(borderWidth: 2, borderColor: .white)
+    private let cardUserImageView = TDImageView(borderWidth: 2, borderColor: .white)
     let sendMessageButton = TDGradientButton( title: Strings.sendMessage, titleColor: .white, fontSize: 16)
     let keepSwipingButton = TDGradientBorderButton( title: Strings.keepSwiping, titleColor: .white, fontSize: 16)
     
@@ -37,9 +37,9 @@ class MatchView: UIView {
 
 
 // MARK: - Methods
-extension MatchView {
+private extension MatchView {
     
-    @objc fileprivate func handleTapDismiss() {
+    @objc func handleTapDismiss() {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.alpha = 0
         }) { (_) in
@@ -48,7 +48,7 @@ extension MatchView {
     }
     
     
-    fileprivate func setupCard(user: User) {
+    func setupCard(user: User) {
         currentImageView.downloadImage(from: currentUser.imageUrl1 ?? "")
         descriptionLabel.text = "You and \(user.name ?? "")\n have liked eachother"
         cardUserImageView.downloadImage(from: user.imageUrl1 ?? "")
@@ -56,7 +56,7 @@ extension MatchView {
     }
     
     
-    fileprivate func fetchCardUser() {
+    func fetchCardUser() {
         viewModel.fetchCardUser(cardUID: cardUID) { [weak self] user in
             guard let self = self, let user = user else { return }
             self.setupCard(user: user)
@@ -65,7 +65,7 @@ extension MatchView {
     }
     
     
-    fileprivate func setupAnimtation() {
+    func setupAnimtation() {
         views.forEach{ $0.alpha = 1 }
         
         let angle = 30 * CGFloat.pi / 180
@@ -94,7 +94,7 @@ extension MatchView {
     }
     
     
-    fileprivate func setupBlurView() {
+    func setupBlurView() {
         visualEffectView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTapDismiss)))
         addSubview(visualEffectView)
         visualEffectView.fillSuperview()
@@ -105,7 +105,7 @@ extension MatchView {
     }
     
     
-    fileprivate func setupUI() {
+    func setupUI() {
         let dimensions: CGFloat = 140
         
         for view in views {
