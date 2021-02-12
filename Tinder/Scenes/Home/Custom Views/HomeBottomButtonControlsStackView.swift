@@ -22,9 +22,9 @@ class HomeBottomButtonControlsStackView: UIStackView {
 
 
 // MARK: - Methods
-extension HomeBottomButtonControlsStackView {
+private extension HomeBottomButtonControlsStackView {
     
-    fileprivate func createButton(image: UIImage) -> UIButton {
+    func createButton(image: UIImage) -> UIButton {
         let button = UIButton(type: .system)
         button.setImage(image, for: .normal)
         button.imageView?.contentMode = .scaleAspectFill
@@ -32,7 +32,7 @@ extension HomeBottomButtonControlsStackView {
     }
     
     
-    fileprivate func setupLayout() {
+    func setupLayout() {
         distribution = .fillEqually
         heightAnchor.constraint(equalToConstant: 100).isActive = true
         [refreshButton, dislikeButton, superLikeButton, likeButton, thunderButton].forEach { button in
