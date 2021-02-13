@@ -20,9 +20,9 @@ class HomeTopButtonControlsStackView: UIStackView {
 
 
 // MARK: - Methods
-extension HomeTopButtonControlsStackView {
+private extension HomeTopButtonControlsStackView {
     
-    fileprivate func setupUI() {
+    func setupUI() {
         distribution = .equalCentering
         heightAnchor.constraint(equalToConstant: 80).isActive = true
         isLayoutMarginsRelativeArrangement = true
