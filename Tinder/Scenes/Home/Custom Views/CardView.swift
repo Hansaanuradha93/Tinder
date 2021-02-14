@@ -10,20 +10,20 @@ protocol CardViewDelegate {
 class CardView: UIView {
     
     // MARK: Properties
-    fileprivate let gradientLayer = CAGradientLayer()
-    fileprivate let swipingPhotoController = SwipingPhotosViewController(isCardViewMode: true)
+    private let gradientLayer = CAGradientLayer()
+    private let swipingPhotoController = SwipingPhotosViewController(isCardViewMode: true)
     lazy var swipingView = swipingPhotoController.view!
-    fileprivate let informationLabel = UILabel()
-    fileprivate let moreInfoButton = TDButton()
-    fileprivate let likeContainerView = UIView()
-    fileprivate let dislikeContainerView = UIView()
-    fileprivate let likeLabel = TDLabel(text: Strings.like, textAlignment: .center, textColor: UIColor.appColor(color: .lightGreen), fontSize: 55)
-    fileprivate let dislikeLabel = TDLabel(text: Strings.nope, textAlignment: .center, textColor: UIColor.appColor(color: .pink), fontSize: 55)
+    private let informationLabel = UILabel()
+    private let moreInfoButton = TDButton()
+    private let likeContainerView = UIView()
+    private let dislikeContainerView = UIView()
+    private let likeLabel = TDLabel(text: Strings.like, textAlignment: .center, textColor: UIColor.appColor(color: .lightGreen), fontSize: 55)
+    private let dislikeLabel = TDLabel(text: Strings.nope, textAlignment: .center, textColor: UIColor.appColor(color: .pink), fontSize: 55)
 
     
     // MARK: Configurations
-    fileprivate let threshold: CGFloat = 100
-    fileprivate let barDiselectedColor = UIColor.appColor(color: .darkGray)
+    private let threshold: CGFloat = 100
+    private let barDiselectedColor = UIColor.appColor(color: .darkGray)
     var cardViewModel: CardViewModel!
     var nextCardView: CardView?
     var delegate: CardViewDelegate?
@@ -57,14 +57,14 @@ class CardView: UIView {
 
 
 // MARK: - Objc Methods
-extension CardView {
+private extension CardView {
     
-    @objc fileprivate func handleMoreInfo() {
+    @objc func handleMoreInfo() {
         delegate?.didTapMoreInfo(cardViewModel: cardViewModel)
     }
     
     
-    @objc fileprivate func handlePan(_ gesture: UIPanGestureRecognizer) {
+    @objc func handlePan(_ gesture: UIPanGestureRecognizer) {
         switch gesture.state {
         case .began:
             handleBegan()
@@ -78,7 +78,7 @@ extension CardView {
 }
 
 
-// MARK: - Methods
+// MARK: - Public Methods
 extension CardView {
     
     func performSwipeAnimation(isLiked: Bool) -> CardView? {
@@ -116,16 +116,20 @@ extension CardView {
         
         return cardView.nextCardView
     }
+}
+
+
+// MARK: - Private Methods
+private extension CardView {
     
-    
-    fileprivate func handleBegan() {
+    func handleBegan() {
         superview?.subviews.forEach({ (subview) in
             subview.layer.removeAllAnimations()
         })
     }
     
     
-    fileprivate func handleEnded(_ gesture: UIPanGestureRecognizer) {
+    func handleEnded(_ gesture: UIPanGestureRecognizer) {
         let translationX = gesture.translation(in: nil).x
         let translationDirection: CGFloat = translationX > 0 ? 1 : -1
         let shoudDismissCard = abs(translationX) > threshold
@@ -148,7 +152,7 @@ extension CardView {
     }
     
     
-    fileprivate func backToIdentity() {
+    func backToIdentity() {
         transform = .identity
         likeContainerView.alpha = 0
         dislikeContainerView.alpha = 0
@@ -163,7 +167,7 @@ extension CardView {
     }
     
     
-    fileprivate func handleChanged(_ gesture: UIPanGestureRecognizer) {
+    func handleChanged(_ gesture: UIPanGestureRecognizer) {
         let translation = gesture.translation(in: nil)
         let degrees: CGFloat = translation.x / 20
         let likeStartAngle = 5 * CGFloat.pi / 180
@@ -180,7 +184,7 @@ extension CardView {
     }
 
     
-    fileprivate func setupViews(_ cardViewModel: CardViewModel) {
+    func setupViews(_ cardViewModel: CardViewModel) {
         swipingPhotoController.swipingDelegate = self
         swipingPhotoController.imageUrls = cardViewModel.imageUrls
         informationLabel.attributedText = cardViewModel.attributedText
@@ -188,7 +192,7 @@ extension CardView {
     }
     
     
-    fileprivate func layoutUI() {
+    func layoutUI() {
         configureCard()
         configureSwipingView()
         configureInformationLabel()
@@ -197,12 +201,12 @@ extension CardView {
     }
     
     
-    fileprivate func addCornerRadius() {
+    func addCornerRadius() {
         moreInfoButton.layer.cornerRadius = moreInfoButton.frame.width / 2
     }
     
     
-    fileprivate func configureLikeAndDislikeLabels() {
+    func configureLikeAndDislikeLabels() {
         let angle = 10 * CGFloat.pi / 180
         
         addSubview(likeContainerView)
@@ -223,7 +227,7 @@ extension CardView {
     }
     
     
-    fileprivate func configureMoreInfoButton() {
+    func configureMoreInfoButton() {
         let image = Asserts.infoCircleFill.withRenderingMode(.alwaysTemplate)
         moreInfoButton.setImage(image, for: .normal)
         moreInfoButton.tintColor = .white
@@ -235,14 +239,14 @@ extension CardView {
     }
     
     
-    fileprivate func configureGradientView() {
+    func configureGradientView() {
         gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
         gradientLayer.locations = [0.5, 1.1]
         layer.insertSublayer(gradientLayer, at: 1)
     }
     
     
-    fileprivate func configureCard() {
+    func configureCard() {
         layer.cornerRadius = 10
         clipsToBounds = true
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
@@ -250,13 +254,13 @@ extension CardView {
     }
     
     
-    fileprivate func configureSwipingView() {
+    func configureSwipingView() {
         addSubview(swipingView)
         swipingView.fillSuperview()
     }
     
     
-    fileprivate func configureInformationLabel() {
+    func configureInformationLabel() {
         informationLabel.textColor = .white
         informationLabel.font = UIFont.systemFont(ofSize: 30, weight: .heavy)
         informationLabel.numberOfLines = 0
