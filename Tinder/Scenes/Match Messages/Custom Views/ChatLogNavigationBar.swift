@@ -3,11 +3,11 @@ import UIKit
 class ChatLogNavigationBar: UIView {
     
     // MARK: Properties
-    fileprivate var chatLogViewModel: ChatLogViewModel!
-    fileprivate let dimensions: CGFloat = 50
-    fileprivate let profileImageView = TDImageView(contentMode: .scaleAspectFill)
-    fileprivate let usernameLabel = TDLabel( textAlignment: .center, textColor: .gray, fontSize: 16, numberOfLines: 2)
-    fileprivate lazy var views = [profileImageView, usernameLabel, backButton, flagButton]
+    private var chatLogViewModel: ChatLogViewModel!
+    private let dimensions: CGFloat = 50
+    private let profileImageView = TDImageView(contentMode: .scaleAspectFill)
+    private let usernameLabel = TDLabel( textAlignment: .center, textColor: .gray, fontSize: 16, numberOfLines: 2)
+    private lazy var views = [profileImageView, usernameLabel, backButton, flagButton]
     let backButton = TDButton(type: .system)
     let flagButton = TDButton(type: .system)
 
@@ -31,15 +31,15 @@ class ChatLogNavigationBar: UIView {
 
 
 // MARK: - Methods
-extension ChatLogNavigationBar {
+private extension ChatLogNavigationBar {
     
-    fileprivate func setupUser() {
+    func setupUser() {
         profileImageView.downloadImage(from: chatLogViewModel.profileImageUrl)
         usernameLabel.text = chatLogViewModel.username
     }
     
     
-    fileprivate func setupUI() {
+    func setupUI() {
         backgroundColor = .white
         dropShadow(color: UIColor.black, opacity: 0.05, offset: CGSize(width: 0, height: 10), radius: 8)
         views.forEach{ addSubview($0) }
