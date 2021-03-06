@@ -3,7 +3,7 @@ import UIKit
 class MatchMessagesNavigationBar: UIView {
     
     // MARK: Initializers
-    fileprivate let iconImageView = TDImageView(image: Asserts.topMessages, contentMode: .scaleAspectFit)
+    private let iconImageView = TDImageView(image: Asserts.topMessages, contentMode: .scaleAspectFit)
     let backButton = TDButton(type: .system)
     let messagesLabel = TDLabel(text: Strings.messages, textAlignment: .center, textColor: UIColor.appColor(color: .pink), fontSize: 20)
     let feedLabel = TDLabel(text: Strings.feed, textAlignment: .center, textColor: .gray, fontSize: 20)
@@ -20,9 +20,9 @@ class MatchMessagesNavigationBar: UIView {
 
 
 // MARK: Methods
-extension MatchMessagesNavigationBar {
+private extension MatchMessagesNavigationBar {
     
-    fileprivate func setupUI() {
+    func setupUI() {
         backgroundColor = .white
         dropShadow(color: UIColor.black, opacity: 0.05, offset: CGSize(width: 0, height: 10), radius: 8)
         
