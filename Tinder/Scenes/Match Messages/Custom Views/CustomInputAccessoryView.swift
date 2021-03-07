@@ -28,14 +28,14 @@ class CustomInputAccessoryView: UIView {
 
 
 // MARK: - Methods
-extension CustomInputAccessoryView {
+private extension CustomInputAccessoryView {
     
-    @objc fileprivate func handleTextChange() {
+    @objc func handleTextChange() {
         placeHolderLabel.isHidden = textView.text.count != 0
     }
     
     
-    fileprivate func setupUI() {
+    func setupUI() {
         backgroundColor = .white
         autoresizingMask = .flexibleHeight
         dropShadow(color: .lightGray, opacity: 0.1, offset: .init(width: 0, height: -8), radius: 8)
