@@ -8,17 +8,17 @@ protocol UserDetailsViewControllerDelegate {
 class UserDetailsViewController: UIViewController {
     
     // MARK: Properties
-    fileprivate let scrollView = UIScrollView()
-    fileprivate let swipingPhotViewController = SwipingPhotosViewController()
-    fileprivate let infoLabel = UILabel()
-    fileprivate var viewModel: UserDetailsViewModel!
-    fileprivate var matchedUser: User?
-    fileprivate lazy var swipingView = swipingPhotViewController.view!
-    fileprivate lazy var dismissButton = createButton(image: Asserts.dismissDownArrow, selector: #selector(handleTap))
-    fileprivate lazy var dislikeButton = createButton(image: Asserts.dismissCircle, selector: #selector(handleDislike))
-    fileprivate lazy var superlikeButton = createButton(image: Asserts.superLike, selector: #selector(handleSuperlike))
-    fileprivate lazy var likeButton = createButton(image: Asserts.like, selector: #selector(handlelike))
-    fileprivate lazy var extraSwipingHeight: CGFloat = 100
+    private let scrollView = UIScrollView()
+    private let swipingPhotViewController = SwipingPhotosViewController()
+    private let infoLabel = UILabel()
+    private var viewModel: UserDetailsViewModel!
+    private var matchedUser: User?
+    private lazy var swipingView = swipingPhotViewController.view!
+    private lazy var dismissButton = createButton(image: Asserts.dismissDownArrow, selector: #selector(handleTap))
+    private lazy var dislikeButton = createButton(image: Asserts.dismissCircle, selector: #selector(handleDislike))
+    private lazy var superlikeButton = createButton(image: Asserts.superLike, selector: #selector(handleSuperlike))
+    private lazy var likeButton = createButton(image: Asserts.like, selector: #selector(handlelike))
+    private lazy var extraSwipingHeight: CGFloat = 100
     var delegate: UserDetailsViewControllerDelegate?
    
     
