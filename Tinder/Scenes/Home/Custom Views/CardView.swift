@@ -12,7 +12,7 @@ class CardView: UIView {
     // MARK: Properties
     private let gradientLayer = CAGradientLayer()
     private let swipingPhotoController = SwipingPhotosViewController(isCardViewMode: true)
-    lazy var swipingView = swipingPhotoController.view!
+    private lazy var swipingView = swipingPhotoController.view!
     private let informationLabel = UILabel()
     private let moreInfoButton = TDButton()
     private let likeContainerView = UIView()
