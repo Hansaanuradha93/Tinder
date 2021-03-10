@@ -60,4 +60,8 @@ struct Strings {
     static let keepSwiping = "Keep Swiping"
     static let like = "LIKE"
     static let nope = "NOPE"
+    static let youAnd = "You and"
+    static let likeEachother = "\n have liked eachother"
+    static let min = "Min"
+    static let max = "Max"
 }
