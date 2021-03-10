@@ -50,7 +50,7 @@ private extension MatchView {
     
     func setupCard(user: User) {
         currentImageView.downloadImage(from: currentUser.imageUrl1 ?? "")
-        descriptionLabel.text = "You and \(user.name ?? "")\n have liked eachother"
+        descriptionLabel.text = "\(Strings.youAnd) \(user.name ?? "")\(Strings.likeEachother)"
         cardUserImageView.downloadImage(from: user.imageUrl1 ?? "")
         setupAnimtation()
     }
