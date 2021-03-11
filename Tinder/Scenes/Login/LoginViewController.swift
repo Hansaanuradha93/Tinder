@@ -21,7 +21,7 @@ class LoginViewController: UIViewController {
         return stackView
     }()
     
-    fileprivate let viewModel = LoginViewModel()
+    private let viewModel = LoginViewModel()
     var delegate: LoginViewControllerDelegate?
     
     
