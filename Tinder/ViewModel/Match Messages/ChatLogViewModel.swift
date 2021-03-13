@@ -13,7 +13,7 @@ class ChatLogViewModel {
     let profileImageUrl: String
     var currentUser: User?
     
-    fileprivate var messages = [Message]()
+    private var messages = [Message]()
     
     
     // MARK: Initializers
