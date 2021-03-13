@@ -1,8 +1,8 @@
 import Firebase
 
 class MatchMessagesViewModel {
-    fileprivate var recentMessagesDictionary = [String : RecentMessage]()
-    fileprivate var recentMessages = [RecentMessage]()
+    private var recentMessagesDictionary = [String : RecentMessage]()
+    private var recentMessages = [RecentMessage]()
 }
 
 
@@ -44,7 +44,7 @@ extension MatchMessagesViewModel {
     }
     
     
-    fileprivate func resetRecentMessages(completion: @escaping ([RecentMessage]?) -> ()) {
+    private func resetRecentMessages(completion: @escaping ([RecentMessage]?) -> ()) {
         let values = Array(recentMessagesDictionary.values)
         recentMessages = values.sorted(by: { (recentMessage1, recentMessage2) -> Bool in
             guard let timestamp1 = recentMessage1.timestamp, let timestamp2 = recentMessage2.timestamp else { return false }
