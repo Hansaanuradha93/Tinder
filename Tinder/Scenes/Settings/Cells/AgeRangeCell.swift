@@ -27,11 +27,11 @@ extension AgeRangeCell {
     
     func setup(minValue: Int?, maxValue: Int?) {
         if let minValue = minValue {
-            minLabel.text = "Min \(minValue)"
+            minLabel.text = "\(Strings.min) \(minValue)"
             minSlider.value = Float(minValue)
         }
         if let maxValue = maxValue {
-            maxLabel.text = "Max \(maxValue)"
+            maxLabel.text = "\(Strings.max) \(maxValue)"
             maxSlider.value = Float(maxValue)
         }
     }
