@@ -3,7 +3,7 @@ import Firebase
 class MatchesViewModel {
     
     // MARK: Properties
-    fileprivate var matches = [Match]()
+    private var matches = [Match]()
 }
 
 
