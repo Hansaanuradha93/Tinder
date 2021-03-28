@@ -16,7 +16,7 @@ class LoginViewModel {
 // MARK: - Methods
 extension LoginViewModel {
     
-    fileprivate func checkFormValidity() {
+    private func checkFormValidity() {
         let isValid = email?.isEmpty == false && password?.isEmpty == false
         isFormValid.value = isValid
     }
