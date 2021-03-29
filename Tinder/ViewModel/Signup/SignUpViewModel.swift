@@ -33,7 +33,7 @@ extension SignUpViewModel {
     }
     
     
-    fileprivate func saveImageToFirebase(completion: @escaping ((Error?) -> ())) {
+    private func saveImageToFirebase(completion: @escaping ((Error?) -> ())) {
         guard let image = self.bindableImage.value,
         let uploadData = image.jpegData(compressionQuality: 0.75) else { return }
         let filename = UUID().uuidString
@@ -50,7 +50,7 @@ extension SignUpViewModel {
     }
     
     
-    fileprivate func fetchImageDownloadUrl(reference: StorageReference, completion: @escaping (Error?) -> ()) {
+    private func fetchImageDownloadUrl(reference: StorageReference, completion: @escaping (Error?) -> ()) {
         reference.downloadURL { (url, error) in
             if let error = error {
                 self.bindableIsRegistering.value = false
@@ -63,7 +63,7 @@ extension SignUpViewModel {
     }
     
     
-    fileprivate func saveInfoToFirestore(imageUrl: String, completion: @escaping (Error?) -> ()) {
+    private func saveInfoToFirestore(imageUrl: String, completion: @escaping (Error?) -> ()) {
         let uid = Auth.auth().currentUser?.uid ?? ""
         let userInfo = [
             "uid": uid,
