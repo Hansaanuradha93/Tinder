@@ -14,8 +14,8 @@ class CardViewModel {
     let attributedText: NSAttributedString
     let textAlignment: NSTextAlignment
     
-    fileprivate var lastFetchedUser: User?
-    fileprivate let userPaginationLimit = 2
+    private var lastFetchedUser: User?
+    private let userPaginationLimit = 2
     var currentUser: User?
     var users = [String: User]()
     
@@ -36,7 +36,7 @@ class CardViewModel {
 // MARK: - Methods
 extension CardViewModel {
     
-    fileprivate func fetchUsersFromFirestore(uid: String, swipes: [String : Int]?, completion: @escaping (User?) -> ()) {
+    private func fetchUsersFromFirestore(uid: String, swipes: [String : Int]?, completion: @escaping (User?) -> ()) {
         let minAge = currentUser?.minSeekingAge ?? Constants.defaultMinimumSeekingAge
         let maxAge = currentUser?.maxSeekingAge ?? Constants.defaultMaximumSeekingAge
         
@@ -68,7 +68,7 @@ extension CardViewModel {
     }
     
     
-    fileprivate func fetchSwipes(uid: String, completion: @escaping (User?) -> ()) {
+    private func fetchSwipes(uid: String, completion: @escaping (User?) -> ()) {
         let reference = Firestore.firestore().collection("swipes").document(uid)
         reference.getDocument { snapshot, error in
             if let error = error {
@@ -152,7 +152,7 @@ extension CardViewModel {
     }
     
     
-    fileprivate func checkIfMatchExist(cardUID: String, completion: @escaping (Bool, String) -> ()) {
+    private func checkIfMatchExist(cardUID: String, completion: @escaping (Bool, String) -> ()) {
         let reference = Firestore.firestore().collection("swipes").document(cardUID)
         reference.getDocument { snapshot, error in
             if let error = error {
