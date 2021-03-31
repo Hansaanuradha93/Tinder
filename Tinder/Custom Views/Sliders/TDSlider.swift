@@ -23,7 +23,7 @@ class TDSlider: UISlider {
 // MARK: - Methods
 extension TDSlider {
     
-    fileprivate func setupUI() {
+    private func setupUI() {
         minimumValue = Float(Constants.defaultMinimumSeekingAge)
         maximumValue = Float(Constants.defaultMaximumSeekingAge)
         isContinuous = true
