@@ -3,7 +3,7 @@ import UIKit
 class TDTextField: UITextField {
     
     // MARK: Properties
-    fileprivate var padding: CGFloat = 0
+    private var padding: CGFloat = 0
     
     
     // MARK: Initializers
@@ -38,7 +38,7 @@ class TDTextField: UITextField {
 // MARK: - Methods
 extension TDTextField {
     
-    fileprivate func configure() {
+    private func configure() {
         backgroundColor = .white
     }
 }
