@@ -28,7 +28,7 @@ extension TDButton {
     }
     
     
-    fileprivate func setup(backgroundColor: UIColor, title: String, titleColor: UIColor, radius: CGFloat, fontSize: CGFloat) {
+    private func setup(backgroundColor: UIColor, title: String, titleColor: UIColor, radius: CGFloat, fontSize: CGFloat) {
         self.setTitle(title, for: .normal)
         self.setTitleColor(titleColor, for: .normal)
         self.backgroundColor = backgroundColor
