@@ -26,9 +26,9 @@ class TDGradientBorderButton: UIButton {
 
 
 // MARK: - Methods
-extension TDGradientBorderButton {
+private extension TDGradientBorderButton {
     
-    fileprivate func setupGradientView(_ rect: CGRect) {
+    func setupGradientView(_ rect: CGRect) {
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [UIColor.appColor(color: .pink).cgColor, UIColor.appColor(color: .orange).cgColor]
         gradientLayer.startPoint = CGPoint(x: 0, y: 0.5)
@@ -51,7 +51,7 @@ extension TDGradientBorderButton {
     }
     
     
-    fileprivate func setup(backgroundColor: UIColor, title: String, titleColor: UIColor, fontSize: CGFloat) {
+    func setup(backgroundColor: UIColor, title: String, titleColor: UIColor, fontSize: CGFloat) {
         self.setTitle(title, for: .normal)
         self.setTitleColor(titleColor, for: .normal)
         self.backgroundColor = backgroundColor
