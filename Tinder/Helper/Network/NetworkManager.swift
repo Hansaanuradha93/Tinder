@@ -4,7 +4,7 @@ class NetworkManager {
     
     // MARK: Properties
     static let shared = NetworkManager()
-    fileprivate let cache = NSCache<NSString, UIImage>()
+    private let cache = NSCache<NSString, UIImage>()
     
     // MARK: Initializers
     private init() {}
