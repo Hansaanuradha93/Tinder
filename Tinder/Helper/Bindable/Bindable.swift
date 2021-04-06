@@ -7,7 +7,7 @@ class Bindable<T> {
     }
     
     
-    fileprivate var observer: ((T?) -> ())?
+    private var observer: ((T?) -> ())?
     
     
     func bind(observer: @escaping (T?) -> ()) {
