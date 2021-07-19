@@ -4,10 +4,10 @@ class MatchMessagesNavigationBar: UIView {
     
     // MARK: Initializers
     private let iconImageView = TDImageView(image: Asserts.topMessages, contentMode: .scaleAspectFit)
+    private let messagesLabel = TDLabel(text: Strings.messages, textAlignment: .center, textColor: UIColor.appColor(color: .pink), fontSize: 20)
+    private let feedLabel = TDLabel(text: Strings.feed, textAlignment: .center, textColor: .gray, fontSize: 20)
     let backButton = TDButton(type: .system)
-    let messagesLabel = TDLabel(text: Strings.messages, textAlignment: .center, textColor: UIColor.appColor(color: .pink), fontSize: 20)
-    let feedLabel = TDLabel(text: Strings.feed, textAlignment: .center, textColor: .gray, fontSize: 20)
-
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
