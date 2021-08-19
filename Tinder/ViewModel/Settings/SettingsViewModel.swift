@@ -6,6 +6,31 @@ class SettingsViewModel {
     var bindableIsFetchingData = Bindable<Bool>()
     var bindableIsSavingUserData = Bindable<Bool>()
     var bindableIsUploadingImage = Bindable<Bool>()
+    
+    
+    // MARK: Properties
+    enum SectionType {
+        case header
+        case name
+        case profession
+        case age
+        case bio
+        case seekingAgeRange
+    }
+    
+    struct Section {
+        var sectionType: SectionType
+        var index: Int
+    }
+        
+    var sections: [Section] = [
+        Section(sectionType: .header, index: 0),
+        Section(sectionType: .name, index: 1),
+        Section(sectionType: .profession, index: 2),
+        Section(sectionType: .age, index: 3),
+        Section(sectionType: .bio, index: 4),
+        Section(sectionType: .seekingAgeRange, index: 5)
+    ]
 }
 
 
