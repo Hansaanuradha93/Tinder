@@ -79,8 +79,7 @@ private extension HomeViewController {
     
     func pushToSignup() {
         if Auth.auth().currentUser == nil {
-            let controller = LoginViewController()
-            controller.delegate = self
+            let controller = SignupViewController()
             let navigationController = UINavigationController(rootViewController: controller)
             navigationController.modalPresentationStyle = .overFullScreen
             present(navigationController, animated: true)
