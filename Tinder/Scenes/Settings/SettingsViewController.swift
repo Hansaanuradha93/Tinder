@@ -54,18 +54,20 @@ extension SettingsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerName = HeaderLabel()
         headerName.font = UIFont.boldSystemFont(ofSize: 16)
-        switch section {
-        case 0:
+        let section = viewModel.sections[section]
+
+        switch section.sectionType {
+        case .header:
             return header
-        case 1:
+        case .name:
             headerName.text = Strings.name
-        case 2:
+        case .profession:
             headerName.text = Strings.profession
-        case 3:
+        case .age:
             headerName.text = Strings.age
-        case 4:
+        case .bio:
             headerName.text = Strings.bio
-        default:
+        case .seekingAgeRange:
             headerName.text = Strings.seekingAgeRange
         }
         return headerName
@@ -73,8 +75,9 @@ extension SettingsViewController: UITableViewDelegate {
 
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        switch section {
-        case 0:
+        let section = viewModel.sections[section]
+        switch section.sectionType {
+        case .header:
             return 300
         default:
             return 40
@@ -87,7 +90,7 @@ extension SettingsViewController: UITableViewDelegate {
 extension SettingsViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 6
+        return viewModel.sections.count
     }
     
     
@@ -97,26 +100,29 @@ extension SettingsViewController: UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let section = viewModel.sections[indexPath.section]
         let settingsCell = tableView.dequeueReusableCell(withIdentifier: SettingsCell.reuseIdentifier, for: indexPath) as! SettingsCell
-        switch indexPath.section {
-        case 1:
+        switch section.sectionType {
+        case .name:
             settingsCell.setup(placehoder: Strings.name, text: user?.name ?? "")
             settingsCell.textField.addTarget(self, action: #selector(handleNameChange), for: .editingChanged)
-        case 2:
+        case .profession:
             settingsCell.setup(placehoder: Strings.profession, text: user?.profession ?? "")
             settingsCell.textField.addTarget(self, action: #selector(handleProfessionChange), for: .editingChanged)
-        case 3:
+        case .age:
             settingsCell.setup(placehoder: Strings.age, text: "\(user?.age ?? 0)")
             settingsCell.textField.addTarget(self, action: #selector(handleAgeChange), for: .editingChanged)
-        case 4:
+        case .bio:
             settingsCell.setup(placehoder: Strings.bio, text: user?.bio ?? "")
             settingsCell.textField.addTarget(self, action: #selector(handleBioChange), for: .editingChanged)
-        default:
+        case .seekingAgeRange:
             let ageRangeCell = tableView.dequeueReusableCell(withIdentifier: AgeRangeCell.reuseIdentifier, for: indexPath) as! AgeRangeCell
             ageRangeCell.minSlider.addTarget(self, action: #selector(handleMinSlider), for: .valueChanged)
             ageRangeCell.maxSlider.addTarget(self, action: #selector(handleMaxSlider), for: .valueChanged)
             ageRangeCell.setup(minValue: self.user?.minSeekingAge, maxValue: self.user?.maxSeekingAge)
             return ageRangeCell
+        case .header:
+            print("header")
         }
         return settingsCell
     }
