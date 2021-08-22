@@ -1,6 +1,6 @@
 import Firebase
 
-class MatchViewModel {
+final class MatchViewModel {
     
     func fetchCardUser(cardUID: String, completion: @escaping (User?) -> ()) {
         let reference = Firestore.firestore().collection("users").document(cardUID)
