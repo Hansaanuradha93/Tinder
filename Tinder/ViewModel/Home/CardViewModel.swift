@@ -6,7 +6,7 @@ protocol ProducesCardViewModel {
 }
 
 
-class CardViewModel {
+final class CardViewModel {
     
     // MARK: Properties
     let uid: String
