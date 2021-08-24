@@ -1,7 +1,7 @@
 import Foundation
 import Firebase
 
-class LoginViewModel {
+final class LoginViewModel {
     
     // MARK: Properties
     var email: String? { didSet { checkFormValidity() } }
