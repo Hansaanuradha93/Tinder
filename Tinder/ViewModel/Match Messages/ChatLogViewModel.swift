@@ -5,7 +5,7 @@ protocol ProducesChatLogViewModel {
 }
 
 
-class ChatLogViewModel {
+final class ChatLogViewModel {
     
     // MARK: Properties
     let uid: String
