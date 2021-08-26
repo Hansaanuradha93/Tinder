@@ -1,6 +1,8 @@
 import Firebase
 
-class MatchMessagesViewModel {
+final class MatchMessagesViewModel {
+    
+    // MARK: Properties
     private var recentMessagesDictionary = [String : RecentMessage]()
     private var recentMessages = [RecentMessage]()
 }
