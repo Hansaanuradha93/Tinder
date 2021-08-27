@@ -1,6 +1,6 @@
 import Firebase
 
-class MatchesViewModel {
+final class MatchesViewModel {
     
     // MARK: Properties
     private var matches = [Match]()
