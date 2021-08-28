@@ -1,6 +1,6 @@
 import Firebase
 
-class SettingsViewModel {
+final class SettingsViewModel {
         
     // MARK: Bindable
     var bindableIsFetchingData = Bindable<Bool>()
