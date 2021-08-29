@@ -1,7 +1,7 @@
 import UIKit
 import Firebase
 
-class SignUpViewModel {
+final class SignUpViewModel {
     
     // MARK: Properties
     var fullName: String? { didSet { checkFormValidity() } }
