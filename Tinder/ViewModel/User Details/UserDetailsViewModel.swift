@@ -1,6 +1,6 @@
 import Foundation
 
-class UserDetailsViewModel {
+final class UserDetailsViewModel {
     
     // MARK: Properties
     let uid: String
